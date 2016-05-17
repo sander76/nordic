@@ -1,0 +1,104 @@
+[{
+    "title": "Roller blinds",
+    "instructions": [{
+        "title": "1. Connect",
+        "instruction": "Connect all cables.",
+        "buttons": [{
+            "caption": "Connect",
+            "command": "connect",
+            "keys": "up 8"
+        }]
+    }, {
+        "title": "2. Motor reset",
+        "instruction": "Press motor reset. Motor should jog within a minute.",
+        "buttons": [{
+            "caption": "Reset",
+            "command": "reset",
+            "keys": "up 8"
+        }]
+    }, {
+        "title": "4. Limit setting",
+        "instruction": "Choose which limit to set first.",
+        "buttons": [{
+            "caption": "Top limit",
+            "command": "top_limit"
+        }, {
+            "caption": "Bottom limit",
+            "command": "bottom_limit"
+        }]
+    }, {
+        "title": "5. Positioning",
+        "instruction": "Move the shade to the desired position",
+        "buttons": [{
+            "caption": "Up",
+            "command": "open",
+            "keys": "*"
+        }, {
+            "caption": "Stop",
+            "command": "stop",
+            "keys": "pageup 9"
+        }, {
+            "caption": "Down",
+            "command": "close",
+            "keys": "right 6"
+        }]
+    }]
+}, {
+    "title": "Twist blinds",
+    "instructions": [{
+        "title": "1. Connect",
+        "instruction": "Connect all cables.",
+        "buttons": [{
+            "caption": "Connect",
+            "command": "connect",
+            "keys": "up 8"
+        }]
+    }, {
+        "title": "2. Motor reset",
+        "instruction": "Press motor reset. Motor should jog within a minute.",
+        "buttons": [{
+            "caption": "Reset",
+            "command": "reset",
+            "keys": "up 8"
+        }]
+    }, {
+        "title": "3. Motor type",
+        "route": "step3",
+        "instruction": "Define the type of motor",
+        "buttons": [{
+            "caption": "Roller blind",
+            "command": "roller",
+            "keys": "up 8"
+        }, {
+            "caption": "Twist",
+            "command": "twist",
+            "keys": "pageup 9"
+        }]
+    }, {
+        "title": "4. Limit setting",
+        "instruction": "Choose which limit to set first.",
+        "buttons": [{
+            "caption": "Top limit",
+            "command": "top_limit"
+        }, {
+            "caption": "Bottom limit",
+            "command": "bottom_limit"
+        }]
+    }, {
+        "title": "5. Positioning",
+        "instruction": "Move the shade to the desired position",
+        "buttons": [{
+            "caption": "Up",
+            "command": "open",
+            "keys": "*"
+        }, {
+            "caption": "Stop",
+            "command": "stop",
+            "keys": "pageup 9"
+        }, {
+            "caption": "Down",
+            "command": "close",
+            "keys": "right 6"
+        }]
+    }]
+}]

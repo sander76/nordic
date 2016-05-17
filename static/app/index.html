@@ -84,7 +84,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <iron-a11y-keys keys="down 2" on-keys-pressed="handlePrevious">
         </iron-a11y-keys>
         <iron-a11y-keys keys="pagedown 3" on-keys-pressed="handleNext">
-        </iron-a11y-keys> -->
+        </iron-a11y-keys>
+        <iron-ajax url="instructions.json" auto handle-as="json" on-response="getInstructions"></iron-ajax>
         <paper-drawer-panel id="paperDrawerPanel">
             <!-- Drawer Scroll Header Panel -->
             <paper-scroll-header-panel drawer fixed>
@@ -95,21 +96,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </paper-toolbar>
 
                 <!-- Drawer Content -->
-                <paper-menu class="app-menu" attr-for-selected="data-route" selected="[[route]]">
-                    <!-- <a data-route="home" href="{{baseUrl}}">
-                        <iron-icon icon="home"></iron-icon>
-                        <span>Home</span>
-                    </a> -->
-
-                    <a data-route="step1" href="{{baseUrl}}step1">
-                        <iron-icon icon="info"></iron-icon>
-                        <span>step1</span>
-                    </a>
-
-                    <a data-route="step2" href="{{baseUrl}}step2">
-                        <iron-icon icon="mail"></iron-icon>
-                        <span>step2</span>
-                    </a>
+                <paper-menu on-iron-select="handleInstructionChange">
+                    <template is="dom-repeat" items="[[all_instructions]]">
+                        <paper-item>[[item.title]]</paper-item>
+                    </template>
                 </paper-menu>
             </paper-scroll-header-panel>
 
@@ -120,23 +110,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <paper-toolbar id="mainToolbar" class="tall">
                     <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
                     <div class="middle middle-container">
-                        <div class="app-name">Nordic programmer</div>
+                        <div class="app-name">[[instructions.title]]</div>
                     </div>
-                    <!-- <span class="space"></span>
-<span class="space"></span> -->
-                    <!-- Toolbar icons -->
-                    <!-- <paper-icon-button icon="refresh"></paper-icon-button>
-                    <paper-icon-button icon="search"></paper-icon-button> -->
-
-                    <!-- Application name -->
-
-
-                    <!-- Application sub title -->
-                    <!-- <div class="bottom bottom-container">
-                        <div class="bottom-title">The future of the web today</div>
-                    </div> -->
-                    <paper-tabs class="bottom" selected="{{selected}}">
-                        <template is="dom-repeat" items="[[instructions]]">
+                    <paper-tabs noink="true" class="bottom" selected="{{selected}}" id="tbs">
+                        <template is="dom-repeat" items="[[instructions.instructions]]">
                             <paper-tab>{{item.title}}</paper-tab>
                         </template>
                     </paper-tabs>
@@ -144,72 +121,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
                 <!-- Main Content -->
                 <div>
-
-                    <iron-pages id="pages" on-nextpage="handleNext" on-previouspage="handlePrevious" selected="{{selected}}" selected-attribute="test">
-                        <template is="dom-repeat" items="{{instructions}}">
+                    <iron-pages id="pages" on-nextpage="handleNext" on-previouspage="handlePrevious" selected="{{selected}}">
+                        <template is="dom-repeat" items="[[instructions.instructions]]">
                             <section tabindex="-1">
                                 <instruction-step data="{{item}}" curitem=[[index]] selected="[[selected]]"></instruction-step>
                             </section>
                         </template>
-
-                        <!-- <section data-route="home" tabindex="-1">
-                            <instruction-step></instruction-step>
-                            <h1 class="page-title" tabindex="-1">M25 T Twist</h1>
-                            <paper-material elevation="1">
-                                <p>
-                                    This will send an open command.
-                                </p>
-                                <ajax-button command="open">Open</ajax-button>
-                            </paper-material>
-                            <paper-material elevation="1">
-                                <p>
-                                    Whis will send a close command
-                                </p>
-                                <ajax-button command="close">Close</ajax-button>
-                            </paper-material>
-
-                            <paper-material elevation="1">
-                                <serial-data></serial-data>
-                            </paper-material>
-
-                        </section> -->
-
-                        <!-- <section data-route="step1" tabindex="-1">
-                            <paper-card heading="STEP 1">
-                                <div class="card-content">
-                                    These are the instructions for step 1.
-                                    <div class="horizontal center-justified layout">
-                                        <ajax-button command="close">Close</ajax-button>
-                                    </div>
-                                </div>
-
-                                <div class="card-actions">
-
-                                    <div class="horizontal justified layout">
-
-                                        <paper-button>Previous</paper-button>
-                                        <paper-button on-click="next">Next</paper-button>
-                                    </div>
-                                </div>
-                            </paper-card>
-                            <!-- <paper-material elevation="1">
-                              <h1 class="page-title" tabindex="-1">step1</h1>
-
-                            </paper-material>
-                        </section> -->
-
-
-                        <!-- <section data-route="step2" tabindex="-1">
-                            <paper-material elevation="1">
-                                <h1 class="page-title" tabindex="-1">step2</h1>
-                                <p>This is the step2 section</p>
-                            </paper-material>
-                        </section> -->
                     </iron-pages>
                 </div>
             </paper-scroll-header-panel>
         </paper-drawer-panel>
-
         <paper-toast id="toast">
             <span class="toast-hide-button" role="button" tabindex="0" onclick="app.$.toast.hide()">Ok</span>
         </paper-toast>
@@ -223,80 +144,137 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // t.addEventListener('next',function(){
         //   var k = 19;
         // })
-        var pages = t.$pages;
+        //var pages = t.$pages;
         t.handleNext = function(e) {
             //var pages = t.$.pages
             t.$.pages.selectNext();
         }
         t.handlePrevious = function() {
-                t.$.pages.selectPrevious();
-            }
-            // t.goLeft = function() {
-            //     t.handlePrevious();
-            // }
-            //
+            t.$.pages.selectPrevious();
+        }
         t.target = function() {
             return document.body;
         }
         t.selected = 0;
-        t.instructions = [{
-            title: "1. Connect",
-            route: "step1",
-            instruction: "Connect all cables.",
-            buttons: [{
-                caption: "Connect",
-                command: "connect",
-                keys: "up 8"
-            }]
-        }, {
-            title: "2. Motor reset",
-            route: "step2",
-            instruction: "Press motor reset. Motor should jog within a minute.",
-            buttons: [{
-                caption: "Reset",
-                command: "reset",
-                keys: "up 8"
-            }]
-        }, {
-            title: "3. Motor type",
-            route: "step3",
-            instruction: "Define the type of motor",
-            buttons: [{
-                caption: "Roller blind",
-                command: "roller",
-                keys:"up 8"
-            }, {
-                caption: "Twist",
-                command: "twist",
-                keys:"pageup 9"
-            }]
-        }, {
-            title: "4. Limit setting",
-            instruction: "Choose which limit to set first.",
-            buttons: [{
-                caption: "Top limit",
-                command: "top_limit"
-            }, {
-                caption: "Bottom limit",
-                command: "bottom_limit"
-            }]
-        }, {
-            title: "5. Positioning",
-            instruction: "Move the shade to the desired position",
-            buttons: [{
-                caption: "Up",
-                command: "open",
-                keys:"*"
-            }, {
-                caption: "Stop",
-                command: "stop",
-                keys:"pageup 9"
-            }, {
-                caption: "Down",
-                command: "close",
-                keys:"right 6"
-            }]
-        }]
+        // t.all_instructions = [{
+        //     title: "Roller blinds",
+        //     instructions: [{
+        //         title: "1. Connect",
+        //         route: "step1",
+        //         instruction: "Connect all cables.",
+        //         buttons: [{
+        //             caption: "Connect",
+        //             command: "connect",
+        //             keys: "up 8"
+        //         }]
+        //     }, {
+        //         title: "2. Motor reset",
+        //         route: "step2",
+        //         instruction: "Press motor reset. Motor should jog within a minute.",
+        //         buttons: [{
+        //             caption: "Reset",
+        //             command: "reset",
+        //             keys: "up 8"
+        //         }]
+        //     }, {
+        //         title: "4. Limit setting",
+        //         instruction: "Choose which limit to set first.",
+        //         buttons: [{
+        //             caption: "Top limit",
+        //             command: "top_limit"
+        //         }, {
+        //             caption: "Bottom limit",
+        //             command: "bottom_limit"
+        //         }]
+        //     }, {
+        //         title: "5. Positioning",
+        //         instruction: "Move the shade to the desired position",
+        //         buttons: [{
+        //             caption: "Up",
+        //             command: "open",
+        //             keys: "*"
+        //         }, {
+        //             caption: "Stop",
+        //             command: "stop",
+        //             keys: "pageup 9"
+        //         }, {
+        //             caption: "Down",
+        //             command: "close",
+        //             keys: "right 6"
+        //         }]
+        //     }]
+        // }, {
+        //     title: "Twist blinds",
+        //     instructions: [{
+        //         title: "1. Connect",
+        //         route: "step1",
+        //         instruction: "Connect all cables.",
+        //         buttons: [{
+        //             caption: "Connect",
+        //             command: "connect",
+        //             keys: "up 8"
+        //         }]
+        //     }, {
+        //         title: "2. Motor reset",
+        //         route: "step2",
+        //         instruction: "Press motor reset. Motor should jog within a minute.",
+        //         buttons: [{
+        //             caption: "Reset",
+        //             command: "reset",
+        //             keys: "up 8"
+        //         }]
+        //     }, {
+        //         title: "3. Motor type",
+        //         route: "step3",
+        //         instruction: "Define the type of motor",
+        //         buttons: [{
+        //             caption: "Roller blind",
+        //             command: "roller",
+        //             keys: "up 8"
+        //         }, {
+        //             caption: "Twist",
+        //             command: "twist",
+        //             keys: "pageup 9"
+        //         }]
+        //     }, {
+        //         title: "4. Limit setting",
+        //         instruction: "Choose which limit to set first.",
+        //         buttons: [{
+        //             caption: "Top limit",
+        //             command: "top_limit"
+        //         }, {
+        //             caption: "Bottom limit",
+        //             command: "bottom_limit"
+        //         }]
+        //     }, {
+        //         title: "5. Positioning",
+        //         instruction: "Move the shade to the desired position",
+        //         buttons: [{
+        //             caption: "Up",
+        //             command: "open",
+        //             keys: "*"
+        //         }, {
+        //             caption: "Stop",
+        //             command: "stop",
+        //             keys: "pageup 9"
+        //         }, {
+        //             caption: "Down",
+        //             command: "close",
+        //             keys: "right 6"
+        //         }]
+        //     }]
+        // }];
+        t.handleInstructionChange = function(e) {
+            t.instructions = t.all_instructions[e.target.selected];
+            t.selected = 0;
+            //t.$.tbs.select(0);
+            t.$.tbs.focus();
+        }
+        t.getInstructions = function(e, response) {
+                //console.log(response.response);
+                t.all_instructions = response.response;
+            }
+            //t.instructions = undefined;
     </script>
     <!-- endbuild-->
 </body>
