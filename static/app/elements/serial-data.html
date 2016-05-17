@@ -1,0 +1,37 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="ws-element.html">
+
+<dom-module id="serial-data">
+    <template>
+        <style>
+            /* local DOM styles go here */
+        </style>
+
+        <template is="dom-repeat" items="{{serialdata}}">
+          <div>
+            {{item}}
+          </div>
+        </template>
+        <ws-element id="incoming" protocol="echo-protocol" url="ws:localhost:8080/ws"></ws-element>
+    </template>
+    <script>
+        Polymer({
+            is: 'serial-data',
+            properties: {
+                serialdata: {
+                    type: Array,
+                    value: ["array start", "more data"]
+                }
+            },
+            ready: function() {
+                var self = this;
+                this.$.incoming.addEventListener('onmessage', function(message) {
+                    console.log(message.detail);
+                    //this.serialdata.push(message.detail);
+                    self.push('serialdata', message.detail);
+                });
+            }
+
+        });
+    </script>
+</dom-module>

@@ -1,0 +1,75 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html" />
+<!-- <link rel="import" href="../bower_components/iron-a11y-keys/iron-a11y-keys.html"> -->
+
+<dom-module id="instruction-step">
+    <template>
+        <!-- <iron-a11y-keys id="keys" keys="left" target="[[target]]" on-keys-pressed="goLeft">
+        </iron-a11y-keys>
+        <iron-a11y-keys id="keys" keys="right" target="[[target]]" on-keys-pressed="goRight">
+        </iron-a11y-keys> -->
+
+        <paper-card id="input" heading="{{data.title}}">
+            <div class="card-content">
+                <p>
+                    {{data.instruction}}
+                </p>
+                <div class="horizontal center-justified layout">
+                    <template is="dom-repeat" items={{data.buttons}}>
+                        <ajax-button active="{{setActive(curitem,selected)}}" keys="[[item.keys]]" command="[[item.command]]">{{item.caption}}</ajax-button>
+                    </template>
+                </div>
+            </div>
+            <div class="card-actions">
+                <div class="horizontal justified layout">
+                    <paper-button on-tap="_prev">Previous</paper-button>
+                    <paper-button on-tap="_next">Next</paper-button>
+                </div>
+            </div>
+        </paper-card>
+
+    </template>
+    <script>
+        Polymer({
+            is: 'instruction-step',
+            properties: {
+                data: {
+                    type: Object,
+                },
+                curitem: {
+                    type: Number
+                },
+                selected: {
+                    type: Number
+                },
+                // target: {
+                //     type: Object,
+                //     value: function() {
+                //         //return document.body;
+                //         return this.$.input;
+                //     }
+                // },
+            },
+            _next: function(e) {
+                this.fire('nextpage');
+            },
+            _prev: function(e) {
+                this.fire('previouspage');
+            },
+            // goLeft:function(e){
+            //     if (this.active){
+            //       this._prev();
+            //     }
+            // },
+            // goRight:function(e){
+            //     if (this.active){
+            //       this._next();
+            //     }
+            // },
+            setActive: function(curitem, selected) {
+                this.active = curitem === selected;
+                return this.active;
+            }
+        });
+    </script>
+</dom-module>

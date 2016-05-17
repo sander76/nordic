@@ -1,0 +1,300 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Nordic programmer">
+    <title>Nordic programmer</title>
+
+    <!-- Place favicon.ico in the `app/` directory -->
+
+    <!-- Chrome for Android theme color -->
+    <meta name="theme-color" content="#2E3AA1">
+
+    <!-- Web Application Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Tile color for Win8 -->
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="PSK">
+    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Nordic programmer">
+    <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+
+    <!-- Tile icon for Win8 (144x144) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild-->
+
+    <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <!-- endbuild -->
+
+    <!-- Because this project uses vulcanize this should be your only html import
+       in this file. All other imports should go in elements.html -->
+    <link rel="import" href="elements/elements.html">
+
+    <!-- For shared styles, shared-styles.html import in elements.html -->
+    <style is="custom-style" include="shared-styles"></style>
+    <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
+    <style is="custom-style" include="demo-pages-shared-styles">
+        /*#container {
+        max-width: 600px;
+      }*/
+
+        paper-tabs,
+        paper-toolbar {
+            background-color: var(--paper-blue-900);
+            color: #fff;
+        }
+    </style>
+    <link rel="import" href="elements/ajax-button.html">
+    <link rel="import" href="elements/serial-data.html">
+    <link rel="import" href="elements/instruction-step.html" />
+</head>
+
+<body unresolved>
+    <!-- build:remove -->
+    <span id="browser-sync-binding"></span>
+    <!-- endbuild -->
+
+    <template is="dom-bind" id="app">
+        <iron-a11y-keys keys="left" on-keys-pressed="handlePrevious">
+        </iron-a11y-keys>
+        <iron-a11y-keys id="keys" keys="right" on-keys-pressed="handleNext">
+        </iron-a11y-keys> -->
+        <paper-drawer-panel id="paperDrawerPanel">
+            <!-- Drawer Scroll Header Panel -->
+            <paper-scroll-header-panel drawer fixed>
+
+                <!-- Drawer Toolbar -->
+                <paper-toolbar id="drawerToolbar">
+                    <span class="menu-name">Menu</span>
+                </paper-toolbar>
+
+                <!-- Drawer Content -->
+                <paper-menu class="app-menu" attr-for-selected="data-route" selected="[[route]]">
+                    <!-- <a data-route="home" href="{{baseUrl}}">
+                        <iron-icon icon="home"></iron-icon>
+                        <span>Home</span>
+                    </a> -->
+
+                    <a data-route="step1" href="{{baseUrl}}step1">
+                        <iron-icon icon="info"></iron-icon>
+                        <span>step1</span>
+                    </a>
+
+                    <a data-route="step2" href="{{baseUrl}}step2">
+                        <iron-icon icon="mail"></iron-icon>
+                        <span>step2</span>
+                    </a>
+                </paper-menu>
+            </paper-scroll-header-panel>
+
+            <!-- Main Area -->
+            <paper-scroll-header-panel main id="headerPanelMain" fixed>
+                <!-- Main Toolbar -->
+
+                <paper-toolbar id="mainToolbar" class="tall">
+                    <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
+                    <div class="middle middle-container">
+                        <div class="app-name">Nordic programmer</div>
+                    </div>
+                    <!-- <span class="space"></span>
+<span class="space"></span> -->
+                    <!-- Toolbar icons -->
+                    <!-- <paper-icon-button icon="refresh"></paper-icon-button>
+                    <paper-icon-button icon="search"></paper-icon-button> -->
+
+                    <!-- Application name -->
+
+
+                    <!-- Application sub title -->
+                    <!-- <div class="bottom bottom-container">
+                        <div class="bottom-title">The future of the web today</div>
+                    </div> -->
+                    <paper-tabs class="bottom" selected="{{selected}}">
+                        <template is="dom-repeat" items="[[instructions]]">
+                            <paper-tab>{{item.title}}</paper-tab>
+                        </template>
+                    </paper-tabs>
+                </paper-toolbar>
+
+                <!-- Main Content -->
+                <div>
+
+                    <iron-pages id="pages" on-nextpage="handleNext" on-previouspage="handlePrevious" selected="{{selected}}" selected-attribute="test">
+                        <template is="dom-repeat" items="{{instructions}}">
+                            <section tabindex="-1">
+                                <instruction-step data="{{item}}" curitem=[[index]] selected="[[selected]]"></instruction-step>
+                            </section>
+                        </template>
+
+                        <!-- <section data-route="home" tabindex="-1">
+                            <instruction-step></instruction-step>
+                            <h1 class="page-title" tabindex="-1">M25 T Twist</h1>
+                            <paper-material elevation="1">
+                                <p>
+                                    This will send an open command.
+                                </p>
+                                <ajax-button command="open">Open</ajax-button>
+                            </paper-material>
+                            <paper-material elevation="1">
+                                <p>
+                                    Whis will send a close command
+                                </p>
+                                <ajax-button command="close">Close</ajax-button>
+                            </paper-material>
+
+                            <paper-material elevation="1">
+                                <serial-data></serial-data>
+                            </paper-material>
+
+                        </section> -->
+
+                        <!-- <section data-route="step1" tabindex="-1">
+                            <paper-card heading="STEP 1">
+                                <div class="card-content">
+                                    These are the instructions for step 1.
+                                    <div class="horizontal center-justified layout">
+                                        <ajax-button command="close">Close</ajax-button>
+                                    </div>
+                                </div>
+
+                                <div class="card-actions">
+
+                                    <div class="horizontal justified layout">
+
+                                        <paper-button>Previous</paper-button>
+                                        <paper-button on-click="next">Next</paper-button>
+                                    </div>
+                                </div>
+                            </paper-card>
+                            <!-- <paper-material elevation="1">
+                              <h1 class="page-title" tabindex="-1">step1</h1>
+
+                            </paper-material>
+                        </section> -->
+
+
+                        <!-- <section data-route="step2" tabindex="-1">
+                            <paper-material elevation="1">
+                                <h1 class="page-title" tabindex="-1">step2</h1>
+                                <p>This is the step2 section</p>
+                            </paper-material>
+                        </section> -->
+                    </iron-pages>
+                </div>
+            </paper-scroll-header-panel>
+        </paper-drawer-panel>
+
+        <paper-toast id="toast">
+            <span class="toast-hide-button" role="button" tabindex="0" onclick="app.$.toast.hide()">Ok</span>
+        </paper-toast>
+
+    </template>
+
+    <!-- build:js scripts/app.js -->
+    <script src="scripts/app.js"></script>
+    <script>
+        var t = document.querySelector("#app");
+        // t.addEventListener('next',function(){
+        //   var k = 19;
+        // })
+        var pages = t.$pages;
+        t.handleNext = function(e) {
+            //var pages = t.$.pages
+            t.$.pages.selectNext();
+        }
+        t.handlePrevious = function() {
+                t.$.pages.selectPrevious();
+            }
+            // t.goLeft = function() {
+            //     t.handlePrevious();
+            // }
+            //
+        t.target = function() {
+            return document.body;
+        }
+        t.selected = 0;
+        t.instructions = [{
+            title: "1. Connect",
+            route: "step1",
+            instruction: "Connect all cables.",
+            buttons: [{
+                caption: "Connect",
+                command: "connect",
+                keys: "up 5"
+            }]
+        }, {
+            title: "2. Motor reset",
+            route: "step2",
+            instruction: "Press motor reset. Motor should jog within a minute.",
+            buttons: [{
+                caption: "Reset",
+                command: "reset",
+                keys: ""
+            }]
+        }, {
+            title: "3. Motor type",
+            route: "step3",
+            instruction: "Define the type of motor",
+            buttons: [{
+                caption: "Roller blind",
+                command: "rb_id"
+            }, {
+                caption: "Twist",
+                command: "twist_id",
+
+            }]
+        }, {
+            title: "4. Limit setting",
+            instruction: "Choose which limit to set first.",
+            buttons: [{
+                caption: "Top limit",
+                command: "top_limit"
+            }, {
+                caption: "Bottom limit",
+                command: "bottom_limit"
+            }]
+        }, {
+            title: "5. Positioning",
+            instruction: "Move the shade to the desired position",
+            buttons: [{
+                caption: "Up",
+                command: "open"
+            }, {
+                caption: "Stop",
+                command: "stop"
+            }, {
+                caption: "Down",
+                command: "close"
+            }]
+        }]
+    </script>
+    <!-- endbuild-->
+</body>
+
+</html>

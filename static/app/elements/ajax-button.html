@@ -1,0 +1,61 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/iron-a11y-keys/iron-a11y-keys.html">
+
+<dom-module id="ajax-button">
+    <template>
+        <style>
+            /* local DOM styles go here */
+
+            :host {
+                display: inline-block;
+            }
+        </style>
+        <iron-a11y-keys id="keys" keys="[[keys]]" target="[[target]]" on-keys-pressed="_updatePressed">
+        </iron-a11y-keys>
+        <!-- local DOM goes here -->
+        <iron-ajax id="sendCommand" url="/nordic" method="POST" content-type="application/json"></iron-ajax>
+
+        <paper-button raised on-tap="send">
+            <content></content>
+        </paper-button>
+    </template>
+    <script>
+        Polymer({
+            is: 'ajax-button',
+            properties: {
+                command: {
+                    type: String,
+                    value: "0"
+                },
+                keys: {
+                    type: String
+                },
+                target: {
+                    type: Object,
+                    value: function() {
+                        return document.body;
+                    }
+                },
+                active: {
+                    type: Boolean
+                }
+            },
+            send: function(e) {
+                this.$.sendCommand.body = {
+                    "command": this.command
+                };
+                this.$.sendCommand.generateRequest();
+            },
+            _updatePressed: function(event) {
+                if (this.active) {
+                    console.log(event.detail);
+                }
+                // this._setPressed(
+                //   this.pressed + event.detail.combo + ' pressed!\n'
+                // );
+            }
+        });
+    </script>
+</dom-module>
