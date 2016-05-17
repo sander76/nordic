@@ -81,9 +81,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <!-- endbuild -->
 
     <template is="dom-bind" id="app">
-        <iron-a11y-keys keys="left" on-keys-pressed="handlePrevious">
+        <iron-a11y-keys keys="down 2" on-keys-pressed="handlePrevious">
         </iron-a11y-keys>
-        <iron-a11y-keys id="keys" keys="right" on-keys-pressed="handleNext">
+        <iron-a11y-keys keys="pagedown 3" on-keys-pressed="handleNext">
         </iron-a11y-keys> -->
         <paper-drawer-panel id="paperDrawerPanel">
             <!-- Drawer Scroll Header Panel -->
@@ -246,7 +246,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             buttons: [{
                 caption: "Connect",
                 command: "connect",
-                keys: "up 5"
+                keys: "up 8"
             }]
         }, {
             title: "2. Motor reset",
@@ -255,7 +255,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             buttons: [{
                 caption: "Reset",
                 command: "reset",
-                keys: ""
+                keys: "up 8"
             }]
         }, {
             title: "3. Motor type",
@@ -263,11 +263,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             instruction: "Define the type of motor",
             buttons: [{
                 caption: "Roller blind",
-                command: "rb_id"
+                command: "roller",
+                keys:"up 8"
             }, {
                 caption: "Twist",
-                command: "twist_id",
-
+                command: "twist",
+                keys:"pageup 9"
             }]
         }, {
             title: "4. Limit setting",
@@ -284,13 +285,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             instruction: "Move the shade to the desired position",
             buttons: [{
                 caption: "Up",
-                command: "open"
+                command: "open",
+                keys:"*"
             }, {
                 caption: "Stop",
-                command: "stop"
+                command: "stop",
+                keys:"pageup 9"
             }, {
                 caption: "Down",
-                command: "close"
+                command: "close",
+                keys:"right 6"
             }]
         }]
     </script>

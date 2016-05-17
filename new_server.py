@@ -51,9 +51,9 @@ def send_nordic(request):
     upstring = COMMANDS.get(command)
     if upstring is not None:
         s.write(upstring)
-        return web.Response(body="okay")
+        return web.Response(body=b"okay")
     else:
-        return web.Response(body="not okay",status=500)
+        return web.Response(body=b"not okay",status=500)
 
 
 app.router.add_route('POST', '/nordic', send_nordic)
