@@ -43,6 +43,7 @@
                 }
             },
             send: function(e) {
+              //populate the body of the request.
                 this.$.sendCommand.body = {
                     "command": this.command
                 };
@@ -51,6 +52,7 @@
             _updatePressed: function(event) {
                 if (this.active) {
                     console.log("pressed the ** "+ this.keys + " ** button");
+                    this.send();
                 }
                 // this._setPressed(
                 //   this.pressed + event.detail.combo + ' pressed!\n'
