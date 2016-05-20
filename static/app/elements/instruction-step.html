@@ -44,11 +44,11 @@
                         <ajax-button hidden$="[[!isType(item,'button')]]" active="{{setActive(curitem,selected)}}" keys="[[item.keys]]" command="[[item.command]]">[[item.caption]] <small><{{item.keys}}></small></ajax-button> -->
                     </template>
                 </p>
-                <!-- <div class="horizontal center-justified layout">
+                <div class="horizontal center-justified layout">
                     <template is="dom-repeat" items={{data.buttons}}>
                         <ajax-button active="{{setActive(curitem,selected)}}" keys="[[item.keys]]" command="[[item.command]]">[[item.caption]] <small><{{item.keys}}></small></ajax-button>
                     </template>
-                </div> -->
+                </div>
             </div>
             <div class="card-actions">
                 <div class="horizontal layout justified">
