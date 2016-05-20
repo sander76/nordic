@@ -1,8 +1,25 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html" />
+<!-- <link rel="import" href="../bower_components/paper-material/paper-material.html"/> -->
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
 <!-- <link rel="import" href="../bower_components/iron-a11y-keys/iron-a11y-keys.html"> -->
 
 <dom-module id="instruction-step">
+    <style>
+        :host {
+            width: 100%;
+        }
+
+        paper-card {
+            width: 100%;
+        }
+
+        .card-content {
+            min-height: 300px;
+        }
+    </style>
+    <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
     <template>
         <!-- <iron-a11y-keys id="keys" keys="left" target="[[target]]" on-keys-pressed="goLeft">
         </iron-a11y-keys>
@@ -12,22 +29,45 @@
         <paper-card id="input" heading="{{data.title}}">
             <div class="card-content">
                 <p>
-                    {{data.instruction}}
-                </p>
-                <div class="horizontal center-justified layout">
-                    <template is="dom-repeat" items={{data.buttons}}>
-                        <ajax-button active="{{setActive(curitem,selected)}}" keys="[[item.keys]]" command="[[item.command]]">{{item.caption}}<small>({{item.keys}})</small></ajax-button>
+                    <template is="dom-repeat" items=[[data.instructions]]>
+                        <template is="dom-if" if="[[isType(item,'text')]]">
+                            <p>
+                                - {{item.content}}
+                            </p>
+                        </template>
+                        <template is="dom-if" if="[[isType(item,'button')]]">
+                            <ajax-button active="{{setActive(curitem,selected)}}" keys="[[item.keys]]" command="[[item.command]]">[[item.caption]] <small><{{item.keys}}></small></ajax-button>
+                        </template>
+                        <!-- <div hidden$="[[!isType(item,'text')]]">
+                            {{item.content}}
+                        </div>
+                        <ajax-button hidden$="[[!isType(item,'button')]]" active="{{setActive(curitem,selected)}}" keys="[[item.keys]]" command="[[item.command]]">[[item.caption]] <small><{{item.keys}}></small></ajax-button> -->
                     </template>
-                </div>
+                </p>
+                <!-- <div class="horizontal center-justified layout">
+                    <template is="dom-repeat" items={{data.buttons}}>
+                        <ajax-button active="{{setActive(curitem,selected)}}" keys="[[item.keys]]" command="[[item.command]]">[[item.caption]] <small><{{item.keys}}></small></ajax-button>
+                    </template>
+                </div> -->
             </div>
             <div class="card-actions">
-                <div class="horizontal justified layout">
-                    <paper-button on-tap="_prev">Previous</paper-button>
-                    <paper-button on-tap="_next">Next</paper-button>
+                <div class="horizontal layout justified">
+                    <div>
+                        <paper-button id="previousbutton" on-tap="_prev">[[data.previous]]</paper-button>
+                    </div>
+                    <div>
+                        <paper-button id="nextbutton" on-tap="_next">[[data.next]]</paper-button>
+                    </div>
+
                 </div>
             </div>
         </paper-card>
+        <!-- <div class="horizontal layout justified">
 
+                <paper-button id="previousbutton" on-tap="_prev">[[data.previous]]</paper-button>
+                <paper-button id="nextbutton" on-tap="_next">[[data.next]]</paper-button>
+
+        </div> -->
     </template>
     <script>
         Polymer({
@@ -41,7 +81,8 @@
                 },
                 selected: {
                     type: Number
-                },
+                }
+
                 // target: {
                 //     type: Object,
                 //     value: function() {
@@ -49,6 +90,43 @@
                 //         return this.$.input;
                 //     }
                 // },
+            },
+            // created: function() {
+            //     var k = this.data;
+            // },
+            ready: function() {
+                if (this.data.next === undefined) {
+                    this.set("data.next", "Next");
+                } else if (this.data.next === false) {
+                    this.set("data.next", "Next");
+                    this.$.nextbutton.hidden = true;
+                }
+
+                if (this.data.previous === undefined) {
+                    this.set("data.previous", "previous");
+                } else if (this.data.previous === false) {
+                    this.set("data.previous", "previous");
+                    this.$.previousbutton.hidden = true;
+                }
+
+                // for (var i =0;i<this.data.instruction;i+=1){
+                //   if (typeof this.data.instruction === "string"){
+                //     this.data.instruction
+                //   }
+                // }
+            },
+            isType: function(instruction, _type) {
+                var tr = instruction.type === _type;
+                return tr;
+
+
+                //     var tp = typeof instruction === _type;
+                // return typeof instruction === _type;
+                // if (typeof instruction === 'string') {
+                //     return true;
+                // } else {
+                //     return false;
+                // }
             },
             _next: function(e) {
                 this.fire('nextpage');

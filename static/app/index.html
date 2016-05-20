@@ -113,7 +113,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <div class="app-name">[[instructions.title]]</div>
                     </div>
                     <paper-tabs noink="true" class="bottom" selected="{{selected}}" id="tbs">
-                        <template is="dom-repeat" items="[[instructions.instructions]]">
+                        <template is="dom-repeat" items="[[instructions.steps]]">
                             <paper-tab>{{item.title}}</paper-tab>
                         </template>
                     </paper-tabs>
@@ -122,10 +122,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <!-- Main Content -->
                 <div>
                     <iron-pages id="pages" on-nextpage="handleNext" on-previouspage="handlePrevious" selected="{{selected}}">
-                        <template is="dom-repeat" items="[[instructions.instructions]]">
-                            <section tabindex="-1">
+                        <template is="dom-repeat" items="[[instructions.steps]]">
+                            <!-- <div tabindex="-1"> -->
                                 <instruction-step data="{{item}}" curitem=[[index]] selected="[[selected]]"></instruction-step>
-                            </section>
+                            <!-- </div> -->
                         </template>
                     </iron-pages>
                 </div>
@@ -156,114 +156,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             return document.body;
         }
         t.selected = 0;
-        // t.all_instructions = [{
-        //     title: "Roller blinds",
-        //     instructions: [{
-        //         title: "1. Connect",
-        //         route: "step1",
-        //         instruction: "Connect all cables.",
-        //         buttons: [{
-        //             caption: "Connect",
-        //             command: "connect",
-        //             keys: "up 8"
-        //         }]
-        //     }, {
-        //         title: "2. Motor reset",
-        //         route: "step2",
-        //         instruction: "Press motor reset. Motor should jog within a minute.",
-        //         buttons: [{
-        //             caption: "Reset",
-        //             command: "reset",
-        //             keys: "up 8"
-        //         }]
-        //     }, {
-        //         title: "4. Limit setting",
-        //         instruction: "Choose which limit to set first.",
-        //         buttons: [{
-        //             caption: "Top limit",
-        //             command: "top_limit"
-        //         }, {
-        //             caption: "Bottom limit",
-        //             command: "bottom_limit"
-        //         }]
-        //     }, {
-        //         title: "5. Positioning",
-        //         instruction: "Move the shade to the desired position",
-        //         buttons: [{
-        //             caption: "Up",
-        //             command: "open",
-        //             keys: "*"
-        //         }, {
-        //             caption: "Stop",
-        //             command: "stop",
-        //             keys: "pageup 9"
-        //         }, {
-        //             caption: "Down",
-        //             command: "close",
-        //             keys: "right 6"
-        //         }]
-        //     }]
-        // }, {
-        //     title: "Twist blinds",
-        //     instructions: [{
-        //         title: "1. Connect",
-        //         route: "step1",
-        //         instruction: "Connect all cables.",
-        //         buttons: [{
-        //             caption: "Connect",
-        //             command: "connect",
-        //             keys: "up 8"
-        //         }]
-        //     }, {
-        //         title: "2. Motor reset",
-        //         route: "step2",
-        //         instruction: "Press motor reset. Motor should jog within a minute.",
-        //         buttons: [{
-        //             caption: "Reset",
-        //             command: "reset",
-        //             keys: "up 8"
-        //         }]
-        //     }, {
-        //         title: "3. Motor type",
-        //         route: "step3",
-        //         instruction: "Define the type of motor",
-        //         buttons: [{
-        //             caption: "Roller blind",
-        //             command: "roller",
-        //             keys: "up 8"
-        //         }, {
-        //             caption: "Twist",
-        //             command: "twist",
-        //             keys: "pageup 9"
-        //         }]
-        //     }, {
-        //         title: "4. Limit setting",
-        //         instruction: "Choose which limit to set first.",
-        //         buttons: [{
-        //             caption: "Top limit",
-        //             command: "top_limit"
-        //         }, {
-        //             caption: "Bottom limit",
-        //             command: "bottom_limit"
-        //         }]
-        //     }, {
-        //         title: "5. Positioning",
-        //         instruction: "Move the shade to the desired position",
-        //         buttons: [{
-        //             caption: "Up",
-        //             command: "open",
-        //             keys: "*"
-        //         }, {
-        //             caption: "Stop",
-        //             command: "stop",
-        //             keys: "pageup 9"
-        //         }, {
-        //             caption: "Down",
-        //             command: "close",
-        //             keys: "right 6"
-        //         }]
-        //     }]
-        // }];
+
         t.handleInstructionChange = function(e) {
             t.instructions = t.all_instructions[e.target.selected];
             t.selected = 0;
@@ -271,8 +164,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             t.$.tbs.focus();
         }
         t.getInstructions = function(e, response) {
-                //console.log(response.response);
-                t.all_instructions = response.response;
+                // process response
+                var resp = response.response
+                for (var i = 0; i < resp.length; i += 1) {
+                    for (var step = 0; step < resp[i].steps.length; step += 1) {
+                        for (var instruction = 0; instruction<resp[i].steps[step].instructions.length; instruction += 1)
+                            if (typeof resp[i].steps[step].instructions[instruction] === "string") {
+                                resp[i].steps[step].instructions[instruction] = {
+                                    type: "text",
+                                    content: resp[i].steps[step].instructions[instruction]
+                                }
+                            }
+                    }
+                }
+
+                t.all_instructions = resp;
             }
             //t.instructions = undefined;
     </script>

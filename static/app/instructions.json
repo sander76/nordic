@@ -1,16 +1,27 @@
 [{
     "title": "Roller blinds",
-    "instructions": [{
+    "steps": [{
         "title": "1. Connect",
-        "instruction": "Connect all cables.",
+        "instructions": [
+            "Connect all cables.",
+            "Press and hold the blind button",
+            "Press 'Connect' button and watch blind jog", {
+                "type": "button",
+                "caption": "Connect",
+                "command": "connect",
+                "keys": "up 8"
+            }
+        ],
         "buttons": [{
             "caption": "Connect",
             "command": "connect",
             "keys": "up 8"
-        }]
+        }],
+        "next": "The blind did Jog.",
+        "previous": false
     }, {
         "title": "2. Motor reset",
-        "instruction": "Press motor reset. Motor should jog within a minute.",
+        "instructions": ["Press motor reset. Motor should jog within a minute."],
         "buttons": [{
             "caption": "Reset",
             "command": "reset",
@@ -18,7 +29,7 @@
         }]
     }, {
         "title": "4. Limit setting",
-        "instruction": "Choose which limit to set first.",
+        "instructions": ["Choose which limit to set first."],
         "buttons": [{
             "caption": "Top limit",
             "command": "top_limit"
@@ -28,7 +39,7 @@
         }]
     }, {
         "title": "5. Positioning",
-        "instruction": "Move the shade to the desired position",
+        "instructions": ["Move the shade to the desired position"],
         "buttons": [{
             "caption": "Up",
             "command": "open",
@@ -45,9 +56,9 @@
     }]
 }, {
     "title": "Twist blinds",
-    "instructions": [{
+    "steps": [{
         "title": "1. Connect",
-        "instruction": "Connect all cables.",
+        "instructions": ["Connect all cables."],
         "buttons": [{
             "caption": "Connect",
             "command": "connect",
@@ -55,7 +66,7 @@
         }]
     }, {
         "title": "2. Motor reset",
-        "instruction": "Press motor reset. Motor should jog within a minute.",
+        "instructions": ["Press motor reset. Motor should jog within a minute."],
         "buttons": [{
             "caption": "Reset",
             "command": "reset",
@@ -64,7 +75,7 @@
     }, {
         "title": "3. Motor type",
         "route": "step3",
-        "instruction": "Define the type of motor",
+        "instructions": ["Define the type of motor"],
         "buttons": [{
             "caption": "Roller blind",
             "command": "roller",
@@ -76,7 +87,7 @@
         }]
     }, {
         "title": "4. Limit setting",
-        "instruction": "Choose which limit to set first.",
+        "instructions": ["Choose which limit to set first."],
         "buttons": [{
             "caption": "Top limit",
             "command": "top_limit"
@@ -86,7 +97,7 @@
         }]
     }, {
         "title": "5. Positioning",
-        "instruction": "Move the shade to the desired position",
+        "instructions": ["Move the shade to the desired position"],
         "buttons": [{
             "caption": "Up",
             "command": "open",
