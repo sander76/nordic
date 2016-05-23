@@ -3,7 +3,7 @@ import argparse
 from serial import Serial
 
 COMMANDS = {
-    "open": b'\x00\x03RU\x00',
+    "open": {"uplink":b'\x00\x03RU\x00'},
     "close": b'\x00\x03RD\x00',
     "stop": b'\x00\x03RS\x00',
     "jog": b'\x00\x03cj.1',
@@ -11,10 +11,11 @@ COMMANDS = {
     "reset": b'\x00\x03#@r',
     "roller": b'\x00\x04#DS*',
     "twist": b'\x00\x04#DS,',
-    "programtop":b'\x00\x04#LPE',
-    "programbottom":b'\x00\x04#LPE',
-    "savepositiontop":b'\x00\x04#LPO',
-    "savepositionbottom":b'\x00\x04#LPC'
+    "startprogram": b'\x00\x04#LPE',
+    # "programtop": b'\x00\x04#LPE',
+    # "programbottom": b'\x00\x04#LPE',
+    "savepositiontop": b'\x00\x04#LPO',
+    "savepositionbottom": b'\x00\x04#LPC'
 }
 
 parser = argparse.ArgumentParser()

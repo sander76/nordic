@@ -1,4 +1,70 @@
 [{
+    "title": "Roller blinds 1",
+    "steps": [{
+        "title": "1. Connect",
+        "instructions": [
+            "Connect all cables.",
+            "Press and hold the blind button",
+            "Press 'Connect' button and watch blind jog", {
+                "type": "button",
+                "caption": "Connect",
+                "commands": ["connect"],
+                "keys": "up 8"
+            }
+        ],
+        "next": "The blind did Jog.",
+        "previous": false
+    }, {
+        "title": "2. Motor init",
+        "instructions": ["Press motor reset. Motor should jog two times"],
+        "buttons": [{
+            "caption": "Reset",
+            "commands": ["reset", "roller"],
+            "keys": "up 8"
+        }]
+    }, {
+        "title": "3. Step 3",
+        "instructions": ["Did the motor jog two times ?"],
+        "next":"Yes",
+        "previous":"No"
+    }, {
+        "title": "3. Limit setting",
+        "instructions": [{
+                "type": "button",
+                "caption": "Start programming a position",
+                "commands": ["startprogram"],
+                "keys": "*"
+            },
+            "Move motor to desired position.", {
+                "type": "button",
+                "caption": "Up",
+                "commands": ["open"],
+                "keys": "*"
+            }, {
+                "type": "button",
+                "caption": "Stop",
+                "commands": ["stop"],
+                "keys": "pageup 9"
+            }, {
+                "type": "button",
+                "caption": "Down",
+                "commands": ["close"],
+                "keys": "right 6"
+            }
+        ],
+        "buttons": [{
+            "caption": "Save as top limit",
+            "command": "top_limit",
+            "commands": ["savepositiontop"]
+
+        }, {
+            "caption": "Save as bottom limit",
+            "command": "bottom_limit",
+            "commands": ["savepositionbottom"]
+        }]
+    }]
+
+}, {
     "title": "Roller blinds",
     "steps": [{
         "title": "1. Connect",
@@ -25,6 +91,14 @@
         "buttons": [{
             "caption": "Reset",
             "command": "reset",
+            "keys": "up 8"
+        }]
+    }, {
+        "title ": "3. Make Roller",
+        "instructions": ["Press button below", {
+            "type": "button",
+            "caption": "Make",
+            "command": "connect",
             "keys": "up 8"
         }]
     }, {

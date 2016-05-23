@@ -29,6 +29,10 @@
                     type: String,
                     value: "0"
                 },
+                commands: {
+                    type: Array,
+                    value: []
+                },
                 keys: {
                     type: String
                 },
@@ -43,15 +47,15 @@
                 }
             },
             send: function(e) {
-              //populate the body of the request.
+                //populate the body of the request.
                 this.$.sendCommand.body = {
-                    "command": this.command
+                    "commands": this.commands
                 };
                 this.$.sendCommand.generateRequest();
             },
             _updatePressed: function(event) {
                 if (this.active) {
-                    console.log("pressed the ** "+ this.keys + " ** button");
+                    console.log("pressed the ** " + this.keys + " ** button");
                     this.send();
                 }
                 // this._setPressed(
