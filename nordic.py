@@ -3,8 +3,10 @@ import argparse
 from serial import Serial
 
 COMMANDS = {
-    "open": {"uplink":b'\x00\x03RU\x00'},
+    "open": b'\x00\x03RU\x00',
     "close": b'\x00\x03RD\x00',
+    "tiltopen":b'\x00\x03RR\x00',
+    "tiltclose":b'\x00\x03RL\x00',
     "stop": b'\x00\x03RS\x00',
     "jog": b'\x00\x03cj.1',
     "connect": b'\x00\x01N\x00\x01A',  # a network add and a add group 1 command combined.

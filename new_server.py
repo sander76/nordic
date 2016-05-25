@@ -22,7 +22,7 @@ SLEEP_BETWEEN_COMMANDS = 5
 
 def get_byte():
     data = bytearray(s.read(1))
-    time.sleep(0.5)
+    time.sleep(0.3)
     data += bytearray(s.read(s.inWaiting()))
     return data
 
@@ -39,7 +39,7 @@ def get_and_print():
     while 1:
         b = yield from get_byte_async()
         msg = repr(b)
-        print(msg)
+        #print(msg)
         send_socket_message(msg)
 
 
@@ -53,7 +53,6 @@ def send_socket_message(message):
 
 def send_nordic(request):
     rq = yield from request.json()
-    #command = rq['command']
     commands = rq['commands']
     first = True
     for cmd in commands:

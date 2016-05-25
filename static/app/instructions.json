@@ -1,67 +1,130 @@
 [{
     "title": "Roller blinds 1",
     "steps": [{
-        "title": "1. Connect",
+        "title": "Connect",
         "instructions": [
             "Connect all cables.",
-            "Press and hold the blind button",
-            "Press 'Connect' button and watch blind jog", {
+            "Press and hold the blind button", {
                 "type": "button",
                 "caption": "Connect",
                 "commands": ["connect"],
-                "keys": "up 8"
+                "keys": "enter",
+                "confirm": true
             }
         ],
-        "next": "The blind did Jog.",
-        "previous": false
+        "confirm": {
+            "img": "images/jog.png",
+            "text": "Did the motor jog?"
+        },
+        "previous": false,
+        "next": false
     }, {
-        "title": "2. Motor init",
-        "instructions": ["Press motor reset. Motor should jog two times"],
-        "buttons": [{
-            "caption": "Reset",
+        "title": "Init",
+        "instructions": ["This will reset the motor and reprogram it as a roller blind. The motor should jog two times", {
+            "type": "button",
+            "caption": "Motor Init",
             "commands": ["reset", "roller"],
-            "keys": "up 8"
-        }]
+            "keys": "enter",
+            "confirm": true
+        }],
+        "confirm": {
+            "text": "After 5 seconds: Did the motor jog two times ?"
+        },
+        "previous": false,
+        "next": false
     }, {
-        "title": "3. Step 3",
-        "instructions": ["Did the motor jog two times ?"],
-        "next":"Yes",
-        "previous":"No"
+        "title": "Enter program mode",
+        "instructions": ["Set motor in programming mode", {
+            "type": "button",
+            "caption": "Start programming a position",
+            "commands": ["startprogram"],
+            "keys": "enter",
+            "confirm": true
+        }],
+        "buttons": [],
+        "confirm": {
+            "img": "images/jog.png",
+            "text": "Did the motor jog?"
+        },
+        "previous": false,
+        "next": false
     }, {
-        "title": "3. Limit setting",
-        "instructions": [{
-                "type": "button",
-                "caption": "Start programming a position",
-                "commands": ["startprogram"],
-                "keys": "*"
-            },
-            "Move motor to desired position.", {
-                "type": "button",
-                "caption": "Up",
-                "commands": ["open"],
-                "keys": "*"
-            }, {
-                "type": "button",
-                "caption": "Stop",
-                "commands": ["stop"],
-                "keys": "pageup 9"
-            }, {
-                "type": "button",
-                "caption": "Down",
-                "commands": ["close"],
-                "keys": "right 6"
-            }
-        ],
-        "buttons": [{
-            "caption": "Save as top limit",
-            "command": "top_limit",
-            "commands": ["savepositiontop"]
+        "title": "Blind direction",
+        "instructions": ["Move the motor down", {
+            "type": "button",
+            "caption": "move down",
+            "keys":"enter",
+            "commands": ["close", "stop"],
+            "confirm": true
 
+        }],
+        "confirm": {
+            "text": "Did the motor move down?",
+            "next": 2,
+            "previous":1
+        }
+    }, {
+        "title": "Switch direction",
+        "instructions": ["Press the blind button", {
+            "type": "button",
+            "caption": "blind button pressed",
+            "confirm": true
+        }],
+        "confirm": {
+            "text": "Did the motor move down?"
+
+        },
+        "previous": false,
+        "next": false
+    }, {
+        "title": "Set top Limit",
+        "instructions": ["Move the motor to the desired position", {
+            "type": "remote"
         }, {
+            "type": "button",
+            "caption": "Save as top limit",
+            "keys":"enter",
+            "commands": ["savepositiontop"],
+            "confirm": true
+        }],
+        "confirm": {
+          "img": "images/jog.png",
+            "text": "Did the motor jog?"
+        },
+        "previous": false,
+        "next": false
+    }, {
+        "title": "Enter program mode",
+        "instructions": ["Set motor in programming mode", {
+            "type": "button",
+            "caption": "Enter programming mode",
+            "commands": ["startprogram"],
+            "keys": "enter",
+            "confirm": true
+        }],
+        "buttons": [],
+        "confirm": {
+          "img": "images/jog.png",
+            "text": "Did the motor jog?"
+        },
+        "previous": false,
+        "next": false
+    }, {
+        "title": "Set bottom limit",
+        "instructions": ["Move the motor to the desired position", {
+            "type": "remote"
+        }, {
+            "type": "button",
             "caption": "Save as bottom limit",
-            "command": "bottom_limit",
-            "commands": ["savepositionbottom"]
-        }]
+            "keys":"enter",
+            "commands": ["savepositionbottom"],
+            "confirm": true
+        }],
+        "confirm": {
+            "text": "Did the motor move to the top?"
+        },
+        "previous": false,
+        "next": false
     }]
 
 }, {
