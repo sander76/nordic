@@ -73,6 +73,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <link rel="import" href="elements/ajax-button.html">
     <link rel="import" href="elements/serial-data.html">
     <link rel="import" href="elements/instruction-step.html" />
+
 </head>
 
 <body unresolved>
@@ -81,7 +82,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <!-- endbuild -->
 
     <template is="dom-bind" id="app">
-        <iron-a11y-keys keys="down 2" on-keys-pressed="handlePrevious">
+        <iron-a11y-keys keys="end 1" on-keys-pressed="handlePrevious">
         </iron-a11y-keys>
         <iron-a11y-keys keys="pagedown 3" on-keys-pressed="handleNext">
         </iron-a11y-keys>
@@ -112,19 +113,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <div class="middle middle-container">
                         <div class="app-name">[[instructions.title]]</div>
                     </div>
-                    <paper-tabs noink="true" class="bottom" selected="{{selected}}" id="tbs">
+
+                    <paper-tabs noink="true" class="flex bottom" disabled selected="{{selected}}" id="tbs" scrollable>
                         <template is="dom-repeat" items="[[instructions.steps]]">
                             <paper-tab>{{item.title}}</paper-tab>
                         </template>
                     </paper-tabs>
+
+
                 </paper-toolbar>
 
                 <!-- Main Content -->
+
                 <div>
-                    <iron-pages id="pages" on-nextpage="handleNext" on-previouspage="handlePrevious" selected="{{selected}}">
+                    <iron-pages id="pages" on-nextpage="handleNext" on-previouspage="handlePrevious" on-gotopage="handleGoto" selected="{{selected}}">
+
                         <template is="dom-repeat" items="[[instructions.steps]]">
                             <!-- <div tabindex="-1"> -->
-                                <instruction-step data="{{item}}" curitem=[[index]] selected="[[selected]]"></instruction-step>
+                            <instruction-step data="{{item}}" curitem=[[index]] selected="[[selected]]"></instruction-step>
                             <!-- </div> -->
                         </template>
                     </iron-pages>
@@ -148,13 +154,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         t.handleNext = function(e) {
             //var pages = t.$.pages
             t.$.pages.selectNext();
-        }
+        };
         t.handlePrevious = function() {
             t.$.pages.selectPrevious();
-        }
+        };
+        t.handleGoto = function(e) {
+            t.$.pages.select(t.$.pages.selected + e.detail);
+        };
         t.target = function() {
-            return document.body;
-        }
+            return window;
+        };
+
         t.selected = 0;
 
         t.handleInstructionChange = function(e) {
@@ -162,25 +172,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             t.selected = 0;
             //t.$.tbs.select(0);
             t.$.tbs.focus();
-        }
+        };
         t.getInstructions = function(e, response) {
-                // process response
-                var resp = response.response
-                for (var i = 0; i < resp.length; i += 1) {
-                    for (var step = 0; step < resp[i].steps.length; step += 1) {
-                        for (var instruction = 0; instruction<resp[i].steps[step].instructions.length; instruction += 1)
-                            if (typeof resp[i].steps[step].instructions[instruction] === "string") {
-                                resp[i].steps[step].instructions[instruction] = {
-                                    type: "text",
-                                    content: resp[i].steps[step].instructions[instruction]
-                                }
-                            }
-                    }
+            // process response
+            var resp = response.response;
+            for (var i = 0; i < resp.length; i += 1) {
+                for (var step = 0; step < resp[i].steps.length; step += 1) {
+                    for (var instruction = 0; instruction < resp[i].steps[step].instructions.length; instruction += 1)
+                        if (typeof resp[i].steps[step].instructions[instruction] === "string") {
+                            resp[i].steps[step].instructions[instruction] = {
+                                type: "text",
+                                content: resp[i].steps[step].instructions[instruction]
+                            };
+                        }
                 }
-
-                t.all_instructions = resp;
             }
-            //t.instructions = undefined;
+
+            t.all_instructions = resp;
+        };
+        //t.instructions = undefined;
     </script>
     <!-- endbuild-->
 </body>

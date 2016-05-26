@@ -1,10 +1,10 @@
-import argparse
 
-from serial import Serial
 
 COMMANDS = {
-    "open": {"uplink":b'\x00\x03RU\x00'},
+    "open": b'\x00\x03RU\x00',
     "close": b'\x00\x03RD\x00',
+    "tiltopen":b'\x00\x03RR\x00',
+    "tiltclose":b'\x00\x03RL\x00',
     "stop": b'\x00\x03RS\x00',
     "jog": b'\x00\x03cj.1',
     "connect": b'\x00\x01N\x00\x01A',  # a network add and a add group 1 command combined.
@@ -18,10 +18,14 @@ COMMANDS = {
     "savepositionbottom": b'\x00\x04#LPC'
 }
 
-parser = argparse.ArgumentParser()
-parser.add_argument("serialport", help="provide a serial port.")
 
 if __name__ == "__main__":
+    import argparse
+    from serial import Serial
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("serialport", help="provide a serial port.")
+
     args = parser.parse_args()
     SERIAL_PORT = args.serialport
     SERIAL_SPEED = 38400

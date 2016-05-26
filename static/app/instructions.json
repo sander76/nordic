@@ -1,186 +1,337 @@
-[{
+[
+{
     "title": "Roller blinds 1",
-    "steps": [{
-        "title": "1. Connect",
+    "steps": [
+    {
+        "title": "Connect",
         "instructions": [
             "Connect all cables.",
             "Press and hold the blind button",
-            "Press 'Connect' button and watch blind jog", {
+            {
                 "type": "button",
                 "caption": "Connect",
                 "commands": ["connect"],
-                "keys": "up 8"
+                "keys": "enter",
+                "confirm": true
             }
         ],
-        "next": "The blind did Jog.",
+        "confirm":
+        {
+            "img": "images/jog.png",
+            "text": "Did the motor jog?"
+        },
         "previous": false
-    }, {
-        "title": "2. Motor init",
-        "instructions": ["Press motor reset. Motor should jog two times"],
-        "buttons": [{
-            "caption": "Reset",
-            "commands": ["reset", "roller"],
-            "keys": "up 8"
-        }]
-    }, {
-        "title": "3. Step 3",
-        "instructions": ["Did the motor jog two times ?"],
-        "next":"Yes",
-        "previous":"No"
-    }, {
-        "title": "3. Limit setting",
-        "instructions": [{
+    },
+    {
+        "title": "Init",
+        "instructions": [
+            "This will reset the motor and reprogram it as a roller blind. The motor should jog two times",
+            {
                 "type": "button",
-                "caption": "Start programming a position",
-                "commands": ["startprogram"],
-                "keys": "*"
-            },
-            "Move motor to desired position.", {
-                "type": "button",
-                "caption": "Up",
-                "commands": ["open"],
-                "keys": "*"
-            }, {
-                "type": "button",
-                "caption": "Stop",
-                "commands": ["stop"],
-                "keys": "pageup 9"
-            }, {
-                "type": "button",
-                "caption": "Down",
-                "commands": ["close"],
-                "keys": "right 6"
+                "caption": "Motor Init",
+                "commands": [
+                    "reset",
+                    "roller"
+                ],
+                "keys": "enter",
+                "confirm": true
             }
         ],
-        "buttons": [{
-            "caption": "Save as top limit",
-            "command": "top_limit",
-            "commands": ["savepositiontop"]
-
-        }, {
-            "caption": "Save as bottom limit",
-            "command": "bottom_limit",
-            "commands": ["savepositionbottom"]
-        }]
+        "confirm":
+        {
+            "img": "images/jog.png",
+            "text": "After 5 seconds: Did the motor jog two times ?"
+        }
+    },
+    {
+        "title": "Enter program mode",
+        "instructions": [
+            "Set motor in programming mode",
+            {
+                "type": "button",
+                "caption": "Enter program mode",
+                "commands": [
+                    "startprogram"
+                ],
+                "keys": "enter",
+                "confirm": true
+            }
+        ],
+        "buttons": [],
+        "confirm":
+        {
+            "img": "images/jog.png",
+            "text": "Did the motor jog?"
+        }
+    },
+    {
+        "title": "Blind direction",
+        "instructions": [
+            "Move the motor down",
+            {
+                "type": "button",
+                "caption": "move down",
+                "keys": "enter",
+                "commands": [
+                    "close",
+                    "stop"
+                ],
+                "confirm": true
+            }
+        ],
+        "confirm":
+        {
+            "text": "Did the motor move down?",
+            "next": 2,
+            "previous": 1
+        }
+    },
+    {
+        "title": "Switch direction",
+        "instructions": [
+            "Press the blind button",
+            {
+                "type": "button",
+                "caption": "blind button pressed",
+                "confirm": true
+            }
+        ],
+        "confirm":
+        {
+            "text": "Did the motor move down?"
+        }
+    },
+    {
+        "title": "Set top Limit",
+        "instructions": [
+            "Move the motor to the desired position",
+            {
+                "type": "remote"
+            },
+            {
+                "type": "button",
+                "caption": "Save as top limit",
+                "keys": "enter",
+                "commands": [
+                    "savepositiontop"
+                ],
+                "confirm": true
+            }
+        ],
+        "confirm":
+        {
+            "img": "images/jog.png",
+            "text": "Did the motor jog?"
+        }
+    },
+    {
+        "title": "Enter program mode",
+        "instructions": [
+            "Set motor in programming mode",
+            {
+                "type": "button",
+                "caption": "Enter programming mode",
+                "commands": [
+                    "startprogram"
+                ],
+                "keys": "enter",
+                "confirm": true
+            }
+        ],
+        "buttons": [],
+        "confirm":
+        {
+            "img": "images/jog.png",
+            "text": "Did the motor jog?"
+        }
+    },
+    {
+        "title": "Set bottom limit",
+        "instructions": [
+            "Move the motor to the desired position",
+            {
+                "type": "remote"
+            },
+            {
+                "type": "button",
+                "caption": "Save as bottom limit",
+                "keys": "enter",
+                "commands": [
+                    "savepositionbottom"
+                ],
+                "confirm": true
+            }
+        ],
+        "confirm":
+        {
+            "text": "Did the motor move to the top?"
+        }
     }]
-
-}, {
+},
+{
     "title": "Roller blinds",
-    "steps": [{
+    "steps": [
+    {
         "title": "1. Connect",
         "instructions": [
             "Connect all cables.",
             "Press and hold the blind button",
-            "Press 'Connect' button and watch blind jog", {
+            "Press 'Connect' button and watch blind jog",
+            {
                 "type": "button",
                 "caption": "Connect",
                 "command": "connect",
                 "keys": "up 8"
             }
         ],
-        "buttons": [{
+        "buttons": [
+        {
             "caption": "Connect",
             "command": "connect",
             "keys": "up 8"
         }],
         "next": "The blind did Jog.",
         "previous": false
-    }, {
+    },
+    {
         "title": "2. Motor reset",
-        "instructions": ["Press motor reset. Motor should jog within a minute."],
-        "buttons": [{
+        "instructions": [
+            "Press motor reset. Motor should jog within a minute."
+        ],
+        "buttons": [
+        {
             "caption": "Reset",
             "command": "reset",
             "keys": "up 8"
         }]
-    }, {
+    },
+    {
         "title ": "3. Make Roller",
-        "instructions": ["Press button below", {
-            "type": "button",
-            "caption": "Make",
-            "command": "connect",
-            "keys": "up 8"
-        }]
-    }, {
+        "instructions": [
+            "Press button below",
+            {
+                "type": "button",
+                "caption": "Make",
+                "command": "connect",
+                "keys": "up 8"
+            }
+        ]
+    },
+    {
         "title": "4. Limit setting",
-        "instructions": ["Choose which limit to set first."],
-        "buttons": [{
+        "instructions": [
+            "Choose which limit to set first."
+        ],
+        "buttons": [
+        {
             "caption": "Top limit",
             "command": "top_limit"
-        }, {
+        },
+        {
             "caption": "Bottom limit",
             "command": "bottom_limit"
         }]
-    }, {
+    },
+    {
         "title": "5. Positioning",
-        "instructions": ["Move the shade to the desired position"],
-        "buttons": [{
+        "instructions": [
+            "Move the shade to the desired position"
+        ],
+        "buttons": [
+        {
             "caption": "Up",
             "command": "open",
             "keys": "*"
-        }, {
+        },
+        {
             "caption": "Stop",
             "command": "stop",
             "keys": "pageup 9"
-        }, {
+        },
+        {
             "caption": "Down",
             "command": "close",
             "keys": "right 6"
         }]
     }]
-}, {
+},
+{
     "title": "Twist blinds",
-    "steps": [{
+    "steps": [
+    {
         "title": "1. Connect",
-        "instructions": ["Connect all cables."],
-        "buttons": [{
+        "instructions": [
+            "Connect all cables."
+        ],
+        "buttons": [
+        {
             "caption": "Connect",
             "command": "connect",
             "keys": "up 8"
         }]
-    }, {
+    },
+    {
         "title": "2. Motor reset",
-        "instructions": ["Press motor reset. Motor should jog within a minute."],
-        "buttons": [{
+        "instructions": [
+            "Press motor reset. Motor should jog within a minute."
+        ],
+        "buttons": [
+        {
             "caption": "Reset",
             "command": "reset",
             "keys": "up 8"
         }]
-    }, {
+    },
+    {
         "title": "3. Motor type",
         "route": "step3",
-        "instructions": ["Define the type of motor"],
-        "buttons": [{
+        "instructions": [
+            "Define the type of motor"
+        ],
+        "buttons": [
+        {
             "caption": "Roller blind",
             "command": "roller",
             "keys": "up 8"
-        }, {
+        },
+        {
             "caption": "Twist",
             "command": "twist",
             "keys": "pageup 9"
         }]
-    }, {
+    },
+    {
         "title": "4. Limit setting",
-        "instructions": ["Choose which limit to set first."],
-        "buttons": [{
+        "instructions": [
+            "Choose which limit to set first."
+        ],
+        "buttons": [
+        {
             "caption": "Top limit",
             "command": "top_limit"
-        }, {
+        },
+        {
             "caption": "Bottom limit",
             "command": "bottom_limit"
         }]
-    }, {
+    },
+    {
         "title": "5. Positioning",
-        "instructions": ["Move the shade to the desired position"],
-        "buttons": [{
+        "instructions": [
+            "Move the shade to the desired position"
+        ],
+        "buttons": [
+        {
             "caption": "Up",
             "command": "open",
             "keys": "*"
-        }, {
+        },
+        {
             "caption": "Stop",
             "command": "stop",
             "keys": "pageup 9"
-        }, {
+        },
+        {
             "caption": "Down",
             "command": "close",
             "keys": "right 6"

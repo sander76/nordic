@@ -1,5 +1,7 @@
-from aiohttp import web
 import asyncio
+
+from aiohttp import web
+
 
 def view_factory(url, path):
     """

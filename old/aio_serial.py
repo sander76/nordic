@@ -1,9 +1,9 @@
 import asyncio
-import threading
-import queue
-import serial
 import logging
+import queue
+import threading
 
+import serial
 
 logger = logging.getLogger(__name__)
 
