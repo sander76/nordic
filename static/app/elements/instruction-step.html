@@ -45,7 +45,7 @@
                                 <ajax-button autofocus active="{{setActive(curitem,selected)}}" data="[[item]]">[[item.caption]] <small><{{item.keys}}></small></ajax-button>
                             </template>
                             <template is="dom-if" if="[[isType(item,'remote')]]">
-                                <pv-remote></pv-remote>
+                                <pv-remote active="{{setActive(curitem,selected)}}"></pv-remote>
                             </template>
                         </template>
                     </div>

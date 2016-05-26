@@ -20,8 +20,7 @@
             "img": "images/jog.png",
             "text": "Did the motor jog?"
         },
-        "previous": false,
-        "next": false
+        "previous": false
     },
     {
         "title": "Init",
@@ -42,9 +41,7 @@
         {
             "img": "images/jog.png",
             "text": "After 5 seconds: Did the motor jog two times ?"
-        },
-        "previous": false,
-        "next": false
+        }
     },
     {
         "title": "Enter program mode",
@@ -65,9 +62,7 @@
         {
             "img": "images/jog.png",
             "text": "Did the motor jog?"
-        },
-        "previous": false,
-        "next": false
+        }
     },
     {
         "title": "Blind direction",
@@ -89,9 +84,7 @@
             "text": "Did the motor move down?",
             "next": 2,
             "previous": 1
-        },
-        "previous": false,
-        "next": false
+        }
     },
     {
         "title": "Switch direction",
@@ -106,9 +99,7 @@
         "confirm":
         {
             "text": "Did the motor move down?"
-        },
-        "previous": false,
-        "next": false
+        }
     },
     {
         "title": "Set top Limit",
@@ -131,9 +122,7 @@
         {
             "img": "images/jog.png",
             "text": "Did the motor jog?"
-        },
-        "previous": false,
-        "next": false
+        }
     },
     {
         "title": "Enter program mode",
@@ -154,9 +143,7 @@
         {
             "img": "images/jog.png",
             "text": "Did the motor jog?"
-        },
-        "previous": false,
-        "next": false
+        }
     },
     {
         "title": "Set bottom limit",
@@ -178,9 +165,7 @@
         "confirm":
         {
             "text": "Did the motor move to the top?"
-        },
-        "previous": false,
-        "next": false
+        }
     }]
 },
 {
