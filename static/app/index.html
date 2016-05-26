@@ -113,7 +113,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <div class="middle middle-container">
                         <div class="app-name">[[instructions.title]]</div>
                     </div>
-                    <paper-tabs noink="true" disabled class="bottom" selected="{{selected}}" id="tbs">
+                    <paper-tabs noink="true" class="bottom" selected="{{selected}}" id="tbs" scrollable>
                         <template is="dom-repeat" items="[[instructions.steps]]">
                             <paper-tab>{{item.title}}</paper-tab>
                         </template>
