@@ -24,6 +24,8 @@
     <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
     <template>
         <paper-dialog id="modal" modal on-iron-overlay-closed="modalClosed">
+            <!-- <iron-a11y-keys id="keys" keys="enter" target="[[target]]" on-keys-pressed="_updatePressed">
+          </iron-a11y-keys> -->
             <img src="{{data.confirm.img}}" hidden="{{!data.confirm.img}}" />
             <p>{{data.confirm.text}}</p>
             <div class="buttons">
@@ -31,8 +33,9 @@
                 <paper-button dialog-confirm autofocus>Yes</paper-button>
             </div>
         </paper-dialog>
-        <paper-card id="input" heading="{{data.title}}">
-            <div class="card-content">
+        <div class="card-content" tabindex="-1" id="crd" autofocus>
+            <paper-card id="input" heading="{{data.title}}">
+
                 <p>
                     <div class="vertical layout">
                         <template is="dom-repeat" items=[[data.instructions]]>
@@ -42,32 +45,33 @@
                                 </p>
                             </template>
                             <template is="dom-if" if="[[isType(item,'button')]]">
-                                <ajax-button autofocus active="{{setActive(curitem,selected)}}" data="[[item]]">[[item.caption]] <small><{{item.keys}}></small></ajax-button>
+                                <ajax-button active="[[active]]" data="[[item]]">[[item.caption]] <small><{{item.keys}}></small></ajax-button>
                             </template>
                             <template is="dom-if" if="[[isType(item,'remote')]]">
-                                <pv-remote active="{{setActive(curitem,selected)}}"></pv-remote>
+                                <pv-remote active="[[active]]"></pv-remote>
                             </template>
                         </template>
                     </div>
                 </p>
                 <div class="horizontal center-justified layout">
                     <template is="dom-repeat" items={{data.buttons}}>
-                        <ajax-button active="{{setActive(curitem,selected)}}" data="[[item]]">[[item.caption]] <small><{{item.keys}}></small></ajax-button>
+                        <ajax-button active="[[active]]" data="[[item]]">[[item.caption]] <small><{{item.keys}}></small></ajax-button>
                     </template>
                 </div>
-            </div>
-            <div class="card-actions">
-                <div class="horizontal layout justified">
-                    <div>
-                        <paper-button id="previousbutton" on-tap="_prev">[[data.previous]]</paper-button>
-                    </div>
-                    <div>
-                        <paper-button id="nextbutton" on-tap="_next">[[data.next]]</paper-button>
-                    </div>
 
+                <div class="card-actions">
+                    <div class="horizontal layout justified">
+                        <div>
+                            <paper-button id="previousbutton" on-tap="_prev">[[data.previous]]</paper-button>
+                        </div>
+                        <div>
+                            <paper-button id="nextbutton" on-tap="_next">[[data.next]]</paper-button>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
-        </paper-card>
+            </paper-card>
+        </div>
     </template>
     <script>
         Polymer({
@@ -80,9 +84,15 @@
                     type: Number
                 },
                 selected: {
-                    type: Number
+                    type: Number,
+                    observer: '_selectedChanged'
+                },
+                target: {
+                    type: Object,
+                    value: function() {
+                        return this.$.crd;
+                    }
                 }
-
             },
             listeners: {
                 'modal': "_modal"
@@ -102,6 +112,8 @@
                     this.set("data.previous", "previous");
                     this.$.previousbutton.hidden = true;
                 }
+
+                //this.$.crd.focus();
             },
             isType: function(instruction, _type) {
                 var tr = instruction.type === _type;
@@ -126,12 +138,20 @@
                     }
                 }
             },
+
             _modal: function(e) {
+                this.active=false;
                 this.$.modal.open();
             },
-            setActive: function(curitem, selected) {
-                this.active = curitem === selected;
-                return this.active;
+
+            // setActive: function(curitem, selected) {
+            //     this.active = curitem === selected;
+            //     return this.active;
+            // },
+            _selectedChanged: function() {
+              //this.active = curitem===selected;
+              this.set("active",this.curitem===this.selected);
+                //    console.log("sel changed");
             }
         });
     </script>

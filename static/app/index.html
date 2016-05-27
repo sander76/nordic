@@ -114,7 +114,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <div class="app-name">[[instructions.title]]</div>
                     </div>
 
-                    <paper-tabs noink="true" class="flex bottom" disabled selected="{{selected}}" id="tbs" scrollable>
+                    <paper-tabs noink="true" class="flex bottom" disabled selected="{{selected}}" scrollable>
                         <template is="dom-repeat" items="[[instructions.steps]]">
                             <paper-tab>{{item.title}}</paper-tab>
                         </template>
@@ -130,7 +130,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
                         <template is="dom-repeat" items="[[instructions.steps]]">
                             <!-- <div tabindex="-1"> -->
-                            <instruction-step data="{{item}}" curitem=[[index]] selected="[[selected]]"></instruction-step>
+                            <div tabindex="-1" >
+                              <instruction-step data="{{item}}" curitem=[[index]] selected="[[selected]]"></instruction-step>
+                            </div>
+
                             <!-- </div> -->
                         </template>
                     </iron-pages>
@@ -156,23 +159,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             t.$.pages.selectNext();
         };
         t.handlePrevious = function() {
-            t.$.pages.selectPrevious();
+            //t.$.pages.selectPrevious();
+            this.fire("testing");
         };
         t.handleGoto = function(e) {
             t.$.pages.select(t.$.pages.selected + e.detail);
         };
         t.target = function() {
-            return window;
+            return document.body;
         };
 
         t.selected = 0;
 
         t.handleInstructionChange = function(e) {
             t.instructions = t.all_instructions[e.target.selected];
-            t.selected = 0;
-            //t.$.tbs.select(0);
-            t.$.tbs.focus();
+            t.$.pages.select(0);
+            //
         };
+        // t.sel=function(e){
+        //   console.log("selection changed");
+        //   t.$.pages.selectedItem.focus();
+        // };
         t.getInstructions = function(e, response) {
             // process response
             var resp = response.response;

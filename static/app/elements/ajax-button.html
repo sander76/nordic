@@ -11,11 +11,11 @@
                 display: inline-block;
             }
         </style>
-        <iron-a11y-keys id="keys" keys="[[data.keys]]" target="[[target]]" on-keys-pressed="_updatePressed">
+        <iron-a11y-keys id="keys" keys="[[data.keys]]" on-keys-pressed="send">
         </iron-a11y-keys>
         <!-- local DOM goes here -->
         <iron-ajax id="sendCommand" url="/nordic" method="POST" content-type="application/json"></iron-ajax>
-        <paper-button class="instruction" raised on-tap="send">
+        <paper-button id="btn" class="instruction" raised on-tap="send">
             <content></content>
         </paper-button>
     </template>
@@ -27,15 +27,17 @@
                     type: Object,
                     value: {}
                 },
-                target: {
-                    type: Object,
-                    value: function() {
-                        return document.body;
-                    }
-                },
                 active: {
-                    type: Boolean
+                    type: Boolean,
+                    observer: '_activeChanged'
                 },
+                // target: {
+                //     type: Object,
+                //     value: function() {
+                //         return document.body;
+                //     }
+                // },
+
                 confirm: {
                     type: Boolean,
                     value: false
@@ -43,6 +45,7 @@
             },
             send: function(e) {
                 //populate the body of the request.
+                console.log("sending commands: " + this.data.commands);
                 this.$.sendCommand.body = {
                     "commands": this.data.commands
                 };
@@ -51,12 +54,22 @@
                     this.fire('modal');
                 }
             },
-            _updatePressed: function(event) {
-                if (this.active) {
-                    console.log("pressed the ** " + this.data.keys + " ** button");
-                    this.send();
+            _activeChanged: function(_new, _old) {
+                console.log("active property changed iron key");
+                if (_new) {
+                    this.$.keys.target = document.body;
+                } else {
+                    this.$.keys.target = this.$.btn;
                 }
             }
+            //,
+            // _updatePressed: function(event) {
+            //     console.log("tracked key press");
+            //     //if (this.active) {
+            //     //console.log("pressed the ** " + this.data.keys + " ** button");
+            //     this.send();
+            //     //}
+            // }
         });
     </script>
 </dom-module>
