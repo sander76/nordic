@@ -46,30 +46,32 @@
             send: function(e) {
                 //populate the body of the request.
                 console.log("sending commands: " + this.data.commands);
-                this.$.sendCommand.body = {
-                    "commands": this.data.commands
-                };
-                this.$.sendCommand.generateRequest();
+                if (this.data.commands !== undefined) {
+                    this.$.sendCommand.body = {
+                        "commands": this.data.commands
+                    };
+                    this.$.sendCommand.generateRequest();
+                }
                 if (this.data.confirm) {
                     this.fire('modal');
                 }
             },
             _activeChanged: function(_new, _old) {
-                console.log("active property changed iron key");
-                if (_new) {
-                    this.$.keys.target = document.body;
-                } else {
-                    this.$.keys.target = this.$.btn;
+                    console.log("active property changed iron key");
+                    if (_new) {
+                        this.$.keys.target = document.body;
+                    } else {
+                        this.$.keys.target = this.$.btn;
+                    }
                 }
-            }
-            //,
-            // _updatePressed: function(event) {
-            //     console.log("tracked key press");
-            //     //if (this.active) {
-            //     //console.log("pressed the ** " + this.data.keys + " ** button");
-            //     this.send();
-            //     //}
-            // }
+                //,
+                // _updatePressed: function(event) {
+                //     console.log("tracked key press");
+                //     //if (this.active) {
+                //     //console.log("pressed the ** " + this.data.keys + " ** button");
+                //     this.send();
+                //     //}
+                // }
         });
     </script>
 </dom-module>

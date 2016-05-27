@@ -23,54 +23,54 @@
     </style>
     <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
     <template>
-        <paper-dialog id="modal" modal on-iron-overlay-closed="modalClosed">
+        <paper-dialog id="modal" modal>
             <iron-a11y-keys id="modalconfirm" keys="enter" on-keys-pressed="closeModal">
             </iron-a11y-keys>
             <img src="{{data.confirm.img}}" hidden="{{!data.confirm.img}}" />
             <p>{{data.confirm.text}}</p>
             <div class="buttons">
-                <paper-button dialog-dismiss>No</paper-button>
+                <paper-button on-tap="closeModalDismiss">No</paper-button>
                 <paper-button on-tap="closeModal">Yes</paper-button>
             </div>
         </paper-dialog>
 
-            <paper-card id="input" heading="{{data.title}}">
-              <div class="card-content">
-                    <div class="vertical layout">
-                        <template is="dom-repeat" items=[[data.instructions]]>
-                            <template is="dom-if" if="[[isType(item,'text')]]">
-                                <p>
-                                    - {{item.content}}
-                                </p>
-                            </template>
-                            <template is="dom-if" if="[[isType(item,'button')]]">
-                                <ajax-button active="[[active]]" data="[[item]]">[[item.caption]] <small><{{item.keys}}></small></ajax-button>
-                            </template>
-                            <template is="dom-if" if="[[isType(item,'remote')]]">
-                                <pv-remote active="[[active]]"></pv-remote>
-                            </template>
+        <paper-card id="input" heading="{{data.title}}">
+            <div class="card-content">
+                <div class="vertical layout">
+                    <template is="dom-repeat" items=[[data.instructions]]>
+                        <template is="dom-if" if="[[isType(item,'text')]]">
+                            <p>
+                                - {{item.content}}
+                            </p>
                         </template>
-                    </div>
-</div>
-                <div class="horizontal center-justified layout">
-                    <template is="dom-repeat" items={{data.buttons}}>
-                        <ajax-button active="[[active]]" data="[[item]]">[[item.caption]] <small><{{item.keys}}></small></ajax-button>
+                        <template is="dom-if" if="[[isType(item,'button')]]">
+                            <ajax-button active="[[active]]" data="[[item]]">[[item.caption]] <small><{{item.keys}}></small></ajax-button>
+                        </template>
+                        <template is="dom-if" if="[[isType(item,'remote')]]">
+                            <pv-remote active="[[active]]"></pv-remote>
+                        </template>
                     </template>
                 </div>
+            </div>
+            <div class="horizontal center-justified layout">
+                <template is="dom-repeat" items={{data.buttons}}>
+                    <ajax-button active="[[active]]" data="[[item]]">[[item.caption]] <small><{{item.keys}}></small></ajax-button>
+                </template>
+            </div>
 
-                <div class="card-actions">
-                    <div class="horizontal layout justified">
-                        <div>
-                            <paper-button id="previousbutton" on-tap="_prev">[[data.previous]]</paper-button>
-                        </div>
-                        <div>
-                            <paper-button id="nextbutton" on-tap="_next">[[data.next]]</paper-button>
-                        </div>
-
+            <div class="card-actions">
+                <div class="horizontal layout justified">
+                    <div>
+                        <paper-button id="previousbutton" on-tap="_prev">[[data.previous]]</paper-button>
                     </div>
+                    <div>
+                        <paper-button id="nextbutton" on-tap="_next">[[data.next]]</paper-button>
+                    </div>
+
                 </div>
-            </paper-card>
-        
+            </div>
+        </paper-card>
+
     </template>
     <script>
         Polymer({
@@ -137,29 +137,25 @@
                 }
             },
 
-            modalClosed: function(e) {
+            closeModalDismiss: function(e) {
+                console.log("close modal dismissed");
+                this.$.modalconfirm.target = this.$.modal;
+                this.$.modal.close();
 
-                if (e.detail.confirmed) {
-
+                if (this.data.confirm.previous) {
+                    this.fire("gotopage", this.data.confirm.previous);
                 } else {
-                    if (this.data.confirm.previous) {
-                        this.fire("gotopage", this.data.confirm.previous);
-                    }
+                    this.active = true;
                 }
+                //}
             },
 
             _modal: function(e) {
-              console.log("open modal");
-
+                console.log("open modal");
                 this.$.modalconfirm.target = document.body;
                 this.active = false;
                 this.$.modal.open();
             },
-
-            // setActive: function(curitem, selected) {
-            //     this.active = curitem === selected;
-            //     return this.active;
-            // },
             _selectedChanged: function() {
                 //this.active = curitem===selected;
                 var active = this.curitem === this.selected;

@@ -46,7 +46,7 @@
     {
         "title": "Enter program mode",
         "instructions": [
-            "Set motor in programming mode",
+            "Set motor in programming mode for top limit",
             {
                 "type": "button",
                 "caption": "Enter program mode",
@@ -95,11 +95,13 @@
                 "caption": "blind button pressed",
                 "confirm": true,
                 "keys": "enter"
+
             }
         ],
         "confirm":
         {
-            "text": "Did the motor move down?"
+            "img": "images/jog.png",
+            "text": "Did the motor jog?"
         }
     },
     {
@@ -128,7 +130,7 @@
     {
         "title": "Enter program mode",
         "instructions": [
-            "Set motor in programming mode",
+            "Set motor in programming mode for bottom limit",
             {
                 "type": "button",
                 "caption": "Enter programming mode",
