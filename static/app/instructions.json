@@ -93,7 +93,8 @@
             {
                 "type": "button",
                 "caption": "blind button pressed",
-                "confirm": true
+                "confirm": true,
+                "keys": "enter"
             }
         ],
         "confirm":

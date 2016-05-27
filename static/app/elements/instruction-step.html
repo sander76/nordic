@@ -24,19 +24,18 @@
     <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
     <template>
         <paper-dialog id="modal" modal on-iron-overlay-closed="modalClosed">
-            <!-- <iron-a11y-keys id="keys" keys="enter" target="[[target]]" on-keys-pressed="_updatePressed">
-          </iron-a11y-keys> -->
+            <iron-a11y-keys id="modalconfirm" keys="enter" on-keys-pressed="closeModal">
+            </iron-a11y-keys>
             <img src="{{data.confirm.img}}" hidden="{{!data.confirm.img}}" />
             <p>{{data.confirm.text}}</p>
             <div class="buttons">
                 <paper-button dialog-dismiss>No</paper-button>
-                <paper-button dialog-confirm autofocus>Yes</paper-button>
+                <paper-button on-tap="closeModal">Yes</paper-button>
             </div>
         </paper-dialog>
-        <div class="card-content" tabindex="-1" id="crd" autofocus>
-            <paper-card id="input" heading="{{data.title}}">
 
-                <p>
+            <paper-card id="input" heading="{{data.title}}">
+              <div class="card-content">
                     <div class="vertical layout">
                         <template is="dom-repeat" items=[[data.instructions]]>
                             <template is="dom-if" if="[[isType(item,'text')]]">
@@ -52,7 +51,7 @@
                             </template>
                         </template>
                     </div>
-                </p>
+</div>
                 <div class="horizontal center-justified layout">
                     <template is="dom-repeat" items={{data.buttons}}>
                         <ajax-button active="[[active]]" data="[[item]]">[[item.caption]] <small><{{item.keys}}></small></ajax-button>
@@ -71,7 +70,7 @@
                     </div>
                 </div>
             </paper-card>
-        </div>
+        
     </template>
     <script>
         Polymer({
@@ -86,13 +85,14 @@
                 selected: {
                     type: Number,
                     observer: '_selectedChanged'
-                },
-                target: {
-                    type: Object,
-                    value: function() {
-                        return this.$.crd;
-                    }
                 }
+                //,
+                // target: {
+                //     type: Object,
+                //     value: function() {
+                //         return this.$.modal;
+                //     }
+                // }
             },
             listeners: {
                 'modal': "_modal"
@@ -125,13 +125,22 @@
             _prev: function(e) {
                 this.fire('previouspage');
             },
+            closeModal: function(e) {
+                console.log("close modal confirmed");
+                this.$.modalconfirm.target = this.$.modal;
+                this.$.modal.close();
+
+                if (this.data.confirm.next) {
+                    this.fire("gotopage", this.data.confirm.next);
+                } else {
+                    this._next();
+                }
+            },
+
             modalClosed: function(e) {
+
                 if (e.detail.confirmed) {
-                    if (this.data.confirm.next) {
-                        this.fire("gotopage", this.data.confirm.next);
-                    } else {
-                        this._next();
-                    }
+
                 } else {
                     if (this.data.confirm.previous) {
                         this.fire("gotopage", this.data.confirm.previous);
@@ -140,7 +149,10 @@
             },
 
             _modal: function(e) {
-                this.active=false;
+              console.log("open modal");
+
+                this.$.modalconfirm.target = document.body;
+                this.active = false;
                 this.$.modal.open();
             },
 
@@ -149,8 +161,14 @@
             //     return this.active;
             // },
             _selectedChanged: function() {
-              //this.active = curitem===selected;
-              this.set("active",this.curitem===this.selected);
+                //this.active = curitem===selected;
+                var active = this.curitem === this.selected;
+                this.set("active", active);
+                // if (active) {
+                //     this.$.modalconfirm.target = document.body;
+                // } else {
+                //     this.$modalconfirm.target = this.$.input;
+                // }
                 //    console.log("sel changed");
             }
         });

@@ -108,9 +108,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <paper-scroll-header-panel main id="headerPanelMain" fixed>
                 <!-- Main Toolbar -->
 
-                <paper-toolbar id="mainToolbar" class="tall">
-                    <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
-                    <div class="middle middle-container">
+                <paper-toolbar id="mainToolbar" class="medium-tall">
+                    <!-- <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button> -->
+                    <div class="top">
                         <div class="app-name">[[instructions.title]]</div>
                     </div>
 
@@ -130,9 +130,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
                         <template is="dom-repeat" items="[[instructions.steps]]">
                             <!-- <div tabindex="-1"> -->
-                            <div tabindex="-1" >
+
                               <instruction-step data="{{item}}" curitem=[[index]] selected="[[selected]]"></instruction-step>
-                            </div>
+
 
                             <!-- </div> -->
                         </template>
@@ -159,8 +159,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             t.$.pages.selectNext();
         };
         t.handlePrevious = function() {
-            //t.$.pages.selectPrevious();
-            this.fire("testing");
+            t.$.pages.selectPrevious();
         };
         t.handleGoto = function(e) {
             t.$.pages.select(t.$.pages.selected + e.detail);
