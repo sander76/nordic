@@ -5,6 +5,7 @@ import time
 
 from aiohttp import web
 from serial import Serial
+from serial.serialutil import SerialException
 
 from fake_serial import FakeSerial
 from helpers import view_factory
@@ -13,11 +14,15 @@ from nordic import COMMANDS
 # Normal serial blocking reads
 # This could also do any processing required on the data
 from websocket import websocket_handler
+import logging
+import logging.handlers
 
 # from async_serial import get_and_print
 # SERIAL_PORT = "COM11"
 SERIAL_SPEED = 38400
 SLEEP_BETWEEN_COMMANDS = 5
+
+lgr = logging.getLogger(__name__)
 
 
 def get_byte():
@@ -38,8 +43,8 @@ def get_byte_async():
 def get_and_print():
     while 1:
         b = yield from get_byte_async()
-        msg = repr(b)
-        # print(msg)
+        msg = "from nordic: {}".format(repr(b))
+        lgr.info(msg)
         send_socket_message(msg)
 
 
@@ -63,9 +68,13 @@ def send_nordic(request):
             else:
                 yield from asyncio.sleep(SLEEP_BETWEEN_COMMANDS)
             s.write(upstring)
-
+            #send_socket_message("sending: {}".format(upstring))
+            msg = "to nordic: {} {}".format(cmd, upstring)
+            send_socket_message(msg)
+            lgr.info(msg)
             #
         else:
+            lgr.error("sending command {} did not succeed.".format(cmd))
             return web.Response(body=b"not okay", status=500)
     return web.Response(body=b"okay")
 
@@ -73,20 +82,43 @@ def send_nordic(request):
 parser = argparse.ArgumentParser()
 parser.add_argument("--serialport")
 args = parser.parse_args()
+
+# setup the serial port.
 if args.serialport:
-    SERIAL_PORT = args.serialport
-    s = Serial(SERIAL_PORT, SERIAL_SPEED)
+    try:
+        SERIAL_PORT = args.serialport
+        s = Serial(SERIAL_PORT, SERIAL_SPEED)
+    except SerialException as e:
+        lgr.exception(e)
 else:
     s = FakeSerial()
+
+# create the app instance and get the async loop.
 app = web.Application()
 loop = app.loop
 
+# create some routes.
 app.router.add_route('POST', '/nordic', send_nordic)
 app.router.add_route("GET", '/app/', view_factory('/', 'static/app/index.html'))
 app.router.add_static("/app/", "static/app/")
+
 # add the websocket address
 app.router.add_route('GET', '/ws', websocket_handler)
 # keep a list with all websocket connections.
 app['sockets'] = []
 
-web.run_app(app)
+lgr.setLevel(logging.INFO)
+
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+
+fh = logging.handlers.RotatingFileHandler("nordic.log", 'a', 1000, 5)
+fh.setLevel(logging.ERROR)
+
+lgr.addHandler(ch)
+lgr.addHandler(fh)
+try:
+    web.run_app(app)
+except Exception as e:
+    lgr.exception(e)
+

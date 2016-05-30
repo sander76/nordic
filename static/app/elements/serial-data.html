@@ -1,16 +1,31 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="ws-element.html">
+<link rel="import" href="../styles/app-theme.html">
+<link rel="import" href="../styles/shared-styles.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
 <dom-module id="serial-data">
     <template>
-        <style>
+        <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
+        <style is="custom-style" include="demo-pages-shared-styles">
+            <style>
+            /*:host{margin:50px;}*/
             /* local DOM styles go here */
         </style>
 
-        <template is="dom-repeat" items="{{serialdata}}">
-          <div>
-            {{item}}
-          </div>
+        <div class="horizontal layout">
+            <paper-card heading="Connection status" class="flex">
+                <div class="card-content">[[connected]]</div>
+            </paper-card>
+        </div>
+
+
+        <template is="dom-repeat" items="[[serialdata]]">
+            <!-- <li> -->
+            <paper-item>
+                {{item}}
+            </paper-item>
+            <!-- </li> -->
         </template>
         <ws-element id="incoming" protocol="echo-protocol" url="ws:localhost:8080/ws"></ws-element>
     </template>
@@ -20,15 +35,24 @@
             properties: {
                 serialdata: {
                     type: Array,
-                    value: ["array start", "more data"]
+                    value: []
+                },
+                connected: {
+                    type: String,
+                    value: ""
                 }
             },
             ready: function() {
                 var self = this;
                 this.$.incoming.addEventListener('onmessage', function(message) {
                     console.log(message.detail);
-                    //this.serialdata.push(message.detail);
                     self.push('serialdata', message.detail);
+                });
+                this.$.incoming.addEventListener('onopen', function(message) {
+                    console.log(message.detail);
+                    //self.push('serialdata',message.detail);
+                    //this.connected = "connected";
+                    self.set('connected', "connected");
                 });
             }
 
