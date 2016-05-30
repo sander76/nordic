@@ -20,7 +20,7 @@ import logging.handlers
 # from async_serial import get_and_print
 # SERIAL_PORT = "COM11"
 SERIAL_SPEED = 38400
-SLEEP_BETWEEN_COMMANDS = 5
+SLEEP_BETWEEN_COMMANDS = 2
 
 lgr = logging.getLogger(__name__)
 
