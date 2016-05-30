@@ -10,7 +10,7 @@
             {
                 "type": "button",
                 "caption": "Connect",
-                "commands": ["connect"],
+                "commands": ["networkadd","group1add"],
                 "keys": "enter",
                 "confirm": true
             }

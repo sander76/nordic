@@ -8,6 +8,8 @@ COMMANDS = {
     "stop": b'\x00\x03RS\x00',
     "jog": b'\x00\x03cj.1',
     "connect": b'\x00\x01N\x00\x01A',  # a network add and a add group 1 command combined.
+    "networkadd":b'\x00\x01N',
+    "group1add":b'\x00\x01A',
     "reset": b'\x00\x03#@r',
     "roller": b'\x00\x04#DS*',
     "twist": b'\x00\x04#DS,',
