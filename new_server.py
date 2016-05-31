@@ -23,7 +23,16 @@ SERIAL_SPEED = 38400
 SLEEP_BETWEEN_COMMANDS = 2
 
 lgr = logging.getLogger(__name__)
+lgr.setLevel(logging.ERROR)
 
+# ch = logging.StreamHandler()
+# ch.setLevel(logging.DEBUG)
+
+fh = logging.handlers.RotatingFileHandler("nordic.log", 'a', 1000, 5)
+fh.setLevel(logging.ERROR)
+
+# lgr.addHandler(ch)
+lgr.addHandler(fh)
 
 def get_byte():
     data = bytearray(s.read(1))
@@ -70,7 +79,7 @@ def send_nordic(request):
                 yield from asyncio.sleep(delay)
             try:
                 s.write(upstring)
-            except SerialException as e:
+            except SerialException:
                 return web.Response(text="Writing to blind went wrong. Please check cables and USB dongle")
                 lgr.exception("writing to serial port failure.")
             #send_socket_message("sending: {}".format(upstring))
@@ -93,7 +102,7 @@ if args.serialport:
     try:
         SERIAL_PORT = args.serialport
         s = Serial(SERIAL_PORT, SERIAL_SPEED)
-    except SerialException as e:
+    except SerialException:
         lgr.exception("serial port opening problem.")
 else:
     s = FakeSerial()
@@ -112,16 +121,7 @@ app.router.add_route('GET', '/ws', websocket_handler)
 # keep a list with all websocket connections.
 app['sockets'] = []
 
-lgr.setLevel(logging.ERROR)
 
-# ch = logging.StreamHandler()
-# ch.setLevel(logging.DEBUG)
-
-fh = logging.handlers.RotatingFileHandler("nordic.log", 'a', 1000, 5)
-fh.setLevel(logging.ERROR)
-
-# lgr.addHandler(ch)
-lgr.addHandler(fh)
 try:
     web.run_app(app)
 except Exception as e:
