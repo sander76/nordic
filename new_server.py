@@ -68,7 +68,11 @@ def send_nordic(request):
             else:
                 delay = commands.get("delay",SLEEP_BETWEEN_COMMANDS)
                 yield from asyncio.sleep(delay)
-            s.write(upstring)
+            try:
+                s.write(upstring)
+            except SerialException as e:
+                return web.Response(text="Writing to blind went wrong. Please check cables and USB dongle")
+                lgr.exception(e)
             #send_socket_message("sending: {}".format(upstring))
             msg = "to nordic: {} {}".format(cmd, upstring)
             send_socket_message(msg)
@@ -76,7 +80,7 @@ def send_nordic(request):
             #
         else:
             lgr.error("sending command {} did not succeed.".format(cmd))
-            return web.Response(body=b"not okay", status=500)
+            return web.Response(text="sending command {} did not succeed.".format(cmd), status=500)
     return web.Response(body=b"okay")
 
 
