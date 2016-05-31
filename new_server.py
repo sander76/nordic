@@ -108,15 +108,15 @@ app.router.add_route('GET', '/ws', websocket_handler)
 # keep a list with all websocket connections.
 app['sockets'] = []
 
-lgr.setLevel(logging.INFO)
+lgr.setLevel(logging.ERROR)
 
-ch = logging.StreamHandler()
-ch.setLevel(logging.DEBUG)
+# ch = logging.StreamHandler()
+# ch.setLevel(logging.DEBUG)
 
 fh = logging.handlers.RotatingFileHandler("nordic.log", 'a', 1000, 5)
 fh.setLevel(logging.ERROR)
 
-lgr.addHandler(ch)
+# lgr.addHandler(ch)
 lgr.addHandler(fh)
 try:
     web.run_app(app)
