@@ -72,7 +72,7 @@ def send_nordic(request):
                 s.write(upstring)
             except SerialException as e:
                 return web.Response(text="Writing to blind went wrong. Please check cables and USB dongle")
-                lgr.exception(e)
+                lgr.exception("writing to serial port failure.")
             #send_socket_message("sending: {}".format(upstring))
             msg = "to nordic: {} {}".format(cmd, upstring)
             send_socket_message(msg)
@@ -94,7 +94,7 @@ if args.serialport:
         SERIAL_PORT = args.serialport
         s = Serial(SERIAL_PORT, SERIAL_SPEED)
     except SerialException as e:
-        lgr.exception(e)
+        lgr.exception("serial port opening problem.")
 else:
     s = FakeSerial()
 
@@ -125,5 +125,5 @@ lgr.addHandler(fh)
 try:
     web.run_app(app)
 except Exception as e:
-    lgr.exception(e)
+    lgr.exception("Some error has occurred.")
 
