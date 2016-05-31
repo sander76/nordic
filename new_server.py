@@ -28,7 +28,9 @@ lgr.setLevel(logging.ERROR)
 # ch = logging.StreamHandler()
 # ch.setLevel(logging.DEBUG)
 
-fh = logging.handlers.RotatingFileHandler("nordic.log", 'a', 1000, 5)
+fh = logging.handlers.RotatingFileHandler("nordic.log", 'a', 10000, 5)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+fh.setFormatter(formatter)
 fh.setLevel(logging.ERROR)
 
 # lgr.addHandler(ch)
@@ -80,8 +82,8 @@ def send_nordic(request):
             try:
                 s.write(upstring)
             except SerialException:
-                return web.Response(text="Writing to blind went wrong. Please check cables and USB dongle")
                 lgr.exception("writing to serial port failure.")
+                return web.Response(text="Writing to blind went wrong. Please check cables and USB dongle")
             #send_socket_message("sending: {}".format(upstring))
             msg = "to nordic: {} {}".format(cmd, upstring)
             send_socket_message(msg)
