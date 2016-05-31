@@ -28,7 +28,7 @@ lgr.setLevel(logging.ERROR)
 # ch = logging.StreamHandler()
 # ch.setLevel(logging.DEBUG)
 
-fh = logging.handlers.RotatingFileHandler("nordic.log", 'a', 10000, 5)
+fh = logging.handlers.RotatingFileHandler("logs/nordic.log", 'a', 10000, 5)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 fh.setFormatter(formatter)
 fh.setLevel(logging.ERROR)
@@ -123,6 +123,7 @@ app.router.add_route('GET', '/ws', websocket_handler)
 # keep a list with all websocket connections.
 app['sockets'] = []
 
+lgr.error("***** start logging ******")
 
 try:
     web.run_app(app)
