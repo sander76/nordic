@@ -176,10 +176,14 @@
             var pressed = false;
             return function() {
                 if (!pressed) {
-                    this.send([cmd]);
+                    this.send({
+                        "commands": [cmd]
+                    });
                     console.log(cmd);
                 } else {
-                    this.send(["stop"]);
+                    this.send({
+                        "commands": ["stop"]
+                    });
                     console.log("stop");
                 }
                 pressed = !(pressed);
@@ -232,17 +236,17 @@
             },
             handleStop: function(e) {
                 if (this.active) {
-                    this.send(["stop"]);
-                    console.log("stop");
-                }
-            },
-            send: function(commands) {
-                //populate the body of the request.
-                this.$.sendCommand.body = {
-                    "commands": commands
-                };
-                this.$.sendCommand.generateRequest();
+                    this.send({"commands": ["stop"]});
+                console.log("stop");
             }
+        },
+        send: function(commands) {
+            //populate the body of the request.
+            this.$.sendCommand.body = {
+                "commands": commands
+            };
+            this.$.sendCommand.generateRequest();
+        }
         });
     </script>
 </dom-module>

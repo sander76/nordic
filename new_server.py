@@ -60,13 +60,14 @@ def send_nordic(request):
     rq = yield from request.json()
     commands = rq['commands']
     first = True
-    for cmd in commands:
+    for cmd in commands['commands']:
         upstring = COMMANDS.get(cmd)
         if upstring is not None:
             if first:
                 first = False
             else:
-                yield from asyncio.sleep(SLEEP_BETWEEN_COMMANDS)
+                delay = commands.get("delay",SLEEP_BETWEEN_COMMANDS)
+                yield from asyncio.sleep(delay)
             s.write(upstring)
             #send_socket_message("sending: {}".format(upstring))
             msg = "to nordic: {} {}".format(cmd, upstring)

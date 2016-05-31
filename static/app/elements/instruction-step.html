@@ -44,18 +44,28 @@
                             </p>
                         </template>
                         <template is="dom-if" if="[[isType(item,'button')]]">
-                            <ajax-button active="[[active]]" data="[[item]]">[[item.caption]] <small><{{item.keys}}></small></ajax-button>
+                            <ajax-button active="[[active]]" data="[[item]]">[[item.caption]] <small><[[item.keys]]></small></ajax-button>
                         </template>
                         <template is="dom-if" if="[[isType(item,'remote')]]">
                             <pv-remote active="[[active]]"></pv-remote>
                         </template>
                     </template>
+                    <!-- <template is="dom-repeat" items=[[data.buttons]]>
+                        <template is="dom-if" if="[[isType(item,'navbutton')]]">
+                            <nav-button active="[[active]]" data="[[item]]">[[item.caption]] <small>[[item.keys]]</small></nav-button>
+                        </template>
+                    </template> -->
                 </div>
             </div>
             <div class="horizontal center-justified layout">
-                <template is="dom-repeat" items={{data.buttons}}>
-                    <ajax-button active="[[active]]" data="[[item]]">[[item.caption]] <small><{{item.keys}}></small></ajax-button>
+              <template is="dom-repeat" items=[[data.buttons]]>
+                <template is="dom-if" items=[[isType(item,'button')]]>
+                    <ajax-button active="[[active]]" data="[[item]]">[[item.caption]] <small><[[item.keys]]></small></ajax-button>
                 </template>
+                <template is="dom-if" if="[[isType(item,'navbutton')]]">
+                    <nav-button active="[[active]]" data="[[item]]">[[item.caption]] <small>[[item.keys]]</small></nav-button>
+                </template>
+              </template>
             </div>
 
             <div class="card-actions">
