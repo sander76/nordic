@@ -1,0 +1,211 @@
+{% raw %}
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Nordic programmer">
+    <title>Nordic programmer</title>
+
+    <!-- Place favicon.ico in the `app/` directory -->
+
+    <!-- Chrome for Android theme color -->
+    <meta name="theme-color" content="#2E3AA1">
+
+    <!-- Web Application Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Tile color for Win8 -->
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="PSK">
+    <link rel="icon" sizes="192x192" href="/app/images/touch/chrome-touch-icon-192x192.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Nordic programmer">
+    <link rel="apple-touch-icon" href="/app/images/touch/apple-touch-icon.png">
+
+    <!-- Tile icon for Win8 (144x144) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="/app/styles/main.css">
+    <!-- endbuild-->
+
+    <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
+    <script src="/app/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <!-- endbuild -->
+
+    <!-- Because this project uses vulcanize this should be your only html import
+       in this file. All other imports should go in elements.html -->
+    <link rel="import" href="/app/elements/elements.html">
+
+    <!-- For shared styles, shared-styles.html import in elements.html -->
+    <style is="custom-style" include="shared-styles"></style>
+    <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
+    <style>
+        /*#container {
+        max-width: 600px;
+      }*/
+
+        paper-tabs,
+        paper-toolbar {
+            background-color: var(--paper-blue-900);
+            color: #fff;
+        }
+    </style>
+    <link rel="import" href="/app/elements/ajax-button.html">
+    <link rel="import" href="/app/elements/nav-button.html">
+    <link rel="import" href="/app/elements/serial-data.html">
+    <link rel="import" href="/app/elements/instruction-step.html" />
+
+</head>
+
+<body unresolved>
+    <!-- build:remove -->
+    <span id="browser-sync-binding"></span>
+    <!-- endbuild -->
+
+    <template is="dom-bind" id="app">
+        <!-- <iron-a11y-keys keys="end 1" target="[[target]]" on-keys-pressed="handlePrevious">
+        </iron-a11y-keys>
+        <iron-a11y-keys keys="pagedown 3" on-keys-pressed="handleNext">
+        </iron-a11y-keys> -->
+        {% endraw %}
+        <iron-ajax url="/app/instructions/instructions-{{ lang }}.json" auto handle-as="json" on-response="getInstructions"></iron-ajax>
+        {% raw %}
+        <paper-drawer-panel id="paperDrawerPanel">
+            <!-- Drawer Scroll Header Panel -->
+            <paper-scroll-header-panel drawer fixed>
+
+                <!-- Drawer Toolbar -->
+                <paper-toolbar id="drawerToolbar">
+                    <span class="menu-name">Menu</span>
+                </paper-toolbar>
+
+                <!-- Drawer Content -->
+                <paper-menu on-iron-select="handleInstructionChange">
+                    <template is="dom-repeat" items="[[all_instructions]]">
+                        <paper-item>[[item.title]]</paper-item>
+                    </template>
+                </paper-menu>
+            </paper-scroll-header-panel>
+
+            <!-- Main Area -->
+            <paper-scroll-header-panel main id="headerPanelMain" fixed>
+                <!-- Main Toolbar -->
+
+                <paper-toolbar id="mainToolbar" class="small">
+                    <!-- <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button> -->
+                    <!-- <div class="top">
+                        <div class="app-name">[[instructions.title]]</div>
+                    </div> -->
+
+                    <paper-tabs noink="true" class="flex bottom" disabled selected="{{selected}}" scrollable>
+                        <template is="dom-repeat" items="[[instructions.steps]]">
+                            <paper-tab>{{item.title}}</paper-tab>
+                        </template>
+                    </paper-tabs>
+
+
+                </paper-toolbar>
+
+                <!-- Main Content -->
+
+                <!-- <div> -->
+                <iron-pages class="flex" id="pages" on-nextpage="handleNext" on-previouspage="handlePrevious" on-gotopage="handleGoto" selected="{{selected}}">
+                    <template is="dom-repeat" items="[[instructions.steps]]">
+                        <!-- <div tabindex="-1"> -->
+                        <instruction-step data="{{item}}" curitem=[[index]] selected="[[selected]]"></instruction-step>
+                        <!-- </div> -->
+                    </template>
+                </iron-pages>
+                <!-- </div> -->
+            </paper-scroll-header-panel>
+        </paper-drawer-panel>
+        <paper-toast id="toast">
+            <span class="toast-hide-button" role="button" tabindex="0" onclick="app.$.toast.hide()">Ok</span>
+        </paper-toast>
+
+    </template>
+
+    <!-- build:js scripts/app.js -->
+    <script src="/app/scripts/app.js"></script>
+    <script>
+        var t = document.querySelector("#app");
+        // t.addEventListener('next',function(){
+        //   var k = 19;
+        // })
+        //var pages = t.$pages;
+        t.handleNext = function(e) {
+            //var pages = t.$.pages
+            t.$.pages.selectNext();
+        };
+        t.handlePrevious = function() {
+            t.$.pages.selectPrevious();
+        };
+        t.handleGoto = function(e) {
+            var _goto = t.$.pages.selected + e.detail;
+            var goto = 0;
+            if (_goto < 0) {
+                goto = (t.instructions.steps.length + _goto);
+            } else {
+                goto = _goto % t.instructions.steps.length;
+            }
+            t.$.pages.select(goto);
+        };
+        t.target = document.body;
+
+
+        t.selected = 0;
+
+        t.handleInstructionChange = function(e) {
+            t.instructions = t.all_instructions[e.target.selected];
+            t.$.pages.select(0);
+            //
+        };
+        // t.sel=function(e){
+        //   console.log("selection changed");
+        //   t.$.pages.selectedItem.focus();
+        // };
+        t.getInstructions = function(e, response) {
+            // process response
+            var resp = response.response;
+            for (var i = 0; i < resp.length; i += 1) {
+                for (var step = 0; step < resp[i].steps.length; step += 1) {
+                    for (var instruction = 0; instruction < resp[i].steps[step].instructions.length; instruction += 1)
+                        if (typeof resp[i].steps[step].instructions[instruction] === "string") {
+                            resp[i].steps[step].instructions[instruction] = {
+                                type: "text",
+                                content: resp[i].steps[step].instructions[instruction]
+                            };
+                        }
+                }
+            }
+
+            t.all_instructions = resp;
+        };
+        //t.instructions = undefined;
+    </script>
+    <!-- endbuild-->
+</body>
+
+</html>
+{% endraw %}

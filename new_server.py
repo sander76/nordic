@@ -3,6 +3,8 @@ import asyncio
 import concurrent
 import time
 
+import aiohttp_jinja2
+import jinja2
 from aiohttp import web
 from serial import Serial
 from serial.serialutil import SerialException
@@ -36,6 +38,7 @@ fh.setLevel(logging.ERROR)
 # lgr.addHandler(ch)
 lgr.addHandler(fh)
 
+
 def get_byte():
     data = bytearray(s.read(1))
     time.sleep(0.3)
@@ -67,6 +70,7 @@ def send_socket_message(message):
         ws.send_str(message)
 
 
+# handlers.
 def send_nordic(request):
     rq = yield from request.json()
     commands = rq['commands']
@@ -77,14 +81,14 @@ def send_nordic(request):
             if first:
                 first = False
             else:
-                delay = commands.get("delay",SLEEP_BETWEEN_COMMANDS)
+                delay = commands.get("delay", SLEEP_BETWEEN_COMMANDS)
                 yield from asyncio.sleep(delay)
             try:
                 s.write(upstring)
             except SerialException:
                 lgr.exception("writing to serial port failure.")
                 return web.Response(text="Writing to blind went wrong. Please check cables and USB dongle")
-            #send_socket_message("sending: {}".format(upstring))
+            # send_socket_message("sending: {}".format(upstring))
             msg = "to nordic: {} {}".format(cmd, upstring)
             send_socket_message(msg)
             lgr.info(msg)
@@ -94,6 +98,11 @@ def send_nordic(request):
             return web.Response(text="sending command {} did not succeed.".format(cmd), status=500)
     return web.Response(body=b"okay")
 
+
+@aiohttp_jinja2.template('index.html')
+def index_handler(request):
+    lang = request.match_info.get('lang','en')
+    return {'lang': lang}
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--serialport")
@@ -112,12 +121,13 @@ else:
 # create the app instance and get the async loop.
 app = web.Application()
 loop = app.loop
+aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
 
 # create some routes.
 app.router.add_route('POST', '/nordic', send_nordic)
-app.router.add_route("GET", '/app/', view_factory('/', 'static/app/index.html'))
+# app.router.add_route("GET", '/app/', view_factory('/', 'static/app/index.html'))
 app.router.add_static("/app/", "static/app/")
-
+app.router.add_route("GET", '/site/{lang}/', index_handler)
 # add the websocket address
 app.router.add_route('GET', '/ws', websocket_handler)
 # keep a list with all websocket connections.
@@ -129,4 +139,3 @@ try:
     web.run_app(app)
 except Exception as e:
     lgr.exception("Some error has occurred.")
-

@@ -19,7 +19,7 @@
         "instructions": [
         {
             "type": "image",
-            "src": "images/connect_blind.png"
+            "src": "/app/images/connect_blind.png"
         },
         {
             "type": "button",
@@ -34,7 +34,7 @@
         }],
         "confirm":
         {
-            "img": "images/jog.png",
+            "img": "/app/images/jog.png",
             "text": "Did the motor jog?"
         },
         "previous": false
@@ -55,7 +55,7 @@
         }],
         "confirm":
         {
-            "img": "images/jog.png",
+            "img": "/app/images/jog.png",
             "text": "After 5 seconds: Did the motor jog two times ?"
         }
     },
@@ -91,7 +91,7 @@
         }],
         "confirm":
         {
-            "img": "images/jog.png",
+            "img": "/app/images/jog.png",
             "text": "Did the motor jog?"
         }
     },
@@ -111,7 +111,7 @@
         "buttons": [],
         "confirm":
         {
-            "img": "images/jog.png",
+            "img": "/app/images/jog.png",
             "text": "Did the motor jog?"
         }
     },
@@ -133,7 +133,7 @@
         }],
         "confirm":
         {
-            "img": "images/jog.png",
+            "img": "/app/images/jog.png",
             "text": "Did the motor jog?"
         }
     },
@@ -153,7 +153,7 @@
         "buttons": [],
         "confirm":
         {
-            "img": "images/jog.png",
+            "img": "/app/images/jog.png",
             "text": "Did the motor jog?"
         }
     },
@@ -206,7 +206,7 @@
         "instructions": [
         {
             "type": "image",
-            "src": "images/press_hold_blind_button.png"
+            "src": "/app/images/press_hold_blind_button.png"
         },
         {
             "type": "button",
@@ -221,7 +221,7 @@
         },
         {
             "type": "image",
-            "src": "images/release_blind_button.png"
+            "src": "/app/images/release_blind_button.png"
         }],
         "confirm":
         {
