@@ -83,10 +83,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <!-- endbuild -->
 
     <template is="dom-bind" id="app">
-        <iron-a11y-keys keys="end 1" target="[[target]]" on-keys-pressed="handlePrevious">
+        <!-- <iron-a11y-keys keys="end 1" target="[[target]]" on-keys-pressed="handlePrevious">
         </iron-a11y-keys>
         <iron-a11y-keys keys="pagedown 3" on-keys-pressed="handleNext">
-        </iron-a11y-keys>
+        </iron-a11y-keys> -->
         <iron-ajax url="instructions/instructions.json" auto handle-as="json" on-response="getInstructions"></iron-ajax>
         <paper-drawer-panel id="paperDrawerPanel">
             <!-- Drawer Scroll Header Panel -->
@@ -128,13 +128,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
                 <!-- <div> -->
                     <iron-pages class="flex" id="pages" on-nextpage="handleNext" on-previouspage="handlePrevious" on-gotopage="handleGoto" selected="{{selected}}">
-
                         <template is="dom-repeat" items="[[instructions.steps]]">
                             <!-- <div tabindex="-1"> -->
-
                             <instruction-step data="{{item}}" curitem=[[index]] selected="[[selected]]"></instruction-step>
-
-
                             <!-- </div> -->
                         </template>
                     </iron-pages>
@@ -173,7 +169,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             t.$.pages.select(goto);
         };
         t.target = document.body;
-        
+
 
         t.selected = 0;
 
