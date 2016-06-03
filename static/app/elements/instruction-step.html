@@ -125,7 +125,7 @@
                 }
             },
             listeners: {
-                'modal': "_modal"
+                'openmodal': "_openModal"
             },
 
             ready: function() {
@@ -180,7 +180,7 @@
                 //}
             },
 
-            _modal: function(e) {
+            _openModal: function(e) {
                 console.log("open modal");
                 this.$.modalconfirm.target = document.body;
                 this.active = false;
