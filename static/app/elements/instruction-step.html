@@ -32,13 +32,14 @@
     <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
     <template>
         <paper-dialog id="modal" modal>
-            <iron-a11y-keys id="modalconfirm" keys="enter" on-keys-pressed="closeModal">
+            <iron-a11y-keys id="modalconfirm" keys="[[modal_yes.keys]]" on-keys-pressed="closeModal">
             </iron-a11y-keys>
+            <iron-a11y-keys id="modaldismiss" keys="[[modal_no.keys]]" on-keys-pressed="closeModalDismiss"></iron-a11y-keys>
             <img src="{{data.confirm.img}}" hidden="{{!data.confirm.img}}" />
             <p>{{data.confirm.text}}</p>
             <div class="buttons">
-                <paper-button on-tap="closeModalDismiss">No</paper-button>
-                <paper-button on-tap="closeModal">Yes</paper-button>
+                <paper-button on-tap="closeModalDismiss">No<small>[[modal_no.keys]]</small></paper-button>
+                <paper-button on-tap="closeModal">Yes<small>[[modal_yes.keys]]</small></paper-button>
             </div>
         </paper-dialog>
 
@@ -57,7 +58,7 @@
                             </p>
                         </template>
                         <template is="dom-if" if="[[isType(item,'button')]]">
-                            <ajax-button active="[[active]]" data="[[item]]">[[item.caption]] <small><[[item.keys]]></small></ajax-button>
+                            <ajax-button active="[[active]]" data="[[item]]">[[item.caption]] <small>([[item.keys]])</small></ajax-button>
                         </template>
                         <template is="dom-if" if="[[isType(item,'remote')]]">
                             <pv-remote active="[[active]]"></pv-remote>
@@ -73,10 +74,10 @@
             <div class="horizontal center-justified layout">
                 <template is="dom-repeat" items=[[data.buttons]]>
                     <template is="dom-if" items=[[isType(item, 'button')]]>
-                        <ajax-button active="[[active]]" data="[[item]]">[[item.caption]] <small><[[item.keys]]></small></ajax-button>
+                        <ajax-button active="[[active]]" data="[[item]]">[[item.caption]] <small>([[item.keys]])</small></ajax-button>
                     </template>
                     <template is="dom-if" if="[[isType(item,'navbutton')]]">
-                        <nav-button active="[[active]]" data="[[item]]">[[item.caption]] <small>[[item.keys]]</small></nav-button>
+                        <nav-button active="[[active]]" data="[[item]]">[[item.caption]] <small>([[item.keys]])</small></nav-button>
                     </template>
                 </template>
             </div>
@@ -88,7 +89,6 @@
                     </div>
                     <div>
                         <nav-button id="nextbutton" active="[[active]]" data="[[next]]">[[data.next]]</nav-button>
-                        <!-- <paper-button id="previousbutton" on-tap="_prev">[[data.previous]]</paper-button> -->
                     </div>
                 </div>
             </div>
@@ -113,14 +113,26 @@
                     type: Object,
                     value: {
                         "goto": 1,
-                        "keys":"pagedown 3"
+                        "keys": "pagedown 3"
                     }
                 },
                 prev: {
                     type: Object,
                     value: {
                         "goto": -1,
-                        "keys":"end 1"
+                        "keys": "end 1"
+                    }
+                },
+                modal_yes: {
+                    type: Object,
+                    value: {
+                        "keys": "enter"
+                    }
+                },
+                modal_no: {
+                    type: Object,
+                    value: {
+                        "keys": "0 insert"
                     }
                 }
             },
@@ -158,6 +170,7 @@
             closeModal: function(e) {
                 console.log("close modal confirmed");
                 this.$.modalconfirm.target = this.$.modal;
+                this.$.modaldismiss.target = this.$.modal;
                 this.$.modal.close();
 
                 if (this.data.confirm.next) {
@@ -170,12 +183,14 @@
             closeModalDismiss: function(e) {
                 console.log("close modal dismissed");
                 this.$.modalconfirm.target = this.$.modal;
+                this.$.modaldismiss.target = this.$.modal;
                 this.$.modal.close();
 
                 if (this.data.confirm.previous) {
                     this.fire("gotopage", this.data.confirm.previous);
                 } else {
-                    this.active = true;
+                    //this.active = true;
+                    this.set("active", true);
                 }
                 //}
             },
@@ -183,19 +198,15 @@
             _openModal: function(e) {
                 console.log("open modal");
                 this.$.modalconfirm.target = document.body;
-                this.active = false;
+                this.$.modaldismiss.target = document.body;
+                //this.active = false;
+                this.set("active", false);
                 this.$.modal.open();
             },
             _selectedChanged: function() {
                 //this.active = curitem===selected;
                 var active = this.curitem === this.selected;
                 this.set("active", active);
-                // if (active) {
-                //     this.$.modalconfirm.target = document.body;
-                // } else {
-                //     this.$modalconfirm.target = this.$.input;
-                // }
-                //    console.log("sel changed");
             }
         });
     </script>

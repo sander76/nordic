@@ -84,10 +84,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <!-- endbuild -->
 
     <template is="dom-bind" id="app">
-        <!-- <iron-a11y-keys keys="end 1" target="[[target]]" on-keys-pressed="handlePrevious">
-        </iron-a11y-keys>
-        <iron-a11y-keys keys="pagedown 3" on-keys-pressed="handleNext">
-        </iron-a11y-keys> -->
         {% endraw %}
         <iron-ajax url="/app/instructions/instructions-{{ lang }}.json" auto handle-as="json" on-response="getInstructions"></iron-ajax>
         {% raw %}
@@ -103,7 +99,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <!-- Drawer Content -->
                 <paper-menu on-iron-select="handleInstructionChange">
                     <template is="dom-repeat" items="[[all_instructions]]">
-                        <paper-item>[[item.title]]</paper-item>
+                        <paper-item on-tap="tapped">[[item.title]]</paper-item>
                     </template>
                 </paper-menu>
             </paper-scroll-header-panel>
@@ -123,13 +119,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             <paper-tab>{{item.title}}</paper-tab>
                         </template>
                     </paper-tabs>
-
-
                 </paper-toolbar>
-
-                <!-- Main Content -->
-
-                <!-- <div> -->
                 <iron-pages class="flex" id="pages" on-nextpage="handleNext" on-previouspage="handlePrevious" on-gotopage="handleGoto" selected="{{selected}}">
                     <template is="dom-repeat" items="[[instructions.steps]]">
                         <!-- <div tabindex="-1"> -->
@@ -150,10 +140,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script src="/app/scripts/app.js"></script>
     <script>
         var t = document.querySelector("#app");
-        // t.addEventListener('next',function(){
-        //   var k = 19;
-        // })
-        //var pages = t.$pages;
         t.handleNext = function(e) {
             //var pages = t.$.pages
             t.$.pages.selectNext();
@@ -172,10 +158,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             t.$.pages.select(goto);
         };
         t.target = document.body;
-
-
         t.selected = 0;
-
+        t.tapped = function(e) {
+            e.currentTarget.blur();
+        };
         t.handleInstructionChange = function(e) {
             t.instructions = t.all_instructions[e.target.selected];
             t.$.pages.select(0);

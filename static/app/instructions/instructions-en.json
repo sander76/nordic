@@ -194,6 +194,7 @@
         {
             "caption": "Redefine positions",
             "type": "navbutton",
+            "keys":"0 insert",
             "goto": -4
         }]
     }]
