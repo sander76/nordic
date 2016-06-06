@@ -1,16 +1,16 @@
 {
-    "products:": [
+    "products": [
     {
         "title": "Duette Bottom up",
-        "steps": []
+        "steps": [{}]
     },
     {
         "title": "Duette Top Down Bottom up",
-        "steps": []
+        "steps": [{}]
     },
     {
         "title": "Plisse Bottom up",
-        "steps": []
+        "steps": [{}]
     },
     {
         "title": "Rolgordijnen",
