@@ -174,19 +174,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         t.getInstructions = function(e, response) {
             // process response
             var resp = response.response;
-            for (var i = 0; i < resp.length; i += 1) {
-                for (var step = 0; step < resp[i].steps.length; step += 1) {
-                    for (var instruction = 0; instruction < resp[i].steps[step].instructions.length; instruction += 1)
-                        if (typeof resp[i].steps[step].instructions[instruction] === "string") {
-                            resp[i].steps[step].instructions[instruction] = {
+            var products=resp.products;
+            for (var i = 0; i < products.length; i += 1) {
+                for (var step = 0; step < products[i].steps.length; step += 1) {
+                    for (var instruction = 0; instruction < products[i].steps[step].instructions.length; instruction += 1)
+                        if (typeof products[i].steps[step].instructions[instruction] === "string") {
+                            products[i].steps[step].instructions[instruction] = {
                                 type: "text",
-                                content: resp[i].steps[step].instructions[instruction]
+                                content: products[i].steps[step].instructions[instruction]
                             };
                         }
                 }
             }
 
-            t.all_instructions = resp;
+            t.all_instructions = products;
         };
         //t.instructions = undefined;
     </script>
