@@ -31,12 +31,13 @@
     </style>
     <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
     <template>
+
         <paper-dialog id="modal" modal>
             <iron-a11y-keys id="modalconfirm" keys="[[modal_yes.keys]]" on-keys-pressed="closeModal">
             </iron-a11y-keys>
             <iron-a11y-keys id="modaldismiss" keys="[[modal_no.keys]]" on-keys-pressed="closeModalDismiss"></iron-a11y-keys>
-            <img src="{{data.confirm.img}}" hidden="{{!data.confirm.img}}" />
-            <p>{{data.confirm.text}}</p>
+            <img src="[[data.confirm.img]]" />
+            <p>[[data.confirm.text]]</p>
             <div class="buttons">
                 <paper-button on-tap="closeModalDismiss">No<small>[[modal_no.keys]]</small></paper-button>
                 <paper-button on-tap="closeModal">Yes<small>[[modal_yes.keys]]</small></paper-button>
@@ -85,10 +86,10 @@
             <div class="card-actions">
                 <div class="horizontal layout justified">
                     <div>
-                        <nav-button id="previousbutton" active="[[active]]" data="[[prev]]">[[data.previous]]</nav-button>
+                        <nav-button hidden=[[!data.previous]] id="previousbutton" active="[[active]]" data="[[prev]]">[[data.previous]]</nav-button>
                     </div>
                     <div>
-                        <nav-button id="nextbutton" active="[[active]]" data="[[next]]">[[data.next]]</nav-button>
+                        <nav-button hidden=[[!data.next]] id="nextbutton" active="[[active]]" data="[[next]]">[[data.next]]</nav-button>
                     </div>
                 </div>
             </div>
@@ -144,15 +145,15 @@
                 if (this.data.next === undefined || this.data.next === true) {
                     this.set("data.next", "Next");
                 } else if (this.data.next === false) {
-                    this.set("data.next", "Next");
-                    this.$.nextbutton.hidden = true;
+                    //this.set("data.next", "Next");
+                    //this.$.nextbutton.hidden = true;
                 }
 
                 if (this.data.previous === undefined || this.data.next === true) {
                     this.set("data.previous", "previous");
                 } else if (this.data.previous === false) {
-                    this.set("data.previous", "previous");
-                    this.$.previousbutton.hidden = true;
+                    //this.set("data.previous", "previous");
+                    //this.$.previousbutton.hidden = true;
                 }
 
                 //this.$.crd.focus();
@@ -174,7 +175,7 @@
                 this.$.modal.close();
 
                 if (this.data.confirm.yes) {
-                    this.fire("gotopage", this.data.confirm.next);
+                    this.fire("gotopage", this.data.confirm.yes);
                 } else {
                     this._next();
                 }
@@ -187,7 +188,7 @@
                 this.$.modal.close();
 
                 if (this.data.confirm.no) {
-                    this.fire("gotopage", this.data.confirm.previous);
+                    this.fire("gotopage", this.data.confirm.no);
                 } else {
                     //this.active = true;
                     this.set("active", true);
