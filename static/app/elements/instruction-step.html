@@ -141,14 +141,14 @@
             },
 
             ready: function() {
-                if (this.data.next === undefined) {
+                if (this.data.next === undefined || this.data.next === true) {
                     this.set("data.next", "Next");
                 } else if (this.data.next === false) {
                     this.set("data.next", "Next");
                     this.$.nextbutton.hidden = true;
                 }
 
-                if (this.data.previous === undefined) {
+                if (this.data.previous === undefined || this.data.next === true) {
                     this.set("data.previous", "previous");
                 } else if (this.data.previous === false) {
                     this.set("data.previous", "previous");
@@ -173,7 +173,7 @@
                 this.$.modaldismiss.target = this.$.modal;
                 this.$.modal.close();
 
-                if (this.data.confirm.next) {
+                if (this.data.confirm.yes) {
                     this.fire("gotopage", this.data.confirm.next);
                 } else {
                     this._next();
@@ -186,7 +186,7 @@
                 this.$.modaldismiss.target = this.$.modal;
                 this.$.modal.close();
 
-                if (this.data.confirm.previous) {
+                if (this.data.confirm.no) {
                     this.fire("gotopage", this.data.confirm.previous);
                 } else {
                     //this.active = true;

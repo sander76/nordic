@@ -21,29 +21,36 @@ schema = {'products':
                                   {'type': 'dict',
                                    'schema': {'title': {'type': 'string'},
                                               'instructions': {'type': 'list',
+                                                               'required': True,
                                                                'schema': {'oneof': [
-                                                                   {'type': 'string'},
                                                                    {'type': 'dict',
-                                                                    'schema': {'type': {'type': 'string',
-                                                                                        'allowed': ['button'],
-                                                                                        'required': True
-                                                                                        },
-                                                                               'caption': {'type': 'string'},
-                                                                               'commands': {'type': 'dict',
-                                                                                            'schema': {
-                                                                                                'commands': {
-                                                                                                    'type': 'list',
-                                                                                                    'allowed': cmds,
-                                                                                                    'required': True
-                                                                                                },
+                                                                    'schema': {
+                                                                        'type': {'type': 'string', 'allowed': ['text'],
+                                                                                 'required': True},
+                                                                        'content': {'type': 'string',
+                                                                                    'required': True}}},
+                                                                   {'type': 'dict',
+                                                                    'schema': {
+                                                                        'type': {'type': 'string',
+                                                                                 'allowed': ['button'],
+                                                                                 'required': True
+                                                                                 },
+                                                                        'caption': {'type': 'string'},
+                                                                        'commands': {'type': 'dict',
+                                                                                     'schema': {
+                                                                                         'commands': {
+                                                                                             'type': 'list',
+                                                                                             'allowed': cmds,
+                                                                                             'required': True
+                                                                                         },
 
-                                                                                                'delay': {
-                                                                                                    'type': 'integer'}
-                                                                                            }
-                                                                                            },
-                                                                               'keys': {'type': 'string'},
-                                                                               'confirm': {'type': 'boolean'}
-                                                                               }
+                                                                                         'delay': {
+                                                                                             'type': 'integer'}
+                                                                                     }
+                                                                                     },
+                                                                        'keys': {'type': 'string'},
+                                                                        'confirm': {'type': 'boolean'}
+                                                                    }
                                                                     },
                                                                    {'type': 'dict',
                                                                     'schema': {'type': {'type': 'string',
@@ -85,7 +92,7 @@ schema = {'products':
 if __name__ == "__main__":
     v = Validator(schema)
 
-with open('static/app/instructions/instructions-nl.json') as fl:
+with open('static/app/instructions/instructions-en.json') as fl:
     dta = json.load(fl)
 val = v.validate(dta)
 print(val)

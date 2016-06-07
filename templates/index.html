@@ -173,21 +173,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // };
         t.getInstructions = function(e, response) {
             // process response
-            var resp = response.response;
-            var products=resp.products;
-            for (var i = 0; i < products.length; i += 1) {
-                for (var step = 0; step < products[i].steps.length; step += 1) {
-                    for (var instruction = 0; instruction < products[i].steps[step].instructions.length; instruction += 1)
-                        if (typeof products[i].steps[step].instructions[instruction] === "string") {
-                            products[i].steps[step].instructions[instruction] = {
-                                type: "text",
-                                content: products[i].steps[step].instructions[instruction]
-                            };
-                        }
-                }
-            }
+            // var resp = response.response;
+            // var products=resp.products;
+            // for (var i = 0; i < products.length; i += 1) {
+            //     for (var step = 0; step < products[i].steps.length; step += 1) {
+            //         for (var instruction = 0; instruction < products[i].steps[step].instructions.length; instruction += 1)
+            //             if (typeof products[i].steps[step].instructions[instruction] === "string") {
+            //                 products[i].steps[step].instructions[instruction] = {
+            //                     type: "text",
+            //                     content: products[i].steps[step].instructions[instruction]
+            //                 };
+            //             }
+            //     }
+            // }
 
-            t.all_instructions = products;
+            t.all_instructions = response.response.products;
         };
         //t.instructions = undefined;
     </script>
