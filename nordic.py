@@ -1,15 +1,13 @@
-
-
 COMMANDS = {
     "open": b'\x00\x03RU\x00',
     "close": b'\x00\x03RD\x00',
-    "tiltopen":b'\x00\x03RR\x00',
-    "tiltclose":b'\x00\x03RL\x00',
+    "tiltopen": b'\x00\x03RR\x00',
+    "tiltclose": b'\x00\x03RL\x00',
     "stop": b'\x00\x03RS\x00',
     "jog": b'\x00\x03cj.1',
     "connect": b'\x00\x01N\x00\x01A',  # a network add and a add group 1 command combined.
-    "networkadd":b'\x00\x01N',
-    "group1add":b'\x00\x01A',
+    "networkadd": b'\x00\x01N',
+    "group1add": b'\x00\x01A',
     "reset": b'\x00\x03#@r',
     "roller": b'\x00\x04#DS*',
     "twist": b'\x00\x04#DS,',
@@ -17,9 +15,9 @@ COMMANDS = {
     # "programtop": b'\x00\x04#LPE',
     # "programbottom": b'\x00\x04#LPE',
     "savepositiontop": b'\x00\x04#LPO',
-    "savepositionbottom": b'\x00\x04#LPC'
+    "savepositionbottom": b'\x00\x04#LPC',
+    "reverse": b'\x00\x02#x'
 }
-
 
 if __name__ == "__main__":
     import argparse
