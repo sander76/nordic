@@ -83,7 +83,7 @@
           }
         },
         {
-          "title": "Blind direction",
+          "title": "Blind directions",
           "instructions": [
             {
               "col1": {
@@ -115,7 +115,7 @@
           }
         },
         {
-          "title": "Switch direction",
+          "title": "Switch directions",
           "instructions": [
             {
               "col1": {
