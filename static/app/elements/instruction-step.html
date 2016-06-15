@@ -4,8 +4,10 @@
 <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../bower_components/iron-a11y-keys/iron-a11y-keys.html">
 <link rel="import" href="../bower_components/iron-image/iron-image.html">
+<link rel="import" href="ui-row.html"/>
 <link rel="import" href="pv-remote.html" />
 <link rel="import" href="../styles/shared.html" />
+
 <dom-module id="instruction-step">
     <style include="nordic-styles"></style>
     <style>
@@ -28,6 +30,7 @@
         .card-content {
             min-height: 350px;
         }
+
     </style>
     <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
     <template>
@@ -48,28 +51,8 @@
             <div class="card-content">
                 <div class="vertical layout">
                     <template is="dom-repeat" items=[[data.instructions]]>
-                        <template is="dom-if" if="[[isType(item,'image')]]">
-                            <div>
-                                <img class="instr_img" src="[[item.src]]" />
-                            </div>
-                        </template>
-                        <template is="dom-if" if="[[isType(item,'text')]]">
-                            <p>
-                                - {{item.content}}
-                            </p>
-                        </template>
-                        <template is="dom-if" if="[[isType(item,'button')]]">
-                            <ajax-button active="[[active]]" data="[[item]]">[[item.caption]] <small>([[item.keys]])</small></ajax-button>
-                        </template>
-                        <template is="dom-if" if="[[isType(item,'remote')]]">
-                            <pv-remote active="[[active]]"></pv-remote>
-                        </template>
+                            <ui-row active="[[active]]" data="[[item]]"></ui-row>
                     </template>
-                    <!-- <template is="dom-repeat" items=[[data.buttons]]>
-                        <template is="dom-if" if="[[isType(item,'navbutton')]]">
-                            <nav-button active="[[active]]" data="[[item]]">[[item.caption]] <small>[[item.keys]]</small></nav-button>
-                        </template>
-                    </template> -->
                 </div>
             </div>
             <div class="horizontal center-justified layout">
@@ -157,6 +140,14 @@
                 }
 
                 //this.$.crd.focus();
+            },
+            getType: function(item, container) {
+                if (item.type == "text") {
+                    var el = document.createElement('p');
+                    el.innerText = item.content;
+                    return el;
+
+                }
             },
             isType: function(instruction, _type) {
                 var tr = instruction.type === _type;

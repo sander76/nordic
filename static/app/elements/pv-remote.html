@@ -6,11 +6,7 @@
 <dom-module id="pv-remote">
     <template>
         <style include="iron-flex iron-flex-alignment"></style>
-        <style>
-            :host {
-                margin-bottom: 30px;
-            }
-        </style>
+
         <iron-a11y-keys keys="up 8" target="[[target]]" on-keys-pressed="handleOpen">
         </iron-a11y-keys>
         <iron-a11y-keys keys="down 2" target="[[target]]" on-keys-pressed="handleClose">
@@ -202,6 +198,15 @@
                     }
                 }
             },
+            _activeChanged: function(_new, _old) {
+                this.active = _new;
+                // console.log("active property changed iron key");
+                // if (_new) {
+                //     this.$.keys.target = document.body;
+                // } else {
+                //     this.$.keys.target = this.$.btn;
+                // }
+            },
             _open: presser("open"),
             handleOpen: function(e) {
                 if (this.active) {
@@ -236,17 +241,19 @@
             },
             handleStop: function(e) {
                 if (this.active) {
-                    this.send({"commands": ["stop"]});
-                console.log("stop");
+                    this.send({
+                        "commands": ["stop"]
+                    });
+                    console.log("stop");
+                }
+            },
+            send: function(commands) {
+                //populate the body of the request.
+                this.$.sendCommand.body = {
+                    "commands": commands
+                };
+                this.$.sendCommand.generateRequest();
             }
-        },
-        send: function(commands) {
-            //populate the body of the request.
-            this.$.sendCommand.body = {
-                "commands": commands
-            };
-            this.$.sendCommand.generateRequest();
-        }
         });
     </script>
 </dom-module>

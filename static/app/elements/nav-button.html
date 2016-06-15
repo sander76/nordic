@@ -15,7 +15,7 @@
         </iron-a11y-keys>
         <!-- local DOM goes here -->
         <paper-button id="btn" class="instruction" raised on-tap="go">
-            <content></content>
+            <content></content><span>[[data.caption]]</span><small>[[data.keys]]</small>
         </paper-button>
     </template>
     <script>
@@ -33,17 +33,8 @@
                 }
             },
             go: function() {
-                    this.fire("gotopage", this.data.goto);
-                }
-                // ,
-                // _activeChanged: function(_new, _old) {
-                //     console.log("active property changed iron key");
-                //     if (_new) {
-                //         this.$.keys.target = document.body;
-                //     } else {
-                //         this.$.keys.target = this.$.btn;
-                //     }
-                // }
+                this.fire("gotopage", this.data.goto);
+            }
         });
     </script>
 </dom-module>
