@@ -131,7 +131,7 @@
                     "reverse"
                   ]
                 },
-                "caption": "blind button pressed",
+                "caption": "reverse",
                 "confirm": true,
                 "keys": "enter"
               }
