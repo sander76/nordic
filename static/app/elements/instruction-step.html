@@ -4,7 +4,7 @@
 <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../bower_components/iron-a11y-keys/iron-a11y-keys.html">
 <link rel="import" href="../bower_components/iron-image/iron-image.html">
-<link rel="import" href="ui-row.html"/>
+<link rel="import" href="ui-cell.html" />
 <link rel="import" href="pv-remote.html" />
 <link rel="import" href="../styles/shared.html" />
 
@@ -30,7 +30,6 @@
         .card-content {
             min-height: 350px;
         }
-
     </style>
     <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
     <template>
@@ -51,11 +50,16 @@
             <div class="card-content">
                 <div class="vertical layout">
                     <template is="dom-repeat" items=[[data.instructions]]>
-                            <ui-row active="[[active]]" data="[[item]]"></ui-row>
+                        <div class="horizontal layout center">
+                            <ui-cell id="col1" active="[[active]]" data="[[item.col1]]"></ui-cell>
+                            <ui-cell id="col2" active="[[active]]" data="[[item.col2]]"></ui-cell>
+                            <ui-cell id="col3" active="[[active]]" data="[[item.col3]]"></ui-cell>
+                        </div>
+                        <!-- <ui-row active="[[active]]" data="[[item]]"></ui-row> -->
                     </template>
                 </div>
             </div>
-            <div class="horizontal center-justified layout">
+            <!-- <div class="horizontal center-justified layout">
                 <template is="dom-repeat" items=[[data.buttons]]>
                     <template is="dom-if" items=[[isType(item, 'button')]]>
                         <ajax-button active="[[active]]" data="[[item]]">[[item.caption]] <small>([[item.keys]])</small></ajax-button>
@@ -64,7 +68,7 @@
                         <nav-button active="[[active]]" data="[[item]]">[[item.caption]] <small>([[item.keys]])</small></nav-button>
                     </template>
                 </template>
-            </div>
+            </div> -->
 
             <div class="card-actions">
                 <div class="horizontal layout justified">
@@ -200,6 +204,7 @@
                 var active = this.curitem === this.selected;
                 this.set("active", active);
             }
+
         });
     </script>
 </dom-module>

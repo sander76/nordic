@@ -17,7 +17,7 @@
         <!-- local DOM goes here -->
         <iron-ajax id="sendCommand" url="/nordic" method="POST" content-type="application/json"></iron-ajax>
         <paper-button id="btn" class="instruction" raised on-tap="send">
-            <content></content><span>[[data.caption]]</span><small>[[data.keys]]</small>
+            <content></content>
         </paper-button>
     </template>
     <script>

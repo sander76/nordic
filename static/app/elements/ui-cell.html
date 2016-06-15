@@ -1,0 +1,57 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../styles/shared.html" />
+<!-- <ajax-button active="[[active]]" data="[[data]]">[[data.caption]] <small>([[data.keys]])</small></ajax-button> -->
+<dom-module id="ui-cell">
+    <style include="iron-flex iron-flex-alignment"></style>
+    <style>
+
+    </style>
+    <template>
+        <template is="dom-if" if="[[isType(data,'image')]]">
+            <div>
+                <img class="instr_img" src="[[data.src]]" />
+            </div>
+        </template>
+        <template is="dom-if" if="[[isType(data,'text')]]">
+            <p>
+                {{data.content}}
+            </p>
+        </template>
+        <template is="dom-if" if="[[isType(data,'button')]]">
+            <ajax-button active="[[active]]" data="[[data]]">[[data.caption]] <small>([[data.keys]])</small></ajax-button>
+        </template>
+        <template is="dom-if" if="[[isType(data,'remote')]]">
+            <pv-remote active="[[active]]"></pv-remote>
+        </template>
+    </template>
+    <script>
+        Polymer({
+            is: 'ui-cell',
+            properties: {
+                data: {
+                    type: Object,
+                    value: {}
+                }
+                // },
+                // active: {
+                //     type: Boolean,
+                //     observer: '_activeChanged'
+                // }
+            },
+            ready: function() {},
+            checkWidth: function(column_data, column) {
+                if (column_data.width !== undefined) {
+                    column.setAttribute("style", "width:" + column_data.width);
+                }
+            },
+            isType: function(instruction, _type) {
+                var tr = instruction.type === _type;
+                return tr;
+            }
+
+
+        });
+    </script>
+</dom-module>
