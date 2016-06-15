@@ -3,7 +3,7 @@
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../bower_components/iron-a11y-keys/iron-a11y-keys.html">
-<link rel="import" href="../bower_components/iron-image/iron-image.html">
+
 <link rel="import" href="ui-cell.html" />
 <link rel="import" href="pv-remote.html" />
 <link rel="import" href="../styles/shared.html" />
@@ -13,6 +13,10 @@
     <style>
         :host {
             width: 100%;
+        }
+
+        #col1 {
+            min-width: 4em;
         }
 
         .instr_img {
@@ -97,6 +101,11 @@
                     type: Number,
                     observer: '_selectedChanged'
                 },
+                selectedinstruction:{
+                  type:Number,
+                  observer:'_selectedChanged'
+                },
+                instruction:{type:Number},
                 next: {
                     type: Object,
                     value: {
@@ -200,8 +209,9 @@
                 this.$.modal.open();
             },
             _selectedChanged: function() {
+
                 //this.active = curitem===selected;
-                var active = this.curitem === this.selected;
+                var active =this.instruction === this.selectedinstruction && this.curitem === this.selected;
                 this.set("active", active);
             }
 

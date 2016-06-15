@@ -2,17 +2,19 @@
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../styles/shared.html" />
+<link rel="import" href="../bower_components/iron-image/iron-image.html">
 <!-- <ajax-button active="[[active]]" data="[[data]]">[[data.caption]] <small>([[data.keys]])</small></ajax-button> -->
 <dom-module id="ui-cell">
     <style include="iron-flex iron-flex-alignment"></style>
     <style>
-
+        img {
+            width: 100%;
+            height: auto;
+        }
     </style>
     <template>
         <template is="dom-if" if="[[isType(data,'image')]]">
-            <div>
-                <img class="instr_img" src="[[data.src]]" />
-            </div>
+            <img class="instr_img" src="[[data.src]]" />
         </template>
         <template is="dom-if" if="[[isType(data,'text')]]">
             <p>
@@ -24,6 +26,9 @@
         </template>
         <template is="dom-if" if="[[isType(data,'remote')]]">
             <pv-remote active="[[active]]"></pv-remote>
+        </template>
+        <template is="dom-if" if="[[isType(data,'navbutton')]]">
+            <nav-button active="[[active]]" data="[[data]]">[[data.caption]] <small>([[data.keys]])</small></nav-button>
         </template>
     </template>
     <script>
@@ -40,10 +45,14 @@
                 //     observer: '_activeChanged'
                 // }
             },
-            ready: function() {},
-            checkWidth: function(column_data, column) {
-                if (column_data.width !== undefined) {
-                    column.setAttribute("style", "width:" + column_data.width);
+            ready: function() {
+                this.checkWidth();
+            },
+            checkWidth: function() {
+                if (this.data !== undefined) {
+                    if (this.data.width !== undefined) {
+                        this.setAttribute("style", "width:" + this.data.width);
+                    }
                 }
             },
             isType: function(instruction, _type) {

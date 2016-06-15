@@ -65,6 +65,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         max-width: 600px;
       }*/
 
+        #products {
+            padding: 0;
+        }
+
         paper-tabs,
         paper-toolbar {
             background-color: var(--paper-blue-900);
@@ -115,89 +119,115 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </div> -->
 
                     <paper-tabs noink="true" class="flex bottom" disabled selected="{{selected}}" scrollable>
-                        <template is="dom-repeat" items="[[instructions.steps]]">
+                        <template is="dom-repeat" items="[[current_instruction.steps]]">
                             <paper-tab>{{item.title}}</paper-tab>
                         </template>
                     </paper-tabs>
                 </paper-toolbar>
-                <iron-pages class="flex" id="pages" on-nextpage="handleNext" on-previouspage="handlePrevious" on-gotopage="handleGoto" selected="[[selected]]">
-                    <template is="dom-repeat" items="[[instructions.steps]]">
-                        <!-- <div tabindex="-1"> -->
-                        <instruction-step data="[[item]]" curitem=[[index]] selected="[[selected]]"></instruction-step>
-                        <!-- </div> -->
-                    </template>
+                <iron-pages id="products" selected="{{selectedinstruction}}">
+                    <template is="dom-repeat" items="[[all_instructions]]" index-as="instruction">
+                        <iron-pages class="flex" id="pages" on-nextpage="handleNext" on-previouspage="handlePrevious" on-gotopage="handleGoto" selected="{{selected}}">
+                            <template is="dom-repeat" items="[[item.steps]]">
+                                <instruction-step data="[[item]]" selectedinstruction=[[selectedinstruction]] instruction="[[instruction]]" curitem=[[index]] selected="[[selected]]"></instruction-step>
+                                </div>
+                            </template>
+                        </iron-pages>
                 </iron-pages>
                 <!-- </div> -->
             </paper-scroll-header-panel>
         </paper-drawer-panel>
-        <paper-toast id="toast">
+        <!-- <paper-toast id="toast">
             <span class="toast-hide-button" role="button" tabindex="0" onclick="app.$.toast.hide()">Ok</span>
-        </paper-toast>
+        </paper-toast> -->
 
-    </template>
+        </template>
 
-    <!-- build:js scripts/app.js -->
-    <script src="/app/scripts/app.js"></script>
-    <script>
-        var t = document.querySelector("#app");
-        t.handleNext = function(e) {
-            //var pages = t.$.pages
-            t.$.pages.selectNext();
-        };
-        //t.instructions={"steps":[]};
-        t.handlePrevious = function() {
-            t.$.pages.selectPrevious();
-        };
-        t.handleGoto = function(e) {
-            var _goto = t.$.pages.selected + e.detail;
-            var goto = 0;
-            if (_goto < 0) {
-                goto = (t.instructions.steps.length + _goto);
-            } else {
-                goto = _goto % t.instructions.steps.length;
-            }
-            t.$.pages.select(goto);
-        };
-        t.target = document.body;
-        t.selected = 0;
-        t.tapped = function(e) {
-            e.currentTarget.blur();
-        };
-        t.handleInstructionChange = function(e) {
-            // this.splice('instructions.steps', 0);
-            // var new_instructions = t.all_instructions[e.target.selected];
-            // for (var i = 0; i < new_instructions.steps.length; i += 1) {
-            //     t.push('instructions.steps', new_instructions.steps[i]);
-            // }
-            t.instructions = t.all_instructions[e.target.selected];
-            t.$.pages.select(0);
-            //
-        };
-        // t.sel=function(e){
-        //   console.log("selection changed");
-        //   t.$.pages.selectedItem.focus();
-        // };
-        t.getInstructions = function(e, response) {
-            // process response
-            // var resp = response.response;
-            // var products=resp.products;
-            // for (var i = 0; i < products.length; i += 1) {
-            //     for (var step = 0; step < products[i].steps.length; step += 1) {
-            //         for (var instruction = 0; instruction < products[i].steps[step].instructions.length; instruction += 1)
-            //             if (typeof products[i].steps[step].instructions[instruction] === "string") {
-            //                 products[i].steps[step].instructions[instruction] = {
-            //                     type: "text",
-            //                     content: products[i].steps[step].instructions[instruction]
-            //                 };
-            //             }
-            //     }
-            // }
+        <!-- build:js scripts/app.js -->
+        <script src="/app/scripts/app.js"></script>
+        <script>
+            var t = document.querySelector("#app");
+            t.checkActive = function(instruction, selectedinstruction, index, selected) {
+                if (instruction !== selectedinstruction) {
+                    return false;
+                } else {
+                    if (index !== selected) {
+                        return false;
+                    }
+                }
+                return true;
+            };
+            t.handleNext = function(e) {
+                //var pages = t.$.pages
+                //t.$.pages.selectNext();
+                e.currentTarget.selectNext();
+            };
+            // t.instructions = {
+            //     "steps": []
+            // };
+            t.handlePrevious = function() {
+                //t.$.pages.selectPrevious();
+                e.currentTarget.selectNext();
 
-            t.all_instructions = response.response.products;
-        };
-        //t.instructions = undefined;
-    </script>
-    <!-- endbuild-->
+            };
+
+            t.handleGoto = function(e) {
+                //var _goto = t.$.pages.selected + e.detail;
+                //var current_instruction = t.all_instructions[t.selectedinstruction];
+                var _goto = e.currentTarget.selected + e.detail;
+                var goto = 0;
+                if (_goto < 0) {
+                    //goto = (t.instructions.steps.length + _goto);
+                    goto = t.current_instruction.steps.length + _goto;
+                } else {
+                    //goto = _goto % t.instructions.steps.length;
+                    goto = _goto % t.current_instruction.steps.length;
+                }
+                //t.$.pages.select(goto);
+                e.currentTarget.select(goto);
+            };
+            t.target = document.body;
+            t.selected = 0;
+            t.tapped = function(e) {
+                e.currentTarget.blur();
+            };
+            t.handleInstructionChange = function(e) {
+                t.current_instruction = t.all_instructions[e.target.selected];
+                t.selectedinstruction = e.target.selected;
+                t.selected = 0;
+                // t.splice('instructions.steps', 0);
+                // var new_instructions = t.all_instructions[e.target.selected];
+                // for (var i = 0; i < new_instructions.steps.length; i += 1) {
+                //     t.push('instructions.steps', new_instructions.steps[i]);
+                // }
+                // //t.instructions = t.all_instructions[e.target.selected];
+                // t.$.pages.select(0);
+                //
+            };
+            // t.sel=function(e){
+            //   console.log("selection changed");
+            //   t.$.pages.selectedItem.focus();
+            // };
+            t.getInstructions = function(e, response) {
+                // process response
+                // var resp = response.response;
+                // var products=resp.products;
+                // for (var i = 0; i < products.length; i += 1) {
+                //     for (var step = 0; step < products[i].steps.length; step += 1) {
+                //         for (var instruction = 0; instruction < products[i].steps[step].instructions.length; instruction += 1)
+                //             if (typeof products[i].steps[step].instructions[instruction] === "string") {
+                //                 products[i].steps[step].instructions[instruction] = {
+                //                     type: "text",
+                //                     content: products[i].steps[step].instructions[instruction]
+                //                 };
+                //             }
+                //     }
+                // }
+
+                t.all_instructions = response.response.products;
+            };
+            //t.instructions = undefined;
+        </script>
+        <!-- endbuild-->
 </body>
 
 </html>
