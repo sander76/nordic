@@ -6,4 +6,4 @@ BINDIR=$HOME/nordic
 
 source $VENVDIR/bin/activate
 cd BINDIR
-$BINDIR/new_server.py
+python new_server.py --serialport="/dev/ttyACM0"
