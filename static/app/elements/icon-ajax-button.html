@@ -1,16 +1,32 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<!-- <link rel="import" href="../bower_components/paper-button/paper-button.html"> -->
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/iron-a11y-keys/iron-a11y-keys.html">
 <link rel="import" href="icomoon-polymer/icomoon-iconset-svg.html">
 <link rel="import" href="nd-button-behaviour.html">
 <link rel="import" href="../styles/shared.html" />
-<dom-module id="ajax-button">
+<dom-module id="icon-ajax-button">
     <template>
         <style include="nordic-styles"></style>
         <style>
             :host {
                 display: inline-block;
+            }
+
+            paper-icon-button.btn {
+                color: grey;
+                --paper-icon-button-ink-color: white;
+                width: 100%;
+                height: auto;
+            }
+
+            .border {
+                width: 100%;
+                border-width: 2px;
+                border-radius: 10px;
+                border-color: grey;
+                border-style: solid;
             }
         </style>
         <iron-a11y-keys id="keys" keys="[[data.keys]]" on-keys-pressed="send">
@@ -18,14 +34,15 @@
         <!-- local DOM goes here -->
 
         <iron-ajax id="sendCommand" url="/nordic" method="POST" content-type="application/json"></iron-ajax>
+        <div class="border">
+            <paper-icon-button class="btn" id="btn" icon="[[data.icon]]" raised on-tap="send">
+        </div>
 
-        <paper-button id="btn" class="instruction" raised on-tap="send"><iron-icon icon="[[data.icon]]"></iron-icon>
-            <content></content>
-        </paper-button>
+        </paper-icon-button>
     </template>
     <script>
         Polymer({
-            is: 'ajax-button',
+            is: 'icon-ajax-button',
             behaviors: [NdButtonBehaviour],
             properties: {
                 data: {
@@ -45,7 +62,7 @@
                 //populate the body of the request.
                 console.log("key pressed: " + this.data.caption);
                 if (this.data.commands !== undefined) {
-                  console.log("--> first command sent: " + this.data.commands.commands[0]);
+                    console.log("--> first command sent: " + this.data.commands.commands[0]);
                     this.$.sendCommand.body = {
                         "commands": this.data.commands
                     };

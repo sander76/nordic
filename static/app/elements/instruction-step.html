@@ -32,7 +32,7 @@
         }
 
         .card-content {
-            min-height: 350px;
+            min-height: 550px;
         }
 
         .rule {
@@ -48,8 +48,8 @@
             <img src="[[data.confirm.img]]" />
             <p>[[data.confirm.text]]</p>
             <div class="buttons">
-                <paper-button on-tap="closeModalDismiss">No<small>[[modal_no.keys]]</small></paper-button>
-                <paper-button on-tap="closeModal">Yes<small>[[modal_yes.keys]]</small></paper-button>
+                <paper-button on-tap="closeModalDismiss"><iron-icon icon="icomoon:cross"></iron-icon>No<small>[[modal_no.keys]]</small></paper-button>
+                <paper-button on-tap="closeModal"><iron-icon icon="icomoon:checkmark"></iron-icon>Yes<small>[[modal_yes.keys]]</small></paper-button>
             </div>
         </paper-dialog>
         <paper-card id="input" heading="{{data.title}}">

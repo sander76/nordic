@@ -1,8 +1,8 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<!-- <link rel="import" href="../bower_components/paper-button/paper-button.html"> -->
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../styles/shared.html" />
-<link rel="import" href="../bower_components/iron-image/iron-image.html">
+<!-- <link rel="import" href="../bower_components/iron-image/iron-image.html"> -->
 <!-- <ajax-button active="[[active]]" data="[[data]]">[[data.caption]] <small>([[data.keys]])</small></ajax-button> -->
 <dom-module id="ui-cell">
     <style include="iron-flex iron-flex-alignment"></style>
@@ -11,10 +11,16 @@
             width: 100%;
             height: auto;
         }
+
+        .container {
+            margin:5px;
+        }
     </style>
     <template>
         <template is="dom-if" if="[[isType(data,'image')]]">
-            <img class="instr_img" src="[[data.src]]" />
+            <div class="container">
+                <img class="instr_img" src="[[data.src]]" />
+            </div>
         </template>
         <template is="dom-if" if="[[isType(data,'text')]]">
             <p>
@@ -23,6 +29,11 @@
         </template>
         <template is="dom-if" if="[[isType(data,'button')]]">
             <ajax-button active="[[active]]" data="[[data]]">[[data.caption]] <small>([[data.keys]])</small></ajax-button>
+        </template>
+        <template is="dom-if" if="[[isType(data,'icon-button')]]">
+          <div class="container">
+            <icon-ajax-button active="[[active]]" data="[[data]]"></icon-ajax-button>
+          </container>
         </template>
         <template is="dom-if" if="[[isType(data,'remote')]]">
             <pv-remote active="[[active]]"></pv-remote>

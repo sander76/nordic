@@ -6,53 +6,54 @@
         {
             "title": "Connect",
             "instructions": [
-              {
-                  "col1":
-                  {
-                      "type": "text",
-                      "content": "1.",
-                      "width": "30%"
-                  },
-                  "col2":
-                  {
-                      "type": "text",
-                      "content": "2.",
-                      "width": "30%"
-                  },
-                  "col3":
-                  {
-                      "type": "text",
-                      "content": "3.",
-                      "width": "30%"
-                  }
-              },
-              {
-                  "col1":
-                  {
-                      "type": "image",
-                      "src": "/app/images/press_hold_blind_button.png",
-                      "width": "30%"
-                  },
-                  "col2":
-                  {
-                      "width": "30%",
-                      "type": "button",
-                      "caption": "Connect",
-                      "commands":
-                      {
-                          "commands": ["networkadd", "group1add"],
-                          "delay": 1
-                      },
-                      "keys": "enter",
-                      "confirm": true
-                  },
-                  "col3":
-                  {
-                      "type": "image",
-                      "src": "/app/images/release_blind_button.png",
-                      "width": "30%"
-                  }
-              }],
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "1.",
+                    "width": "30%"
+                },
+                "col2":
+                {
+                    "type": "text",
+                    "content": "2.",
+                    "width": "30%"
+                },
+                "col3":
+                {
+                    "type": "text",
+                    "content": "3.",
+                    "width": "30%"
+                }
+            },
+            {
+                "col1":
+                {
+                    "type": "image",
+                    "src": "/app/images/press_hold_blind_button.png",
+                    "width": "30%"
+                },
+                "col2":
+                {
+                    "width": "30%",
+                    "type": "icon-button",
+                    "caption": "Connect",
+                    "icon": "icomoon:checkmark",
+                    "commands":
+                    {
+                        "commands": ["networkadd", "group1add"],
+                        "delay": 1
+                    },
+                    "keys": "enter",
+                    "confirm": true
+                },
+                "col3":
+                {
+                    "type": "image",
+                    "src": "/app/images/release_blind_button.png",
+                    "width": "30%"
+                }
+            }],
             "confirm":
             {
                 "img": "/app/images/jog.png",
@@ -73,8 +74,9 @@
             {
                 "col1":
                 {
-                    "type": "button",
+                    "type": "icon-button",
                     "caption": "Motor Init",
+                    "icon": "icomoon:checkmark",
                     "commands":
                     {
                         "commands": ["reset", "roller"],
@@ -103,8 +105,10 @@
             {
                 "col1":
                 {
-                    "type": "button",
+                    "width": "20%",
+                    "type": "icon-button",
                     "caption": "move down",
+                    "icon": "icomoon:pv-open",
                     "keys": "enter",
                     "commands":
                     {
@@ -112,6 +116,56 @@
                         "delay": 2
                     },
                     "confirm": true
+                },
+                "col2":
+                {
+                    "width": "20%",
+                    "type": "icon-button",
+                    "icon": "icomoon:pv-up"
+                }
+            },
+            {
+                "col1":
+                {
+                    "width": "20%",
+                    "type": "icon-button",
+                    "caption": "move down",
+                    "icon": "icomoon:pv-close",
+                    "keys": "enter",
+                    "commands":
+                    {
+                        "commands": ["startprogram", "close", "stop"],
+                        "delay": 2
+                    },
+                    "confirm": true
+                },
+                "col2":
+                {
+                    "width": "20%",
+                    "type": "icon-button",
+                    "icon": "icomoon:pv-down"
+                }
+            },
+            {
+                "col1":
+                {
+                    "width": "20%",
+                    "type": "icon-button",
+                    "caption": "move down",
+                    "icon": "icomoon:cross",
+                    "keys": "enter",
+                    "commands":
+                    {
+                        "commands": ["startprogram", "close", "stop"],
+                        "delay": 2
+                    },
+                    "confirm": true
+                },
+                "col2":
+                {
+                    "width": "20%",
+                    "type": "icon-button",
+                    "icon": "icomoon:checkmark"
                 }
             }],
             "confirm":
@@ -335,7 +389,12 @@
                     "keys": "0 insert",
                     "goto": 1
                 },
-                "col3":{"type":"navbutton","caption":"Set bottom position","goto":3}
+                "col3":
+                {
+                    "type": "navbutton",
+                    "caption": "Set bottom position",
+                    "goto": 3
+                }
             }],
             "buttons": []
         },
@@ -412,7 +471,6 @@
             {
                 "text": "Did the motor move to the top?",
                 "yes": -2
-
             }
         },
         {
@@ -488,10 +546,8 @@
             {
                 "text": "Did the motor move to the top?",
                 "yes": -4
-
             }
-        }
-      ]
+        }]
     },
     {
         "title": "Twist blinds",
