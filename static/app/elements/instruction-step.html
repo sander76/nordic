@@ -24,7 +24,7 @@
             max-width: 300px;
             width: auto;
             height: auto;
-            margin-bottom: 10px;
+            /*margin-bottom: 10px;*/
         }
 
         paper-card {
@@ -34,10 +34,13 @@
         .card-content {
             min-height: 350px;
         }
+
+        .rule {
+            margin: 5px;
+        }
     </style>
     <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
     <template>
-
         <paper-dialog id="modal" modal>
             <iron-a11y-keys id="modalconfirm" keys="[[modal_yes.keys]]" on-keys-pressed="closeModal">
             </iron-a11y-keys>
@@ -49,12 +52,11 @@
                 <paper-button on-tap="closeModal">Yes<small>[[modal_yes.keys]]</small></paper-button>
             </div>
         </paper-dialog>
-
         <paper-card id="input" heading="{{data.title}}">
             <div class="card-content">
                 <div class="vertical layout">
                     <template is="dom-repeat" items=[[data.instructions]]>
-                        <div class="horizontal layout center">
+                        <div class="horizontal layout center rule">
                             <ui-cell id="col1" active="[[active]]" data="[[item.col1]]"></ui-cell>
                             <ui-cell id="col2" active="[[active]]" data="[[item.col2]]"></ui-cell>
                             <ui-cell id="col3" active="[[active]]" data="[[item.col3]]"></ui-cell>
@@ -63,17 +65,6 @@
                     </template>
                 </div>
             </div>
-            <!-- <div class="horizontal center-justified layout">
-                <template is="dom-repeat" items=[[data.buttons]]>
-                    <template is="dom-if" items=[[isType(item, 'button')]]>
-                        <ajax-button active="[[active]]" data="[[item]]">[[item.caption]] <small>([[item.keys]])</small></ajax-button>
-                    </template>
-                    <template is="dom-if" if="[[isType(item,'navbutton')]]">
-                        <nav-button active="[[active]]" data="[[item]]">[[item.caption]] <small>([[item.keys]])</small></nav-button>
-                    </template>
-                </template>
-            </div> -->
-
             <div class="card-actions">
                 <div class="horizontal layout justified">
                     <div>
@@ -101,11 +92,13 @@
                     type: Number,
                     observer: '_selectedChanged'
                 },
-                selectedinstruction:{
-                  type:Number,
-                  observer:'_selectedChanged'
+                selectedinstruction: {
+                    type: Number,
+                    observer: '_selectedChanged'
                 },
-                instruction:{type:Number},
+                instruction: {
+                    type: Number
+                },
                 next: {
                     type: Object,
                     value: {
@@ -211,7 +204,7 @@
             _selectedChanged: function() {
 
                 //this.active = curitem===selected;
-                var active =this.instruction === this.selectedinstruction && this.curitem === this.selected;
+                var active = this.instruction === this.selectedinstruction && this.curitem === this.selected;
                 this.set("active", active);
             }
 

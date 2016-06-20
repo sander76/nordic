@@ -6,49 +6,53 @@
         {
             "title": "Connect",
             "instructions": [
-            {
-                "col1":
-                {
-                    "type": "text",
-                    "content": "1."
-                },
-                "col2":
-                {
-                    "type": "image",
-                    "src": "/app/images/press_hold_blind_button.png"
-                }
-            },
-            {
-                "col1":
-                {
-                    "type": "text",
-                    "content": "2."
-                },
-                "col2":
-                {
-                    "type": "button",
-                    "caption": "Connect",
-                    "commands":
-                    {
-                        "commands": ["networkadd", "group1add"],
-                        "delay": 1
-                    },
-                    "keys": "enter",
-                    "confirm": true
-                }
-            },
-            {
-                "col1":
-                {
-                    "type": "text",
-                    "content": "3."
-                },
-                "col2":
-                {
-                    "type": "image",
-                    "src": "/app/images/release_blind_button.png"
-                }
-            }],
+              {
+                  "col1":
+                  {
+                      "type": "text",
+                      "content": "1.",
+                      "width": "30%"
+                  },
+                  "col2":
+                  {
+                      "type": "text",
+                      "content": "2.",
+                      "width": "30%"
+                  },
+                  "col3":
+                  {
+                      "type": "text",
+                      "content": "3.",
+                      "width": "30%"
+                  }
+              },
+              {
+                  "col1":
+                  {
+                      "type": "image",
+                      "src": "/app/images/press_hold_blind_button.png",
+                      "width": "30%"
+                  },
+                  "col2":
+                  {
+                      "width": "30%",
+                      "type": "button",
+                      "caption": "Connect",
+                      "commands":
+                      {
+                          "commands": ["networkadd", "group1add"],
+                          "delay": 1
+                      },
+                      "keys": "enter",
+                      "confirm": true
+                  },
+                  "col3":
+                  {
+                      "type": "image",
+                      "src": "/app/images/release_blind_button.png",
+                      "width": "30%"
+                  }
+              }],
             "confirm":
             {
                 "img": "/app/images/jog.png",
@@ -318,22 +322,176 @@
                 "col2":
                 {
                     "type": "navbutton",
-                    "caption": "All okay. Go back to start",
+                    "caption": "All okay. Do another blind.",
                     "keys": "enter",
-                    "goto": 1
+                    "goto": 5
                 }
             },
             {
                 "col2":
                 {
                     "type": "navbutton",
-                    "caption": "Redefine positions",
+                    "caption": "Set top position",
                     "keys": "0 insert",
-                    "goto": -4
-                }
+                    "goto": 1
+                },
+                "col3":{"type":"navbutton","caption":"Set bottom position","goto":3}
             }],
             "buttons": []
-        }]
+        },
+        {
+            "title": "Enter program mode",
+            "instructions": [
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Set motor in programming mode for top limit"
+                }
+            },
+            {
+                "col1":
+                {
+                    "type": "button",
+                    "caption": "Enter programming mode",
+                    "commands":
+                    {
+                        "commands": ["startprogram"]
+                    },
+                    "keys": "enter",
+                    "confirm": true
+                }
+            }],
+            "buttons": [],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "Did the motor jog?"
+            }
+        },
+        {
+            "title": "Set top limit",
+            "instructions": [
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "1."
+                },
+                "col2":
+                {
+                    "type": "text",
+                    "content": "Move the motor to the desired position"
+                }
+            },
+            {
+                "col2":
+                {
+                    "type": "remote"
+                }
+            },
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "2."
+                },
+                "col2":
+                {
+                    "type": "button",
+                    "caption": "Save as top limit",
+                    "keys": "enter",
+                    "commands":
+                    {
+                        "commands": ["savepositionbottom"]
+                    },
+                    "confirm": true
+                }
+            }],
+            "confirm":
+            {
+                "text": "Did the motor move to the top?",
+                "yes": -2
+
+            }
+        },
+        {
+            "title": "Enter program mode",
+            "instructions": [
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Set motor in programming mode for bottom limit"
+                }
+            },
+            {
+                "col1":
+                {
+                    "type": "button",
+                    "caption": "Enter programming mode",
+                    "commands":
+                    {
+                        "commands": ["startprogram"]
+                    },
+                    "keys": "enter",
+                    "confirm": true
+                }
+            }],
+            "buttons": [],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "Did the motor jog?"
+            }
+        },
+        {
+            "title": "Set bottom limit",
+            "instructions": [
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "1."
+                },
+                "col2":
+                {
+                    "type": "text",
+                    "content": "Move the motor to the desired position"
+                }
+            },
+            {
+                "col2":
+                {
+                    "type": "remote"
+                }
+            },
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "2."
+                },
+                "col2":
+                {
+                    "type": "button",
+                    "caption": "Save as bottom limit",
+                    "keys": "enter",
+                    "commands":
+                    {
+                        "commands": ["savepositionbottom"]
+                    },
+                    "confirm": true
+                }
+            }],
+            "confirm":
+            {
+                "text": "Did the motor move to the top?",
+                "yes": -4
+
+            }
+        }
+      ]
     },
     {
         "title": "Twist blinds",
@@ -697,16 +855,16 @@
                 "col2":
                 {
                     "type": "navbutton",
-                    "caption": "All okay. Go back to start",
+                    "caption": "All okay. Start a new blind",
                     "keys": "enter",
                     "goto": 1
                 },
                 "col3":
                 {
                     "type": "navbutton",
-                    "caption": "Redefine positions",
+                    "caption": "Redefine top position",
                     "keys": "0 insert",
-                    "goto": -5
+                    "goto": 1
                 }
             }],
             "buttons": []

@@ -102,10 +102,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
                 <!-- Drawer Content -->
                 <paper-menu on-iron-select="handleInstructionChange">
-                    <template is="dom-repeat" items="[[all_instructions]]">
-                        <paper-item on-tap="tapped">[[item.title]]</paper-item>
+                    <template is="dom-repeat" items="[[all_instructions]]" stopKeyboardEventPropagation="true">
+                        <paper-item on-tap="tapped" stopKeyboardEventPropagation="true">[[item.title]]</paper-item>
                     </template>
                 </paper-menu>
+
+                <template stopKeyboardEventPropagation="false" is="dom-repeat" items="[[all_instructions]]">
+                    <paper-item on-tap='tapped1'>[[item.title]]</paper-item>
+                </template>
+
             </paper-scroll-header-panel>
 
             <!-- Main Area -->
@@ -188,12 +193,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             t.target = document.body;
             t.selected = 0;
             t.tapped = function(e) {
-                e.currentTarget.blur();
+                //e.currentTarget.blur();
+                t.fire(e);
+            };
+            t.tapped1 = function(e) {
+                t.current_instruction = t.all_instructions[0];
+                t.selectedinstruction = 0;
+                t.selected = 0;
+
             };
             t.handleInstructionChange = function(e) {
                 t.current_instruction = t.all_instructions[e.target.selected];
                 t.selectedinstruction = e.target.selected;
                 t.selected = 0;
+                e.currentTarget.blur();
+                document.body.focus();
                 // t.splice('instructions.steps', 0);
                 // var new_instructions = t.all_instructions[e.target.selected];
                 // for (var i = 0; i < new_instructions.steps.length; i += 1) {

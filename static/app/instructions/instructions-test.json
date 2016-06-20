@@ -1,0 +1,446 @@
+---
+  products:
+    -
+      title: "Roller blinds"
+      steps:
+        - title: "Connect"
+          instructions:
+            -
+              col1:
+                type: "text"
+                content: "1."
+              col2:
+                type: "image"
+                src: "/app/images/press_hold_blind_button.png"
+            -
+              col1:
+                type: "text"
+                content: "2."
+              col2:
+                type: "button"
+                caption: "Connect"
+                commands:
+                  commands:
+                    - "networkadd"
+                    - "group1add"
+                  delay: 1
+                keys: "enter"
+                confirm: true
+            -
+              col1:
+                type: "text"
+                content: "3."
+              col2:
+                type: "image"
+                src: "/app/images/release_blind_button.png"
+          confirm:
+            img: "/app/images/jog.png"
+            text: "Did the motor jog?"
+          previous: false
+        -
+          title: "Init"
+          instructions:
+            -
+              col1:
+                type: "text"
+                content: "This will reset the motor and reprogram it as a roller blind. The motor should jog two times"
+            -
+              col1:
+                type: "button"
+                caption: "Motor Init"
+                commands:
+                  commands:
+                    - "reset"
+                    - "roller"
+                  delay: 4
+                keys: "enter"
+                confirm: true
+          confirm:
+            img: "/app/images/jog.png"
+            text: "After 5 seconds: Did the motor jog two times ?"
+        -
+          title: "Blind direction"
+          instructions:
+            -
+              col1:
+                type: "text"
+                content: "This command will jog the motor first and then should send the motor down for a very short moment."
+            -
+              col1:
+                type: "button"
+                caption: "move down"
+                keys: "enter"
+                commands:
+                  commands:
+                    - "startprogram"
+                    - "close"
+                    - "stop"
+                  delay: 2
+                confirm: true
+          confirm:
+            text: "Did the motor move down?"
+            yes: 2
+            no: 1
+        -
+          title: "Switch direction"
+          instructions:
+            -
+              col1:
+                type: "text"
+                content: "Press the blind button"
+            -
+              col1:
+                type: "button"
+                commands:
+                  commands:
+                    - "startprogram"
+                    - "reverse"
+                  delay: 2
+                caption: "reverse"
+                confirm: true
+                keys: "enter"
+          confirm:
+            img: "/app/images/jog.png"
+            text: "Did the motor jog?"
+        -
+          title: "Enter program mode"
+          instructions:
+            -
+              col1:
+                type: "text"
+                content: "Set motor in programming mode for top limit"
+            -
+              col1:
+                type: "button"
+                caption: "Enter program mode"
+                commands:
+                  commands:
+                    - "startprogram"
+                keys: "enter"
+                confirm: true
+          buttons: []
+          confirm:
+            img: "/app/images/jog.png"
+            text: "Did the motor jog?"
+        -
+          title: "Set top Limit"
+          instructions:
+            -
+              col1:
+                type: "text"
+                content: "1."
+              col2:
+                type: "text"
+                content: "Move the motor to the desired position"
+            -
+              col2:
+                type: "remote"
+            -
+              col1:
+                type: "text"
+                content: "2."
+              col2:
+                type: "button"
+                caption: "Save as top limit"
+                keys: "enter"
+                commands:
+                  commands:
+                    - "savepositiontop"
+                confirm: true
+          confirm:
+            img: "/app/images/jog.png"
+            text: "Did the motor jog?"
+          next: false
+          previous: false
+        -
+          title: "Enter program mode"
+          instructions:
+            -
+              col1:
+                type: "text"
+                content: "Set motor in programming mode for bottom limit"
+            -
+              col1:
+                type: "button"
+                caption: "Enter programming mode"
+                commands:
+                  commands:
+                    - "startprogram"
+                keys: "enter"
+                confirm: true
+          buttons: []
+          confirm:
+            img: "/app/images/jog.png"
+            text: "Did the motor jog?"
+        -
+          title: "Set bottom limit"
+          instructions:
+            -
+              col1:
+                type: "text"
+                content: "1."
+              col2:
+                type: "text"
+                content: "Move the motor to the desired position"
+            -
+              col2:
+                type: "remote"
+            -
+              col1:
+                type: "text"
+                content: "2."
+              col2:
+                type: "button"
+                caption: "Save as bottom limit"
+                keys: "enter"
+                commands:
+                  commands:
+                    - "savepositionbottom"
+                confirm: true
+          confirm:
+            text: "Did the motor move to the top?"
+        -
+          title: "Test blinds"
+          instructions:
+            -
+              col2:
+                type: "text"
+                content: "Move the motor to the desired position"
+            -
+              col2:
+                type: "remote"
+            -
+              col2:
+                type: "navbutton"
+                caption: "All okay. Go back to start"
+                keys: "enter"
+                goto: 1
+            -
+              col3:
+                type: "navbutton"
+                caption: "Redefine positions"
+                keys: "0 insert"
+                goto: -4
+          buttons: []
+    -
+      title: "Twist blinds"
+      steps:
+        -
+          title: "Connect"
+          instructions:
+            -
+              col1:
+                type: "text"
+                content: "1."
+                width: "30%"
+              col2:
+                type: "text"
+                content: "2."
+                width: "30%"
+              col3:
+                type: "text"
+                content: "3."
+                width: "30%"
+            -
+              col1:
+                type: "image"
+                src: "/app/images/press_hold_blind_button.png"
+                width: "30%"
+              col2:
+                width: "30%"
+                type: "button"
+                caption: "Connect"
+                commands:
+                  commands:
+                    - "networkadd"
+                    - "group1add"
+                  delay: 1
+                keys: "enter"
+                confirm: true
+              col3:
+                type: "image"
+                src: "/app/images/release_blind_button.png"
+                width: "30%"
+          confirm:
+            img: "/app/images/jog.png"
+            text: "Did the motor jog?"
+          previous: false
+        -
+          title: "Init"
+          instructions:
+            -
+              col1:
+                type: "text"
+                content: "This will reset the motor and reprogram it as a roller blind. The motor should jog two times"
+            -
+              col1:
+                type: "button"
+                caption: "Motor Init"
+                commands:
+                  commands:
+                    - "reset"
+                    - "roller"
+                  delay: 4
+                keys: "enter"
+                confirm: true
+          confirm:
+            img: "/app/images/jog.png"
+            text: "After 5 seconds: Did the motor jog two times ?"
+        -
+          title: "Blind direction"
+          instructions:
+            -
+              col1:
+                type: "text"
+                content: "This command will jog the motor first and then should send the motor down for a very short moment."
+            -
+              col1:
+                type: "button"
+                caption: "move down"
+                keys: "enter"
+                commands:
+                  commands:
+                    - "startprogram"
+                    - "close"
+                    - "stop"
+                  delay: 2
+                confirm: true
+          confirm:
+            text: "Did the motor move down?"
+            yes: 2
+            no: 1
+        -
+          title: "Switch direction"
+          instructions:
+            -
+              col1:
+                type: "text"
+                content: "Press the blind button"
+            -
+              col1:
+                type: "button"
+                caption: "blind button pressed"
+                confirm: true
+                keys: "enter"
+          confirm:
+            img: "/app/images/jog.png"
+            text: "Did the motor jog?"
+        -
+          title: "Enter program mode"
+          instructions:
+            -
+              col1:
+                type: "text"
+                content: "Set motor in programming mode for top limit"
+            -
+              col1:
+                type: "button"
+                caption: "Enter program mode"
+                commands:
+                  commands:
+                    - "startprogram"
+                keys: "enter"
+                confirm: true
+          buttons: []
+          confirm:
+            img: "/app/images/jog.png"
+            text: "Did the motor jog?"
+        -
+          title: "Set top Limit"
+          instructions:
+            -
+              col1:
+                type: "text"
+                content: "1."
+              col2:
+                type: "text"
+                content: "Move the motor to the desired position"
+            -
+              col2:
+                type: "remote"
+            -
+              col1:
+                type: "text"
+                content: "2."
+              col2:
+                type: "button"
+                caption: "Save as top limit"
+                keys: "enter"
+                commands:
+                  commands:
+                    - "savepositiontop"
+                confirm: true
+          confirm:
+            img: "/app/images/jog.png"
+            text: "Did the motor jog?"
+          next: false
+          previous: false
+        -
+          title: "Enter program mode"
+          instructions:
+            -
+              col1:
+                type: "text"
+                content: "Set motor in programming mode for bottom limit"
+            -
+              col1:
+                type: "button"
+                caption: "Enter programming mode"
+                commands:
+                  commands:
+                    - "startprogram"
+                keys: "enter"
+                confirm: true
+          buttons: []
+          confirm:
+            img: "/app/images/jog.png"
+            text: "Did the motor jog?"
+        -
+          title: "Set bottom limit"
+          instructions:
+            -
+              col1:
+                type: "text"
+                content: "1."
+              col2:
+                type: "text"
+                content: "Move the motor to the desired position"
+            -
+              col2:
+                type: "remote"
+            -
+              col1:
+                type: "text"
+                content: "2."
+              col2:
+                type: "button"
+                caption: "Save as bottom limit"
+                keys: "enter"
+                commands:
+                  commands:
+                    - "savepositionbottom"
+                confirm: true
+          confirm:
+            text: "Did the motor move to the top?"
+        -
+          title: "Test blinds"
+          instructions:
+            -
+              col2:
+                type: "text"
+                content: "Move the motor to the desired position"
+            -
+              col2:
+                type: "remote"
+            -
+              col2:
+                type: "navbutton"
+                caption: "All okay. Go back to start"
+                keys: "enter"
+                goto: 1
+              col3:
+                type: "navbutton"
+                caption: "Redefine positions"
+                keys: "0 insert"
+                goto: -4
+          buttons: []
