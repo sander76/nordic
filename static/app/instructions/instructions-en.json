@@ -452,7 +452,7 @@
           "previous": false
         },
         {
-          "title": "Set bottom Limit",
+          "title": "Enter program mode",
           "instructions": [
             {
               "col1": {
@@ -462,11 +462,41 @@
               "col2": {
                 "type": "icon-nav-button",
                 "icon": "icomoon:cross",
-                "goto": -3,
+                "goto": -4,
                 "width": "12%",
                 "keys": "3 pagedown"
               }
             },
+            {
+              "col1": {
+                "width": "30%",
+                "type": "text",
+                "content": "Press button to set motor in programming mode for limit settings and checking the motor move direction."
+              },
+              "col2": {
+                "width": "20%",
+                "type": "icon-button",
+                "icon": "icomoon:checkmark",
+                "commands": {
+                  "commands": [
+                    "startprogram"
+                  ]
+                },
+                "keys": "enter",
+                "confirm": true
+              }
+            }
+          ],
+          "buttons": [],
+          "confirm": {
+            "img": "/app/images/jog.png",
+            "text": "Did the motor jog?"
+          }
+        },
+        {
+          "title": "Set bottom Limit",
+          "instructions": [
+
             {
               "col1": {
                 "type": "text",
@@ -503,7 +533,8 @@
           ],
           "confirm": {
             "img": "/app/images/jog.png",
-            "text": "Did the motor jog?"
+            "text": "Did the motor jog?",
+            "yes":-4
           },
           "next": false,
           "previous": false
