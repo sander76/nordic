@@ -5,7 +5,8 @@
         "steps": [
         {
             "title": "Connect",
-            "instructions": [
+            "instructions":
+            [
             {
                 "col1":
                 {
