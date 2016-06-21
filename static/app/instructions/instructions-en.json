@@ -165,7 +165,7 @@
                 "icon": "icomoon:cross",
                 "goto": 1,
                 "width": "12%",
-                "keys": "0 insert"
+                "keys": "3 pagedown"
               }
             }
           ]
@@ -360,7 +360,7 @@
                 "icon": "icomoon:cross",
                 "goto": 1,
                 "width": "12%",
-                "keys": "0 insert"
+                "keys": "3 pagedown"
               }
             }
           ]
@@ -407,7 +407,7 @@
                 "icon": "icomoon:cross",
                 "goto": 1,
                 "width": "12%",
-                "keys": "0 insert"
+                "keys": "3 pagedown"
               }
             },
             {
@@ -464,7 +464,7 @@
                 "icon": "icomoon:cross",
                 "goto": -3,
                 "width": "12%",
-                "keys": "0 insert"
+                "keys": "3 pagedown"
               }
             },
             {
@@ -857,7 +857,7 @@
               "col3": {
                 "type": "navbutton",
                 "caption": "Redefine top position",
-                "keys": "0 insert",
+                "keys": "3 pagedown",
                 "goto": 1
               }
             }
