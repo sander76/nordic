@@ -126,7 +126,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <div class="app-name">[[instructions.title]]</div>
                     </div> -->
 
-                    <paper-tabs noink="true" class="flex bottom" disabled selected="{{selected}}" scrollable>
+                    <paper-tabs noink noslide class="flex bottom" disabled selected="{{selected}}" scrollable>
                         <template is="dom-repeat" items="[[current_instruction.steps]]">
                             <paper-tab>{{item.title}}</paper-tab>
                         </template>

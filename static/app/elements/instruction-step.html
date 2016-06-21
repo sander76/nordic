@@ -35,16 +35,16 @@
     </style>
     <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
     <template>
-        <paper-dialog id="modal" modal>
+        <paper-dialog id="modal" noink modal>
             <iron-a11y-keys id="modalconfirm" keys="[[modal_yes.keys]]" on-keys-pressed="closeModal">
             </iron-a11y-keys>
             <iron-a11y-keys id="modaldismiss" keys="[[modal_no.keys]]" on-keys-pressed="closeModalDismiss"></iron-a11y-keys>
             <img src="[[data.confirm.img]]" />
             <p>[[data.confirm.text]]</p>
             <div class="buttons">
-                <paper-button on-tap="closeModalDismiss">
+                <paper-button noink on-tap="closeModalDismiss">
                     <iron-icon icon="icomoon:cross"></iron-icon>No<small>[[modal_no.keys]]</small></paper-button>
-                <paper-button on-tap="closeModal">
+                <paper-button noink on-tap="closeModal">
                     <iron-icon icon="icomoon:checkmark"></iron-icon>Yes<small>[[modal_yes.keys]]</small></paper-button>
             </div>
         </paper-dialog>
