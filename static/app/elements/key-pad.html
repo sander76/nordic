@@ -56,7 +56,7 @@
                     <paper-icon-button class="btn" id="btn" icon="icomoon:pv-down" on-tap="handleTiltdown"></paper-icon-button>
                 </div>
             </div>
-            
+
         </div>
     </template>
     <script>
@@ -129,14 +129,14 @@
                     //console.log("tiltclose");
                 }
             },
-            handleStop: function(e) {
-                if (this.active) {
-                    this.send({
-                        "commands": ["stop"]
-                    });
-                    console.log("stop");
-                }
-            },
+            // handleStop: function(e) {
+            //     if (this.active) {
+            //         this.send({
+            //             "commands": ["stop"]
+            //         });
+            //         console.log("stop");
+            //     }
+            // },
             send: function(commands) {
                 if (this.moving) {
                     //the blind is moving. so sending a stop command.
@@ -146,7 +146,9 @@
                 console.log("sending command: ", commands[0]);
                 //populate the body of the request.
                 this.$.sendCommand.body = {
-                    "commands": commands
+                    "commands": {
+                        "commands": commands
+                    }
                 };
                 this.$.sendCommand.generateRequest();
             }
