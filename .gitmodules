@@ -1,0 +1,6 @@
+[submodule "static/app/elements/paper-menu"]
+	path = static/app/elements/paper-menu
+	url = https://github.com/sander76/paper-menu.git
+[submodule "static/app/elements/iron-menu-behavior"]
+	path = static/app/elements/iron-menu-behavior
+	url = https://github.com/sander76/iron-menu-behavior.git
