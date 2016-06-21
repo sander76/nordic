@@ -11,7 +11,7 @@
     <template>
         <style include="shared-styles"></style>
         <style>
-          
+
             paper-icon-button.btn {
                 color: var(--icon-color);
                 background-color: var(--icon-background-color);
@@ -33,7 +33,7 @@
 
         <iron-ajax id="sendCommand" url="/nordic" method="POST" content-type="application/json"></iron-ajax>
         <div class="border">
-            <paper-icon-button class="btn" icon="[[data.icon]]" raised on-tap="send"></paper-icon-button>
+            <paper-icon-button class="btn" id="btn" icon="[[data.icon]]" raised on-tap="send"></paper-icon-button>
         </div>
 
 
