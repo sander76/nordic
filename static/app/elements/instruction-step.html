@@ -11,9 +11,11 @@
 <dom-module id="instruction-step">
     <style include="nordic-styles"></style>
     <style>
-        :host {
+        /*:host {
             width: 100%;
-        }
+            height: 100%;
+        }*/
+:host{margin:50px;}
 
         #col1 {
             min-width: 4em;
@@ -24,15 +26,7 @@
             max-width: 300px;
             width: auto;
             height: auto;
-            /*margin-bottom: 10px;*/
-        }
 
-        paper-card {
-            width: 100%;
-        }
-
-        .card-content {
-            min-height: 550px;
         }
 
         .rule {
@@ -48,34 +42,35 @@
             <img src="[[data.confirm.img]]" />
             <p>[[data.confirm.text]]</p>
             <div class="buttons">
-                <paper-button on-tap="closeModalDismiss"><iron-icon icon="icomoon:cross"></iron-icon>No<small>[[modal_no.keys]]</small></paper-button>
-                <paper-button on-tap="closeModal"><iron-icon icon="icomoon:checkmark"></iron-icon>Yes<small>[[modal_yes.keys]]</small></paper-button>
+                <paper-button on-tap="closeModalDismiss">
+                    <iron-icon icon="icomoon:cross"></iron-icon>No<small>[[modal_no.keys]]</small></paper-button>
+                <paper-button on-tap="closeModal">
+                    <iron-icon icon="icomoon:checkmark"></iron-icon>Yes<small>[[modal_yes.keys]]</small></paper-button>
             </div>
         </paper-dialog>
-        <paper-card id="input" heading="{{data.title}}">
-            <div class="card-content">
-                <div class="vertical layout">
-                    <template is="dom-repeat" items=[[data.instructions]]>
-                        <div class="horizontal layout center rule">
-                            <ui-cell id="col1" active="[[active]]" data="[[item.col1]]"></ui-cell>
-                            <ui-cell id="col2" active="[[active]]" data="[[item.col2]]"></ui-cell>
-                            <ui-cell id="col3" active="[[active]]" data="[[item.col3]]"></ui-cell>
-                        </div>
-                        <!-- <ui-row active="[[active]]" data="[[item]]"></ui-row> -->
-                    </template>
+
+        <div class="vertical layout flex">
+            <div class="flex">
+                <template is="dom-repeat" items=[[data.instructions]]>
+                    <div class="horizontal layout center rule">
+                        <ui-cell id="col1" active="[[active]]" data="[[item.col1]]"></ui-cell>
+                        <ui-cell id="col2" active="[[active]]" data="[[item.col2]]"></ui-cell>
+                        <ui-cell id="col3" active="[[active]]" data="[[item.col3]]"></ui-cell>
+                    </div>
+                    <!-- <ui-row active="[[active]]" data="[[item]]"></ui-row> -->
+                </template>
+
+            </div>
+            <div class="horizontal layout justified">
+                <div>
+                    <nav-button hidden=[[!data.previous]] id="previousbutton" active="[[active]]" data="[[prev]]">[[data.previous]]</nav-button>
+                </div>
+                <div>
+                    <nav-button hidden=[[!data.next]] id="nextbutton" active="[[active]]" data="[[next]]">[[data.next]]</nav-button>
                 </div>
             </div>
-            <div class="card-actions">
-                <div class="horizontal layout justified">
-                    <div>
-                        <nav-button hidden=[[!data.previous]] id="previousbutton" active="[[active]]" data="[[prev]]">[[data.previous]]</nav-button>
-                    </div>
-                    <div>
-                        <nav-button hidden=[[!data.next]] id="nextbutton" active="[[active]]" data="[[next]]">[[data.next]]</nav-button>
-                    </div>
-                </div>
-            </div>
-        </paper-card>
+
+        </div>
 
     </template>
     <script>

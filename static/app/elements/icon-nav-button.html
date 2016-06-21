@@ -1,0 +1,52 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-a11y-keys/iron-a11y-keys.html">
+<link rel="import" href="icomoon-polymer/icomoon-iconset-svg.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="nd-button-behaviour.html">
+<link rel="import" href="../styles/shared.html" />
+<dom-module id="icon-nav-button">
+    <template>
+        <style include="shared-styles"></style>
+        <style>
+            paper-icon-button.btn {
+                color: var(--icon-color);
+                --paper-icon-button-ink-color: var(--icon-background-color);
+                width: 100%;
+                height: auto;
+            }
+
+            .border {
+                width: 100%;
+                border-width: 2px;
+                border-radius: 10px;
+                border-color: var(--icon-color);
+                border-style: solid;
+            }
+        </style>
+        <iron-a11y-keys id="keys" keys="[[data.keys]]" on-keys-pressed="go">
+        </iron-a11y-keys>
+        <!-- local DOM goes here -->
+        <div class="border">
+            <paper-icon-button class="btn" id="btn" icon="[[data.icon]]" raised on-tap="go"></paper-icon-button>
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: 'icon-nav-button',
+            behaviors: [NdButtonBehaviour],
+            properties: {
+                data: {
+                    type: Object,
+                    value: {}
+                },
+                active: {
+                    type: Boolean,
+                    observer: '_activeChanged'
+                }
+            },
+            go: function() {
+                this.fire("gotopage", this.data.goto);
+            }
+        });
+    </script>
+</dom-module>

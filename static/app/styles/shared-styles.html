@@ -3,30 +3,36 @@
 
 <!-- shared styles for all elements and index.html -->
 <dom-module id="shared-styles">
-  <template>
-    <style>
-      .page-title {
-        @apply(--paper-font-display2);
-      }
+    <template>
+        <style>
+            :root {
+                --column-spacing: 5px;
+                /*--icon-background-color: white;*/
+                --icon-color: grey;
+            }
 
-      .app-menu {
-        --paper-menu-selected-item: {
-          /*color: #fff;*/
-          background: var(--light-primary-color);
-        }
-      }
+            .page-title {
+                @apply(--paper-font-display2);
+            }
 
-      paper-menu a > *, paper-menu paper-item > *, paper-menu paper-icon-item > * {
-        pointer-events: none;
-      }
+            .app-menu {
+                --paper-menu-selected-item: {
+                    /*color: #fff;*/
+                    background: var(--light-primary-color);
+                }
+            }
 
-      @media (max-width: 600px) {
-        .page-title {
-          font-size: 24px!important;
-        }
-      }
+            paper-menu a> *,
+            paper-menu paper-item> *,
+            paper-menu paper-icon-item> * {
+                pointer-events: none;
+            }
 
-
-    </style>
-  </template>
+            @media (max-width: 600px) {
+                .page-title {
+                    font-size: 24px!important;
+                }
+            }
+        </style>
+    </template>
 </dom-module>

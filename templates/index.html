@@ -64,26 +64,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         /*#container {
         max-width: 600px;
       }*/
-
-        #products {
+        /*#products {
             padding: 0;
-        }
+        }*/
 
         paper-tabs,
         paper-toolbar {
             background-color: var(--paper-blue-900);
             color: #fff;
         }
+
+        iron-pages.pages {
+            height: 100%;
+            padding: 0px;
+        }
     </style>
     <link rel="import" href="/app/elements/ajax-button.html">
     <link rel="import" href="/app/elements/icon-ajax-button.html">
+    <link rel="import" href="/app/elements/icon-nav-button.html">
     <link rel="import" href="/app/elements/nav-button.html">
     <link rel="import" href="/app/elements/serial-data.html">
     <link rel="import" href="/app/elements/instruction-step.html" />
+    <link rel="import" href="/app/elements/key-pad.html"/>
     <!-- <link rel="import" href="/app/elements/icomoon-polymer/icomoon-iconset-svg.html" /> -->
 </head>
 
-<body unresolved>
+<body unresolved fullbleed>
     <!-- build:remove -->
     <span id="browser-sync-binding"></span>
     <!-- endbuild -->
@@ -94,7 +100,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         {% raw %}
         <paper-drawer-panel id="paperDrawerPanel">
             <!-- Drawer Scroll Header Panel -->
-            <paper-scroll-header-panel drawer fixed>
+            <paper-header-panel drawer fixed>
 
                 <!-- Drawer Toolbar -->
                 <paper-toolbar id="drawerToolbar">
@@ -108,10 +114,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </template>
                 </paper-menu>
 
-            </paper-scroll-header-panel>
+            </paper-header-panel>
 
             <!-- Main Area -->
-            <paper-scroll-header-panel main id="headerPanelMain" fixed>
+            <paper-header-panel main id="headerPanelMain" class="vertical layout" fixed>
                 <!-- Main Toolbar -->
 
                 <paper-toolbar id="mainToolbar" class="small">
@@ -126,17 +132,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         </template>
                     </paper-tabs>
                 </paper-toolbar>
-                <iron-pages id="products" selected="{{selectedinstruction}}">
+                <iron-pages class="pages" selected="{{selectedinstruction}}">
                     <template is="dom-repeat" items="[[all_instructions]]" index-as="instruction">
-                        <iron-pages class="flex" id="pages" on-nextpage="handleNext" on-previouspage="handlePrevious" on-gotopage="handleGoto" selected="{{selected}}">
+                        <iron-pages class="pages vertical layout" id="pages" on-nextpage="handleNext" on-previouspage="handlePrevious" on-gotopage="handleGoto" selected="{{selected}}">
                             <template is="dom-repeat" items="[[item.steps]]">
-                                <instruction-step data="[[item]]" selectedinstruction=[[selectedinstruction]] instruction="[[instruction]]" curitem=[[index]] selected="[[selected]]"></instruction-step>
-                                </div>
+                                <instruction-step class="vertical layout flex" data="[[item]]" selectedinstruction=[[selectedinstruction]] instruction="[[instruction]]" curitem=[[index]] selected="[[selected]]"></instruction-step>
                             </template>
                         </iron-pages>
                 </iron-pages>
                 <!-- </div> -->
-            </paper-scroll-header-panel>
+            </paper-header-panel>
         </paper-drawer-panel>
         <!-- <paper-toast id="toast">
             <span class="toast-hide-button" role="button" tabindex="0" onclick="app.$.toast.hide()">Ok</span>

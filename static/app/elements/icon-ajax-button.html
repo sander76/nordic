@@ -6,17 +6,18 @@
 <link rel="import" href="icomoon-polymer/icomoon-iconset-svg.html">
 <link rel="import" href="nd-button-behaviour.html">
 <link rel="import" href="../styles/shared.html" />
+<!-- <link rel="import" href="../styles/app-theme.html" /> -->
 <dom-module id="icon-ajax-button">
     <template>
-        <style include="nordic-styles"></style>
+        <style include="shared-styles"></style>
         <style>
             :host {
                 display: inline-block;
             }
 
             paper-icon-button.btn {
-                color: grey;
-                --paper-icon-button-ink-color: white;
+                color: var(--icon-color);
+                background-color: var(--icon-background-color);
                 width: 100%;
                 height: auto;
             }
@@ -25,7 +26,7 @@
                 width: 100%;
                 border-width: 2px;
                 border-radius: 10px;
-                border-color: grey;
+                border-color: var(--icon-color);
                 border-style: solid;
             }
         </style>
@@ -35,10 +36,10 @@
 
         <iron-ajax id="sendCommand" url="/nordic" method="POST" content-type="application/json"></iron-ajax>
         <div class="border">
-            <paper-icon-button class="btn" id="btn" icon="[[data.icon]]" raised on-tap="send">
+            <paper-icon-button class="btn" icon="[[data.icon]]" raised on-tap="send"></paper-icon-button>
         </div>
 
-        </paper-icon-button>
+
     </template>
     <script>
         Polymer({
