@@ -35,7 +35,7 @@
                 },
                 "col2":
                 {
-                    "width": "20%",
+                    "width": "15%",
                     "type": "icon-button",
                     "icon": "icomoon:checkmark",
                     "class": "ok",
@@ -74,7 +74,7 @@
                 },
                 "col2":
                 {
-                    "width": "20%",
+                    "width": "15%",
                     "type": "icon-button",
                     "caption": "Motor Init",
                     "icon": "icomoon:checkmark",
@@ -108,7 +108,7 @@
                 },
                 "col2":
                 {
-                    "width": "20%",
+                    "width": "15%",
                     "type": "icon-button",
                     "icon": "icomoon:checkmark",
                     "class": "ok",
@@ -208,7 +208,7 @@
                 },
                 "col2":
                 {
-                    "width": "20%",
+                    "width": "15%",
                     "type": "icon-button",
                     "icon": "icomoon:checkmark",
                     "class": "ok",
@@ -286,7 +286,7 @@
                 },
                 "col2":
                 {
-                    "width": "20%",
+                    "width": "15%",
                     "type": "icon-button",
                     "icon": "icomoon:checkmark",
                     "class": "ok",
@@ -425,7 +425,7 @@
                     "icon": "icomoon:checkmark",
                     "class": "cross",
                     "goto": 2,
-                    "width": "20%",
+                    "width": "15%",
                     "keys": "3 pagedown"
                 }
             },
@@ -438,7 +438,7 @@
                 },
                 "col2":
                 {
-                    "width": "20%",
+                    "width": "15%",
                     "type": "icon-button",
                     "icon": "icomoon:checkmark",
                     "class": "ok",
@@ -520,7 +520,7 @@
                     "icon": "icomoon:checkmark",
                     "class": "cross",
                     "goto": -3,
-                    "width": "20%",
+                    "width": "15%",
                     "keys": "3 pagedown"
                 }
             },
@@ -533,7 +533,7 @@
                 },
                 "col2":
                 {
-                    "width": "20%",
+                    "width": "15%",
                     "type": "icon-button",
                     "icon": "icomoon:checkmark",
                     "class": "ok",
@@ -635,7 +635,7 @@
                 },
                 "col2":
                 {
-                    "width": "20%",
+                    "width": "15%",
                     "type": "icon-button",
                     "icon": "icomoon:checkmark",
                     "class": "ok",
@@ -674,7 +674,7 @@
                 },
                 "col2":
                 {
-                    "width": "20%",
+                    "width": "15%",
                     "type": "icon-button",
                     "caption": "Motor Init",
                     "icon": "icomoon:checkmark",
@@ -708,7 +708,7 @@
                 },
                 "col2":
                 {
-                    "width": "20%",
+                    "width": "15%",
                     "type": "icon-button",
                     "icon": "icomoon:checkmark",
                     "class": "ok",
@@ -808,7 +808,7 @@
                 },
                 "col2":
                 {
-                    "width": "20%",
+                    "width": "15%",
                     "type": "icon-button",
                     "icon": "icomoon:checkmark",
                     "class": "ok",
@@ -886,7 +886,7 @@
                 },
                 "col2":
                 {
-                    "width": "20%",
+                    "width": "15%",
                     "type": "icon-button",
                     "icon": "icomoon:checkmark",
                     "class": "ok",
@@ -1029,7 +1029,7 @@
                     "type": "icon-nav-button",
                     "icon": "icomoon:checkmark",
                     "class": "ok",
-                    "goto": 5,
+                    "goto": 6,
                     "width": "15%",
                     "keys": "enter"
                 }
@@ -1070,7 +1070,7 @@
                     "icon": "icomoon:checkmark",
                     "class": "cross",
                     "goto": 2,
-                    "width": "20%",
+                    "width": "15%",
                     "keys": "3 pagedown"
                 }
             },
@@ -1083,7 +1083,7 @@
                 },
                 "col2":
                 {
-                    "width": "20%",
+                    "width": "15%",
                     "type": "icon-button",
                     "icon": "icomoon:checkmark",
                     "class": "ok",
@@ -1165,7 +1165,7 @@
                     "icon": "icomoon:checkmark",
                     "class": "cross",
                     "goto": 2,
-                    "width": "20%",
+                    "width": "15%",
                     "keys": "3 pagedown"
                 }
             },
@@ -1178,7 +1178,7 @@
                 },
                 "col2":
                 {
-                    "width": "20%",
+                    "width": "15%",
                     "type": "icon-button",
                     "icon": "icomoon:checkmark",
                     "class": "ok",
@@ -1244,55 +1244,7 @@
             "next": false,
             "previous": false
         },
-        {
-            "title": "Enter program mode",
-            "instructions": [
-            {
-                "col1":
-                {
-                    "type": "text",
-                    "content": "Skip setting SLAT OPEN limit.",
-                    "width": "30%"
-                },
-                "col2":
-                {
-                    "type": "icon-nav-button",
-                    "icon": "icomoon:checkmark",
-                    "class": "cross",
-                    "goto": -5,
-                    "width": "20%",
-                    "keys": "3 pagedown"
-                }
-            },
-            {
-                "col1":
-                {
-                    "width": "30%",
-                    "type": "text",
-                    "content": "Press button to set motor in programming mode for SLAT OPEN limit setting."
-                },
-                "col2":
-                {
-                    "width": "20%",
-                    "type": "icon-button",
-                    "icon": "icomoon:checkmark",
-                    "class": "ok",
-                    "commands":
-                    {
-                        "commands": ["startprogram"]
-                    },
-                    "keys": "enter",
-                    "confirm": true
-                }
-            }],
-            "confirm":
-            {
-                "img": "/app/images/jog.png",
-                "text": "Did the motor jog?"
-            },
-            "next": false,
-            "previous": false
-        },
+
         {
             "title": "Set slat position.",
             "instructions": [
@@ -1329,12 +1281,28 @@
                     },
                     "confirm": true
                 }
+            },{
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Skip setting SLAT OPEN limit.",
+                    "width": "30%"
+                },
+                "col2":
+                {
+                    "type": "icon-nav-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "cross",
+                    "goto": -5,
+                    "width": "15%",
+                    "keys": "3 pagedown"
+                }
             }],
             "confirm":
             {
                 "img": "/app/images/jog.png",
                 "text": "Did the motor jog?",
-                "yes": -6
+                "yes": -5
             },
             "next": false,
             "previous": false

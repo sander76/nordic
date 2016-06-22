@@ -16,7 +16,7 @@ COMMANDS = {
     # "programbottom": b'\x00\x04#LPE',
     "savepositiontop": b'\x00\x04#LPO',
     "savepositionbottom": b'\x00\x04#LPC',
-    "saveslatopen":b'\x00\x04\#LTO',
+    "saveslatopen":b'\x00\x04#LTO',
     "reverse": b'\x00\x02#x'
 }
 
