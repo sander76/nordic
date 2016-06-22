@@ -681,7 +681,7 @@
                     "class": "ok",
                     "commands":
                     {
-                        "commands": ["reset", "roller"],
+                        "commands": ["reset", "twist"],
                         "delay": 4
                     },
                     "keys": "enter",
@@ -951,7 +951,6 @@
             "next": false,
             "previous": false
         },
-
         {
             "title": "Set slat position.",
             "instructions": [
@@ -997,7 +996,6 @@
             "next": false,
             "previous": false
         },
-
         {
             "title": "Test blinds",
             "instructions": [
