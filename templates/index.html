@@ -78,6 +78,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             height: 100%;
             padding: 0px;
         }
+.versioninfo{
+  font-size: 0.8em;
+  margin:4px;
+}
+
     </style>
     <link rel="import" href="/app/elements/ajax-button.html">
     <link rel="import" href="/app/elements/icon-ajax-button.html">
@@ -85,7 +90,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <link rel="import" href="/app/elements/nav-button.html">
     <link rel="import" href="/app/elements/serial-data.html">
     <link rel="import" href="/app/elements/instruction-step.html" />
-    <link rel="import" href="/app/elements/key-pad.html"/>
+    <link rel="import" href="/app/elements/key-pad.html" />
     <!-- <link rel="import" href="/app/elements/icomoon-polymer/icomoon-iconset-svg.html" /> -->
 </head>
 
@@ -98,23 +103,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         {% endraw %}
         <iron-ajax url="/app/instructions/instructions-{{ lang }}.json" auto handle-as="json" on-response="getInstructions"></iron-ajax>
         {% raw %}
+
         <paper-drawer-panel id="paperDrawerPanel">
             <!-- Drawer Scroll Header Panel -->
+
             <paper-header-panel drawer fixed>
 
                 <!-- Drawer Toolbar -->
                 <paper-toolbar id="drawerToolbar">
                     <span class="menu-name">Menu</span>
                 </paper-toolbar>
-
+<div class="vertical layout" style="height:100%;">
                 <!-- Drawer Content -->
-                <paper-menu on-iron-select="handleInstructionChange">
-                    <template is="dom-repeat" items="[[all_instructions]]" stopKeyboardEventPropagation="true">
-                        <paper-item stopKeyboardEventPropagation="true">[[item.title]]</paper-item>
+                <paper-menu class="flex" flex on-iron-select="handleInstructionChange">
+                    <template is="dom-repeat" items="[[all_instructions]]">
+                        <paper-item>[[item.title]]</paper-item>
                     </template>
                 </paper-menu>
 
+
+
+
+                <div class="versioninfo">
+                    instruction version: <span>[[instruction_version]]</span>
+                </div>
+              </div>
             </paper-header-panel>
+
 
             <!-- Main Area -->
             <paper-header-panel main id="headerPanelMain" class="vertical layout" fixed>
@@ -203,8 +218,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             };
 
             t.getInstructions = function(e, response) {
-
                 t.all_instructions = response.response.products;
+                t.instruction_version = response.response.version;
             };
             //t.instructions = undefined;
         </script>

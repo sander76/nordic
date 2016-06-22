@@ -153,3 +153,6 @@ try:
     web.run_app(app)
 except Exception as e:
     lgr.exception("Some error has occurred.")
+
+
+# http://localhost:8080/app/ws.html
