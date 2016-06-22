@@ -109,25 +109,28 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--serialport")
 args = parser.parse_args()
 
-MAXTRIES = 5
+MAXTRIES = 10
 TRY = 1
-TRYDELAY = 2
+TRYDELAY = 5
 SERIAL_PORT = args.serialport
 
 # setup the serial port.
-while True:
-    try:
-        s = Serial(SERIAL_PORT, SERIAL_SPEED)
-        break
-    except SerialException:
-        lgr.exception("serial port opening problem.")
-    if TRY > MAXTRIES:
-        lgr.error("maximum tries exceeded.")
-        raise UserWarning("maximum tries exceeded.")
-    time.sleep(TRYDELAY)
-    TRY += 1
-    # else:
-    #     s = FakeSerial()
+if SERIAL_PORT != "-1":
+    lgr.error("Connecting to serial port: {}".format(SERIAL_PORT))
+    while True:
+        try:
+            lgr.error("Connecting to serial port. Attempt: {}".format(TRY))
+            s = Serial(SERIAL_PORT, SERIAL_SPEED)
+            break
+        except SerialException:
+            lgr.exception("serial port opening problem.")
+        if TRY > MAXTRIES:
+            lgr.error("maximum tries exceeded.")
+            raise UserWarning("maximum tries exceeded.")
+        time.sleep(TRYDELAY)
+        TRY += 1
+        # else:
+        #     s = FakeSerial()
 
 # create the app instance and get the async loop.
 app = web.Application()
