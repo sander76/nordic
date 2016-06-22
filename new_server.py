@@ -109,9 +109,9 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--serialport")
 args = parser.parse_args()
 
-MAXTRIES = 10
+MAXTRIES = 20
 TRY = 1
-TRYDELAY = 5
+TRYDELAY = 10
 SERIAL_PORT = args.serialport
 
 # setup the serial port.
