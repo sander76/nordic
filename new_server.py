@@ -101,22 +101,33 @@ def send_nordic(request):
 
 @aiohttp_jinja2.template('index.html')
 def index_handler(request):
-    lang = request.match_info.get('lang','en')
+    lang = request.match_info.get('lang', 'en')
     return {'lang': lang}
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--serialport")
 args = parser.parse_args()
 
+MAXTRIES = 5
+TRY = 1
+TRYDELAY = 2
+SERIAL_PORT = args.serialport
+
 # setup the serial port.
-if args.serialport:
+while True:
     try:
-        SERIAL_PORT = args.serialport
         s = Serial(SERIAL_PORT, SERIAL_SPEED)
+        break
     except SerialException:
         lgr.exception("serial port opening problem.")
-else:
-    s = FakeSerial()
+    if TRY > MAXTRIES:
+        lgr.error("maximum tries exceeded.")
+        raise UserWarning("maximum tries exceeded.")
+    time.sleep(TRYDELAY)
+    TRY += 1
+    # else:
+    #     s = FakeSerial()
 
 # create the app instance and get the async loop.
 app = web.Application()
