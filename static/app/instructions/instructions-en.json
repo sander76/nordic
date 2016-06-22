@@ -1,1256 +1,1345 @@
 {
-  "products": [
+    "products": [
     {
-      "title": "Roller blinds",
-      "steps": [
+        "title": "Roller blinds",
+        "steps": [
         {
-          "title": "Connect",
-          "instructions": [
+            "title": "Connect",
+            "instructions": [
             {
-              "col1": {
-                "type": "text",
-                "content": "1.",
-                "width": "30%"
-              },
-              "col2": {
-                "type": "text",
-                "content": "2.",
-                "width": "30%"
-              },
-              "col3": {
-                "type": "text",
-                "content": "3.",
-                "width": "30%"
-              }
-            },
-            {
-              "col1": {
-                "type": "image",
-                "src": "/app/images/press_hold_blind_button.png",
-                "width": "30%"
-              },
-              "col2": {
-                "width": "20%",
-                "type": "icon-button",
-                "icon": "icomoon:checkmark",
-                "commands": {
-                  "commands": [
-                    "networkadd",
-                    "group1add"
-                  ],
-                  "delay": 1
+                "col1":
+                {
+                    "type": "text",
+                    "content": "1.",
+                    "width": "30%"
                 },
-                "keys": "enter",
-                "confirm": true
-              },
-              "col3": {
-                "type": "image",
-                "src": "/app/images/release_blind_button.png",
-                "width": "30%"
-              }
-            }
-          ],
-          "confirm": {
-            "img": "/app/images/jog.png",
-            "text": "Did the motor jog?"
-          },
-          "previous": false,
-          "next": false
-        },
-        {
-          "title": "Init",
-          "instructions": [
-            {
-              "col1": {
-                "width": "30%",
-                "type": "text",
-                "content": "This will reset the motor and reprogram it as a roller blind. The motor should jog two times"
-              },
-              "col2": {
-                "width": "20%",
-                "type": "icon-button",
-                "caption": "Motor Init",
-                "icon": "icomoon:checkmark",
-                "commands": {
-                  "commands": [
-                    "reset",
-                    "roller"
-                  ],
-                  "delay": 4
+                "col2":
+                {
+                    "type": "text",
+                    "content": "2.",
+                    "width": "30%"
                 },
-                "keys": "enter",
-                "confirm": true
-              }
-            }
-          ],
-          "confirm": {
-            "img": "/app/images/jog.png",
-            "text": "After 5 seconds: Did the motor jog two times ?"
-          },
-          "previous": false,
-          "next": false
-        },
-        {
-          "title": "Enter program mode",
-          "instructions": [
+                "col3":
+                {
+                    "type": "text",
+                    "content": "3.",
+                    "width": "30%"
+                }
+            },
             {
-              "col1": {
-                "width": "30%",
-                "type": "text",
-                "content": "Press button to set motor in programming mode for limit settings and checking the motor move direction."
-              },
-              "col2": {
-                "width": "20%",
-                "type": "icon-button",
-                "icon": "icomoon:checkmark",
-                "commands": {
-                  "commands": [
-                    "startprogram"
-                  ]
+                "col1":
+                {
+                    "type": "image",
+                    "src": "/app/images/press_hold_blind_button.png",
+                    "width": "30%"
                 },
-                "keys": "enter",
-                "confirm": true
-              }
-            }
-          ],
-          "buttons": [],
-          "confirm": {
-            "img": "/app/images/jog.png",
-            "text": "Did the motor jog?"
-          },
-          "next": false,
-          "previous": false
-        },
-        {
-          "title": "Blind direction",
-          "instructions": [
-            {
-              "col1": {
-                "type": "text",
-                "content": "Send a down or up command and check whether the blind moves in the correct direction."
-              }
-            },
-            {
-              "col1": {
-                "type": "text",
-                "content": "IMPORTANT: No limits are set. You can damage the blind when the motor keeps running up or downwards."
-              }
-            },
-            {
-              "col1": {
-                "width": "30%",
-                "type": "text",
-                "content": "Use the buttons to move the blind. Stop the blind by pressing any button while the blind is moving."
-              },
-              "col2": {
-                "width": "30%",
-                "type": "keypad"
-              }
-            },
-            {
-              "col1": {
-                "type": "text",
-                "content": "Motor moved in the CORRECT direction",
-                "width": "30%"
-              },
-              "col2": {
-                "type": "icon-nav-button",
-                "icon": "icomoon:checkmark",
-                "goto": 2,
-                "width": "12%",
-                "keys": "enter"
-              }
-            },
-            {
-              "col1": {
-                "type": "text",
-                "content": "Motor moved in the WRONG direction",
-                "width": "30%"
-              },
-              "col2": {
-                "type": "icon-nav-button",
-                "icon": "icomoon:cross",
-                "goto": 1,
-                "width": "12%",
-                "keys": "3 pagedown"
-              }
-            }
-          ],
-          "next": false,
-          "previous": false
-        },
-        {
-          "title": "Switch direction",
-          "instructions": [
-            {
-              "col1": {
-                "width": "30%",
-                "type": "text",
-                "content": "Press button to reverse the motor direction."
-              },
-              "col2": {
-                "width": "20%",
-                "type": "icon-button",
-                "icon": "icomoon:checkmark",
-                "commands": {
-                  "commands": [
-                    "startprogram",
-                    "reverse"
-                  ],
-                  "delay": 2
+                "col2":
+                {
+                    "width": "20%",
+                    "type": "icon-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "commands":
+                    {
+                        "commands": ["networkadd", "group1add"],
+                        "delay": 1
+                    },
+                    "keys": "enter",
+                    "confirm": true
                 },
-                "confirm": true,
-                "keys": "enter"
-              }
-            }
-          ],
-          "confirm": {
-            "img": "/app/images/jog.png",
-            "text": "Did the motor jog?"
-          },
-          "next": false,
-          "previous": false
+                "col3":
+                {
+                    "type": "image",
+                    "src": "/app/images/release_blind_button.png",
+                    "width": "30%"
+                }
+            }],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "Did the motor jog?"
+            },
+            "previous": false,
+            "next": false
         },
         {
-          "title": "Set top Limit",
-          "instructions": [
+            "title": "Init",
+            "instructions": [
             {
-              "col1": {
-                "type": "text",
-                "content": "Use the buttons to move the blind to the desired top position.",
-                "width": "30%"
-              },
-              "col2": {
-                "width": "30%",
-                "type": "keypad"
-              }
-            },
-            {
-              "col1": {
-                "type": "text",
-                "content": "save as top position",
-                "width": "30%"
-              },
-              "col3": {
-                "width": "15%",
-                "type": "icon-button",
-                "icon": "icomoon:checkmark",
-                "keys": "enter",
-                "commands": {
-                  "commands": [
-                    "savepositiontop"
-                  ]
+                "col1":
+                {
+                    "width": "30%",
+                    "type": "text",
+                    "content": "This will reset the motor and reprogram it as a roller blind. The motor should jog two times"
                 },
-                "confirm": true
-              }
-            }
-          ],
-          "confirm": {
-            "img": "/app/images/jog.png",
-            "text": "Did the motor jog?"
-          },
-          "next": false,
-          "previous": false
+                "col2":
+                {
+                    "width": "20%",
+                    "type": "icon-button",
+                    "caption": "Motor Init",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "commands":
+                    {
+                        "commands": ["reset", "roller"],
+                        "delay": 4
+                    },
+                    "keys": "enter",
+                    "confirm": true
+                }
+            }],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "After 5 seconds: Did the motor jog two times ?"
+            },
+            "previous": false,
+            "next": false
         },
         {
-          "title": "Enter program mode",
-          "instructions": [
+            "title": "Enter program mode",
+            "instructions": [
             {
-              "col1": {
-                "width": "30%",
-                "type": "text",
-                "content": "Press button to set motor in programming mode for limit settings and checking the motor move direction."
-              },
-              "col2": {
-                "width": "20%",
-                "type": "icon-button",
-                "icon": "icomoon:checkmark",
-                "commands": {
-                  "commands": [
-                    "startprogram"
-                  ]
+                "col1":
+                {
+                    "width": "30%",
+                    "type": "text",
+                    "content": "Press button to set motor in programming mode for limit settings and checking the motor move direction."
                 },
-                "keys": "enter",
-                "confirm": true
-              }
-            }
-          ],
-          "confirm": {
-            "img": "/app/images/jog.png",
-            "text": "Did the motor jog?"
-          },
-          "next": false,
-          "previous": false
+                "col2":
+                {
+                    "width": "20%",
+                    "type": "icon-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "commands":
+                    {
+                        "commands": ["startprogram"]
+                    },
+                    "keys": "enter",
+                    "confirm": true
+                }
+            }],
+            "buttons": [],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "Did the motor jog?"
+            },
+            "next": false,
+            "previous": false
         },
         {
-          "title": "Set bottom Limit",
-          "instructions": [
+            "title": "Blind direction",
+            "instructions": [
             {
-              "col1": {
-                "type": "text",
-                "content": "Use the buttons to move the blind to the desired BOTTOM position.",
-                "width": "30%"
-              },
-              "col2": {
-                "width": "30%",
-                "type": "keypad"
-              }
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Send a down or up command and check whether the blind moves in the correct direction."
+                }
             },
             {
-              "col1": {
-                "type": "text",
-                "content": "save as BOTTOM position",
-                "width": "30%"
-              },
-              "col3": {
-                "width": "15%",
-                "type": "icon-button",
-                "icon": "icomoon:checkmark",
-                "keys": "enter",
-                "commands": {
-                  "commands": [
-                    "savepositionbottom"
-                  ]
+                "col1":
+                {
+                    "type": "text",
+                    "content": "IMPORTANT: No limits are set. You can damage the blind when the motor keeps running up or downwards."
+                }
+            },
+            {
+                "col1":
+                {
+                    "width": "30%",
+                    "type": "text",
+                    "content": "Use the buttons to move the blind. Stop the blind by pressing any button while the blind is moving."
                 },
-                "confirm": true
-              }
-            }
-          ],
-          "confirm": {
-            "img": "/app/images/jog.png",
-            "text": "Did the motor move to the top?"
-          },
-          "next": false,
-          "previous": false
-        },
-        {
-          "title": "Test blinds",
-          "instructions": [
-            {
-              "col1": {
-                "type": "text",
-                "content": "Move the blind to check whether top and bottom positions are correct."
-              }
+                "col2":
+                {
+                    "width": "30%",
+                    "type": "keypad"
+                }
             },
             {
-              "col1": {
-                "width": "30%"
-              },
-              "col2": {
-                "width": "30%",
-                "type": "keypad"
-              }
-            },
-            {
-              "col1": {
-                "type": "text",
-                "content": "Positions are correct. Program a new blind.",
-                "width": "30%"
-              },
-              "col2": {
-                "type": "icon-nav-button",
-                "icon": "icomoon:checkmark",
-                "goto": 5,
-                "width": "12%",
-                "keys": "enter"
-              }
-            },
-            {
-              "col1": {
-                "type": "text",
-                "content": "Positions are NOT correct.",
-                "width": "30%"
-              },
-              "col2": {
-                "type": "icon-nav-button",
-                "icon": "icomoon:cross",
-                "goto": 1,
-                "width": "12%",
-                "keys": "3 pagedown"
-              }
-            }
-          ],
-          "next": false,
-          "previous": false
-        },
-        {
-          "title": "Enter program mode",
-          "instructions": [
-            {
-              "col1": {
-                "type": "text",
-                "content": "Skip setting TOP limit.",
-                "width": "30%"
-              },
-              "col2": {
-                "type": "icon-nav-button",
-                "icon": "icomoon:cross",
-                "goto": 2,
-                "width": "20%",
-                "keys": "3 pagedown"
-              }
-            },
-            {
-              "col1": {
-                "width": "30%",
-                "type": "text",
-                "content": "Press button to set motor in programming mode for TOP limit setting."
-              },
-              "col2": {
-                "width": "20%",
-                "type": "icon-button",
-                "icon": "icomoon:checkmark",
-                "commands": {
-                  "commands": [
-                    "startprogram"
-                  ]
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Motor moved in the CORRECT direction",
+                    "width": "30%"
                 },
-                "keys": "enter",
-                "confirm": true
-              }
-            }
-          ],
-          "buttons": [],
-          "confirm": {
-            "img": "/app/images/jog.png",
-            "text": "Did the motor jog?"
-          },
-          "next": false,
-          "previous": false
-        },
-        {
-          "title": "Set top Limit",
-          "instructions": [
-            {
-              "col1": {
-                "type": "text",
-                "content": "Use the buttons to move the blind to the desired TOP position.",
-                "width": "30%"
-              },
-              "col2": {
-                "width": "30%",
-                "type": "keypad"
-              }
+                "col2":
+                {
+                    "type": "icon-nav-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "goto": 2,
+                    "width": "15%",
+                    "keys": "enter"
+                }
             },
             {
-              "col1": {
-                "type": "text",
-                "content": "save as top position",
-                "width": "30%"
-              },
-              "col3": {
-                "width": "15%",
-                "type": "icon-button",
-                "icon": "icomoon:checkmark",
-                "keys": "enter",
-                "commands": {
-                  "commands": [
-                    "savepositiontop"
-                  ]
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Motor moved in the WRONG direction",
+                    "width": "30%"
                 },
-                "confirm": true
-              }
-            }
-          ],
-          "confirm": {
-            "img": "/app/images/jog.png",
-            "text": "Did the motor jog?"
-          },
-          "next": false,
-          "previous": false
+                "col2":
+                {
+                    "type": "icon-nav-button",
+                    "icon": "icomoon:cross",
+                    "class": "cross",
+                    "goto": 1,
+                    "width": "15%",
+                    "keys": "3 pagedown"
+                }
+            }],
+            "next": false,
+            "previous": false
         },
         {
-          "title": "Enter program mode",
-          "instructions": [
+            "title": "Switch direction",
+            "instructions": [
             {
-              "col1": {
-                "type": "text",
-                "content": "Skip setting BOTTOM limit.",
-                "width": "30%"
-              },
-              "col2": {
-                "type": "icon-nav-button",
-                "icon": "icomoon:cross",
-                "goto": -3,
-                "width": "20%",
-                "keys": "3 pagedown"
-              }
-            },
-            {
-              "col1": {
-                "width": "30%",
-                "type": "text",
-                "content": "Press button to set motor in programming mode for BOTTOM limit setting."
-              },
-              "col2": {
-                "width": "20%",
-                "type": "icon-button",
-                "icon": "icomoon:checkmark",
-                "commands": {
-                  "commands": [
-                    "startprogram"
-                  ]
+                "col1":
+                {
+                    "width": "30%",
+                    "type": "text",
+                    "content": "Press button to reverse the motor direction."
                 },
-                "keys": "enter",
-                "confirm": true
-              }
-            }
-          ],
-          "confirm": {
-            "img": "/app/images/jog.png",
-            "text": "Did the motor jog?"
-          },
-          "next": false,
-          "previous": false
+                "col2":
+                {
+                    "width": "20%",
+                    "type": "icon-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "commands":
+                    {
+                        "commands": ["startprogram", "reverse"],
+                        "delay": 2
+                    },
+                    "confirm": true,
+                    "keys": "enter"
+                }
+            }],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "Did the motor jog?"
+            },
+            "next": false,
+            "previous": false
         },
         {
-          "title": "Set bottom Limit",
-          "instructions": [
+            "title": "Set top Limit",
+            "instructions": [
             {
-              "col1": {
-                "type": "text",
-                "content": "Use the buttons to move the blind to the desired BOTTOM position.",
-                "width": "30%"
-              },
-              "col2": {
-                "width": "30%",
-                "type": "keypad"
-              }
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Use the buttons to move the blind to the desired top position.",
+                    "width": "30%"
+                },
+                "col2":
+                {
+                    "width": "30%",
+                    "type": "keypad"
+                }
             },
             {
-              "col1": {
-                "type": "text",
-                "content": "save as BOTTOM position",
-                "width": "30%"
-              },
-              "col3": {
-                "width": "15%",
-                "type": "icon-button",
-                "icon": "icomoon:checkmark",
-                "keys": "enter",
-                "commands": {
-                  "commands": [
-                    "savepositionbottom"
-                  ]
+                "col1":
+                {
+                    "type": "text",
+                    "content": "save as top position",
+                    "width": "30%"
                 },
-                "confirm": true
-              }
-            }
-          ],
-          "confirm": {
-            "img": "/app/images/jog.png",
-            "text": "Did the motor move to the top?",
-            "yes": -4
-          },
-          "next": false,
-          "previous": false
-        }
-      ]
+                "col3":
+                {
+                    "width": "15%",
+                    "type": "icon-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "keys": "enter",
+                    "commands":
+                    {
+                        "commands": ["savepositiontop"]
+                    },
+                    "confirm": true
+                }
+            }],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "Did the motor jog?"
+            },
+            "next": false,
+            "previous": false
+        },
+        {
+            "title": "Enter program mode",
+            "instructions": [
+            {
+                "col1":
+                {
+                    "width": "30%",
+                    "type": "text",
+                    "content": "Press button to set motor in programming mode for limit settings and checking the motor move direction."
+                },
+                "col2":
+                {
+                    "width": "20%",
+                    "type": "icon-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "commands":
+                    {
+                        "commands": ["startprogram"]
+                    },
+                    "keys": "enter",
+                    "confirm": true
+                }
+            }],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "Did the motor jog?"
+            },
+            "next": false,
+            "previous": false
+        },
+        {
+            "title": "Set bottom Limit",
+            "instructions": [
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Use the buttons to move the blind to the desired BOTTOM position.",
+                    "width": "30%"
+                },
+                "col2":
+                {
+                    "width": "30%",
+                    "type": "keypad"
+                }
+            },
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "save as BOTTOM position",
+                    "width": "30%"
+                },
+                "col3":
+                {
+                    "width": "15%",
+                    "type": "icon-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "keys": "enter",
+                    "commands":
+                    {
+                        "commands": ["savepositionbottom"]
+                    },
+                    "confirm": true
+                }
+            }],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "Did the motor move to the top?"
+            },
+            "next": false,
+            "previous": false
+        },
+        {
+            "title": "Test blinds",
+            "instructions": [
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Move the blind to check whether top and bottom positions are correct."
+                }
+            },
+            {
+                "col1":
+                {
+                    "width": "30%"
+                },
+                "col2":
+                {
+                    "width": "30%",
+                    "type": "keypad"
+                }
+            },
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Positions are correct. Program a new blind.",
+                    "width": "30%"
+                },
+                "col2":
+                {
+                    "type": "icon-nav-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "goto": 5,
+                    "width": "15%",
+                    "keys": "enter"
+                }
+            },
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Positions are NOT correct.",
+                    "width": "30%"
+                },
+                "col2":
+                {
+                    "type": "icon-nav-button",
+                    "icon": "icomoon:cross",
+                    "class": "cross",
+                    "goto": 1,
+                    "width": "15%",
+                    "keys": "3 pagedown"
+                }
+            }],
+            "next": false,
+            "previous": false
+        },
+        {
+            "title": "Enter program mode",
+            "instructions": [
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Skip setting TOP limit.",
+                    "width": "30%"
+                },
+                "col2":
+                {
+                    "type": "icon-nav-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "cross",
+                    "goto": 2,
+                    "width": "20%",
+                    "keys": "3 pagedown"
+                }
+            },
+            {
+                "col1":
+                {
+                    "width": "30%",
+                    "type": "text",
+                    "content": "Press button to set motor in programming mode for TOP limit setting."
+                },
+                "col2":
+                {
+                    "width": "20%",
+                    "type": "icon-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "commands":
+                    {
+                        "commands": ["startprogram"]
+                    },
+                    "keys": "enter",
+                    "confirm": true
+                }
+            }],
+            "buttons": [],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "Did the motor jog?"
+            },
+            "next": false,
+            "previous": false
+        },
+        {
+            "title": "Set top Limit",
+            "instructions": [
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Use the buttons to move the blind to the desired TOP position.",
+                    "width": "30%"
+                },
+                "col2":
+                {
+                    "width": "30%",
+                    "type": "keypad"
+                }
+            },
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "save as top position",
+                    "width": "30%"
+                },
+                "col3":
+                {
+                    "width": "15%",
+                    "type": "icon-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "keys": "enter",
+                    "commands":
+                    {
+                        "commands": ["savepositiontop"]
+                    },
+                    "confirm": true
+                }
+            }],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "Did the motor jog?"
+            },
+            "next": false,
+            "previous": false
+        },
+        {
+            "title": "Enter program mode",
+            "instructions": [
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Skip setting BOTTOM limit.",
+                    "width": "30%"
+                },
+                "col2":
+                {
+                    "type": "icon-nav-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "cross",
+                    "goto": -3,
+                    "width": "20%",
+                    "keys": "3 pagedown"
+                }
+            },
+            {
+                "col1":
+                {
+                    "width": "30%",
+                    "type": "text",
+                    "content": "Press button to set motor in programming mode for BOTTOM limit setting."
+                },
+                "col2":
+                {
+                    "width": "20%",
+                    "type": "icon-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "commands":
+                    {
+                        "commands": ["startprogram"]
+                    },
+                    "keys": "enter",
+                    "confirm": true
+                }
+            }],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "Did the motor jog?"
+            },
+            "next": false,
+            "previous": false
+        },
+        {
+            "title": "Set bottom Limit",
+            "instructions": [
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Use the buttons to move the blind to the desired BOTTOM position.",
+                    "width": "30%"
+                },
+                "col2":
+                {
+                    "width": "30%",
+                    "type": "keypad"
+                }
+            },
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "save as BOTTOM position",
+                    "width": "30%"
+                },
+                "col3":
+                {
+                    "width": "15%",
+                    "type": "icon-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "keys": "enter",
+                    "commands":
+                    {
+                        "commands": ["savepositionbottom"]
+                    },
+                    "confirm": true
+                }
+            }],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "Did the motor move to the top?",
+                "yes": -4
+            },
+            "next": false,
+            "previous": false
+        }]
     },
     {
-      "title": "Twist blinds",
-      "steps": [
+        "title": "Twist blinds",
+        "steps": [
         {
-          "title": "Connect",
-          "instructions": [
+            "title": "Connect",
+            "instructions": [
             {
-              "col1": {
-                "type": "text",
-                "content": "1.",
-                "width": "30%"
-              },
-              "col2": {
-                "type": "text",
-                "content": "2.",
-                "width": "30%"
-              },
-              "col3": {
-                "type": "text",
-                "content": "3.",
-                "width": "30%"
-              }
-            },
-            {
-              "col1": {
-                "type": "image",
-                "src": "/app/images/press_hold_blind_button.png",
-                "width": "30%"
-              },
-              "col2": {
-                "width": "20%",
-                "type": "icon-button",
-                "icon": "icomoon:checkmark",
-                "commands": {
-                  "commands": [
-                    "networkadd",
-                    "group1add"
-                  ],
-                  "delay": 1
+                "col1":
+                {
+                    "type": "text",
+                    "content": "1.",
+                    "width": "30%"
                 },
-                "keys": "enter",
-                "confirm": true
-              },
-              "col3": {
-                "type": "image",
-                "src": "/app/images/release_blind_button.png",
-                "width": "30%"
-              }
-            }
-          ],
-          "confirm": {
-            "img": "/app/images/jog.png",
-            "text": "Did the motor jog?"
-          },
-          "previous": false,
-          "next": false
-        },
-        {
-          "title": "Init",
-          "instructions": [
-            {
-              "col1": {
-                "width": "30%",
-                "type": "text",
-                "content": "This will reset the motor and reprogram it as a roller blind. The motor should jog two times"
-              },
-              "col2": {
-                "width": "20%",
-                "type": "icon-button",
-                "caption": "Motor Init",
-                "icon": "icomoon:checkmark",
-                "commands": {
-                  "commands": [
-                    "reset",
-                    "roller"
-                  ],
-                  "delay": 4
+                "col2":
+                {
+                    "type": "text",
+                    "content": "2.",
+                    "width": "30%"
                 },
-                "keys": "enter",
-                "confirm": true
-              }
-            }
-          ],
-          "confirm": {
-            "img": "/app/images/jog.png",
-            "text": "After 5 seconds: Did the motor jog two times ?"
-          },
-          "previous": false,
-          "next": false
-        },
-        {
-          "title": "Enter program mode",
-          "instructions": [
+                "col3":
+                {
+                    "type": "text",
+                    "content": "3.",
+                    "width": "30%"
+                }
+            },
             {
-              "col1": {
-                "width": "30%",
-                "type": "text",
-                "content": "Press button to set motor in programming mode for limit settings and checking the motor move direction."
-              },
-              "col2": {
-                "width": "20%",
-                "type": "icon-button",
-                "icon": "icomoon:checkmark",
-                "commands": {
-                  "commands": [
-                    "startprogram"
-                  ]
+                "col1":
+                {
+                    "type": "image",
+                    "src": "/app/images/press_hold_blind_button.png",
+                    "width": "30%"
                 },
-                "keys": "enter",
-                "confirm": true
-              }
-            }
-          ],
-          "buttons": [],
-          "confirm": {
-            "img": "/app/images/jog.png",
-            "text": "Did the motor jog?"
-          },
-          "next": false,
-          "previous": false
-        },
-        {
-          "title": "Blind direction",
-          "instructions": [
-            {
-              "col1": {
-                "type": "text",
-                "content": "Send a down or up command and check whether the blind moves in the correct direction."
-              }
-            },
-            {
-              "col1": {
-                "type": "text",
-                "content": "IMPORTANT: No limits are set. You can damage the blind when the motor keeps running up or downwards."
-              }
-            },
-            {
-              "col1": {
-                "width": "30%",
-                "type": "text",
-                "content": "Use the buttons to move the blind. Stop the blind by pressing any button while the blind is moving."
-              },
-              "col2": {
-                "width": "30%",
-                "type": "keypad"
-              }
-            },
-            {
-              "col1": {
-                "type": "text",
-                "content": "Motor moved in the CORRECT direction",
-                "width": "30%"
-              },
-              "col2": {
-                "type": "icon-nav-button",
-                "icon": "icomoon:checkmark",
-                "goto": 2,
-                "width": "12%",
-                "keys": "enter"
-              }
-            },
-            {
-              "col1": {
-                "type": "text",
-                "content": "Motor moved in the WRONG direction",
-                "width": "30%"
-              },
-              "col2": {
-                "type": "icon-nav-button",
-                "icon": "icomoon:cross",
-                "goto": 1,
-                "width": "12%",
-                "keys": "3 pagedown"
-              }
-            }
-          ],
-          "next": false,
-          "previous": false
-        },
-        {
-          "title": "Switch direction",
-          "instructions": [
-            {
-              "col1": {
-                "width": "30%",
-                "type": "text",
-                "content": "Press button to reverse the motor direction."
-              },
-              "col2": {
-                "width": "20%",
-                "type": "icon-button",
-                "icon": "icomoon:checkmark",
-                "commands": {
-                  "commands": [
-                    "startprogram",
-                    "reverse"
-                  ],
-                  "delay": 2
+                "col2":
+                {
+                    "width": "20%",
+                    "type": "icon-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "commands":
+                    {
+                        "commands": ["networkadd", "group1add"],
+                        "delay": 1
+                    },
+                    "keys": "enter",
+                    "confirm": true
                 },
-                "confirm": true,
-                "keys": "enter"
-              }
-            }
-          ],
-          "confirm": {
-            "img": "/app/images/jog.png",
-            "text": "Did the motor jog?"
-          },
-          "next": false,
-          "previous": false
+                "col3":
+                {
+                    "type": "image",
+                    "src": "/app/images/release_blind_button.png",
+                    "width": "30%"
+                }
+            }],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "Did the motor jog?"
+            },
+            "previous": false,
+            "next": false
         },
         {
-          "title": "Set top Limit",
-          "instructions": [
+            "title": "Init",
+            "instructions": [
             {
-              "col1": {
-                "type": "text",
-                "content": "Use the buttons to move the blind to the desired top position.",
-                "width": "30%"
-              },
-              "col2": {
-                "width": "30%",
-                "type": "keypad"
-              }
-            },
-            {
-              "col1": {
-                "type": "text",
-                "content": "save as top position",
-                "width": "30%"
-              },
-              "col3": {
-                "width": "15%",
-                "type": "icon-button",
-                "icon": "icomoon:checkmark",
-                "keys": "enter",
-                "commands": {
-                  "commands": [
-                    "savepositiontop"
-                  ]
+                "col1":
+                {
+                    "width": "30%",
+                    "type": "text",
+                    "content": "This will reset the motor and reprogram it as a roller blind. The motor should jog two times"
                 },
-                "confirm": true
-              }
-            }
-          ],
-          "confirm": {
-            "img": "/app/images/jog.png",
-            "text": "Did the motor jog?"
-          },
-          "next": false,
-          "previous": false
+                "col2":
+                {
+                    "width": "20%",
+                    "type": "icon-button",
+                    "caption": "Motor Init",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "commands":
+                    {
+                        "commands": ["reset", "roller"],
+                        "delay": 4
+                    },
+                    "keys": "enter",
+                    "confirm": true
+                }
+            }],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "After 5 seconds: Did the motor jog two times ?"
+            },
+            "previous": false,
+            "next": false
         },
         {
-          "title": "Enter program mode",
-          "instructions": [
+            "title": "Enter program mode",
+            "instructions": [
             {
-              "col1": {
-                "width": "30%",
-                "type": "text",
-                "content": "Press button to set motor in programming mode for limit settings and checking the motor move direction."
-              },
-              "col2": {
-                "width": "20%",
-                "type": "icon-button",
-                "icon": "icomoon:checkmark",
-                "commands": {
-                  "commands": [
-                    "startprogram"
-                  ]
+                "col1":
+                {
+                    "width": "30%",
+                    "type": "text",
+                    "content": "Press button to set motor in programming mode for limit settings and checking the motor move direction."
                 },
-                "keys": "enter",
-                "confirm": true
-              }
-            }
-          ],
-          "confirm": {
-            "img": "/app/images/jog.png",
-            "text": "Did the motor jog?"
-          },
-          "next": false,
-          "previous": false
+                "col2":
+                {
+                    "width": "20%",
+                    "type": "icon-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "commands":
+                    {
+                        "commands": ["startprogram"]
+                    },
+                    "keys": "enter",
+                    "confirm": true
+                }
+            }],
+            "buttons": [],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "Did the motor jog?"
+            },
+            "next": false,
+            "previous": false
         },
         {
-          "title": "Set bottom Limit",
-          "instructions": [
+            "title": "Blind direction",
+            "instructions": [
             {
-              "col1": {
-                "type": "text",
-                "content": "Use the buttons to move the blind to the desired BOTTOM position.",
-                "width": "30%"
-              },
-              "col2": {
-                "width": "30%",
-                "type": "keypad"
-              }
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Send a down or up command and check whether the blind moves in the correct direction."
+                }
             },
             {
-              "col1": {
-                "type": "text",
-                "content": "save as BOTTOM position",
-                "width": "30%"
-              },
-              "col3": {
-                "width": "15%",
-                "type": "icon-button",
-                "icon": "icomoon:checkmark",
-                "keys": "enter",
-                "commands": {
-                  "commands": [
-                    "savepositionbottom"
-                  ]
+                "col1":
+                {
+                    "type": "text",
+                    "content": "IMPORTANT: No limits are set. You can damage the blind when the motor keeps running up or downwards."
+                }
+            },
+            {
+                "col1":
+                {
+                    "width": "30%",
+                    "type": "text",
+                    "content": "Use the buttons to move the blind. Stop the blind by pressing any button while the blind is moving."
                 },
-                "confirm": true
-              }
-            }
-          ],
-          "confirm": {
-            "img": "/app/images/jog.png",
-            "text": "Did the motor move to the top?"
-          },
-          "next": false,
-          "previous": false
-        },
-        {
-          "title": "Enter program mode",
-          "instructions": [
+                "col2":
+                {
+                    "width": "30%",
+                    "type": "keypad"
+                }
+            },
             {
-              "col1": {
-                "width": "30%",
-                "type": "text",
-                "content": "Press button to set motor in programming mode for limit settings and checking the motor move direction."
-              },
-              "col2": {
-                "width": "20%",
-                "type": "icon-button",
-                "icon": "icomoon:checkmark",
-                "commands": {
-                  "commands": [
-                    "startprogram"
-                  ]
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Motor moved in the CORRECT direction",
+                    "width": "30%"
                 },
-                "keys": "enter",
-                "confirm": true
-              }
-            }
-          ],
-          "buttons": [],
-          "confirm": {
-            "img": "/app/images/jog.png",
-            "text": "Did the motor jog?"
-          },
-          "next": false,
-          "previous": false
-        },
-        {
-          "title": "Set slat position.",
-          "instructions": [
-            {
-              "col1": {
-                "type": "text",
-                "content": "Use the buttons to move the blind to the desired SLAT OPEN position.",
-                "width": "30%"
-              },
-              "col2": {
-                "width": "30%",
-                "type": "keypad"
-              }
+                "col2":
+                {
+                    "type": "icon-nav-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "goto": 2,
+                    "width": "15%",
+                    "keys": "enter"
+                }
             },
             {
-              "col1": {
-                "type": "text",
-                "content": "save as SLAT OPEN position",
-                "width": "30%"
-              },
-              "col3": {
-                "width": "15%",
-                "type": "icon-button",
-                "icon": "icomoon:checkmark",
-                "keys": "enter",
-                "commands": {
-                  "commands": [
-                    "saveslatopen"
-                  ]
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Motor moved in the WRONG direction",
+                    "width": "30%"
                 },
-                "confirm": true
-              }
-            }
-          ],
-          "confirm": {
-            "img": "/app/images/jog.png",
-            "text": "Did the motor jog?"
-          },
-          "next": false,
-          "previous": false
+                "col2":
+                {
+                    "type": "icon-nav-button",
+                    "icon": "icomoon:cross",
+                    "class": "cross",
+                    "goto": 1,
+                    "width": "15%",
+                    "keys": "3 pagedown"
+                }
+            }],
+            "next": false,
+            "previous": false
         },
         {
-          "title": "Test blinds",
-          "instructions": [
+            "title": "Switch direction",
+            "instructions": [
             {
-              "col1": {
-                "type": "text",
-                "content": "Move the blind to check whether top and bottom positions are correct."
-              }
-            },
-            {
-              "col1": {
-                "width": "30%"
-              },
-              "col2": {
-                "width": "30%",
-                "type": "keypad"
-              }
-            },
-            {
-              "col1": {
-                "type": "text",
-                "content": "Positions are correct. Program a new blind.",
-                "width": "30%"
-              },
-              "col2": {
-                "type": "icon-nav-button",
-                "icon": "icomoon:checkmark",
-                "goto": 5,
-                "width": "12%",
-                "keys": "enter"
-              }
-            },
-            {
-              "col1": {
-                "type": "text",
-                "content": "Positions are NOT correct.",
-                "width": "30%"
-              },
-              "col2": {
-                "type": "icon-nav-button",
-                "icon": "icomoon:cross",
-                "goto": 1,
-                "width": "12%",
-                "keys": "3 pagedown"
-              }
-            }
-          ],
-          "next": false,
-          "previous": false
-        },
-        {
-          "title": "Enter program mode",
-          "instructions": [
-            {
-              "col1": {
-                "type": "text",
-                "content": "Skip setting TOP limit.",
-                "width": "30%"
-              },
-              "col2": {
-                "type": "icon-nav-button",
-                "icon": "icomoon:cross",
-                "goto": 2,
-                "width": "20%",
-                "keys": "3 pagedown"
-              }
-            },
-            {
-              "col1": {
-                "width": "30%",
-                "type": "text",
-                "content": "Press button to set motor in programming mode for TOP limit setting."
-              },
-              "col2": {
-                "width": "20%",
-                "type": "icon-button",
-                "icon": "icomoon:checkmark",
-                "commands": {
-                  "commands": [
-                    "startprogram"
-                  ]
+                "col1":
+                {
+                    "width": "30%",
+                    "type": "text",
+                    "content": "Press button to reverse the motor direction."
                 },
-                "keys": "enter",
-                "confirm": true
-              }
-            }
-          ],
-          "buttons": [],
-          "confirm": {
-            "img": "/app/images/jog.png",
-            "text": "Did the motor jog?"
-          },
-          "next": false,
-          "previous": false
+                "col2":
+                {
+                    "width": "20%",
+                    "type": "icon-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "commands":
+                    {
+                        "commands": ["startprogram", "reverse"],
+                        "delay": 2
+                    },
+                    "confirm": true,
+                    "keys": "enter"
+                }
+            }],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "Did the motor jog?"
+            },
+            "next": false,
+            "previous": false
         },
         {
-          "title": "Set top Limit",
-          "instructions": [
+            "title": "Set top Limit",
+            "instructions": [
             {
-              "col1": {
-                "type": "text",
-                "content": "Use the buttons to move the blind to the desired TOP position.",
-                "width": "30%"
-              },
-              "col2": {
-                "width": "30%",
-                "type": "keypad"
-              }
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Use the buttons to move the blind to the desired top position.",
+                    "width": "30%"
+                },
+                "col2":
+                {
+                    "width": "30%",
+                    "type": "keypad"
+                }
             },
             {
-              "col1": {
-                "type": "text",
-                "content": "save as top position",
-                "width": "30%"
-              },
-              "col3": {
-                "width": "15%",
-                "type": "icon-button",
-                "icon": "icomoon:checkmark",
-                "keys": "enter",
-                "commands": {
-                  "commands": [
-                    "savepositiontop"
-                  ]
+                "col1":
+                {
+                    "type": "text",
+                    "content": "save as top position",
+                    "width": "30%"
                 },
-                "confirm": true
-              }
-            }
-          ],
-          "confirm": {
-            "img": "/app/images/jog.png",
-            "text": "Did the motor jog?"
-          },
-          "next": false,
-          "previous": false
+                "col3":
+                {
+                    "width": "15%",
+                    "type": "icon-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "keys": "enter",
+                    "commands":
+                    {
+                        "commands": ["savepositiontop"]
+                    },
+                    "confirm": true
+                }
+            }],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "Did the motor jog?"
+            },
+            "next": false,
+            "previous": false
         },
         {
-          "title": "Enter program mode",
-          "instructions": [
+            "title": "Enter program mode",
+            "instructions": [
             {
-              "col1": {
-                "type": "text",
-                "content": "Skip setting BOTTOM limit.",
-                "width": "30%"
-              },
-              "col2": {
-                "type": "icon-nav-button",
-                "icon": "icomoon:cross",
-                "goto": 2,
-                "width": "20%",
-                "keys": "3 pagedown"
-              }
-            },
-            {
-              "col1": {
-                "width": "30%",
-                "type": "text",
-                "content": "Press button to set motor in programming mode for BOTTOM limit setting."
-              },
-              "col2": {
-                "width": "20%",
-                "type": "icon-button",
-                "icon": "icomoon:checkmark",
-                "commands": {
-                  "commands": [
-                    "startprogram"
-                  ]
+                "col1":
+                {
+                    "width": "30%",
+                    "type": "text",
+                    "content": "Press button to set motor in programming mode for limit settings and checking the motor move direction."
                 },
-                "keys": "enter",
-                "confirm": true
-              }
-            }
-          ],
-          "confirm": {
-            "img": "/app/images/jog.png",
-            "text": "Did the motor jog?"
-          },
-          "next": false,
-          "previous": false
+                "col2":
+                {
+                    "width": "20%",
+                    "type": "icon-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "commands":
+                    {
+                        "commands": ["startprogram"]
+                    },
+                    "keys": "enter",
+                    "confirm": true
+                }
+            }],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "Did the motor jog?"
+            },
+            "next": false,
+            "previous": false
         },
         {
-          "title": "Set bottom Limit",
-          "instructions": [
+            "title": "Set bottom Limit",
+            "instructions": [
             {
-              "col1": {
-                "type": "text",
-                "content": "Use the buttons to move the blind to the desired BOTTOM position.",
-                "width": "30%"
-              },
-              "col2": {
-                "width": "30%",
-                "type": "keypad"
-              }
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Use the buttons to move the blind to the desired BOTTOM position.",
+                    "width": "30%"
+                },
+                "col2":
+                {
+                    "width": "30%",
+                    "type": "keypad"
+                }
             },
             {
-              "col1": {
-                "type": "text",
-                "content": "save as BOTTOM position",
-                "width": "30%"
-              },
-              "col3": {
-                "width": "15%",
-                "type": "icon-button",
-                "icon": "icomoon:checkmark",
-                "keys": "enter",
-                "commands": {
-                  "commands": [
-                    "savepositionbottom"
-                  ]
+                "col1":
+                {
+                    "type": "text",
+                    "content": "save as BOTTOM position",
+                    "width": "30%"
                 },
-                "confirm": true
-              }
-            }
-          ],
-          "confirm": {
-            "img": "/app/images/jog.png",
-            "text": "Did the motor move to the top?",
-            "no": -1
-          },
-          "next": false,
-          "previous": false
+                "col3":
+                {
+                    "width": "15%",
+                    "type": "icon-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "keys": "enter",
+                    "commands":
+                    {
+                        "commands": ["savepositionbottom"]
+                    },
+                    "confirm": true
+                }
+            }],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "Did the motor move to the top?"
+            },
+            "next": false,
+            "previous": false
+        },
+
+        {
+            "title": "Set slat position.",
+            "instructions": [
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Use the buttons to move the blind to the desired SLAT OPEN position.",
+                    "width": "30%"
+                },
+                "col2":
+                {
+                    "width": "30%",
+                    "type": "keypad"
+                }
+            },
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "save as SLAT OPEN position",
+                    "width": "30%"
+                },
+                "col3":
+                {
+                    "width": "15%",
+                    "type": "icon-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "keys": "enter",
+                    "commands":
+                    {
+                        "commands": ["saveslatopen"]
+                    },
+                    "confirm": true
+                }
+            }],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "Did the motor jog?"
+            },
+            "next": false,
+            "previous": false
+        },
+
+        {
+            "title": "Test blinds",
+            "instructions": [
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Move the blind to check whether top and bottom positions are correct."
+                }
+            },
+            {
+                "col1":
+                {
+                    "width": "30%"
+                },
+                "col2":
+                {
+                    "width": "30%",
+                    "type": "keypad"
+                }
+            },
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Positions are correct. Program a new blind.",
+                    "width": "30%"
+                },
+                "col2":
+                {
+                    "type": "icon-nav-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "goto": 5,
+                    "width": "15%",
+                    "keys": "enter"
+                }
+            },
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Positions are NOT correct.",
+                    "width": "30%"
+                },
+                "col2":
+                {
+                    "type": "icon-nav-button",
+                    "icon": "icomoon:cross",
+                    "class": "cross",
+                    "goto": 1,
+                    "width": "15%",
+                    "keys": "3 pagedown"
+                }
+            }],
+            "next": false,
+            "previous": false
         },
         {
-          "title": "Enter program mode",
-          "instructions": [
+            "title": "Enter program mode",
+            "instructions": [
             {
-              "col1": {
-                "type": "text",
-                "content": "Skip setting SLAT OPEN limit.",
-                "width": "30%"
-              },
-              "col2": {
-                "type": "icon-nav-button",
-                "icon": "icomoon:cross",
-                "goto": -5,
-                "width": "20%",
-                "keys": "3 pagedown"
-              }
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Skip setting TOP limit.",
+                    "width": "30%"
+                },
+                "col2":
+                {
+                    "type": "icon-nav-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "cross",
+                    "goto": 2,
+                    "width": "20%",
+                    "keys": "3 pagedown"
+                }
             },
             {
-              "col1": {
-                "width": "30%",
-                "type": "text",
-                "content": "Press button to set motor in programming mode for SLAT OPEN limit setting."
-              },
-              "col2": {
-                "width": "20%",
-                "type": "icon-button",
-                "icon": "icomoon:checkmark",
-                "commands": {
-                  "commands": [
-                    "startprogram"
-                  ]
+                "col1":
+                {
+                    "width": "30%",
+                    "type": "text",
+                    "content": "Press button to set motor in programming mode for TOP limit setting."
                 },
-                "keys": "enter",
-                "confirm": true
-              }
-            }
-          ],
-          "confirm": {
-            "img": "/app/images/jog.png",
-            "text": "Did the motor jog?"
-          },
-          "next": false,
-          "previous": false
+                "col2":
+                {
+                    "width": "20%",
+                    "type": "icon-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "commands":
+                    {
+                        "commands": ["startprogram"]
+                    },
+                    "keys": "enter",
+                    "confirm": true
+                }
+            }],
+            "buttons": [],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "Did the motor jog?"
+            },
+            "next": false,
+            "previous": false
         },
         {
-          "title": "Set slat position.",
-          "instructions": [
+            "title": "Set top Limit",
+            "instructions": [
             {
-              "col1": {
-                "type": "text",
-                "content": "Use the buttons to move the blind to the desired SLAT OPEN position.",
-                "width": "30%"
-              },
-              "col2": {
-                "width": "30%",
-                "type": "keypad"
-              }
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Use the buttons to move the blind to the desired TOP position.",
+                    "width": "30%"
+                },
+                "col2":
+                {
+                    "width": "30%",
+                    "type": "keypad"
+                }
             },
             {
-              "col1": {
-                "type": "text",
-                "content": "save as SLAT OPEN position",
-                "width": "30%"
-              },
-              "col3": {
-                "width": "15%",
-                "type": "icon-button",
-                "icon": "icomoon:checkmark",
-                "keys": "enter",
-                "commands": {
-                  "commands": [
-                    "saveslatopen"
-                  ]
+                "col1":
+                {
+                    "type": "text",
+                    "content": "save as top position",
+                    "width": "30%"
                 },
-                "confirm": true
-              }
-            }
-          ],
-          "confirm": {
-            "img": "/app/images/jog.png",
-            "text": "Did the motor jog?",
-            "yes": -6
-          },
-          "next": false,
-          "previous": false
-        }
-      ]
-    }
-  ]
+                "col3":
+                {
+                    "width": "15%",
+                    "type": "icon-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "keys": "enter",
+                    "commands":
+                    {
+                        "commands": ["savepositiontop"]
+                    },
+                    "confirm": true
+                }
+            }],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "Did the motor jog?"
+            },
+            "next": false,
+            "previous": false
+        },
+        {
+            "title": "Enter program mode",
+            "instructions": [
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Skip setting BOTTOM limit.",
+                    "width": "30%"
+                },
+                "col2":
+                {
+                    "type": "icon-nav-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "cross",
+                    "goto": 2,
+                    "width": "20%",
+                    "keys": "3 pagedown"
+                }
+            },
+            {
+                "col1":
+                {
+                    "width": "30%",
+                    "type": "text",
+                    "content": "Press button to set motor in programming mode for BOTTOM limit setting."
+                },
+                "col2":
+                {
+                    "width": "20%",
+                    "type": "icon-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "commands":
+                    {
+                        "commands": ["startprogram"]
+                    },
+                    "keys": "enter",
+                    "confirm": true
+                }
+            }],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "Did the motor jog?"
+            },
+            "next": false,
+            "previous": false
+        },
+        {
+            "title": "Set bottom Limit",
+            "instructions": [
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Use the buttons to move the blind to the desired BOTTOM position.",
+                    "width": "30%"
+                },
+                "col2":
+                {
+                    "width": "30%",
+                    "type": "keypad"
+                }
+            },
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "save as BOTTOM position",
+                    "width": "30%"
+                },
+                "col3":
+                {
+                    "width": "15%",
+                    "type": "icon-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "keys": "enter",
+                    "commands":
+                    {
+                        "commands": ["savepositionbottom"]
+                    },
+                    "confirm": true
+                }
+            }],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "Did the motor move to the top?",
+                "no": -1
+            },
+            "next": false,
+            "previous": false
+        },
+        {
+            "title": "Enter program mode",
+            "instructions": [
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Skip setting SLAT OPEN limit.",
+                    "width": "30%"
+                },
+                "col2":
+                {
+                    "type": "icon-nav-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "cross",
+                    "goto": -5,
+                    "width": "20%",
+                    "keys": "3 pagedown"
+                }
+            },
+            {
+                "col1":
+                {
+                    "width": "30%",
+                    "type": "text",
+                    "content": "Press button to set motor in programming mode for SLAT OPEN limit setting."
+                },
+                "col2":
+                {
+                    "width": "20%",
+                    "type": "icon-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "commands":
+                    {
+                        "commands": ["startprogram"]
+                    },
+                    "keys": "enter",
+                    "confirm": true
+                }
+            }],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "Did the motor jog?"
+            },
+            "next": false,
+            "previous": false
+        },
+        {
+            "title": "Set slat position.",
+            "instructions": [
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "Use the buttons to move the blind to the desired SLAT OPEN position.",
+                    "width": "30%"
+                },
+                "col2":
+                {
+                    "width": "30%",
+                    "type": "keypad"
+                }
+            },
+            {
+                "col1":
+                {
+                    "type": "text",
+                    "content": "save as SLAT OPEN position",
+                    "width": "30%"
+                },
+                "col3":
+                {
+                    "width": "15%",
+                    "type": "icon-button",
+                    "icon": "icomoon:checkmark",
+                    "class": "ok",
+                    "keys": "enter",
+                    "commands":
+                    {
+                        "commands": ["saveslatopen"]
+                    },
+                    "confirm": true
+                }
+            }],
+            "confirm":
+            {
+                "img": "/app/images/jog.png",
+                "text": "Did the motor jog?",
+                "yes": -6
+            },
+            "next": false,
+            "previous": false
+        }]
+    }]
 }

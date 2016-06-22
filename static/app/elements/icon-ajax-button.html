@@ -5,7 +5,7 @@
 <link rel="import" href="../bower_components/iron-a11y-keys/iron-a11y-keys.html">
 <link rel="import" href="icomoon-polymer/icomoon-iconset-svg.html">
 <link rel="import" href="nd-button-behaviour.html">
-<link rel="import" href="../styles/shared.html" />
+<link rel="import" href="../styles/shared-styles.html" />
 <!-- <link rel="import" href="../styles/app-theme.html" /> -->
 <dom-module id="icon-ajax-button">
     <template>
@@ -19,6 +19,12 @@
                 height: auto;
             }
 
+            paper-icon-button.ok {
+                color: var(--icon-ok-color) !important;
+            }
+            paper-icon-button.cross {
+                color: var(--icon-cross-color) !important;
+            }
             .border {
                 width: 100%;
                 border-width: 2px;
@@ -33,7 +39,7 @@
 
         <iron-ajax id="sendCommand" url="/nordic" method="POST" content-type="application/json"></iron-ajax>
         <div class="border">
-            <paper-icon-button noink class="btn" id="btn" icon="[[data.icon]]" raised on-tap="send"></paper-icon-button>
+            <paper-icon-button noink class$="btn [[data.class]]" id="btn" icon="[[data.icon]]" raised on-tap="send"></paper-icon-button>
         </div>
 
 

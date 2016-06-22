@@ -3,7 +3,7 @@
 <link rel="import" href="icomoon-polymer/icomoon-iconset-svg.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="nd-button-behaviour.html">
-<link rel="import" href="../styles/shared.html" />
+<link rel="import" href="../styles/shared-styles.html" />
 <dom-module id="icon-nav-button">
     <template>
         <style include="shared-styles"></style>
@@ -13,6 +13,13 @@
                 --paper-icon-button-ink-color: var(--icon-background-color);
                 width: 100%;
                 height: auto;
+            }
+
+            paper-icon-button.ok {
+                color: var(--icon-ok-color) !important;
+            }
+            paper-icon-button.cross {
+                color: var(--icon-cross-color) !important;
             }
 
             .border {
@@ -27,7 +34,7 @@
         </iron-a11y-keys>
         <!-- local DOM goes here -->
         <div class="border">
-            <paper-icon-button noink class="btn" id="btn" icon="[[data.icon]]" raised on-tap="go"></paper-icon-button>
+            <paper-icon-button noink class$="btn [[data.class]]" id="btn" icon="[[data.icon]]" raised on-tap="go"></paper-icon-button>
         </div>
     </template>
     <script>
@@ -37,7 +44,8 @@
             properties: {
                 data: {
                     type: Object,
-                    value: {}
+                    value: {
+                    }
                 },
                 active: {
                     type: Boolean,
