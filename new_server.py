@@ -1,6 +1,7 @@
 import argparse
 import asyncio
 import concurrent
+import json
 import time
 
 import aiohttp_jinja2
@@ -25,7 +26,7 @@ SERIAL_SPEED = 38400
 SLEEP_BETWEEN_COMMANDS = 2
 
 lgr = logging.getLogger(__name__)
-lgr.setLevel(logging.ERROR)
+lgr.setLevel(logging.DEBUG)
 
 # ch = logging.StreamHandler()
 # ch.setLevel(logging.DEBUG)
@@ -57,7 +58,7 @@ def get_byte_async():
 def get_and_print():
     while 1:
         b = yield from get_byte_async()
-        msg = "from nordic: {}".format(repr(b))
+        msg = {"from": repr(b)}
         lgr.info(msg)
         send_socket_message(msg)
 
@@ -67,7 +68,7 @@ task = asyncio.Task(get_and_print())
 
 def send_socket_message(message):
     for ws in app['sockets']:
-        ws.send_str(message)
+        ws.send_str(json.dumps(message))
 
 
 # handlers.
@@ -89,7 +90,7 @@ def send_nordic(request):
                 lgr.exception("writing to serial port failure.")
                 return web.Response(text="Writing to blind went wrong. Please check cables and USB dongle")
             # send_socket_message("sending: {}".format(upstring))
-            msg = "to nordic: {} {}".format(cmd, upstring)
+            msg = {"to": upstring}  # "to nordic: {} {}".format(cmd, upstring)
             send_socket_message(msg)
             lgr.info(msg)
             #
@@ -109,28 +110,50 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--serialport")
 args = parser.parse_args()
 
-MAXTRIES = 20
-TRY = 1
 TRYDELAY = 10
 SERIAL_PORT = args.serialport
 
-# setup the serial port.
-if SERIAL_PORT != "-1":
+s = Serial()
+s.port = SERIAL_PORT
+s.baudrate = SERIAL_SPEED
+
+
+def connect():
     lgr.error("Connecting to serial port: {}".format(SERIAL_PORT))
+    attempt = 1
     while True:
-        try:
-            lgr.error("Connecting to serial port. Attempt: {}".format(TRY))
-            s = Serial(SERIAL_PORT, SERIAL_SPEED)
-            break
-        except SerialException:
-            lgr.exception("serial port opening problem.")
-        if TRY > MAXTRIES:
-            lgr.error("maximum tries exceeded.")
-            raise UserWarning("maximum tries exceeded.")
-        time.sleep(TRYDELAY)
-        TRY += 1
-        # else:
-        #     s = FakeSerial()
+        if s.is_open:
+            pass
+        else:
+            try:
+                lgr.error("Connecting to serial port. Attempt: {}".format(attempt))
+                s.open()
+                send_socket_message({"nordic": "Connected"})
+            except SerialException:
+                lgr.exception("serial port opening problem.")
+                send_socket_message({"nordic": "Not connected"})
+        yield from asyncio.sleep(TRYDELAY)
+
+
+task = asyncio.Task(connect())
+
+# setup the serial port.
+# if SERIAL_PORT != "-1":
+#     lgr.error("Connecting to serial port: {}".format(SERIAL_PORT))
+#     while True:
+#         try:
+#             lgr.error("Connecting to serial port. Attempt: {}".format(TRY))
+#             s = Serial(SERIAL_PORT, SERIAL_SPEED)
+#             break
+#         except SerialException:
+#             lgr.exception("serial port opening problem.")
+#         if TRY > MAXTRIES:
+#             lgr.error("maximum tries exceeded.")
+#             raise UserWarning("maximum tries exceeded.")
+#         time.sleep(TRYDELAY)
+#         TRY += 1
+#         # else:
+#         #     s = FakeSerial()
 
 # create the app instance and get the async loop.
 app = web.Application()
@@ -139,10 +162,10 @@ aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
 
 # create some routes.
 app.router.add_route('POST', '/nordic', send_nordic)
-# app.router.add_route("GET", '/app/', view_factory('/', 'static/app/index.html'))
 app.router.add_static("/app/", "static/app/")
 app.router.add_route("GET", '/site/{lang}/', index_handler)
 # add the websocket address
+# http://localhost:8080/app/ws.html
 app.router.add_route('GET', '/ws', websocket_handler)
 # keep a list with all websocket connections.
 app['sockets'] = []
@@ -153,6 +176,3 @@ try:
     web.run_app(app)
 except Exception as e:
     lgr.exception("Some error has occurred.")
-
-
-# http://localhost:8080/app/ws.html
