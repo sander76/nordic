@@ -7,17 +7,14 @@
             properties: {
                 protocol: {
                     type: String
-                },
-                url: {
-                    type: String
                 }
             },
-            ready: function() {
-                this.socket = new WebSocket(this.url);
-                this.socket.onerror = this.onError.bind(this);
-                this.socket.onopen = this.onOpen.bind(this);
-                this.socket.onclose = this.onClose.bind(this);
-                this.socket.onmessage = this.onMessage.bind(this);
+            connect:function(url){
+              this.socket = new WebSocket(url);
+              this.socket.onerror = this.onError.bind(this);
+              this.socket.onopen = this.onOpen.bind(this);
+              this.socket.onclose = this.onClose.bind(this);
+              this.socket.onmessage = this.onMessage.bind(this);
             },
             onError: function(error) {
                 console.log("error");

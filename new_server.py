@@ -41,10 +41,12 @@ lgr.addHandler(fh)
 
 
 def get_byte():
-    data = bytearray(s.read(1))
-    time.sleep(0.3)
-    data += bytearray(s.read(s.inWaiting()))
-    return data
+    if s.is_open:
+        data = bytearray(s.read(1))
+        time.sleep(0.3)
+        data += bytearray(s.read(s.inWaiting()))
+        return data
+    
 
 
 # Runs blocking function in executor, yielding the result

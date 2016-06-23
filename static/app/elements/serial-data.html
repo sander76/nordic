@@ -23,7 +23,7 @@
             </paper-item>
 
         </template> -->
-        <ws-element id="incoming" protocol="echo-protocol" url="ws:localhost:8080/ws"></ws-element>
+        <ws-element id="incoming" protocol="echo-protocol"></ws-element>
     </template>
     <script>
         Polymer({
@@ -44,11 +44,12 @@
             },
             ready: function() {
                 var self = this;
+                var url = "ws:" + location.host + "/ws";
+                this.$.incoming.connect(url);
+
                 this.$.incoming.addEventListener('onmessage', function(message) {
                     var msg = JSON.parse(message.detail);
                     this.nordic = message.nordic || this.nordic;
-
-
                     //self.push('serialdata', message.detail);
                 });
                 this.$.incoming.addEventListener('onopen', function(message) {
@@ -60,7 +61,11 @@
                 this.$.incoming.addEventListener('onclose', function(message) {
                     self.set('nordic', 'Unknown');
                 });
-            }
+            },
+            // getUrl:function(){
+            //
+            //   return url;
+            // }
 
         });
     </script>
