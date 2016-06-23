@@ -49,7 +49,8 @@
 
                 this.$.incoming.addEventListener('onmessage', function(message) {
                     var msg = JSON.parse(message.detail);
-                    this.nordic = message.nordic || this.nordic;
+                    self.set('nordic',msg.nordic || this.nordic);
+                    
                     //self.push('serialdata', message.detail);
                 });
                 this.$.incoming.addEventListener('onopen', function(message) {

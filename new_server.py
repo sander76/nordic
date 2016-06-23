@@ -28,15 +28,15 @@ SLEEP_BETWEEN_COMMANDS = 2
 lgr = logging.getLogger(__name__)
 lgr.setLevel(logging.DEBUG)
 
-# ch = logging.StreamHandler()
-# ch.setLevel(logging.DEBUG)
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
 
 fh = logging.handlers.RotatingFileHandler("logs/nordic.log", 'a', 10000, 5)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 fh.setFormatter(formatter)
 fh.setLevel(logging.ERROR)
 
-# lgr.addHandler(ch)
+lgr.addHandler(ch)
 lgr.addHandler(fh)
 
 
@@ -46,7 +46,6 @@ def get_byte():
         time.sleep(0.3)
         data += bytearray(s.read(s.inWaiting()))
         return data
-    
 
 
 # Runs blocking function in executor, yielding the result
@@ -125,14 +124,16 @@ def connect():
     attempt = 1
     while True:
         if s.is_open:
-            pass
+            send_socket_message({"nordic": "Connected"})
         else:
             try:
                 lgr.error("Connecting to serial port. Attempt: {}".format(attempt))
                 s.open()
+                lgr.error("****************** Connected **************************")
                 send_socket_message({"nordic": "Connected"})
             except SerialException:
                 lgr.exception("serial port opening problem.")
+                attempt += 1
                 send_socket_message({"nordic": "Not connected"})
         yield from asyncio.sleep(TRYDELAY)
 
