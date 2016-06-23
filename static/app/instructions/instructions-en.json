@@ -423,7 +423,7 @@
                 "col2":
                 {
                     "type": "icon-nav-button",
-                    "icon": "icomoon:checkmark",
+                    "icon": "icomoon:cross",
                     "class": "cross",
                     "goto": 2,
                     "width": "15%",
@@ -518,7 +518,7 @@
                 "col2":
                 {
                     "type": "icon-nav-button",
-                    "icon": "icomoon:checkmark",
+                    "icon": "icomoon:cross",
                     "class": "cross",
                     "goto": -3,
                     "width": "15%",
@@ -1068,7 +1068,7 @@
                 "col2":
                 {
                     "type": "icon-nav-button",
-                    "icon": "icomoon:checkmark",
+                    "icon": "icomoon:cross",
                     "class": "cross",
                     "goto": 2,
                     "width": "15%",
@@ -1163,7 +1163,7 @@
                 "col2":
                 {
                     "type": "icon-nav-button",
-                    "icon": "icomoon:checkmark",
+                    "icon": "icomoon:cross",
                     "class": "cross",
                     "goto": 2,
                     "width": "15%",
