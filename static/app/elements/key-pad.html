@@ -38,25 +38,23 @@
         </iron-a11y-keys>
         <!-- local DOM goes here -->
         <iron-ajax id="sendCommand" url="/nordic" method="POST" content-type="application/json"></iron-ajax>
-        <!-- <object id="remote" data="images/remote_blank.svg" type="image/svg+xml"></object> -->
         <div class="vertical layout">
             <div class="horizontal layout">
                 <div class="border">
                     <paper-icon-button noink class="btn" id="btn" icon="icomoon:pv-open" on-tap="handleOpen"></paper-icon-button>
                 </div>
                 <div class="border">
-                    <paper-icon-button noink  class="btn" id="btn" icon="icomoon:pv-up" on-tap="handleTiltup"></paper-icon-button>
+                    <paper-icon-button noink class="btn" id="btn" icon="icomoon:pv-up" on-tap="handleTiltup"></paper-icon-button>
                 </div>
             </div>
             <div class="horizontal layout">
                 <div class="border">
-                    <paper-icon-button noink  class="btn" id="btn" icon="icomoon:pv-close" on-tap="handleClose"></paper-icon-button>
+                    <paper-icon-button noink class="btn" id="btn" icon="icomoon:pv-close" on-tap="handleClose"></paper-icon-button>
                 </div>
                 <div class="border">
-                    <paper-icon-button noink  class="btn" id="btn" icon="icomoon:pv-down" on-tap="handleTiltdown"></paper-icon-button>
+                    <paper-icon-button noink class="btn" id="btn" icon="icomoon:pv-down" on-tap="handleTiltdown"></paper-icon-button>
                 </div>
             </div>
-
         </div>
     </template>
     <script>
@@ -129,6 +127,7 @@
                     //console.log("tiltclose");
                 }
             },
+            lastCommand: "stop",
             // handleStop: function(e) {
             //     if (this.active) {
             //         this.send({
@@ -137,17 +136,23 @@
             //         console.log("stop");
             //     }
             // },
-            send: function(commands) {
-                if (this.moving) {
-                    //the blind is moving. so sending a stop command.
-                    commands = ['stop'];
+            send: function(command) {
+                if (this.lastCommand === command[0]) {
+                    command = ['stop'];
+
                 }
-                this.moving = !this.moving;
-                console.log("sending command: ", commands[0]);
+
+                this.lastCommand = command[0];
+                // if (this.moving) {
+                //     //the blind is moving. so sending a stop command.
+                //     command = ['stop'];
+                // }
+                // this.moving = !this.moving;
+                console.log("sending command: ", command[0]);
                 //populate the body of the request.
                 this.$.sendCommand.body = {
                     "commands": {
-                        "commands": commands
+                        "commands": command
                     }
                 };
                 this.$.sendCommand.generateRequest();
