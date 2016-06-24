@@ -11,7 +11,7 @@ from serial import Serial
 from serial.serialutil import SerialException
 
 from fake_serial import FakeSerial
-from helpers import view_factory
+from helpers import view_factory, NORDIC_CONNECTED, NORDIC_NOT_CONNECTED
 from nordic import COMMANDS
 
 # Normal serial blocking reads
@@ -24,6 +24,7 @@ import logging.handlers
 # SERIAL_PORT = "COM11"
 SERIAL_SPEED = 38400
 SLEEP_BETWEEN_COMMANDS = 2
+TRYDELAY = 10
 
 lgr = logging.getLogger(__name__)
 lgr.setLevel(logging.DEBUG)
@@ -40,12 +41,15 @@ lgr.addHandler(ch)
 lgr.addHandler(fh)
 
 
+
 def get_byte():
-    if s.is_open:
-        data = bytearray(s.read(1))
-        time.sleep(0.3)
-        data += bytearray(s.read(s.inWaiting()))
-        return data
+    while 1:
+        if s.is_open:
+            data = bytearray(s.read(1))
+            time.sleep(0.3)
+            data += bytearray(s.read(s.inWaiting()))
+            return data
+        time.sleep(TRYDELAY)
 
 
 # Runs blocking function in executor, yielding the result
@@ -59,9 +63,7 @@ def get_byte_async():
 def get_and_print():
     while 1:
         b = yield from get_byte_async()
-        msg = {"from": repr(b)}
-        lgr.info(msg)
-        send_socket_message(msg)
+        from_string(None,b)
 
 
 task = asyncio.Task(get_and_print())
@@ -70,6 +72,17 @@ task = asyncio.Task(get_and_print())
 def send_socket_message(message):
     for ws in app['sockets']:
         ws.send_str(json.dumps(message))
+
+
+def up_string(cmd, upstring):
+    msg = {"to": upstring.decode('utf-8')}
+    send_socket_message(msg)
+    lgr.info(msg)
+
+def from_string(cmd,downstring):
+    msg = {"from":downstring.decode('utf-8')}
+    send_socket_message(msg)
+    lgr.info(msg)
 
 
 # handlers.
@@ -83,18 +96,20 @@ def send_nordic(request):
             if first:
                 first = False
             else:
+                # get the delay value or use default SLEEP_BETWEEN_COMMANDS
                 delay = commands.get("delay", SLEEP_BETWEEN_COMMANDS)
                 yield from asyncio.sleep(delay)
             try:
                 s.write(upstring)
+                up_string(cmd, upstring)
             except SerialException:
                 lgr.exception("writing to serial port failure.")
-                return web.Response(text="Writing to blind went wrong. Please check cables and USB dongle")
-            # send_socket_message("sending: {}".format(upstring))
-            msg = {"to": upstring}  # "to nordic: {} {}".format(cmd, upstring)
-            send_socket_message(msg)
-            lgr.info(msg)
-            #
+                s.close()
+                send_socket_message(NORDIC_NOT_CONNECTED)
+                # return web.Response(text="Writing to blind went wrong. Please check cables and USB dongle")
+
+
+                #
         else:
             lgr.error("sending command {} did not succeed.".format(cmd))
             return web.Response(text="sending command {} did not succeed.".format(cmd), status=500)
@@ -111,7 +126,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--serialport")
 args = parser.parse_args()
 
-TRYDELAY = 10
+
 SERIAL_PORT = args.serialport
 
 s = Serial()
@@ -119,44 +134,29 @@ s.port = SERIAL_PORT
 s.baudrate = SERIAL_SPEED
 
 
+# handler
 def connect():
     lgr.error("Connecting to serial port: {}".format(SERIAL_PORT))
     attempt = 1
     while True:
         if s.is_open:
-            send_socket_message({"nordic": "Connected"})
+            send_socket_message(NORDIC_CONNECTED)
         else:
             try:
                 lgr.error("Connecting to serial port. Attempt: {}".format(attempt))
                 s.open()
                 lgr.error("****************** Connected **************************")
-                send_socket_message({"nordic": "Connected"})
+                send_socket_message(NORDIC_CONNECTED)
             except SerialException:
                 lgr.exception("serial port opening problem.")
                 attempt += 1
-                send_socket_message({"nordic": "Not connected"})
+                send_socket_message(NORDIC_NOT_CONNECTED)
         yield from asyncio.sleep(TRYDELAY)
 
 
 task = asyncio.Task(connect())
 
-# setup the serial port.
-# if SERIAL_PORT != "-1":
-#     lgr.error("Connecting to serial port: {}".format(SERIAL_PORT))
-#     while True:
-#         try:
-#             lgr.error("Connecting to serial port. Attempt: {}".format(TRY))
-#             s = Serial(SERIAL_PORT, SERIAL_SPEED)
-#             break
-#         except SerialException:
-#             lgr.exception("serial port opening problem.")
-#         if TRY > MAXTRIES:
-#             lgr.error("maximum tries exceeded.")
-#             raise UserWarning("maximum tries exceeded.")
-#         time.sleep(TRYDELAY)
-#         TRY += 1
-#         # else:
-#         #     s = FakeSerial()
+
 
 # create the app instance and get the async loop.
 app = web.Application()

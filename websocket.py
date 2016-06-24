@@ -8,7 +8,7 @@ def websocket_handler(request):
     resp = WebSocketResponse()
     yield from resp.prepare(request)
     request.app['sockets'].append(resp)
-    resp.send_str("connected")
+    #resp.send_str("connected")
     while True:
         msg = yield from resp.receive()
         if msg.tp == MsgType.text:

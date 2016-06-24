@@ -18,3 +18,6 @@ def view_factory(url, path):
         return val
 
     return static_view
+
+NORDIC_CONNECTED = {"nordic":"Connected"}
+NORDIC_NOT_CONNECTED = {"nordic":"Not connected"}

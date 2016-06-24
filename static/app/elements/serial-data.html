@@ -1,28 +1,8 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="ws-element.html">
-<!-- <link rel="import" href="../styles/app-theme.html"> -->
-<!-- <link rel="import" href="../styles/shared-styles.html"> -->
-<!--<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">-->
-
 <dom-module id="serial-data">
     <template>
-        <!--
-        <style is="custom-style" include="iron-flex iron-flex-alignment"></style> -->
-
-        <style>
-            /*:host{margin:50px;}*/
-            /* local DOM styles go here */
-        </style>
-
-
-        <div>Nordic: <span>[[nordic]]</span></div>
-        <!-- <template is="dom-repeat" items="[[serialdata]]">
-
-            <paper-item>
-                {{item}}
-            </paper-item>
-
-        </template> -->
+        <div>PowerView dongle: <span>[[nordic]]</span></div>
         <ws-element id="incoming" protocol="echo-protocol"></ws-element>
     </template>
     <script>
@@ -49,9 +29,8 @@
 
                 this.$.incoming.addEventListener('onmessage', function(message) {
                     var msg = JSON.parse(message.detail);
-                    self.set('nordic',msg.nordic || this.nordic);
-                    
-                    //self.push('serialdata', message.detail);
+                    var nordic = msg.nordic || self.nordic;
+                    self.set('nordic',nordic);
                 });
                 this.$.incoming.addEventListener('onopen', function(message) {
                     console.log(message.detail);
@@ -62,11 +41,7 @@
                 this.$.incoming.addEventListener('onclose', function(message) {
                     self.set('nordic', 'Unknown');
                 });
-            },
-            // getUrl:function(){
-            //
-            //   return url;
-            // }
+            }
 
         });
     </script>
