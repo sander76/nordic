@@ -78,11 +78,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             height: 100%;
             padding: 0px;
         }
-.versioninfo{
-  font-size: 0.8em;
-  margin:4px;
-}
 
+        .versioninfo {
+            font-size: 0.8em;
+            margin: 4px;
+        }
     </style>
     <link rel="import" href="/app/elements/ajax-button.html">
     <link rel="import" href="/app/elements/icon-ajax-button.html">
@@ -91,7 +91,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <link rel="import" href="/app/elements/serial-data.html">
     <link rel="import" href="/app/elements/instruction-step.html" />
     <link rel="import" href="/app/elements/key-pad.html" />
-    <link rel="import" href='/app/elements/serial-data.html'/>
+    <link rel="import" href='/app/elements/serial-data.html' />
     <!-- <link rel="import" href="/app/elements/icomoon-polymer/icomoon-iconset-svg.html" /> -->
 </head>
 
@@ -114,21 +114,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <paper-toolbar id="drawerToolbar">
                     <span class="menu-name">Menu</span>
                 </paper-toolbar>
-<div class="vertical layout" style="height:100%;">
-                <!-- Drawer Content -->
-                <paper-menu class="flex" flex on-iron-select="handleInstructionChange">
-                    <template is="dom-repeat" items="[[all_instructions]]">
-                        <paper-item>[[item.title]]</paper-item>
-                    </template>
-                </paper-menu>
+                <div class="vertical layout" style="height:100%;">
+                    <!-- Drawer Content -->
+                    <paper-menu class="flex" flex on-iron-select="handleInstructionChange">
+                        <template is="dom-repeat" items="[[all_instructions]]">
+                            <paper-item>[[item.title]]</paper-item>
+                        </template>
+                    </paper-menu>
 
 
 
-<serial-data class="versioninfo"></serial-data>
-                <div class="versioninfo">
-                    instruction version: <span>[[instruction_version]]</span>
+                    <serial-data class="versioninfo"></serial-data>
+                    <div class="versioninfo">
+                        instruction version: <span>[[instruction_version]]</span>
+                    </div>
                 </div>
-              </div>
             </paper-header-panel>
 
 
@@ -142,11 +142,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <div class="app-name">[[instructions.title]]</div>
                     </div> -->
 
-                    <paper-tabs noink noslide class="flex bottom" disabled selected="{{selected}}" scrollable>
+                    <!-- <paper-tabs noink noslide class="flex bottom" disabled selected="{{selected}}" scrollable>
                         <template is="dom-repeat" items="[[current_instruction.steps]]">
                             <paper-tab>{{item.title}}</paper-tab>
                         </template>
-                    </paper-tabs>
+                    </paper-tabs> -->
+                    <div class="title">[[getCurrentStepTitle(selectedinstruction,selected)]]</div>
                 </paper-toolbar>
                 <iron-pages class="pages" selected="{{selectedinstruction}}">
                     <template is="dom-repeat" items="[[all_instructions]]" index-as="instruction">
@@ -169,6 +170,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <script src="/app/scripts/app.js"></script>
         <script>
             var t = document.querySelector("#app");
+            t.getCurrentStepTitle = function(instruction,selected) {
+                //var title = t.all_instructions[instruction][selected].title;
+console.log(selected);
+var title='';
+                if (t.current_instruction === undefined) {}
+                else {
+                  title = t.all_instructions[instruction].steps[selected].title;
+                    console.log(t.current_instruction.steps[selected].title);
+                }
+
+                return title;
+            };
             t.checkActive = function(instruction, selectedinstruction, index, selected) {
                 if (instruction !== selectedinstruction) {
                     return false;
@@ -213,7 +226,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             t.handleInstructionChange = function(e) {
                 t.current_instruction = t.all_instructions[e.target.selected];
-                t.selectedinstruction = e.target.selected;
+                //t.selectedinstruction = e.target.selected;
+                t.set("selectedinstruction", e.target.selected);
                 t.selected = 0;
 
             };
