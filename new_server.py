@@ -10,20 +10,11 @@ from aiohttp import web
 from serial import Serial
 from serial.serialutil import SerialException
 
-from helpers import view_factory, NORDIC_CONNECTED, NORDIC_NOT_CONNECTED
+from constants import SERIAL_SPEED, SLEEP_BETWEEN_COMMANDS, TRYDELAY, NORDIC_CONNECTED, NORDIC_NOT_CONNECTED
 from nordic import COMMANDS
 
-# Normal serial blocking reads
-# This could also do any processing required on the data
 from websocket import websocket_handler
-import logging
 import logging.handlers
-
-# from async_serial import get_and_print
-# SERIAL_PORT = "COM11"
-SERIAL_SPEED = 38400
-SLEEP_BETWEEN_COMMANDS = 2
-TRYDELAY = 10
 
 lgr = logging.getLogger(__name__)
 lgr.setLevel(logging.DEBUG)
@@ -38,7 +29,6 @@ fh.setLevel(logging.ERROR)
 
 lgr.addHandler(ch)
 lgr.addHandler(fh)
-
 
 
 def get_byte():
@@ -62,7 +52,7 @@ def get_byte_async():
 def get_and_print():
     while 1:
         b = yield from get_byte_async()
-        from_string(None,b)
+        from_string(None, b)
 
 
 task = asyncio.Task(get_and_print())
@@ -78,8 +68,9 @@ def up_string(cmd, upstring):
     send_socket_message(msg)
     lgr.info(msg)
 
-def from_string(cmd,downstring):
-    msg = {"from":downstring.decode('utf-8')}
+
+def from_string(cmd, downstring):
+    msg = {"from": downstring.decode('utf-8')}
     send_socket_message(msg)
     lgr.info(msg)
 
@@ -106,9 +97,6 @@ def send_nordic(request):
                 s.close()
                 send_socket_message(NORDIC_NOT_CONNECTED)
                 # return web.Response(text="Writing to blind went wrong. Please check cables and USB dongle")
-
-
-                #
         else:
             lgr.error("sending command {} did not succeed.".format(cmd))
             return web.Response(text="sending command {} did not succeed.".format(cmd), status=500)
@@ -117,6 +105,7 @@ def send_nordic(request):
 
 @aiohttp_jinja2.template('index.html')
 def index_handler(request):
+    # Get the language part of the url. Defaults to "en" english.
     lang = request.match_info.get('lang', 'en')
     return {'lang': lang}
 
@@ -124,7 +113,6 @@ def index_handler(request):
 parser = argparse.ArgumentParser()
 parser.add_argument("--serialport")
 args = parser.parse_args()
-
 
 SERIAL_PORT = args.serialport
 
@@ -154,8 +142,6 @@ def connect():
 
 
 task = asyncio.Task(connect())
-
-
 
 # create the app instance and get the async loop.
 app = web.Application()
