@@ -10,7 +10,6 @@ from aiohttp import web
 from serial import Serial
 from serial.serialutil import SerialException
 
-from fake_serial import FakeSerial
 from helpers import view_factory, NORDIC_CONNECTED, NORDIC_NOT_CONNECTED
 from nordic import COMMANDS
 
@@ -167,6 +166,7 @@ aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
 app.router.add_route('POST', '/nordic', send_nordic)
 app.router.add_static("/app/", "static/app/")
 app.router.add_route("GET", '/site/{lang}/', index_handler)
+
 # add the websocket address
 # http://localhost:8080/app/ws.html
 app.router.add_route('GET', '/ws', websocket_handler)
