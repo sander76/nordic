@@ -8,8 +8,8 @@ from aiohttp import web
 from server.app import app
 from server.constants import SERIAL_SPEED
 from server.handlers import index_handler
+from server.id_generator import get_id
 from server.websocket import websocket_handler
-
 
 aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
 
@@ -51,7 +51,10 @@ if __name__ == "__main__":
     lgr.addHandler(ch)
 
     lgr.info("***** start logging ******")
-    serial = nordic_serial.NordicSerial(app.loop, SERIAL_PORT, SERIAL_SPEED)
+
+    network_id = get_id()
+#    network_id = b"N"
+    serial = nordic_serial.NordicSerial(app.loop, SERIAL_PORT, SERIAL_SPEED, network_id)
     add_routes(serial)
     setup_websocket()
     try:

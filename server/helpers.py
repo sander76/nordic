@@ -27,3 +27,7 @@ def view_factory(url, path):
         return val
 
     return static_view
+
+
+
+

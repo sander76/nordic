@@ -15,7 +15,8 @@ COMMANDS = {
     "savepositiontop": b'\x00\x04#LPO',
     "savepositionbottom": b'\x00\x04#LPC',
     "saveslatopen":b'\x00\x04#LTO',
-    "reverse": b'\x00\x02#x'
+    "reverse": b'\x00\x02#x',
+
 }
 
 if __name__ == "__main__":

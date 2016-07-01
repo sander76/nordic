@@ -6,18 +6,28 @@ from aiohttp import web
 from serial import Serial
 from serial.serialutil import SerialException
 
-from server.constants import TRYDELAY, NORDIC_CONNECTED, NORDIC_NOT_CONNECTED, SLEEP_BETWEEN_COMMANDS
+from server.constants import TRYDELAY, SLEEP_BETWEEN_COMMANDS
 # from new_server import send_socket_message
 from server.helpers import from_string, up_string
 from server.nordic import COMMANDS
 from server.websocket import send_socket_message
 
 import logging
+
 lgr = logging.getLogger(__name__)
 
 
+def send_connection_status(connected, network_id):
+    _connected = "connected" if connected else "not connected"
+    # _id = str(network_id.hex())
+    send_socket_message({"nordic": _connected, "networkid": network_id})
+
+
 class NordicSerial:
-    def __init__(self,loop, serial_port, serial_speed, try_delay=TRYDELAY):
+    def __init__(self, loop, serial_port, serial_speed, network_id, try_delay=TRYDELAY):
+        # self.network_id = b'\x00\x03I' + network_id
+        self.network_id = str(network_id.hex())  # string representation of the network id. in hex.
+        self.id_change = b'\x00\x03I' + network_id  # the bytes object to send to nordic to change the network id of the dongle.
         self.s = Serial()
         self.serial_port = serial_port
         self.s.port = serial_port
@@ -30,22 +40,23 @@ class NordicSerial:
 
     # handler
     def connect(self):
-        lgr.info("Connecting to serial port: {}".format(self.serial_port))
+        # lgr.info("Connecting to serial port: {}".format(self.serial_port))
         attempt = 1
         while True:
             if self.s.is_open:
                 lgr.debug("****************** Connected **************************")
-                send_socket_message(NORDIC_CONNECTED)
+                send_connection_status(True, self.network_id)
             else:
                 try:
-                    lgr.info("Connecting to serial port. Attempt: {}".format(attempt))
+                    lgr.info("Connecting to serial port {}. Attempt: {}".format(self.serial_port, attempt))
                     self.s.open()
                     lgr.info("****************** Connected **************************")
-                    send_socket_message(NORDIC_CONNECTED)
+                    self._write_to_nordic(self.id_change)
+                    send_connection_status(True, self.network_id)
                 except SerialException:
                     lgr.error("serial port opening problem.")
                     attempt += 1
-                    send_socket_message(NORDIC_NOT_CONNECTED)
+                    send_connection_status(False, "unknown")
             yield from asyncio.sleep(self.trydelay)
 
     # the method which gets wrapped in the asyncio thread executor.
@@ -56,7 +67,7 @@ class NordicSerial:
                 time.sleep(0.3)
                 tst = self.s.read(self.s.inWaiting())
                 data += tst
-                #data += bytearray(self.s.read(self.s.inWaiting()))
+                # data += bytearray(self.s.read(self.s.inWaiting()))
                 return data
             time.sleep(self.trydelay)
 
@@ -71,11 +82,15 @@ class NordicSerial:
         while 1:
             b = yield from self.get_byte_async()
             lgr.debug("incoming: {}".format(b))
-            _from = from_string(None,b)
+            _from = from_string(None, b)
             send_socket_message(_from)
 
+    def _write_to_nordic(self, upstring):
+        lgr.debug("upstring: {}".format(upstring))
+        self.s.write(upstring)
+
     # handlers.
-    def send_nordic(self,request):
+    def send_nordic(self, request):
         rq = yield from request.json()
         commands = rq['commands']
         first = True
@@ -90,13 +105,14 @@ class NordicSerial:
                     yield from asyncio.sleep(delay)
                 try:
                     self.s.write(upstring)
-                    _up = up_string(cmd,upstring)
+                    _up = up_string(cmd, upstring)
                     lgr.debug(_up)
                     send_socket_message(_up)
                 except SerialException:
                     lgr.exception("writing to serial port failure.")
                     self.s.close()
-                    send_socket_message(NORDIC_NOT_CONNECTED)
+                    # send_socket_message(NORDIC_NOT_CONNECTED)
+                    send_connection_status(False, "unknown")
                     # return web.Response(text="Writing to blind went wrong. Please check cables and USB dongle")
             else:
                 lgr.error("sending command {} did not succeed.".format(cmd))

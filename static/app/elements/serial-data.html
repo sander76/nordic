@@ -3,6 +3,7 @@
 <dom-module id="serial-data">
     <template>
         <div>PowerView dongle: <span>[[nordic]]</span></div>
+        <div>Network id: <span>[[networkid]]</span></div>
         <ws-element id="incoming" protocol="echo-protocol"></ws-element>
     </template>
     <script>
@@ -20,6 +21,10 @@
                 nordic: {
                     type: String,
                     value: "Unknown"
+                },
+                networkid: {
+                    type: String,
+                    value: "Unknown"
                 }
             },
             ready: function() {
@@ -29,8 +34,14 @@
 
                 this.$.incoming.addEventListener('onmessage', function(message) {
                     var msg = JSON.parse(message.detail);
-                    var nordic = msg.nordic || self.nordic;
-                    self.set('nordic',nordic);
+                    if (msg.nordic !== undefined) {
+                        self.set('nordic', msg.nordic);
+                    }
+                    if (msg.networkid !== undefined) {
+                        self.set('networkid', msg.networkid);
+                    }
+                    // var nordic = msg.nordic || self.nordic;
+                    // self.set('nordic',nordic);
                 });
                 this.$.incoming.addEventListener('onopen', function(message) {
                     console.log(message.detail);

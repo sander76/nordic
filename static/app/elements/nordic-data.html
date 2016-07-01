@@ -5,14 +5,15 @@
     <style is="custom-style" include="iron-flex iron-flex-alignment iron-flex-factors"></style>
     <template>
         <div>PowerView dongle: <span>[[nordic]]</span></div>
+        <div>Network id: <span>[[networkid]]</span></div>
         <div>
-          <template is="dom-repeat" items="[[serialdata]]">
-            <div class="layout horizontal">
-              <div class="flex">[[item.0]]</div>
-              <div class="flex-3" >[[item.1]]</div>
-              <!-- <div>[[item.1]]</div> -->
-            </div>
-          </template>
+            <template is="dom-repeat" items="[[serialdata]]">
+                <div class="layout horizontal">
+                    <div class="flex">[[item.0]]</div>
+                    <div class="flex-3">[[item.1]]</div>
+                    <!-- <div>[[item.1]]</div> -->
+                </div>
+            </template>
         </div>
         <ws-element id="incoming" protocol="echo-protocol"></ws-element>
     </template>
@@ -31,6 +32,10 @@
                 nordic: {
                     type: String,
                     value: "Unknown"
+                },
+                networkid: {
+                    type: String,
+                    value: "Unknown"
                 }
             },
             ready: function() {
@@ -41,12 +46,15 @@
                 this.$.incoming.addEventListener('onmessage', function(message) {
                     var msg = JSON.parse(message.detail);
                     var nordic = msg.nordic || self.nordic;
-                    self.set('nordic',nordic);
-                    if (msg.to !== undefined){
-                      self.push('serialdata',["to:",msg.to]);
+                    var networkid = msg.networkid || self.networkid;
+
+                    self.set('nordic', nordic);
+                    self.set('networkid',networkid);
+                    if (msg.to !== undefined) {
+                        self.push('serialdata', ["to:", msg.to]);
                     }
-                    if (msg.from !==undefined){
-                      self.push('serialdata',["from",msg.from]);
+                    if (msg.from !== undefined) {
+                        self.push('serialdata', ["from", msg.from]);
                     }
                 });
                 this.$.incoming.addEventListener('onopen', function(message) {
