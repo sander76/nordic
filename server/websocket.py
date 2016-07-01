@@ -1,10 +1,9 @@
 import asyncio
 import json
 
-from app import app
-
 from aiohttp.web import WebSocketResponse, MsgType
 
+from server.app import app
 
 
 def send_socket_message(message):

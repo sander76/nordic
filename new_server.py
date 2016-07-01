@@ -1,29 +1,15 @@
-import logging
-import logging.handlers
 import argparse
-import nordic_serial
-# import asyncio
-
+import logging.handlers
 import aiohttp_jinja2
 import jinja2
+
+from server import nordic_serial
 from aiohttp import web
-from app import app
-from constants import SERIAL_SPEED
-from websocket import websocket_handler
+from server.app import app
+from server.constants import SERIAL_SPEED
+from server.handlers import index_handler
+from server.websocket import websocket_handler
 
-
-@aiohttp_jinja2.template('index.html')
-def index_handler(request):
-    # Get the language part of the url. Defaults to "en" english.
-    lang = request.match_info.get('lang', 'en')
-    return {'lang': lang}
-
-
-parser = argparse.ArgumentParser()
-parser.add_argument("--serialport")
-args = parser.parse_args()
-
-SERIAL_PORT = args.serialport
 
 aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
 
@@ -42,6 +28,11 @@ def setup_websocket():
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--serialport")
+    args = parser.parse_args()
+    SERIAL_PORT = args.serialport
+
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
     lgr = logging.getLogger()

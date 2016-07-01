@@ -2,7 +2,7 @@ import json
 
 from cerberus.cerberus import Validator
 
-from nordic import COMMANDS
+from server.nordic import COMMANDS
 
 cmds = COMMANDS.keys()
 

@@ -1,4 +1,3 @@
-
 import asyncio
 import concurrent
 import time
@@ -6,11 +5,12 @@ import time
 from aiohttp import web
 from serial import Serial
 from serial.serialutil import SerialException
-from constants import TRYDELAY, NORDIC_CONNECTED, NORDIC_NOT_CONNECTED, SLEEP_BETWEEN_COMMANDS
+
+from server.constants import TRYDELAY, NORDIC_CONNECTED, NORDIC_NOT_CONNECTED, SLEEP_BETWEEN_COMMANDS
 # from new_server import send_socket_message
-from helpers import from_string, up_string
-from nordic import COMMANDS
-from websocket import send_socket_message
+from server.helpers import from_string, up_string
+from server.nordic import COMMANDS
+from server.websocket import send_socket_message
 
 import logging
 lgr = logging.getLogger(__name__)
