@@ -12,8 +12,6 @@ COMMANDS = {
     "roller": b'\x00\x04#DS*',
     "twist": b'\x00\x04#DS,',
     "startprogram": b'\x00\x04#LPE',
-    # "programtop": b'\x00\x04#LPE',
-    # "programbottom": b'\x00\x04#LPE',
     "savepositiontop": b'\x00\x04#LPO',
     "savepositionbottom": b'\x00\x04#LPC',
     "saveslatopen":b'\x00\x04#LTO',
