@@ -1,6 +1,15 @@
 import asyncio
-
 from aiohttp import web
+
+
+def up_string(cmd, upstring):
+    msg = {"to": str(upstring)}
+    return msg
+
+
+def from_string(cmd, downstring):
+    msg = {"from": str(downstring)}
+    return msg
 
 
 def view_factory(url, path):
@@ -18,4 +27,3 @@ def view_factory(url, path):
         return val
 
     return static_view
-

@@ -69,10 +69,10 @@
             </div>
             <div class="horizontal layout justified">
                 <div>
-                    <nav-button hidden=[[!data.previous]] id="previousbutton" active="[[active]]" data="[[prev]]">[[data.previous]]</nav-button>
+                    <nav-button hidden=[[!data.previous]] id="previousbutton" active="[[active]]" data="[[prev]]">[[data.previous.caption]]</nav-button>
                 </div>
                 <div>
-                    <nav-button hidden=[[!data.next]] id="nextbutton" active="[[active]]" data="[[next]]">[[data.next]]</nav-button>
+                    <nav-button hidden=[[!data.next]] id="nextbutton" active="[[active]]" data="[[next]]">[[data.next.caption]]</nav-button>
                 </div>
             </div>
 
@@ -132,19 +132,19 @@
             },
 
             ready: function() {
-                if (this.data.next === undefined || this.data.next === true) {
-                    this.set("data.next", "Next");
-                } else if (this.data.next === false) {
-                    //this.set("data.next", "Next");
-                    //this.$.nextbutton.hidden = true;
-                }
-
-                if (this.data.previous === undefined || this.data.next === true) {
-                    this.set("data.previous", "previous");
-                } else if (this.data.previous === false) {
-                    //this.set("data.previous", "previous");
-                    //this.$.previousbutton.hidden = true;
-                }
+                // if (this.data.next === undefined || this.data.next === true) {
+                //     this.set("data.next", "Next");
+                // } else if (this.data.next === false) {
+                //     //this.set("data.next", "Next");
+                //     //this.$.nextbutton.hidden = true;
+                // }
+                //
+                // if (this.data.previous === undefined || this.data.next === true) {
+                //     this.set("data.previous", "previous");
+                // } else if (this.data.previous === false) {
+                //     //this.set("data.previous", "previous");
+                //     //this.$.previousbutton.hidden = true;
+                // }
 
                 //this.$.crd.focus();
             },

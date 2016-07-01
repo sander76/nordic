@@ -71,34 +71,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
     </style>
     <link rel="import" href="elements/ajax-button.html">
-    <link rel="import" href="elements/serial-data.html">
+    <link rel="import" href="elements/nordic-data.html">
     <link rel="import" href="elements/instruction-step.html" />
 
 </head>
 
-<body class="fullbleed vertical layout">
-    <!-- build:remove -->
-    <span id="browser-sync-binding"></span>
-    <!-- endbuild -->
-
+<body>
     <template is="dom-bind" id="app">
 
-        <paper-drawer-panel id="paperDrawerPanel" class="flex">
-            <!-- Drawer Scroll Header Panel -->
-            <paper-scroll-header-panel drawer fixed>
-
-                <!-- Drawer Toolbar -->
-                <paper-toolbar id="drawerToolbar">
-                    <span class="menu-name">Menu</span>
-                </paper-toolbar>
-
-                <!-- Drawer Content -->
-                <!-- <paper-menu on-iron-select="handleInstructionChange">
-                    <template is="dom-repeat" items="[[all_instructions]]">
-                        <paper-item>[[item.title]]</paper-item>
-                    </template>
-                </paper-menu> -->
-            </paper-scroll-header-panel>
 
             <!-- Main Area -->
             <paper-scroll-header-panel main id="headerPanelMain" fixed>
@@ -112,23 +92,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
                 </paper-toolbar>
                 <div class="content">
-                  <serial-data></serial-data>
+                  <nordic-data></nordic-data>
                 </div>
             </paper-scroll-header-panel>
-        </paper-drawer-panel>
         <paper-toast id="toast">
             <span class="toast-hide-button" role="button" tabindex="0" onclick="app.$.toast.hide()">Ok</span>
         </paper-toast>
 
     </template>
 
-    <!-- build:js scripts/app.js -->
-    <script src="scripts/app.js"></script>
-    <script>
-        var t = document.querySelector("#app");
 
-    </script>
-    <!-- endbuild-->
+    
 </body>
 
 </html>

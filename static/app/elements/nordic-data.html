@@ -1,0 +1,65 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="ws-element.html">
+<dom-module id="nordic-data">
+    <style is="custom-style" include="iron-flex iron-flex-alignment iron-flex-factors"></style>
+    <template>
+        <div>PowerView dongle: <span>[[nordic]]</span></div>
+        <div>
+          <template is="dom-repeat" items="[[serialdata]]">
+            <div class="layout horizontal">
+              <div class="flex">[[item.0]]</div>
+              <div class="flex-3" >[[item.1]]</div>
+              <!-- <div>[[item.1]]</div> -->
+            </div>
+          </template>
+        </div>
+        <ws-element id="incoming" protocol="echo-protocol"></ws-element>
+    </template>
+    <script>
+        Polymer({
+            is: 'nordic-data',
+            properties: {
+                serialdata: {
+                    type: Array,
+                    value: []
+                },
+                connected: {
+                    type: String,
+                    value: "Not connected"
+                },
+                nordic: {
+                    type: String,
+                    value: "Unknown"
+                }
+            },
+            ready: function() {
+                var self = this;
+                var url = "ws:" + location.host + "/ws";
+                this.$.incoming.connect(url);
+
+                this.$.incoming.addEventListener('onmessage', function(message) {
+                    var msg = JSON.parse(message.detail);
+                    var nordic = msg.nordic || self.nordic;
+                    self.set('nordic',nordic);
+                    if (msg.to !== undefined){
+                      self.push('serialdata',["to:",msg.to]);
+                    }
+                    if (msg.from !==undefined){
+                      self.push('serialdata',["from",msg.from]);
+                    }
+                });
+                this.$.incoming.addEventListener('onopen', function(message) {
+                    console.log(message.detail);
+                    //self.push('serialdata',message.detail);
+                    //this.connected = "connected";
+                    self.set('nordic', "Not connected");
+                });
+                this.$.incoming.addEventListener('onclose', function(message) {
+                    self.set('nordic', 'Unknown');
+                });
+            }
+
+        });
+    </script>
+</dom-module>

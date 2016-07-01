@@ -1,6 +1,15 @@
 import asyncio
+import json
+
+from app import app
 
 from aiohttp.web import WebSocketResponse, MsgType
+
+
+
+def send_socket_message(message):
+    for ws in app['sockets']:
+        ws.send_str(json.dumps(message))
 
 
 @asyncio.coroutine
