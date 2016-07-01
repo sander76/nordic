@@ -23,10 +23,21 @@ def send_connection_status(connected, network_id):
     send_socket_message({"nordic": _connected, "networkid": network_id})
 
 
+def byte_to_string_rep(byte_instance):
+    string_rep = []
+    for bt in byte_instance:
+        if bt >= 32 and bt < 127:
+            string_rep.append(chr(bt))
+        else:
+            string_rep.append(hex(bt))
+    _string_rep = ''.join(string_rep)
+    return _string_rep
+
+
 class NordicSerial:
     def __init__(self, loop, serial_port, serial_speed, network_id, try_delay=TRYDELAY):
         # self.network_id = b'\x00\x03I' + network_id
-        self.network_id = str(network_id.hex())  # string representation of the network id. in hex.
+        self.network_id = byte_to_string_rep(network_id)  # string representation of the network id. in hex.
         self.id_change = b'\x00\x03I' + network_id  # the bytes object to send to nordic to change the network id of the dongle.
         self.s = Serial()
         self.serial_port = serial_port
