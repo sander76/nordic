@@ -1,4 +1,4 @@
-from json.decoder import JSONDecodeError
+#from json.decoder import JSONDecodeError
 
 ID_FILE = 'network_id.json'
 
@@ -7,7 +7,7 @@ def get_id():
     int_id=0000
     try:
         int_id = _try_load_id()
-    except (FileNotFoundError,JSONDecodeError):
+    except (FileNotFoundError,ValueError):
         int_id = _create_id()
         _save_id(int_id)
     return _from_int(int_id)
