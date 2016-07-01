@@ -62,6 +62,7 @@ class NordicSerial:
                     lgr.info("Connecting to serial port {}. Attempt: {}".format(self.serial_port, attempt))
                     self.s.open()
                     lgr.info("****************** Connected **************************")
+                    yield from asyncio.sleep(5)
                     self._write_to_nordic(self.id_change)
                     send_connection_status(True, self.network_id)
                 except SerialException:
@@ -99,6 +100,7 @@ class NordicSerial:
     def _write_to_nordic(self, upstring):
         lgr.debug("upstring: {}".format(upstring))
         self.s.write(upstring)
+        send_socket_message(up_string(None,upstring))
 
     # handlers.
     def send_nordic(self, request):
