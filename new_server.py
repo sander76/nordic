@@ -55,6 +55,7 @@ if __name__ == "__main__":
     network_id = get_id()
 #    network_id = b"N"
     serial = nordic_serial.NordicSerial(app.loop, SERIAL_PORT, SERIAL_SPEED, network_id)
+
     add_routes(serial)
     setup_websocket()
     try:

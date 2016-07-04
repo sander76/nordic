@@ -137,16 +137,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <!-- Main Toolbar -->
 
                 <paper-toolbar id="mainToolbar" class="small">
-                    <!-- <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button> -->
-                    <!-- <div class="top">
-                        <div class="app-name">[[instructions.title]]</div>
-                    </div> -->
-
-                    <!-- <paper-tabs noink noslide class="flex bottom" disabled selected="{{selected}}" scrollable>
-                        <template is="dom-repeat" items="[[current_instruction.steps]]">
-                            <paper-tab>{{item.title}}</paper-tab>
-                        </template>
-                    </paper-tabs> -->
                     <div class="title">[[getCurrentStepTitle(selectedinstruction,selected)]]</div>
                 </paper-toolbar>
                 <iron-pages class="pages" selected="{{selectedinstruction}}">

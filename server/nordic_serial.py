@@ -18,9 +18,9 @@ lgr = logging.getLogger(__name__)
 
 
 def send_connection_status(connected, network_id):
-    _connected = "connected" if connected else "not connected"
+    # _connected = "connected" if connected else "not connected"
     # _id = str(network_id.hex())
-    send_socket_message({"nordic": _connected, "networkid": network_id})
+    send_socket_message({"nordic": connected, "networkid": network_id})
 
 
 def byte_to_string_rep(byte_instance):
@@ -46,8 +46,10 @@ class NordicSerial:
         self.trydelay = try_delay
         self.loop = loop
         # task = asyncio.Task(get_and_print())
-        asyncio.Task(self.get_from_serial_port())
-        asyncio.Task(self.connect())
+
+        self.loop.create_task(self.get_from_serial_port())
+        self.loop.create_task(self.connect())
+
 
     # handler
     def connect(self):
@@ -62,7 +64,7 @@ class NordicSerial:
                     lgr.info("Connecting to serial port {}. Attempt: {}".format(self.serial_port, attempt))
                     self.s.open()
                     lgr.info("****************** Connected **************************")
-                    yield from asyncio.sleep(5)
+                    # yield from asyncio.sleep()
                     self._write_to_nordic(self.id_change)
                     send_connection_status(True, self.network_id)
                 except SerialException:
@@ -75,12 +77,15 @@ class NordicSerial:
     def get_byte(self):
         while 1:
             if self.s.is_open:
-                data = self.s.read(1)
-                time.sleep(0.3)
-                tst = self.s.read(self.s.inWaiting())
-                data += tst
-                # data += bytearray(self.s.read(self.s.inWaiting()))
-                return data
+                try:
+                    data = self.s.read(1)
+                    time.sleep(0.3)
+                    tst = self.s.read(self.s.inWaiting())
+                    data += tst
+                    # data += bytearray(self.s.read(self.s.inWaiting()))
+                    return data
+                except SerialException as e:
+                    lgr.exception(e)
             time.sleep(self.trydelay)
 
     # Runs blocking function in executor, yielding the result
@@ -98,9 +103,10 @@ class NordicSerial:
             send_socket_message(_from)
 
     def _write_to_nordic(self, upstring):
-        lgr.debug("upstring: {}".format(upstring))
         self.s.write(upstring)
-        send_socket_message(up_string(None,upstring))
+        _up = up_string(None, upstring)
+        lgr.debug(_up)
+        send_socket_message(_up)
 
     # handlers.
     def send_nordic(self, request):
@@ -117,14 +123,13 @@ class NordicSerial:
                     delay = commands.get("delay", SLEEP_BETWEEN_COMMANDS)
                     yield from asyncio.sleep(delay)
                 try:
-                    self.s.write(upstring)
-                    _up = up_string(cmd, upstring)
-                    lgr.debug(_up)
-                    send_socket_message(_up)
+                    self._write_to_nordic(upstring)  # self.s.write(upstring)
+                    #
+                    # lgr.debug(_up)
+                    # send_socket_message(_up)
                 except SerialException:
                     lgr.exception("writing to serial port failure.")
                     self.s.close()
-                    # send_socket_message(NORDIC_NOT_CONNECTED)
                     send_connection_status(False, "unknown")
                     # return web.Response(text="Writing to blind went wrong. Please check cables and USB dongle")
             else:

@@ -35,7 +35,11 @@
                 this.$.incoming.addEventListener('onmessage', function(message) {
                     var msg = JSON.parse(message.detail);
                     if (msg.nordic !== undefined) {
-                        self.set('nordic', msg.nordic);
+                        if (msg.nordic) {
+                            self.set('nordic', "connected");
+                        } else {
+                            self.set('nordic', "not connected");
+                        }
                     }
                     if (msg.networkid !== undefined) {
                         self.set('networkid', msg.networkid);
