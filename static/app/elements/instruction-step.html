@@ -11,17 +11,21 @@
 <dom-module id="instruction-step">
     <style include="shared-styles"></style>
     <style>
-    iron-icon.ok {
-        color: var(--icon-ok-color) !important;
-    }
-    iron-icon.cross {
-        color: var(--icon-cross-color) !important;
-    }
+        iron-icon.ok {
+            color: var(--icon-ok-color) !important;
+        }
+
+        iron-icon.cross {
+            color: var(--icon-cross-color) !important;
+        }
         /*:host {
             width: 100%;
             height: 100%;
         }*/
-:host{margin:50px;}
+
+        :host {
+            margin: 50px;
+        }
 
         #col1 {
             min-width: 4em;
@@ -32,7 +36,6 @@
             max-width: 300px;
             width: auto;
             height: auto;
-
         }
 
         .rule {
@@ -50,7 +53,7 @@
             <div class="buttons">
                 <paper-button noink on-tap="closeModalDismiss">
                     <iron-icon class="cross" icon="icomoon:cross"></iron-icon>No</paper-button>
-                <paper-button  noink on-tap="closeModal">
+                <paper-button noink on-tap="closeModal">
                     <iron-icon class="ok" icon="icomoon:checkmark"></iron-icon>Yes</paper-button>
             </div>
         </paper-dialog>
@@ -69,10 +72,10 @@
             </div>
             <div class="horizontal layout justified">
                 <div>
-                    <nav-button hidden=[[!data.previous]] id="previousbutton" active="[[active]]" data="[[prev]]">[[data.previous.caption]]</nav-button>
+                    <nav-button hidden=[[!data.previous]] id="previousbutton" active="[[active]]" data="[[data.previous]]">[[data.previous.caption]]</nav-button>
                 </div>
                 <div>
-                    <nav-button hidden=[[!data.next]] id="nextbutton" active="[[active]]" data="[[next]]">[[data.next.caption]]</nav-button>
+                    <nav-button hidden=[[!data.next]] id="nextbutton" active="[[active]]" data="[[data.next]]">[[data.next.caption]]</nav-button>
                 </div>
             </div>
 
@@ -100,20 +103,7 @@
                 instruction: {
                     type: Number
                 },
-                next: {
-                    type: Object,
-                    value: {
-                        "goto": 1,
-                        "keys": "pagedown 3"
-                    }
-                },
-                prev: {
-                    type: Object,
-                    value: {
-                        "goto": -1,
-                        "keys": "end 1"
-                    }
-                },
+
                 modal_yes: {
                     type: Object,
                     value: {
@@ -132,21 +122,13 @@
             },
 
             ready: function() {
-                // if (this.data.next === undefined || this.data.next === true) {
-                //     this.set("data.next", "Next");
-                // } else if (this.data.next === false) {
-                //     //this.set("data.next", "Next");
-                //     //this.$.nextbutton.hidden = true;
-                // }
-                //
-                // if (this.data.previous === undefined || this.data.next === true) {
-                //     this.set("data.previous", "previous");
-                // } else if (this.data.previous === false) {
-                //     //this.set("data.previous", "previous");
-                //     //this.$.previousbutton.hidden = true;
-                // }
+                if (this.data.next.keys === undefined) {
+                    this.set("data.next.keys", "pagedown 3");
+                }
+                if (this.data.previous.keys === undefined) {
+                    this.set("data.previous.keys", "end 1");
+                }
 
-                //this.$.crd.focus();
             },
             getType: function(item, container) {
                 if (item.type == "text") {
@@ -203,8 +185,6 @@
                 this.$.modal.open();
             },
             _selectedChanged: function() {
-
-                //this.active = curitem===selected;
                 var active = this.instruction === this.selectedinstruction && this.curitem === this.selected;
                 this.set("active", active);
             }
