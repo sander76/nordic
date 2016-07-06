@@ -18,8 +18,6 @@ lgr = logging.getLogger(__name__)
 
 
 def send_connection_status(connected, network_id):
-    # _connected = "connected" if connected else "not connected"
-    # _id = str(network_id.hex())
     send_socket_message({"nordic": connected, "networkid": network_id})
 
 
