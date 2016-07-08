@@ -10,7 +10,16 @@
             {
                 "col1":
                 {
-                    "type": "svg-button-connect"
+                    "type": "svg-button-connect",
+                    "keys": "enter",
+                    "confirm": true,
+                    "commands": {
+                      "commands": [
+                        "networkadd",
+                        "group1add"
+                      ],
+                      "delay": 1
+                    }
                 }
             }
 
@@ -33,7 +42,9 @@
             {
                 "col1":
                 {
-                    "width": "30%"
+                    "width": "30%",
+                    "type": "text",
+                    "content": "This will reset the motor and program it as a roller blind. The motor should jog two times"
                 },
                 "col2":
                 {
