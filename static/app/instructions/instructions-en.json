@@ -365,7 +365,7 @@
             }],
             "confirm":
             {
-                "img": "/app/images/m25t_motor_jog1x.png",
+                "img": "/app/images/m25t_motor_top_limit_move_up_rollo.png",
                 "text": "Did the motor move to the top?"
             },
             "next":
@@ -651,7 +651,7 @@
             }],
             "confirm":
             {
-                "img": "/app/images/m25t_motor_jog1x.png",
+                "img": "/app/images/m25t_motor_top_limit_move_up_rollo.png",
                 "text": "Did the motor move to the top?",
                 "yes": -4
             },
@@ -1064,7 +1064,7 @@
             }],
             "confirm":
             {
-                "img": "/app/images/m25t_motor_jog1x.png",
+                "img": "/app/images/m25t_motor_top_limit_move_up_rollo.png",
                 "text": "Did the motor move to the top?"
             },
             "next":
@@ -1403,7 +1403,7 @@
             }],
             "confirm":
             {
-                "img": "/app/images/m25t_motor_jog1x.png",
+                "img": "/app/images/m25t_motor_top_limit_move_up_rollo.png",
                 "text": "Did the motor move to the top?",
                 "no": -1
             },
@@ -1796,7 +1796,7 @@
             }],
             "confirm":
             {
-                "img": "/app/images/m25t_motor_jog1x.png",
+                "img": "/app/images/m25t_motor_top_limit_move_up_rollo.png",
                 "text": "Did the motor move to the top?"
             },
             "next":
@@ -2228,7 +2228,7 @@
             }],
             "confirm":
             {
-                "img": "/app/images/m25t_motor_jog1x.png",
+                "img": "/app/images/m25t_motor_top_limit_move_up_rollo.png",
                 "text": "Did the motor move to the top?",
                 "no": -1
             },
