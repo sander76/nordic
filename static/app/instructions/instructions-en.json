@@ -10,51 +10,11 @@
             {
                 "col1":
                 {
-                    "type": "text",
-                    "content": "1.",
-                    "width": "30%"
-                },
-                "col2":
-                {
-                    "type": "text",
-                    "content": "2.",
-                    "width": "30%"
-                },
-                "col3":
-                {
-                    "type": "text",
-                    "content": "3.",
-                    "width": "30%"
+                    "type": "svg-button-connect"
                 }
-            },
-            {
-                "col1":
-                {
-                    "type": "image",
-                    "src": "/app/images/m25t_motor_button_push_top_limit_rollo.png",
-                    "width": "30%"
-                },
-                "col2":
-                {
-                    "width": "15%",
-                    "type": "icon-button",
-                    "icon": "icomoon:checkmark",
-                    "class": "ok",
-                    "commands":
-                    {
-                        "commands": ["networkadd", "group1add"],
-                        "delay": 1
-                    },
-                    "keys": "enter",
-                    "confirm": true
-                },
-                "col3":
-                {
-                    "type": "image",
-                    "src": "/app/images/m25t_motor_button_release_top_limit_rollo.png",
-                    "width": "30%"
-                }
-            }],
+            }
+
+            ],
             "confirm":
             {
                 "img": "/app/images/m25t_motor_jog1x.png",
@@ -68,20 +28,17 @@
             }
         },
         {
-            "title": "Init",
+            "title": "Initialise",
             "instructions": [
             {
                 "col1":
                 {
-                    "width": "30%",
-                    "type": "text",
-                    "content": "This will reset the motor and reprogram it as a roller blind. The motor should jog two times"
+                    "width": "30%"
                 },
                 "col2":
                 {
                     "width": "15%",
                     "type": "icon-button",
-                    "caption": "Motor Init",
                     "icon": "icomoon:checkmark",
                     "class": "ok",
                     "commands":
@@ -96,7 +53,7 @@
             "confirm":
             {
                 "img": "/app/images/m25t_motor_jog2x.png",
-                "text": "After 5 seconds: Did the motor jog two times ?"
+                "text": "Did the motor jog two times ?"
             },
             "previous":
             {
@@ -133,14 +90,21 @@
                     "confirm": true
                 }
             }],
-            "buttons": [],
             "confirm":
             {
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor jog?"
             },
-            "previous": {"caption":"back to Init","goto":-1},
-            "next": {"caption":"Previous","goto":1}
+            "previous":
+            {
+                "caption": "back to Init",
+                "goto": -1
+            },
+            "next":
+            {
+                "caption": "Previous",
+                "goto": 1
+            }
         },
         {
             "title": "Blind direction",
@@ -206,8 +170,16 @@
                     "keys": "3 pagedown"
                 }
             }],
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Switch direction",
@@ -239,8 +211,16 @@
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor jog?"
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Set top Limit",
@@ -284,8 +264,16 @@
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor jog?"
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Enter program mode",
@@ -316,8 +304,16 @@
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor jog?"
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Set bottom Limit",
@@ -361,8 +357,16 @@
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor move to the top?"
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Test blinds",
@@ -419,8 +423,16 @@
                     "keys": "3 pagedown"
                 }
             }],
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Enter program mode",
@@ -463,14 +475,21 @@
                     "confirm": true
                 }
             }],
-            "buttons": [],
             "confirm":
             {
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor jog?"
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Set top Limit",
@@ -514,8 +533,16 @@
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor jog?"
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Enter program mode",
@@ -563,8 +590,16 @@
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor jog?"
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Set bottom Limit",
@@ -609,8 +644,16 @@
                 "text": "Did the motor move to the top?",
                 "yes": -4
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         }]
     },
     {
@@ -672,8 +715,16 @@
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor jog?"
             },
-            "previous": false,
-            "next": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Init",
@@ -689,7 +740,6 @@
                 {
                     "width": "15%",
                     "type": "icon-button",
-                    "caption": "Motor Init",
                     "icon": "icomoon:checkmark",
                     "class": "ok",
                     "commands":
@@ -706,8 +756,16 @@
                 "img": "/app/images/m25t_motor_jog2x.png",
                 "text": "After 5 seconds: Did the motor jog two times ?"
             },
-            "previous": false,
-            "next": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Enter program mode",
@@ -733,14 +791,21 @@
                     "confirm": true
                 }
             }],
-            "buttons": [],
             "confirm":
             {
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor jog?"
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Blind direction",
@@ -749,14 +814,14 @@
                 "col1":
                 {
                     "type": "text",
-                    "content": "Send a down or up command and check whether the blind moves in the correct direction."
+                    "content": "Move up or down. Check blind movement."
                 }
             },
             {
                 "col1":
                 {
                     "type": "text",
-                    "content": "IMPORTANT: No limits are set. You can damage the blind when the motor keeps running up or downwards."
+                    "content": "IMPORTANT: No limits are set. Stop motor manually!"
                 }
             },
             {
@@ -764,7 +829,7 @@
                 {
                     "width": "30%",
                     "type": "text",
-                    "content": "Use the buttons to move the blind. Stop the blind by pressing any button while the blind is moving."
+                    "content": "Use the buttons to move the blind. Stop the blind by pressing the same button while the blind is moving."
                 },
                 "col2":
                 {
@@ -776,7 +841,7 @@
                 "col1":
                 {
                     "type": "text",
-                    "content": "Motor moved in the CORRECT direction",
+                    "content": "Direction OK",
                     "width": "30%"
                 },
                 "col2":
@@ -793,7 +858,7 @@
                 "col1":
                 {
                     "type": "text",
-                    "content": "Motor moved in the WRONG direction",
+                    "content": "Direction not OK",
                     "width": "30%"
                 },
                 "col2":
@@ -806,8 +871,16 @@
                     "keys": "3 pagedown"
                 }
             }],
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Switch direction",
@@ -839,8 +912,16 @@
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor jog?"
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Set top Limit",
@@ -849,7 +930,7 @@
                 "col1":
                 {
                     "type": "text",
-                    "content": "Use the buttons to move the blind to the desired top position.",
+                    "content": "Move the blind to the desired top position.",
                     "width": "30%"
                 },
                 "col2":
@@ -884,8 +965,16 @@
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor jog?"
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Enter program mode",
@@ -893,9 +982,7 @@
             {
                 "col1":
                 {
-                    "width": "30%",
-                    "type": "text",
-                    "content": "Press button to set motor in programming mode for limit settings and checking the motor move direction."
+                    "width": "30%"
                 },
                 "col2":
                 {
@@ -916,8 +1003,16 @@
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor jog?"
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Set bottom Limit",
@@ -961,8 +1056,16 @@
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor move to the top?"
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Set slat position.",
@@ -1006,8 +1109,16 @@
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor jog?"
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Test blinds",
@@ -1064,8 +1175,16 @@
                     "keys": "3 pagedown"
                 }
             }],
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Enter program mode",
@@ -1108,14 +1227,21 @@
                     "confirm": true
                 }
             }],
-            "buttons": [],
             "confirm":
             {
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor jog?"
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Set top Limit",
@@ -1159,8 +1285,16 @@
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor jog?"
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Enter program mode",
@@ -1208,8 +1342,16 @@
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor jog?"
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Set bottom Limit",
@@ -1254,8 +1396,16 @@
                 "text": "Did the motor move to the top?",
                 "no": -1
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Set slat position.",
@@ -1317,8 +1467,16 @@
                 "text": "Did the motor jog?",
                 "yes": -5
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         }]
     },
     {
@@ -1380,8 +1538,16 @@
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor jog?"
             },
-            "previous": false,
-            "next": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Init",
@@ -1397,7 +1563,6 @@
                 {
                     "width": "15%",
                     "type": "icon-button",
-                    "caption": "Motor Init",
                     "icon": "icomoon:checkmark",
                     "class": "ok",
                     "commands":
@@ -1414,8 +1579,16 @@
                 "img": "/app/images/m25t_motor_jog2x.png",
                 "text": "After 5 seconds: Did the motor jog two times ?"
             },
-            "previous": false,
-            "next": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Enter program mode",
@@ -1441,14 +1614,21 @@
                     "confirm": true
                 }
             }],
-            "buttons": [],
             "confirm":
             {
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor jog?"
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Blind direction",
@@ -1555,8 +1735,16 @@
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor jog?"
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Set bottom Limit",
@@ -1600,8 +1788,16 @@
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor move to the top?"
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Enter program mode",
@@ -1632,8 +1828,16 @@
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor jog?"
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Set top Limit",
@@ -1677,8 +1881,16 @@
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor jog?"
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Set slat position.",
@@ -1722,8 +1934,16 @@
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor jog?"
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Test blinds",
@@ -1780,8 +2000,16 @@
                     "keys": "3 pagedown"
                 }
             }],
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Enter program mode",
@@ -1824,14 +2052,21 @@
                     "confirm": true
                 }
             }],
-            "buttons": [],
             "confirm":
             {
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor jog?"
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Set top Limit",
@@ -1875,8 +2110,16 @@
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor jog?"
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Enter program mode",
@@ -1924,8 +2167,16 @@
                 "img": "/app/images/m25t_motor_jog1x.png",
                 "text": "Did the motor jog?"
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Set bottom Limit",
@@ -1970,8 +2221,16 @@
                 "text": "Did the motor move to the top?",
                 "no": -1
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         },
         {
             "title": "Set slat position.",
@@ -2033,8 +2292,16 @@
                 "text": "Did the motor jog?",
                 "yes": -5
             },
-            "next": false,
-            "previous": false
+            "next":
+            {
+                "caption": "next",
+                "goto": 1
+            },
+            "previous":
+            {
+                "caption": "previous",
+                "goto": -1
+            }
         }]
     }]
 }

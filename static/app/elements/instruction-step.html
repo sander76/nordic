@@ -5,7 +5,7 @@
 <link rel="import" href="../bower_components/iron-a11y-keys/iron-a11y-keys.html">
 
 <link rel="import" href="ui-cell.html" />
-<link rel="import" href="pv-remote.html" />
+<!-- <link rel="import" href="pv-remote.html" /> -->
 <link rel="import" href="../styles/shared-styles.html" />
 
 <dom-module id="instruction-step">
@@ -122,12 +122,12 @@
             },
 
             ready: function() {
-                if (this.data.next.keys === undefined) {
-                    this.set("data.next.keys", "pagedown 3");
-                }
-                if (this.data.previous.keys === undefined) {
-                    this.set("data.previous.keys", "end 1");
-                }
+                // if (this.data.next.keys === undefined) {
+                //     this.set("data.next.keys", "pagedown 3");
+                // }
+                // if (this.data.previous.keys === undefined) {
+                //     this.set("data.previous.keys", "end 1");
+                // }
 
             },
             getType: function(item, container) {
