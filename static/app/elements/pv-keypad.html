@@ -1,0 +1,357 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<!-- <link rel="import" href="../bower_components/paper-button/paper-button.html"> -->
+
+
+<dom-module id="pv-keypad">
+    <template>
+        <style>
+            .button {
+                fill: #000000;
+                opacity: 0;
+            }
+
+            svg {
+                width: 100%;
+                height: auto;
+            }
+        </style>
+        <iron-ajax id="sendCommand" url="/nordic" method="POST" content-type="application/json"></iron-ajax>
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 377.15353 617.03544" height="658.171" width="402.297">
+                <g transform="translate(-233.705 -256.274)">
+                    <rect width="376.654" height="132.389" x="233.955" y="256.524" rx="3.543" ry="3.543" fill="#646464" stroke="#000" stroke-width=".5" stroke-linecap="round" stroke-linejoin="round" />
+                    <rect width="376.654" height="480.67" x="233.955" y="392.39" rx="3.543" ry="3.543" fill="#646464" stroke="#000" stroke-width=".5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path fill="#464646" stroke="#000" stroke-width=".5" stroke-linecap="round" stroke-linejoin="round" d="M236.508 388.911h371.547v3.543H236.508z" />
+                    <rect width="282.965" height="419.382" x="280.799" y="408.24" rx="10.63" ry="10.63" fill="#464646" stroke="#000" stroke-width=".5" stroke-linecap="round" stroke-linejoin="round" />
+                    <g transform="translate(305.09 3.845)">
+                        <rect rx="7.087" ry="7.087" y="414.568" x="54.698" height="59.436" width="124.987" fill="#fff" stroke="#333" stroke-width=".8" />
+                        <path d="M73.403 467.317l43.789-46.063 43.788 46.063z" fill="#1a1a1a" />
+                    </g>
+                    <g transform="translate(-197.493 132.572)">
+                        <rect width="59.436" height="124.987" x="691.04" y="355.38" ry="7.087" rx="7.087" fill="#fff" stroke="#333" stroke-width=".8" />
+                        <path d="M717.163 471.264s18.589-32.437 11.395-80.253l8.676-2.7-29.355-23.827-1.799 34.844 10.342-3.573c6.967 42.935-12.14 69.888-12.14 69.888l12.881 5.621z" fill="#1a1a1a" />
+                    </g>
+                    <g transform="translate(343.273 44.98)">
+                        <rect width="124.987" height="59.436" x="16.514" y="577.855" ry="7.087" rx="7.087" fill="#fff" stroke="#333" stroke-width=".8" />
+                        <path d="M122.797 584.541l-43.789 46.063-43.788-46.063z" fill="#1a1a1a" />
+                    </g>
+                    <g transform="translate(-564.924 20.904)">
+                        <rect rx="7.087" ry="7.087" y="467.049" x="856.503" height="124.987" width="59.436" fill="#fff" stroke="#333" stroke-width=".8" />
+                        <path d="M889.816 476.152s-18.589 32.438-11.395 80.253l-8.676 2.7 29.356 23.828 1.798-34.845-10.342 3.574c-6.967-42.936 12.14-69.888 12.14-69.888l-12.881-5.622z" fill="#1a1a1a" />
+                    </g>
+                    <g transform="matrix(1.07628 0 0 1.07628 223.677 323.667)">
+                        <rect rx="6.584" ry="6.584" y="342.66" x="63.09" height="116.129" width="116.129" fill="#fff" stroke="#333" stroke-width=".743" />
+                        <path d="M169.854 430.823l-30.098-30.098 30.098-30.098a3.1 3.1 0 0 0 .71-1.107 3.095 3.095 0 0 0-.71-3.277l-14.218-14.218a3.102 3.102 0 0 0-3.277-.71 3.092 3.092 0 0 0-1.107.707l-30.098 30.098-30.097-30.098a3.092 3.092 0 0 0-1.107-.707 3.095 3.095 0 0 0-3.277.71l-14.218 14.218a3.102 3.102 0 0 0 0 4.384l30.098 30.098-30.098 30.098a3.143 3.143 0 0 0-.71 1.106 3.096 3.096 0 0 0 .71 3.277l14.218 14.219a3.102 3.102 0 0 0 4.384 0l30.098-30.098 30.097 30.098a3.1 3.1 0 0 0 1.107.71 3.095 3.095 0 0 0 3.277-.71l14.218-14.219a3.096 3.096 0 0 0 .71-3.277 3.1 3.1 0 0 0-.71-1.106z"
+                            fill="red" />
+                    </g>
+                    <g transform="matrix(1.07628 0 0 1.07628 219.888 323.056)">
+                        <rect width="116.129" height="116.129" x="193.359" y="342.66" ry="6.584" rx="6.584" fill="#fff" stroke="#333" stroke-width=".743" />
+                        <path d="M285.528 361.97l-46.506 46.506-21.703-21.703-15.502 15.502 37.205 37.205 62.008-62.008z" fill="#0f0" />
+                    </g>
+                    <rect rx="7.087" ry="7.087" y="622.835" x="291.579" height="59.436" width="59.436" fill="#646464" stroke="#333" stroke-width=".8" />
+                    <g transform="translate(-352.36 -254.981)">
+                        <rect rx="7.087" ry="7.087" y="742.934" x="712.148" height="124.987" width="124.987" fill="#fff" stroke="#333" stroke-width=".8" />
+                        <path d="M740.98 771.766h67.323v67.323H740.98z" />
+                    </g>
+                    <rect rx="7.087" ry="7.087" y="418.412" x="291.579" height="59.436" width="59.436" fill="#646464" stroke="#333" stroke-width=".8" />
+                    <rect rx="7.087" ry="7.087" y="622.835" x="493.548" height="59.436" width="59.436" fill="#646464" stroke="#333" stroke-width=".8" />
+                    <rect rx="7.087" ry="7.087" y="418.412" x="493.548" height="59.436" width="59.436" fill="#646464" stroke="#333" stroke-width=".8" />
+                </g>
+                <rect id="close" class="button" width="124.987" height="59.436" x="126.083" y="366.561" ry="7.087" rx="7.087" stroke="#333" stroke-width=".8" />
+                <rect id="tiltup" class="button" width="59.436" height="124.987" x="259.843" y="231.678" opacity="1" ry="7.087" rx="7.087" stroke="#333" stroke-width=".8" />
+                <rect id="cancel" class="button" width="124.987" height="124.987" x="57.874" y="436.191" ry="7.087" rx="7.087" stroke="#333" stroke-width=".8" />
+                <rect id="open" class="button" width="124.987" height="59.436" x="126.083" y="162.138" ry="7.087" rx="7.087" stroke="#333" stroke-width=".8" />
+                <rect id="tiltdown" class="button" width="59.436" height="124.987" x="57.874" y="231.678" ry="7.087" rx="7.087" stroke="#333" stroke-width=".8" />
+                <rect id="okay" class="button" width="124.987" height="124.987" x="194.292" y="435.58" ry="7.087" rx="7.087" stroke="#333" stroke-width=".8" />
+                <rect id="stop" class="button" width="124.987" height="124.987" x="126.083" y="231.678" ry="7.087" rx="7.087" stroke="#333" stroke-width=".8" />
+            </svg>
+
+
+            <!-- <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.1" id="svg4146" viewBox="0 0 243.19818 355.16471"
+                height="100.23537mm" width="68.635933mm">
+                <defs id="defs4148" />
+                <metadata id="metadata4151">
+                    <rdf:RDF>
+                        <cc:Work rdf:about="">
+                            <dc:format>image/svg+xml</dc:format>
+                            <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                            <dc:title></dc:title>
+                        </cc:Work>
+                    </rdf:RDF>
+                </metadata>
+                <g id="layer1">
+                    <g id="open">
+                        <rect rx="7.0866141" ry="7.0866137" y="0.40001222" x="63.53455" height="47.034645" width="116.12914" id="rect4889-0" style="fill:#ffffff;stroke:#333333;stroke-width:0.80000007;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                        <path id="path4707-8" d="M 87.91569,41.63387 121.59911,6.200799 155.28253,41.63387 Z" style="fill:#1a1a1a;stroke:none" />
+                    </g>
+                    <g id="close">
+                        <rect rx="7.0866141" ry="7.0866137" y="181.27412" x="63.53455" height="47.034645" width="116.12914" id="rect4889-0-9" style="fill:#ffffff;fill-opacity:1;stroke:#333333;stroke-width:0.80000007;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+                        />
+                        <path id="path4696-8" d="M 155.28254,187.07492 121.59909,222.50799 87.91567,187.07492 Z" style="fill:#000000;stroke:none" />
+                    </g>
+                    <g id="stop">
+                        <rect style="fill:#ffffff;fill-opacity:1;stroke:#333333;stroke-width:0.80000007;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect4771-2" width="116.12914" height="116.12914" x="63.534519" y="56.303036" ry="7.0866141" rx="7.0866141"
+                        />
+                        <rect style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.08;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" id="text_stop" width="50.77195" height="52.182285"
+                            x="96.213104" y="88.276466" />
+                    </g>
+                    <g id="tiltup">
+                        <rect style="fill:#ffffff;fill-opacity:1;stroke:#333333;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect4889-0-0" width="47.034645" height="116.12914" x="188.43051" y="56.303036" ry="7.0866137" rx="7.0866137"
+                        />
+                        <path id="path4729-2" d="m 208.60778,163.9739 c 0,0 17.27123,-30.13856 10.58745,-74.5653 l 8.06113,-2.50822 -27.27513,-22.13908 -1.67096,32.37494 9.60883,-3.32013 c 6.47353,39.89236 -11.27976,64.93475 -11.27976,64.93475 l 11.96844,5.22304 z" style="fill:#1a1a1a;stroke:none"
+                        />
+                    </g>
+                    <g id='tiltdown'>
+                        <rect style="fill:#ffffff;fill-opacity:1;stroke:#333333;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect4889-0-0-8" width="47.034645" height="116.12914" x="8.01581" y="56.303036" ry="7.0866137" rx="7.0866137"
+                        />
+                        <path id="path4740-5" d="m 34.87319,64.76131 c 0,0 -17.27123,30.13856 -10.58746,74.56531 l -8.06112,2.50822 27.27513,22.13907 1.67094,-32.37494 -9.60882,3.32013 C 29.08832,95.02674 46.84163,69.98436 46.84163,69.98436 L 34.87319,64.76131 Z" style="fill:#1a1a1a;stroke:none"
+                        />
+                    </g>
+                    <g id="cancel">
+                        <rect style="fill:#ffffff;fill-opacity:1;stroke:#333333;stroke-width:0.80000007;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect4895-5" width="116.12914" height="116.12914" x="0.39999598" y="238.63557" ry="7.0866141" rx="7.0866141"
+                        />
+                        <path id="path4762-2" d="m 107.1642,326.79791 c 0,0 0,0 0,0 L 77.06641,296.70013 107.1642,266.60235 c 0,0 0,0 0,0 0.32553,-0.32554 0.55805,-0.70377 0.70997,-1.10682 0.41234,-1.10371 0.17672,-2.39033 -0.70997,-3.27702 L 92.94619,248.0005 c -0.88669,-0.88669 -2.17641,-1.11921 -3.27702,-0.70997 -0.40305,0.14882 -0.78128,0.38444 -1.10682,0.70687 0,0 0,0 0,0 L 58.46457,278.09519 28.36679,247.9974 c 0,0 0,0 0,0 -0.32553,-0.32243 -0.70377,-0.55805 -1.10681,-0.70687 -1.10371,-0.41234 -2.39033,-0.17672 -3.27702,0.70997 L 9.76494,262.21851 c -0.88668,0.88669 -1.11921,2.17641 -0.70996,3.27702 0.15191,0.40305 0.38444,0.78128 0.70996,1.10682 0,0 0,0 0,0 l 30.09779,30.09778 -30.09779,30.09778 c 0,0 0,0 0,0 -0.32242,0.32553 -0.55805,0.70377 -0.70996,1.10681 -0.41235,1.10061 -0.17672,2.39034 0.70996,3.27702 l 14.21802,14.21802 c 0.88669,0.88669 2.17641,1.11921 3.27702,0.70996 0.40304,-0.15191 0.78128,-0.38444 1.10681,-0.70996 0,0 0,0 0,0 l 30.09778,-30.09779 30.09778,30.09779 c 0,0 0,0 0,0 0.32554,0.32552 0.70377,0.55805 1.10682,0.70996 1.10371,0.41235 2.39033,0.17673 3.27702,-0.70996 l 14.21801,-14.21802 c 0.88669,-0.88668 1.12231,-2.17641 0.70997,-3.27702 -0.15192,-0.40304 -0.38444,-0.78128 -0.70997,-1.10681 z"
+                            style="fill:#ff0000;stroke:none" />
+                    </g>
+                    <g id="okay">
+                        <rect rx="7.0866141" ry="7.0866141" y="238.63557" x="126.66904" height="116.12914" width="116.12914" id="rect4897-9" style="fill:#ffffff;fill-opacity:1;stroke:#333333;stroke-width:0.80000007;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+                        />
+                        <path id="path4751-6" d="m 218.83796,257.94521 -46.50591,46.50591 -21.70275,-21.70276 -15.50197,15.50197 37.20472,37.20472 62.00788,-62.00788 z" style="fill:#00ff00;fill-opacity:1;stroke:none" />
+                    </g>
+                </g>
+            </svg> -->
+
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: 'pv-keypad',
+            properties: {
+                active: {
+                    type: Boolean,
+                    observer: '_activeChanged'
+                },
+                target: {
+                    type: Object,
+                    value: function() {
+                        return document.body;
+                    }
+                },
+                data: {
+                    type: Object
+                }
+
+            },
+            ready: function() {
+
+                this.keys = {
+                    w: {
+                        function: "open",
+                        handle: this.handleOpen
+                    },
+                    z: {
+                        function: "close",
+                        handle: this.handleClose
+                    },
+                    s: {
+                        function: "stop",
+                        handle: this.handleStop
+                    },
+                    d: {
+                        function: "tiltup",
+                        handle: this.handleTiltup
+                    },
+                    a: {
+                        function: "tiltdown",
+                        handle: this.handleTiltdown
+                    },
+                    Enter: {
+                        function: "okay",
+                        handle: this.handleOkay
+                    },
+                    x: {
+                        function: "cancel",
+                        handle: this.handleCancel
+                    }
+                };
+                // When the key is not in the active_buttons array the handler
+                // should turn to empty.
+                for (var key in this.keys) {
+                    if (this.keys.hasOwnProperty(key)) {
+                        this.keys[key].confirm = this.handleEmptyConfirm;
+                        var idx = this.data.active_buttons.indexOf(this.keys[key].function);
+                        if (idx > -1) {
+                            if (this.keys[key].function === this.data.confirm) {
+                                this.keys[key].confirm = this.handleConfirm;
+                            }
+                        } else {
+                            this.keys[key].handle = this.empty(key);
+
+                            //this.$[this.keys[key].function].className="disabled";
+                            var cls = this.$[this.keys[key].function];
+                            cls.style.opacity = 0.6;
+
+                        }
+                        //check whether confirm dialog button should be added.
+
+                    }
+                }
+
+            },
+            handleEmptyConfirm: function() {
+                console.log("not a confirm button");
+            },
+            empty: function(key) {
+                return function() {
+                    console.log("disabled this button: ", key);
+                };
+            },
+
+            keylookup: function(e) {
+                var code = this.keys[e.key] || {
+                    handle: function() {
+                        return;
+                    }
+                };
+                code.handle.call(this);
+                code.confirm.call(this);
+            },
+            handleConfirm: function(e) {
+                this.fire('openmodal');
+            },
+            handleEvent: function(event) {
+                switch (event.type) {
+                    case "keydown":
+                        this.keylookup(event);
+                        break;
+                    case "tap":
+                        switch (event.currentTarget.id) {
+                            case "tiltup":
+                                this.keylookup({
+                                    key: 'd'
+                                });
+                                break;
+                            case "tiltdown":
+                                this.keylookup({
+                                    key: "a"
+                                });
+                                break;
+                            case "open":
+                                this.keylookup({
+                                    key: "w"
+                                });
+                                break;
+                            case "close":
+                                this.keylookup({
+                                    key: "z"
+                                });
+                                break;
+                            case "stop":
+                                this.keylookup({
+                                    key: "s"
+                                });
+                                break;
+                            case "okay":
+                                this.keylookup({
+                                    key: "Enter"
+                                });
+                                break;
+                            case "cancel":
+                                this.keylookup({
+                                    key: "x"
+                                });
+                                break;
+                        }
+                        break;
+                }
+            },
+            _activeChanged: function(_new, _old) {
+                //this.active = _new;
+                if (_new) {
+                    //document.addEventListener("keydown",function(e){this.keylookup(e);});
+                    document.addEventListener("keydown", this, false);
+                    //this.listen(this.$.tiltupbutton,'')
+                    this.$.tiltup.addEventListener("tap", this);
+                    this.$.tiltdown.addEventListener("tap", this);
+                    this.$.open.addEventListener("tap", this);
+                    this.$.close.addEventListener("tap", this);
+                    this.$.stop.addEventListener("tap", this);
+                    this.$.okay.addEventListener("tap", this);
+                    this.$.cancel.addEventListener("tap", this);
+                } else {
+                    document.removeEventListener("keydown", this);
+                    this.$.tiltup.removeEventListener("tap", this);
+                    this.$.tiltdown.removeEventListener("tap", this);
+                    this.$.open.removeEventListener("tap", this);
+                    this.$.close.removeEventListener("tap", this);
+                    this.$.stop.removeEventListener("tap", this);
+                    this.$.okay.removeEventListener("tap", this);
+                    this.$.cancel.removeEventListener("tap", this);
+                }
+            },
+
+            handleOpen: function(e) {
+                // if (this.active) {
+                this.send({
+                    "commands": ["open"]
+                });
+                console.log("open");
+                // }
+            },
+            handleClose: function(e) {
+                // if (this.active) {
+                this.send({
+                    "commands": ["close"]
+                });
+                console.log("close");
+                //}
+            },
+            handleTiltup: function(e) {
+                // if (this.active) {
+                this.send({
+                    "commands": ["tiltopen"]
+                });
+                console.log("tilt open");
+                //}
+            },
+            handleTiltdown: function(e) {
+                //if (this.active) {
+                this.send({
+                    "commands": ["tiltclose"]
+                });
+                console.log("tiltclose");
+                //}
+            },
+            handleStop: function(e) {
+                //if (this.active) {
+                this.send({
+                    "commands": ["stop"]
+                });
+                console.log("stop");
+                //}
+            },
+            handleOkay: function(e) {
+                var cmd = this.data.okay.commands || undefined;
+                if (cmd !== undefined) {
+                    this.send(cmd);
+                }
+                var goto = this.data.okay.goto || undefined;
+                if (goto !== undefined) {
+                    this.fire("gotopage", goto);
+                }
+            },
+            handleCancel: function(e) {
+                this.fire("gotopage", this.data.cancel);
+            },
+
+            send: function(commands) {
+                //populate the body of the request.
+                this.$.sendCommand.body = commands;
+                this.$.sendCommand.generateRequest();
+                console.log("command sent: " + commands.commands[0]);
+
+            }
+        });
+    </script>
+</dom-module>

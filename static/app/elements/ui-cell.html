@@ -44,6 +44,11 @@
         <template is="dom-if" if="[[isType(data,'keypad')]]">
             <key-pad active="[[active]]"></key-pad>
         </template>
+        <template is="dom-if" if="[[isType(data,'pv-keypad')]]">
+            <div class="container">
+                <pv-keypad active="[[active]]" data="[[data]]"></pv-keypad>
+            </div>
+        </template>
         <!-- <template is="dom-if" if="[[isType(data,'remote')]]">
             <pv-remote active="[[active]]"></pv-remote>
         </template> -->

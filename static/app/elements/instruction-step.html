@@ -61,10 +61,11 @@
         <div class="vertical layout flex">
             <div class="flex">
                 <template is="dom-repeat" items=[[data.instructions]]>
-                    <div class="horizontal layout center rule">
+                    <div class="horizontal layout start rule">
                         <ui-cell id="col1" active="[[active]]" data="[[item.col1]]"></ui-cell>
                         <ui-cell id="col2" active="[[active]]" data="[[item.col2]]"></ui-cell>
                         <ui-cell id="col3" active="[[active]]" data="[[item.col3]]"></ui-cell>
+                        <ui-cell id="col4" active="[[active]]" data="[[item.col4]]"></ui-cell>
                     </div>
                     <!-- <ui-row active="[[active]]" data="[[item]]"></ui-row> -->
                 </template>
@@ -113,7 +114,7 @@
                 modal_no: {
                     type: Object,
                     value: {
-                        "keys": "3 pagedown"
+                        "keys": "x"
                     }
                 }
             },

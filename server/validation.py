@@ -61,6 +61,16 @@ icon_nav_button = {'width': {'type': 'string', 'regex': '\d{1,2}%'},
 key_pad = {'width': {'type': 'string', 'regex': '\d{1,2}%'},
            'type': {'type': 'string', 'required': True, 'allowed': 'keypad'}}
 
+pv_keypad = {'width': {'type': 'string', 'regex': '\d{1,2}%'},
+             'type': {'type': 'string', 'required': True, 'allowed': 'pv-keypad'},
+             'active_buttons': {'type': 'list',
+                                'allowed': ['open', 'close', 'stop', 'tiltup', 'tiltdown', 'okay', 'cancel'],
+                                'required': True},
+             'confirm': {'type': 'string', 'allowed': ['open', 'close', 'stop', 'tiltup', 'tiltdown', 'okay', 'cancel'],
+                         'required': True},
+             'okay': {'type': 'integer', 'required': True},
+             'cancel': {'type': 'integer', 'required': True}}
+
 # allowed_types = [text, icon_button, key_pad]
 # list schema for instructions
 # col1 = {'col1': {'type': 'dict', 'schema': {'oneof': allowed_types}}}
@@ -72,7 +82,8 @@ col = {'type': 'dict', 'oneof': [
     {'schema': key_pad},
     {'schema': text},
     {'schema': image},
-    {'schema': width_column}]}
+    {'schema': width_column},
+    {'schema': pv_keypad}]}
 
 # instruction = {'type': 'dict', 'schema': {'oneof': [col1, col2, col3]}}
 
@@ -83,8 +94,8 @@ step = {'type': 'dict',
         'schema': {'title': {'type': 'string', 'required': True},
                    'instructions': {'type': 'list', 'schema': instruction, 'required': True},
                    'confirm': {'type': 'dict', 'schema': confirm},
-                   'next': {'oneof': next_prev_buttons,'required':True},
-                   'previous': {'oneof': next_prev_buttons,'required':True}
+                   'next': {'oneof': next_prev_buttons, 'required': True},
+                   'previous': {'oneof': next_prev_buttons, 'required': True}
                    }}
 
 product = {'type': 'dict',
@@ -112,7 +123,7 @@ if __name__ == "__main__":
 
     with open('static/app/instructions/instructions-en.json') as fl:
         dta = json.load(fl)
-        #set_defaults(dta)
+        # set_defaults(dta)
 
     # with open('static/app/instructions/instructions-en.json','w') as fl:
     #     json.dump(dta, fl)
