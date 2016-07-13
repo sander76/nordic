@@ -21,9 +21,11 @@
             </div>
         </template>
         <template is="dom-if" if="[[isType(data,'text')]]">
+          <div class="container">
             <p>
                 {{data.content}}
             </p>
+          </div>
         </template>
         <template is="dom-if" if="[[isType(data,'button')]]">
             <ajax-button active="[[active]]" data="[[data]]">[[data.caption]] <small>([[data.keys]])</small></ajax-button>
