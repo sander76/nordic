@@ -66,9 +66,10 @@ pv_keypad = {'width': {'type': 'string', 'regex': '\d{1,2}%'},
              'active_buttons': {'type': 'list',
                                 'allowed': ['open', 'close', 'stop', 'tiltup', 'tiltdown', 'okay', 'cancel'],
                                 'required': True},
-             'confirm': {'type': 'string', 'allowed': ['open', 'close', 'stop', 'tiltup', 'tiltdown', 'okay', 'cancel'],
-                         'required': True},
-             'okay': {'type': 'integer', 'required': True},
+             'confirm': {'type': 'string',
+                         'allowed': ['open', 'close', 'stop', 'tiltup', 'tiltdown', 'okay', 'cancel']},
+             'okay': {'type': 'dict',
+                      'schema': {'commands': {'type': 'dict', 'schema': api_commands}, 'goto': {'type': 'integer'}}},
              'cancel': {'type': 'integer', 'required': True}}
 
 # allowed_types = [text, icon_button, key_pad]
@@ -88,7 +89,7 @@ col = {'type': 'dict', 'oneof': [
 # instruction = {'type': 'dict', 'schema': {'oneof': [col1, col2, col3]}}
 
 instruction = {'type': 'dict', 'schema': {
-    'col1': col, 'col2': col, 'col3': col}}
+    'col1': col, 'col2': col, 'col3': col, 'col4': col}}
 
 step = {'type': 'dict',
         'schema': {'title': {'type': 'string', 'required': True},

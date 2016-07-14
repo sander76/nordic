@@ -196,7 +196,6 @@
                 "active_buttons": [
                   "okay","tiltdown","stop","cancel"
                 ],
-                "confirm": "",
                 "okay": {
                   "goto": 2
                 },
@@ -845,7 +844,6 @@
                   "stop",
                   "cancel"
                 ],
-                "confirm": "",
                 "okay": {
                   "goto": 2
                 },

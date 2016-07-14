@@ -270,24 +270,24 @@
                 //this.active = _new;
                 if (_new) {
                     //document.addEventListener("keydown",function(e){this.keylookup(e);});
-                    document.addEventListener("keydown", this, false);
+                    document.body.addEventListener("keydown", this,false);
                     //this.listen(this.$.tiltupbutton,'')
-                    this.$.tiltup.addEventListener("tap", this);
-                    this.$.tiltdown.addEventListener("tap", this);
-                    this.$.open.addEventListener("tap", this);
-                    this.$.close.addEventListener("tap", this);
-                    this.$.stop.addEventListener("tap", this);
-                    this.$.okay.addEventListener("tap", this);
-                    this.$.cancel.addEventListener("tap", this);
+                    this.$.tiltup.addEventListener("tap", this,false);
+                    this.$.tiltdown.addEventListener("tap", this,false);
+                    this.$.open.addEventListener("tap", this,false);
+                    this.$.close.addEventListener("tap", this,false);
+                    this.$.stop.addEventListener("tap", this,false);
+                    this.$.okay.addEventListener("tap", this,false);
+                    this.$.cancel.addEventListener("tap", this,false);
                 } else {
-                    document.removeEventListener("keydown", this);
-                    this.$.tiltup.removeEventListener("tap", this);
-                    this.$.tiltdown.removeEventListener("tap", this);
-                    this.$.open.removeEventListener("tap", this);
-                    this.$.close.removeEventListener("tap", this);
-                    this.$.stop.removeEventListener("tap", this);
-                    this.$.okay.removeEventListener("tap", this);
-                    this.$.cancel.removeEventListener("tap", this);
+                    document.body.removeEventListener("keydown", this,false);
+                    this.$.tiltup.removeEventListener("tap", this,false);
+                    this.$.tiltdown.removeEventListener("tap", this,false);
+                    this.$.open.removeEventListener("tap", this,false);
+                    this.$.close.removeEventListener("tap", this,false);
+                    this.$.stop.removeEventListener("tap", this,false);
+                    this.$.okay.removeEventListener("tap", this,false);
+                    this.$.cancel.removeEventListener("tap", this,false);
                 }
             },
 
@@ -332,13 +332,16 @@
                 //}
             },
             handleOkay: function(e) {
-                var cmd = this.data.okay.commands || undefined;
-                if (cmd !== undefined) {
-                    this.send(cmd);
-                }
-                var goto = this.data.okay.goto || undefined;
-                if (goto !== undefined) {
-                    this.fire("gotopage", goto);
+                var okay = this.data.okay;
+                if (this.data.okay !== undefined) {
+                    var cmd = this.data.okay.commands || undefined;
+                    if (cmd !== undefined) {
+                        this.send(cmd);
+                    }
+                    var goto = this.data.okay.goto || undefined;
+                    if (goto !== undefined) {
+                        this.fire("gotopage", goto);
+                    }
                 }
             },
             handleCancel: function(e) {
@@ -347,7 +350,9 @@
 
             send: function(commands) {
                 //populate the body of the request.
-                this.$.sendCommand.body = commands;
+                this.$.sendCommand.body = {
+                    "commands": commands
+                };
                 this.$.sendCommand.generateRequest();
                 console.log("command sent: " + commands.commands[0]);
 

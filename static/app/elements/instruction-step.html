@@ -45,9 +45,9 @@
     <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
     <template>
         <paper-dialog id="modal" noink modal>
-            <iron-a11y-keys id="modalconfirm" keys="[[modal_yes.keys]]" on-keys-pressed="closeModal">
+            <iron-a11y-keys id="modalconfirm" target='[[target]]' keys="[[modal_yes.keys]]" on-keys-pressed="closeModal">
             </iron-a11y-keys>
-            <iron-a11y-keys id="modaldismiss" keys="[[modal_no.keys]]" on-keys-pressed="closeModalDismiss"></iron-a11y-keys>
+            <iron-a11y-keys id="modaldismiss" target='[[target]]' keys="[[modal_no.keys]]" on-keys-pressed="closeModalDismiss"></iron-a11y-keys>
             <img src="[[data.confirm.img]]" />
             <p>[[data.confirm.text]]</p>
             <div class="buttons">
@@ -115,6 +115,12 @@
                     type: Object,
                     value: {
                         "keys": "x"
+                    }
+                },
+                target: {
+                    type: Object,
+                    value: function() {
+                        return this.$.modal;
                     }
                 }
             },
