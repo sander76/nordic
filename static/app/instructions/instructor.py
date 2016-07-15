@@ -74,9 +74,9 @@ if __name__ == "__main__":
 
     set_bottom_limit = Step(tr._setbottomlimit,
                             [
-                                Row(Text(30, tr._moveblind),
-                                    Text(30, tr._savebottom),
-                                    Text(30, tr._watch_the_blind_jog)),
+                                Row(Text(30, tr._moveblind.add_number(1)),
+                                    Text(30, tr._savebottom.add_number(2)),
+                                    Text(30, tr._watch_the_blind_jog.add_number(3))),
                                 Row(PvKeypad(30, ['open', 'close', 'tiltup', 'tiltdown', 'stop']),
                                     savepositionBottom,
                                     Image(30, "/app/images/m25t_motor_jog1x.png"))
@@ -85,9 +85,9 @@ if __name__ == "__main__":
 
     set_top_limit = Step(tr._settoplimit,
                          [
-                             Row(Text(30, tr._moveblind),
-                                 Text(30, tr._savetop),
-                                 Text(30, tr._watch_the_blind_jog)),
+                             Row(Text(30, tr._moveblind.add_number(1)),
+                                 Text(30, tr._savetop.add_number(2)),
+                                 Text(30, tr._watch_the_blind_jog.add_number(3))),
                              Row(PvKeypad(30, ['open', 'close', 'tiltup', 'tiltdown', 'stop']),
                                  PvKeypad(30, ['okay'], 'okay', OkayCommand(['savepositiontop'])),
                                  Image(30, "/app/images/m25t_motor_jog1x.png"))
@@ -236,9 +236,9 @@ if __name__ == "__main__":
     instruction.products.append(twist)
 
     nl = ToJson(lang='nl').encode(instruction)
-    with open('instructions-test-nl.json', 'w') as fl:
+    with open('instructions-luxaflex-nl.json', 'w') as fl:
         fl.write(nl)
 
     en = ToJson(lang='en').encode(instruction)
-    with open('instructions-test-en.json', 'w') as fl:
+    with open('instructions-luxaflex-en.json', 'w') as fl:
         fl.write(en)
