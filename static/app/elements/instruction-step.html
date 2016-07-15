@@ -48,13 +48,13 @@
             <iron-a11y-keys id="modalconfirm" target='[[target]]' keys="[[modal_yes.keys]]" on-keys-pressed="closeModal">
             </iron-a11y-keys>
             <iron-a11y-keys id="modaldismiss" target='[[target]]' keys="[[modal_no.keys]]" on-keys-pressed="closeModalDismiss"></iron-a11y-keys>
-            <img src="[[data.confirm.img]]" />
+            <img src$="[[data.confirm.img]]" />
             <p>[[data.confirm.text]]</p>
             <div class="buttons">
                 <paper-button noink on-tap="closeModalDismiss">
-                    <iron-icon class="cross" icon="icomoon:cross"></iron-icon>No</paper-button>
+                    <iron-icon class="cross" icon="icomoon:cross"></iron-icon>[[data.confirm.no_text]]</paper-button>
                 <paper-button noink on-tap="closeModal">
-                    <iron-icon class="ok" icon="icomoon:checkmark"></iron-icon>Yes</paper-button>
+                    <iron-icon class="ok" icon="icomoon:checkmark"></iron-icon>[[data.confirm.yes_text]]</paper-button>
             </div>
         </paper-dialog>
 
@@ -73,10 +73,10 @@
             </div>
             <div class="horizontal layout justified">
                 <div>
-                    <nav-button hidden=[[!data.previous]] id="previousbutton" active="[[active]]" data="[[data.previous]]">[[data.previous.caption]]</nav-button>
+                    <nav-button hidden=[[!data.previous.active]] id="previousbutton" active="[[active]]" data="[[data.previous]]">[[data.previous.caption]]</nav-button>
                 </div>
                 <div>
-                    <nav-button hidden=[[!data.next]] id="nextbutton" active="[[active]]" data="[[data.next]]">[[data.next.caption]]</nav-button>
+                    <nav-button hidden=[[!data.next.active]] id="nextbutton" active="[[active]]" data="[[data.next]]">[[data.next.caption]]</nav-button>
                 </div>
             </div>
 

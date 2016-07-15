@@ -61,7 +61,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style is="custom-style" include="shared-styles"></style>
     <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
     <style>
-
         paper-tabs,
         paper-toolbar {
             background-color: var(--paper-blue-900);
@@ -86,8 +85,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <link rel="import" href="/app/elements/instruction-step.html" />
     <link rel="import" href="/app/elements/key-pad.html" />
     <link rel="import" href='/app/elements/serial-data.html' />
-    <link rel="import" href='/app/elements/svg-button-connect.html'/>
-    <link rel="import" href='/app/elements/pv-keypad.html'/>
+    <link rel="import" href='/app/elements/svg-button-connect.html' />
+    <link rel="import" href='/app/elements/pv-keypad.html' />
 
     <!-- <link rel="import" href="/app/elements/icomoon-polymer/icomoon-iconset-svg.html" /> -->
 </head>
@@ -228,6 +227,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             //e.currentTarget.select(goto);
             t.currentProduct.select(goto);
         };
+        t.gotoId = function(id) {
+            for (var i = 0; i < t.currentProduct.items.length; i++) {
+                if (t.currentProduct.items[i].data.id === id) {
+                    console.log('id found: ', id);
+                    t.currentProduct.select(i);
+                    break;
+                }
+            }
+        };
 
         t.target = document.body;
         //t.selectedStep = 0;
@@ -244,14 +252,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             t.all_products = response.response.products;
             t.definitions_version = response.response.version;
         };
-        document.addEventListener("nextpage",function(){
-          t.currentProduct.selectNext();
+        document.addEventListener("nextpage", function() {
+            t.currentProduct.selectNext();
         });
-        document.addEventListener("gotopage",function(e){
-          t.gotoStep(t.selectedStep,e.detail);
+        document.addEventListener("gotopage", function(e) {
+            if (typeof(e.detail) === 'string') {
+                t.gotoId(e.detail);
+            } else {
+                t.gotoStep(t.selectedStep, e.detail);
+            }
         });
-        document.addEventListener("previouspage",function(){
-          t.currentProduct.selectPrevious();
+        document.addEventListener("previouspage", function() {
+            t.currentProduct.selectPrevious();
         });
         // t.addEventListener("dom-change", function() {
         //     t.ChangeProduct(0);

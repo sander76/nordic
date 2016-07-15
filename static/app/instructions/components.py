@@ -1,14 +1,19 @@
 import json
 
+from server.nordic import COMMANDS
+
+import static.app.instructions.translations as tr
+
+#from static.app.instructions.translations import _yes
+from static.app.instructions.helpers import TXT, NumberedText
+
 
 class NextPrevious:
     def __init__(self, button_text, goto, active):
-        if active:
-            self.caption = button_text
-            self.goto = goto
+        self.caption = button_text
+        self.goto = goto
+        self.active = active
 
-        else:
-            self.active = active
 
 class Next(NextPrevious):
     def __init__(self, button_text="next", goto=1, active=True):
@@ -20,37 +25,19 @@ class Previous(NextPrevious):
         NextPrevious.__init__(self, button_text, goto, active)
 
 
-class NumberedText:
-    def __init__(self,txt_instance,number):
-        self.number=number
-        self.txt=txt_instance
 
-    def get_text(self,lang):
-        txt = self.txt.get_text(lang)
-        val = '{}. {}'.format(self.number,txt)
-        return val
 
-class TXT:
-    def __init__(self, en, nl):
-        self.en = en
-        self.nl = nl
 
-    def get_text(self, lang):
-        val = getattr(self, lang, 'en')
-        return val
 
-    def add_number(self, number):
-        nt=NumberedText(self,number)
-        return nt
 
 
 class ToJson(json.JSONEncoder):
     def __init__(self, lang='en'):
-        json.JSONEncoder.__init__(self,sort_keys=True)
+        json.JSONEncoder.__init__(self, sort_keys=True)
         self.lang = lang
 
     def default(self, o):
-        if isinstance(o, TXT) or isinstance(o,NumberedText):
+        if isinstance(o, TXT) or isinstance(o, NumberedText):
             return o.get_text(self.lang)
             # return getattr(o, self.lang)
         else:
@@ -79,19 +66,8 @@ class Product:
         self.steps = steps
 
 
-'''
-step = {'type': 'dict',
-        'schema': {'title': {'type': 'string', 'required': True},
-                   'instructions': {'type': 'list', 'schema': instruction, 'required': True},
-                   'confirm': {'type': 'dict', 'schema': confirm},
-                   'next': {'oneof': next_prev_buttons, 'required': True},
-                   'previous': {'oneof': next_prev_buttons, 'required': True}
-                   }}
-                   '''
-
-
 class Step:
-    def __init__(self, title, instructions, confirm=None, nav_next=Next(), nav_previous=Previous()):
+    def __init__(self, title, instructions, confirm=None, nav_next=Next(), nav_previous=Previous(),id=None):
         for instruction in instructions:
             if not isinstance(instruction, Row):
                 raise UserWarning("instruction is not of type Row.")
@@ -100,6 +76,7 @@ class Step:
         self.confirm = confirm
         self.next = nav_next
         self.previous = nav_previous
+        self.id=id
 
 
 '''
@@ -117,11 +94,14 @@ confirm = {'img': {'type': 'string', 'required': True},
 
 
 class Confirm:
-    def __init__(self, img, text, yes=1, no=0):
+    def __init__(self, img, text,yes_text=tr._yes,no_text=tr._no, yes=1, no=0):
         self.img = img
         self.text = text
         self.yes = yes
         self.no = no
+        self.yes_text=yes_text
+        self.no_text=no_text
+
 
 
 class UiElement:
@@ -134,10 +114,13 @@ class UiElement:
 
 class ApiCommand:
     def __init__(self, commands, delay=None):
-        self.commands = {'commands':commands}
+        for command in commands:
+            if command not in COMMANDS.keys():
+                raise UserWarning("{} not a valid nordic command".format(command))
+        self.commands = {'commands': commands}
         if delay is not None:
-            #self.delay = delay
-            self.commands['delay']=delay
+            # self.delay = delay
+            self.commands['delay'] = delay
 
 
 class OkayCommand(ApiCommand):
@@ -146,6 +129,11 @@ class OkayCommand(ApiCommand):
             ApiCommand.__init__(self, commands, delay)
         if goto is not None:
             self.goto = goto
+
+
+class Spacer(UiElement):
+    def __init__(self, width):
+        UiElement.__init__(self, width)
 
 
 '''
@@ -230,12 +218,8 @@ next_prev_buttons = [{'type': 'boolean'},
 '''
 
 
-
-
-
-
 class Row:
-    allowed = [PvKeypad, Text, Image]
+    allowed = [PvKeypad, Text, Image,Spacer]
 
     def __init__(self, col1, col2=None, col3=None, col4=None):
         self._check(col1)
