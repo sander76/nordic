@@ -31,13 +31,11 @@ if __name__ == "__main__":
                         Image(25, "/app/images/m25t_motor_button_release_top_limit_rollo.png"),
                         Image(25, "/app/images/m25t_motor_jog1x.png"))
                     ],
-                   Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog),
-                   Next(),
-                   Previous(active=False))
+                   Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog))
 
     initialise = Step(tr._initialise,
                       [Row(Text(30, tr._press_okay_button.add_number(1)),
-                           Text(30, tr._motor_jogs_two_times.add_number(2))),
+                           Text(30, tr._watch_the_blind_jog_two_times.add_number(2))),
                        Row(PvKeypad(30, ['okay'], 'okay', OkayCommand(['reset', 'roller'], 4)),
                            Image(30, "/app/images/m25t_motor_jog2x.png"))
                        ],
@@ -47,7 +45,7 @@ if __name__ == "__main__":
 
     enter_program_mode = Step(tr._enterprogrammode,
                               [Row(Text(30, tr._press_okay_button.add_number(1)),
-                                   Text(30, tr._motor_jogs.add_number(2))),
+                                   Text(30, tr._watch_the_blind_jog.add_number(2))),
                                Row(PvKeypad(30, ['okay'], 'okay', OkayCommand(['startprogram'])),
                                    Image(30, "/app/images/m25t_motor_jog1x.png"))
                                ], Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog))
@@ -66,7 +64,7 @@ if __name__ == "__main__":
     switch_direction = Step(tr._switchdirection,
                             [
                                 Row(Text(30, tr._press_okay_button.add_number(1)),
-                                    Text(30, tr._motor_jogs.add_number(2))),
+                                    Text(30, tr._watch_the_blind_jog.add_number(2))),
                                 Row(PvKeypad(30, ['okay'], 'okay', OkayCommand(['startprogram', 'reverse'], delay=2)),
                                     Image(30, "/app/images/m25t_motor_jog1x.png"))
                             ],
@@ -78,7 +76,7 @@ if __name__ == "__main__":
                             [
                                 Row(Text(30, tr._moveblind),
                                     Text(30, tr._savebottom),
-                                    Text(30, tr._motor_jogs)),
+                                    Text(30, tr._watch_the_blind_jog)),
                                 Row(PvKeypad(30, ['open', 'close', 'tiltup', 'tiltdown', 'stop']),
                                     savepositionBottom,
                                     Image(30, "/app/images/m25t_motor_jog1x.png"))
@@ -89,7 +87,7 @@ if __name__ == "__main__":
                          [
                              Row(Text(30, tr._moveblind),
                                  Text(30, tr._savetop),
-                                 Text(30, tr._motor_jogs)),
+                                 Text(30, tr._watch_the_blind_jog)),
                              Row(PvKeypad(30, ['open', 'close', 'tiltup', 'tiltdown', 'stop']),
                                  PvKeypad(30, ['okay'], 'okay', OkayCommand(['savepositiontop'])),
                                  Image(30, "/app/images/m25t_motor_jog1x.png"))
@@ -102,7 +100,7 @@ if __name__ == "__main__":
                             [
                                 Row(Text(30,tr._moveblind),
                                     Text(30,tr._saveslat),
-                                    Text(30,tr._motor_jogs)),
+                                    Text(30,tr._watch_the_blind_jog)),
                                 Row(PvKeypad(30, ['open', 'close', 'tiltup', 'tiltdown', 'stop']),
                                     saveSlatOpen,
                                     Image(30, "/app/images/m25t_motor_jog1x.png"))
@@ -132,7 +130,7 @@ if __name__ == "__main__":
     skipbottom_blind = Step(tr._skipbottomtitle,
                             [
                                 Row(Text(30, tr._make_choice),
-                                    Text(30, tr._reset_top),
+                                    Text(30, tr._reset_bottom),
                                     Text(30, tr._select_skip_bottom)),
                                 Row(Spacer(30),
                                     PvKeypad(30, ['okay'], okay=OkayCommand(goto=1)),
@@ -142,7 +140,7 @@ if __name__ == "__main__":
     skipbottom_twist = Step(tr._skipbottomtitle,
                             [
                                 Row(Text(30, tr._make_choice),
-                                    Text(30, tr._reset_top),
+                                    Text(30, tr._reset_bottom),
                                     Text(30, tr._select_skip_bottom)),
                                 Row(Spacer(30),
                                     PvKeypad(30, ['okay'], okay=OkayCommand(goto=1)),
@@ -153,29 +151,29 @@ if __name__ == "__main__":
                                [
                                    Row(Text(30, tr._moveblind),
                                        Text(30, tr._savebottom),
-                                       Text(30, tr._motor_jogs)),
+                                       Text(30, tr._watch_the_blind_jog)),
                                    Row(PvKeypad(30, ['open', 'close', 'tiltup', 'tiltdown', 'stop']),
                                        savepositionBottom,
                                        Image(30, "/app/images/m25t_motor_jog1x.png"))
                                ],
-                               Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog, yes="testblinds"))
+                               Confirm("/app/images/m25t_motor_top_limit_move_up_rollo.png", tr._did_the_motor_move_up, yes="testblinds"))
 
     re_set_bottom_limit_twist = Step(tr._setbottomlimit,
                                [
                                    Row(Text(30, tr._moveblind),
                                        Text(30, tr._savebottom),
-                                       Text(30, tr._motor_jogs)),
+                                       Text(30, tr._watch_the_blind_jog)),
                                    Row(PvKeypad(30, ['open', 'close', 'tiltup', 'tiltdown', 'stop']),
                                        savepositionBottom,
                                        Image(30, "/app/images/m25t_motor_jog1x.png"))
                                ],
-                               Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog))
+                               Confirm("/app/images/m25t_motor_top_limit_move_up_rollo.png", tr._did_the_motor_move_up))
 
     re_set_twist_slat_open = Step(tr._set_twist_slatposition,
                                [
                                    Row(Text(30, tr._moveblind),
                                        Text(30, tr._saveslat),
-                                       Text(30, tr._motor_jogs)),
+                                       Text(30, tr._watch_the_blind_jog)),
                                    Row(PvKeypad(30, ['open', 'close', 'tiltup', 'tiltdown', 'stop']),
                                        saveSlatOpen,
                                        Image(30, "/app/images/m25t_motor_jog1x.png"))
