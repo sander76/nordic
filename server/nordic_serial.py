@@ -121,15 +121,11 @@ class NordicSerial:
                     delay = commands.get("delay", SLEEP_BETWEEN_COMMANDS)
                     yield from asyncio.sleep(delay)
                 try:
-                    self._write_to_nordic(upstring)  # self.s.write(upstring)
-                    #
-                    # lgr.debug(_up)
-                    # send_socket_message(_up)
+                    self._write_to_nordic(upstring)
                 except SerialException:
                     lgr.exception("writing to serial port failure.")
                     self.s.close()
                     send_connection_status(False, "unknown")
-                    # return web.Response(text="Writing to blind went wrong. Please check cables and USB dongle")
             else:
                 lgr.error("sending command {} did not succeed.".format(cmd))
                 return web.Response(text="sending command {} did not succeed.".format(cmd), status=500)

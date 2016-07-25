@@ -102,8 +102,14 @@ _watch_the_blind_jog_two_times = TXT("Motor jogs two times.",
 _motor_should_move_down = TXT("Blind should move down/close.",
                               "Blind moet naar beneden bewegen/sluiten.")
 
-_moveblind = TXT('Move the blind to the desired BOTTOM position.',
-                 'Stuur de blind naar de gewenste ONDER positie.')
+_moveblind_bottom = TXT('Move the blind to the desired BOTTOM position.',
+                        'Stuur de blind naar de gewenste ONDER positie.')
+
+_moveblind_top = TXT('Move the blind to the desired TOP position.',
+                     'Stuur de blind naar de gewenste BOVEN positie.')
+
+_moveblind_slatopen = TXT('Move the blind to the desired SLAT OPEN position.',
+                          'Stuur de blind naar de gewenste SLAT OPEN positie.')
 
 _test_move_blinds = TXT('Check TOP and BOTTOM limits.',
                         'Controleer BOVEN en ONDER limiet.')

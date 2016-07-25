@@ -45,7 +45,7 @@ class ToJson(json.JSONEncoder):
 
 
 class Instruction:
-    def __init__(self, version='1.3'):
+    def __init__(self, version):
         self.version = version
         self.products = []
 

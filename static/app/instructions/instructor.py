@@ -74,13 +74,13 @@ if __name__ == "__main__":
                                 Row(PvKeypad(30, ['okay'], 'okay', OkayCommand(['startprogram', 'reverse'], delay=2)),
                                     Image(30, "/app/images/m25t_motor_jog1x.png"))
                             ],
-                            Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog))
+                            Confirm('/app/images/m25t_motor_jog2x.png', tr._did_the_motor_jog_two_times))
 
     savepositionBottom = PvKeypad(30, ['okay'], 'okay', OkayCommand(['savepositionbottom']))
 
     set_bottom_limit = Step(tr._setbottomlimit,
                             [
-                                Row(Text(30, tr._moveblind.add_number(1)),
+                                Row(Text(30, tr._moveblind_bottom.add_number(1)),
                                     Text(30, tr._savebottom.add_number(2)),
                                     Text(30, tr._watch_the_blind_jog.add_number(3))),
                                 Row(PvKeypad(30, ['open', 'close', 'tiltup', 'tiltdown', 'stop']),
@@ -89,9 +89,10 @@ if __name__ == "__main__":
                             ],
                             Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog))
 
+
     set_top_limit = Step(tr._settoplimit,
                          [
-                             Row(Text(30, tr._moveblind.add_number(1)),
+                             Row(Text(30, tr._moveblind_top.add_number(1)),
                                  Text(30, tr._savetop.add_number(2)),
                                  Text(30, tr._watch_the_blind_jog.add_number(3))),
                              Row(PvKeypad(30, ['open', 'close', 'tiltup', 'tiltdown', 'stop']),
@@ -104,7 +105,7 @@ if __name__ == "__main__":
 
     set_twist_position = Step(tr._set_twist_slatposition,
                               [
-                                  Row(Text(30, tr._moveblind),
+                                  Row(Text(30, tr._moveblind_slatopen),
                                       Text(30, tr._saveslat),
                                       Text(30, tr._watch_the_blind_jog)),
                                   Row(PvKeypad(30, ['open', 'close', 'tiltup', 'tiltdown', 'stop']),
@@ -153,33 +154,25 @@ if __name__ == "__main__":
                                     PvKeypad(30, ['cancel'], cancel=3))
                             ])
 
-    re_set_bottom_limit = Step(tr._setbottomlimit,
-                               [
-                                   Row(Text(30, tr._moveblind),
-                                       Text(30, tr._savebottom),
-                                       Text(30, tr._watch_the_blind_jog)),
-                                   Row(PvKeypad(30, ['open', 'close', 'tiltup', 'tiltdown', 'stop']),
-                                       savepositionBottom,
-                                       Image(30, "/app/images/m25t_motor_jog1x.png"))
-                               ],
+    '''
+    Same as normal setting the bottom limits, but confirm dialog navigates to different page when ok.
+    '''
+    re_set_bottom_limit = Step(set_bottom_limit.title,
+                               set_bottom_limit.instructions,
                                Confirm("/app/images/m25t_motor_top_limit_move_up_rollo.png", tr._did_the_motor_move_up,
                                        yes="testblinds"))
 
+    '''
+    same as setting bottom limit.
+    '''
     re_set_bottom_limit_twist = Step(tr._setbottomlimit,
-                                     [
-                                         Row(Text(30, tr._moveblind),
-                                             Text(30, tr._savebottom),
-                                             Text(30, tr._watch_the_blind_jog)),
-                                         Row(PvKeypad(30, ['open', 'close', 'tiltup', 'tiltdown', 'stop']),
-                                             savepositionBottom,
-                                             Image(30, "/app/images/m25t_motor_jog1x.png"))
-                                     ],
+                                     set_bottom_limit.instructions,
                                      Confirm("/app/images/m25t_motor_top_limit_move_up_rollo.png",
                                              tr._did_the_motor_move_up))
 
     re_set_twist_slat_open = Step(tr._set_twist_slatposition,
                                   [
-                                      Row(Text(30, tr._moveblind),
+                                      Row(Text(30, tr._moveblind_slatopen),
                                           Text(30, tr._saveslat),
                                           Text(30, tr._watch_the_blind_jog)),
                                       Row(PvKeypad(30, ['open', 'close', 'tiltup', 'tiltdown', 'stop']),
@@ -238,7 +231,7 @@ if __name__ == "__main__":
                               re_set_twist_slat_open
                               ])
 
-    instruction = Instruction()
+    instruction = Instruction('1.4')
     instruction.products.append(rollerblind1)
     instruction.products.append(twist)
 
