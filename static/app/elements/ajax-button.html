@@ -41,7 +41,7 @@
                 //populate the body of the request.
                 console.log("key pressed: " + this.data.caption);
                 if (this.data.commands !== undefined) {
-                  console.log("--> first command sent: " + this.data.commands.commands[0]);
+                  console.log("--> first command sent: " + this.data.commands.command);
                     this.$.sendCommand.body = {
                         "commands": this.data.commands
                     };

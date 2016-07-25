@@ -4,7 +4,7 @@ from server.nordic import COMMANDS
 
 import static.app.instructions.translations as tr
 
-#from static.app.instructions.translations import _yes
+# from static.app.instructions.translations import _yes
 from static.app.instructions.helpers import TXT, NumberedText
 
 
@@ -25,10 +25,32 @@ class Previous(NextPrevious):
         NextPrevious.__init__(self, button_text, goto, active)
 
 
+class DelayedCommand:
+    def __init__(self, command, delay):
+        self.command = command
+        self.delay = delay
 
 
+# class ApiCommand:
+#     def __init__(self, commands, delay=None):
+#         for command in commands:
+#             if command not in COMMANDS.keys():
+#                 raise UserWarning("{} not a valid nordic command".format(command))
+#         self.commands = {'commands': commands}
+#         if delay is not None:
+#             # self.delay = delay
+#             self.commands['delay'] = delay
 
-
+class Commands:
+    def __init__(self, first_command, *next_commands):
+        if first_command not in COMMANDS.keys():
+            raise UserWarning("{} not a valid nordic command".format(first_command))
+        for _command in next_commands:
+            if _command.command not in COMMANDS.keys():
+                raise UserWarning("{} not a valid nordic command".format(_command.command))
+        self.commands=[first_command] + [cmd for cmd in next_commands]
+        # self.command = first_command
+        # self.commands = next_commands
 
 
 class ToJson(json.JSONEncoder):
@@ -67,7 +89,7 @@ class Product:
 
 
 class Step:
-    def __init__(self, title, instructions, confirm=None, nav_next=Next(), nav_previous=Previous(),id=None):
+    def __init__(self, title, instructions, confirm=None, nav_next=Next(), nav_previous=Previous(), id=None):
         for instruction in instructions:
             if not isinstance(instruction, Row):
                 raise UserWarning("instruction is not of type Row.")
@@ -76,7 +98,7 @@ class Step:
         self.confirm = confirm
         self.next = nav_next
         self.previous = nav_previous
-        self.id=id
+        self.id = id
 
 
 '''
@@ -94,14 +116,13 @@ confirm = {'img': {'type': 'string', 'required': True},
 
 
 class Confirm:
-    def __init__(self, img, text,yes_text=tr._yes,no_text=tr._no, yes=1, no=0):
+    def __init__(self, img, text, yes_text=tr._yes, no_text=tr._no, yes=1, no=0):
         self.img = img
         self.text = text
         self.yes = yes
         self.no = no
-        self.yes_text=yes_text
-        self.no_text=no_text
-
+        self.yes_text = yes_text
+        self.no_text = no_text
 
 
 class UiElement:
@@ -111,24 +132,17 @@ class UiElement:
         else:
             raise UserWarning("not an integer : {}".format(width))
 
+class NavigationCommand:
+    def __init__(self,goto):
+        self.goto=goto
 
-class ApiCommand:
-    def __init__(self, commands, delay=None):
-        for command in commands:
-            if command not in COMMANDS.keys():
-                raise UserWarning("{} not a valid nordic command".format(command))
-        self.commands = {'commands': commands}
-        if delay is not None:
-            # self.delay = delay
-            self.commands['delay'] = delay
-
-
-class OkayCommand(ApiCommand):
-    def __init__(self, commands=None, delay=None, goto=None):
-        if commands is not None:
-            ApiCommand.__init__(self, commands, delay)
-        if goto is not None:
-            self.goto = goto
+# class OkayCommand(Commands):
+#     def __init__(self,first_command=None, goto=None, *next_commands):
+#         if first_command is not None:
+#             Commands.__init__(self,first_command,*next_commands)
+#             #ApiCommand.__init__(self, commands, delay)
+#         if goto is not None:
+#             self.goto = goto
 
 
 class Spacer(UiElement):
@@ -219,7 +233,7 @@ next_prev_buttons = [{'type': 'boolean'},
 
 
 class Row:
-    allowed = [PvKeypad, Text, Image,Spacer]
+    allowed = [PvKeypad, Text, Image, Spacer]
 
     def __init__(self, col1, col2=None, col3=None, col4=None):
         self._check(col1)

@@ -293,41 +293,31 @@
 
             handleOpen: function(e) {
                 // if (this.active) {
-                this.send({
-                    "commands": ["open"]
-                });
+                this.send(["open"]);
                 console.log("open");
                 // }
             },
             handleClose: function(e) {
                 // if (this.active) {
-                this.send({
-                    "commands": ["close"]
-                });
+                this.send(["close"]);
                 console.log("close");
                 //}
             },
             handleTiltup: function(e) {
                 // if (this.active) {
-                this.send({
-                    "commands": ["tiltopen"]
-                });
+                this.send(["tiltopen"]);
                 console.log("tilt open");
                 //}
             },
             handleTiltdown: function(e) {
                 //if (this.active) {
-                this.send({
-                    "commands": ["tiltclose"]
-                });
+                this.send(["tiltclose"]);
                 console.log("tiltclose");
                 //}
             },
             handleStop: function(e) {
                 //if (this.active) {
-                this.send({
-                    "commands": ["stop"]
-                });
+                this.send(["stop"]);
                 console.log("stop");
                 //}
             },
@@ -354,7 +344,7 @@
                     "commands": commands
                 };
                 this.$.sendCommand.generateRequest();
-                console.log("command sent: " + commands.commands[0]);
+                console.log("command sent: " + commands.command);
 
             }
         });
