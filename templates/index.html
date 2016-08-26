@@ -209,7 +209,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         t.getInstructions = function(e, response) {
             t.all_products = response.response.products;
             t.definitions_version = response.response.version;
-            //t.$.toast.close();
+            t.$.toast.close();
         };
         document.addEventListener("nextpage", function() {
             t.currentProduct.selectNext();
