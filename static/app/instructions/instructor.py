@@ -40,7 +40,7 @@ if __name__ == "__main__":
                                   Row(PvKeypad(25, ['okay'], 'okay', Commands('networkadd',
                                                                               DelayedCommand('group1add', 1),
                                                                               DelayedCommand('reset', 5),
-                                                                              DelayedCommand('twist', 2))))
+                                                                              DelayedCommand('twist', 5))))
                               ],
                               Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog, yes=-1))
 
@@ -257,7 +257,7 @@ if __name__ == "__main__":
         fl.write(en)
 
     make_twist = Product("make twist", [connect_make_twist])
-    instruction3=Instruction('1.1')
+    instruction3=Instruction('1.2')
     instruction3.products.append(make_twist)
     twst = ToJson(lang='en').encode(instruction3)
     with open('instructions-set-id.json','w') as fl:
