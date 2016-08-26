@@ -76,6 +76,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             font-size: 0.8em;
             margin: 4px;
         }
+
+        
     </style>
     <link rel="import" href="/app/elements/ajax-button.html">
     <link rel="import" href="/app/elements/icon-ajax-button.html">
@@ -146,9 +148,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </iron-pages>
             </paper-header-panel>
         </paper-drawer-panel>
-        <!-- <paper-toast id="toast">
-            <span class="toast-hide-button" role="button" tabindex="0" onclick="app.$.toast.hide()">Ok</span>
-        </paper-toast> -->
+        <paper-toast duration="0" id="toast" opened class="fit-bottom" text="loading instructions">
+
+        </paper-toast>
 
     </template>
 
@@ -169,50 +171,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             return title;
 
         };
-
-        // t.selectChanged = function(e) {
-        //     console.log("changed");
-        // };
-
-        // t.checkActive = function(instruction, selectedproduct, index, selected) {
-        //     if (instruction !== selectedproduct) {
-        //         return false;
-        //     } else {
-        //         if (index !== selected) {
-        //             return false;
-        //         }
-        //     }
-        //     return true;
-        // };
-        // t.handleNext = function() {
-        //     //var pages = t.$.pages
-        //     //t.$.pages.selectNext();
-        //     t.currentProduct.selectNext();
-        // };
-        // t.instructions = {
-        //     "steps": []
-        // };
-        // t.handlePrevious = function() {
-        //     //t.$.pages.selectPrevious();
-        //     t.currentProduct.selectNext();
-        // };
-
-        // t.handleGoto = function(e) {
-        //     //var _goto = t.$.pages.selected + e.detail;
-        //     //var current_product = t.all_products[t.selectedproduct];
-        //     //var _goto = e.currentTarget.selected + e.detail;
-        //     this.gotoStep(e.currentTarget.selected, e.detail);
-        //     // var goto = 0;
-        //     // if (_goto < 0) {
-        //     //     //goto = (t.instructions.steps.length + _goto);
-        //     //     goto = t.current_product.steps.length + _goto;
-        //     // } else {
-        //     //     //goto = _goto % t.instructions.steps.length;
-        //     //     goto = _goto % t.current_product.steps.length;
-        //     // }
-        //     // //t.$.pages.select(goto);
-        //     // e.currentTarget.select(goto);
-        // };
 
         t.gotoStep = function(current, offset) {
             var _goto = current + offset;
@@ -251,6 +209,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         t.getInstructions = function(e, response) {
             t.all_products = response.response.products;
             t.definitions_version = response.response.version;
+            //t.$.toast.close();
         };
         document.addEventListener("nextpage", function() {
             t.currentProduct.selectNext();

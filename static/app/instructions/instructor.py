@@ -33,7 +33,16 @@ if __name__ == "__main__":
                     ],
                    Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog))
 
-    # cmd = Commands('networkadd', DelayedCommand('group1add', 1))
+    '''Instruction to quickly make a rb a twist. Not user friendly !'''
+    connect_make_twist = Step(tr._connect,
+                              [
+                                  Row(Text(100, "Connect your blind using normal procedure")),
+                                  Row(PvKeypad(25, ['okay'], 'okay', Commands('networkadd',
+                                                                              DelayedCommand('group1add', 1),
+                                                                              DelayedCommand('reset', 2),
+                                                                              DelayedCommand('twist', 2))))
+                              ],
+                              Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog, yes=-1))
 
     initialise_roller = Step(tr._initialise,
                              [Row(Text(30, tr._press_okay_button.add_number(1)),
@@ -62,24 +71,24 @@ if __name__ == "__main__":
                            [
                                Row(Text(30, tr._press_okay_button.add_number(1)),
                                    Text(30, tr._motor_should_move_down.add_number(2))),
-                               Row(PvKeypad(30, ['okay'], 'okay', Commands('tiltclose', DelayedCommand('stop', 3), DelayedCommand('stop', 0.4), DelayedCommand('stop', 0.4)), cancel=1),
+                               Row(PvKeypad(30, ['okay'], 'okay', Commands('tiltclose', DelayedCommand('stop', 3),
+                                                                           DelayedCommand('stop', 0.4),
+                                                                           DelayedCommand('stop', 0.4)), cancel=1),
                                    Image(30, "/app/images/m25t_motor_top_limit_move_down_rollo.png"))
                            ],
                            Confirm("/app/images/m25t_motor_top_limit_move_down_rollo.png", tr._did_motor_move_down,
                                    yes=2,
                                    no=1))
 
-
-
     switch_direction = Step(tr._switchdirection,
                             [
                                 Row(Text(30, tr._press_okay_button.add_number(1)),
                                     Text(30, tr._watch_the_blind_jog.add_number(2))),
-                                Row(PvKeypad(30, ['okay'], 'okay', Commands('startprogram',DelayedCommand('reverse',2))),
+                                Row(PvKeypad(30, ['okay'], 'okay',
+                                             Commands('startprogram', DelayedCommand('reverse', 2))),
                                     Image(30, "/app/images/m25t_motor_jog1x.png"))
                             ],
                             Confirm('/app/images/m25t_motor_jog2x.png', tr._did_the_motor_jog_two_times))
-
 
     savepositionBottom = PvKeypad(30, ['okay'], 'okay', Commands('savepositionbottom'))
 
@@ -234,6 +243,7 @@ if __name__ == "__main__":
                               re_set_twist_slat_open
                               ])
 
+
     instruction = Instruction('1.4')
     instruction.products.append(rollerblind1)
     instruction.products.append(twist)
@@ -245,3 +255,10 @@ if __name__ == "__main__":
     en = ToJson(lang='en').encode(instruction)
     with open('instructions-luxaflex-en.json', 'w') as fl:
         fl.write(en)
+
+    make_twist = Product("make twist", [connect_make_twist])
+    instruction3=Instruction('1.0')
+    instruction3.products.append(make_twist)
+    twst = ToJson(lang='en').encode(instruction3)
+    with open('instructions-set-id.json','w') as fl:
+        fl.write(twst)
