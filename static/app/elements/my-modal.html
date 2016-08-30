@@ -2,7 +2,14 @@
 <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
 
 <dom-module id="my-modal">
-
+  <style>
+  iron-icon.ok {
+      color: green !important;
+  }
+  iron-icon.cross {
+      color: red !important;
+  }
+  </style>
     <template>
         <paper-dialog id="modal" modal on-iron-overlay-closed="handleClose">
             <iron-a11y-keys id="modalconfirm" target='[[target]]' keys="enter" on-keys-pressed="closeModal">

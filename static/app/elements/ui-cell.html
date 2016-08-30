@@ -1,7 +1,8 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
-<link rel="import" href="../styles/app-theme.html" >
+<link rel="import" href="../styles/app-theme.html">
 <link rel="import" href="pv-keypad.html">
+<link rel="import" href="../bower_components/marked-element/marked-element.html">
 <dom-module id="ui-cell">
     <style include="iron-flex iron-flex-alignment"></style>
 
@@ -12,7 +13,15 @@
         }
 
         .container {
-            margin: var(--column-spacing);
+            margin: 20px;
+        }
+
+        code {
+            background-color: red;
+            border-radius: 4px;
+            padding: 2px 5px;
+            color: #c7254e;
+            background-color: #f9f2f4;
         }
     </style>
     <template>
@@ -21,41 +30,44 @@
                 <img class="instr_img" src="[[data.src]]" />
             </div>
         </template>
-        <template is="dom-if" if="[[isType(data,'text')]]">
+    <template is="dom-if" if="[[isType(data,'text')]]">
           <div class="container">
-            <p>
+            <!-- <p>
                 {{data.content}}
-            </p>
+            </p> -->
+            <marked-element markdown=[[data.content]]>
+              <div class="markdown-html"></div>
+            </marked-element>
           </div>
-        </template>
-        <template is="dom-if" if="[[isType(data,'button')]]">
+          </template>
+    <template is="dom-if" if="[[isType(data,'button')]]">
             <ajax-button active="[[active]]" data="[[data]]">[[data.caption]] <small>([[data.keys]])</small></ajax-button>
         </template>
-        <template is="dom-if" if="[[isType(data,'svg-button-connect')]]">
+    <template is="dom-if" if="[[isType(data,'svg-button-connect')]]">
             <svg-button-connect active="[[active]]" data="[[data]]"></svg-button-connect>
         </template>
-        <template is="dom-if" if="[[isType(data,'icon-button')]]">
+    <template is="dom-if" if="[[isType(data,'icon-button')]]">
             <div class="container">
                 <icon-ajax-button active="[[active]]" data="[[data]]"></icon-ajax-button>
             </div>
         </template>
-        <template is="dom-if" if="[[isType(data,'icon-nav-button')]]">
+    <template is="dom-if" if="[[isType(data,'icon-nav-button')]]">
             <div class="container">
                 <icon-nav-button active="[[active]]" data="[[data]]"></icon-nav-button>
             </div>
         </template>
-        <!-- <template is="dom-if" if="[[isType(data,'keypad')]]">
+    <!-- <template is="dom-if" if="[[isType(data,'keypad')]]">
             <key-pad active="[[active]]"></key-pad>
         </template> -->
-        <template is="dom-if" if="[[isType(data,'pv-keypad')]]">
+    <template is="dom-if" if="[[isType(data,'pv-keypad')]]">
             <div class="container">
                 <pv-keypad active="[[active]]" data="[[data]]"></pv-keypad>
             </div>
         </template>
-        <!-- <template is="dom-if" if="[[isType(data,'remote')]]">
+    <!-- <template is="dom-if" if="[[isType(data,'remote')]]">
             <pv-remote active="[[active]]"></pv-remote>
         </template> -->
-        <template is="dom-if" if="[[isType(data,'navbutton')]]">
+    <template is="dom-if" if="[[isType(data,'navbutton')]]">
             <nav-button active="[[active]]" data="[[data]]">[[data.caption]] <small>([[data.keys]])</small></nav-button>
         </template>
     </template>

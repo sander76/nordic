@@ -18,28 +18,28 @@ _blinddirection = TXT('CHECK BLIND DIRECTION.',
 _switchdirection = TXT('CHANGE BLIND DIRECTION.',
                        'WISSEL BLIND RICHTING.')
 
-_setbottomlimit = TXT('SET BOTTOM LIMIT.',
+_setbottomlimit = TXT('SET *BOTTOM* LIMIT.',
                       'STEL ONDERLIMIET IN.')
 
-_settoplimit = TXT('SET TOP LIMIT.',
+_settoplimit = TXT('SET *TOP* LIMIT.',
                    'STEL BOVENLIMIET IN.')
 
-_set_twist_slatposition = TXT('SET TWIST SLAT POSITION.',
-                              'STEL TWIST SLAT POSITIE IN.')
+_set_twist_slatposition = TXT('SET *TWIST SLAT POSITION*.',
+                              'STEL *TWIST SLAT POSITIE IN*.')
 
-_skiptoptitle = TXT('SET TOP LIMIT?',
-                    'STEL BOVENLIMIET IN?')
+_skiptoptitle = TXT('SET *TOP* LIMIT?',
+                    'STEL *BOVENLIMIET* IN?')
 
-_skipbottomtitle = TXT('SET BOTTOM LIMIT?',
-                       'STEL ONDERLIMIET IN?')
+_skipbottomtitle = TXT('SET *BOTTOM* LIMIT?',
+                       'STEL *ONDERLIMIET* IN?')
 
 _skipslattitle = TXT('SET SLAT POSITION?',
                      'STEL SLAT POSITIE IN?')
 
-_proper_product_hang = TXT("Make sure bottom bar is approximately 20cm down.",
-                           "Zorg dat de onderlat ongeveer 20cm gezakt is.")
+_proper_product_hang = TXT("Make sure *BOTTOM* bar is approximately 20cm down.",
+                           "Zorg dat de *ONDERLAT* ongeveer 20cm gezakt is.")
 
-_proper_product_hang_confirm = TXT("Product fixed ok.",
+_proper_product_hang_confirm = TXT("Product fixed *OK*.",
                                    "Product is correct opgehangen.")
 
 _make_choice = TXT("Make a choice:",
@@ -48,11 +48,11 @@ _make_choice = TXT("Make a choice:",
 _select_skip_top = TXT("I don't want to set the TOP limit",
                        "BOVENLIMIET niet opnieuw instellen")
 
-_select_skip_bottom = TXT("I don't want to set the BOTTOM limit",
-                          "ONDERLIMIET niet opnieuw instellen")
+_select_skip_bottom = TXT("I don't want to set the *BOTTOM* limit",
+                          "*ONDERLIMIET* niet opnieuw instellen")
 
-_select_skip_slat = TXT("Don't re-set the SLAT position.",
-                        "SLAT OPEN positie niet opnieuw instellen.")
+_select_skip_slat = TXT("Don't re-set the *SLAT* position.",
+                        "*SLAT OPEN* positie niet opnieuw instellen.")
 
 _reset_top = TXT("Re-set the TOP limit.",
                  "BOVENLIMIET opnieuw instellen.")
@@ -78,23 +78,23 @@ _did_the_motor_jog_two_times = TXT('Did the motor jog two times?',
 _did_motor_move_down = TXT("Did the blind move down?",
                            "Is de blind naar beneden bewogen?")
 
-_press_hold_blind_button = TXT('Press and hold the blind button.',
-                               'Druk de blind button in en houd vast.')
+_press_hold_blind_button = TXT('`Press` and `hold` the *BLIND BUTTON* .',
+                               '`Druk` de *BLIND BUTTON*  in en `houd vast`.')
 
-_keep_pressing_and_okay = TXT('Keep pressing the blind button and press the OK button.',
-                              'Blijf de blind button indrukken en druk op de OK knop.')
+_keep_pressing_and_okay = TXT('Keep pressing the *BLIND BUTTON* and press the OK button.',
+                              'Blijf de *BLIND BUTTON* indrukken en druk op de OK knop.')
 
-_release_the_blind_button = TXT('Release the blind button',
-                                'Laat de blind button los.')
+_release_the_blind_button = TXT('Release the *BLIND BUTTON*',
+                                'Laat de *BLIND BUTTON* los.')
 
 _press_okay_button = TXT("Press OK button",
                          "Druk op de OK knop")
 
-_watch_the_blind_jog = TXT('Watch the blind jog.',
-                           'Zie de blind bewegen.')
+_watch_the_blind_jog = TXT('Watch the *BLIND* jog.',
+                           'Zie de *BLIND* bewegen.')
 
-_watch_the_blind_move_up = TXT('Watch the blind move up.',
-                               'Zie de blind naar boven bewegen.')
+_watch_the_blind_move_up = TXT('Watch the *BLIND* move up.',
+                               'Zie de *BLIND* naar boven bewegen.')
 
 _watch_the_blind_jog_two_times = TXT("Motor jogs two times.",
                                      "Motor beweegt twee keer.")
@@ -102,14 +102,14 @@ _watch_the_blind_jog_two_times = TXT("Motor jogs two times.",
 _motor_should_move_down = TXT("Blind should move down/close.",
                               "Blind moet naar beneden bewegen/sluiten.")
 
-_moveblind_bottom = TXT('Move the blind to the desired BOTTOM position.',
-                        'Stuur de blind naar de gewenste ONDER positie.')
+_moveblind_bottom = TXT('Move the *BLIND* to the desired BOTTOM position.',
+                        'Stuur de *BLIND* naar de gewenste ONDER positie.')
 
-_moveblind_top = TXT('Move the blind to the desired TOP position.',
-                     'Stuur de blind naar de gewenste BOVEN positie.')
+_moveblind_top = TXT('Move the *BLIND* to the desired TOP position.',
+                     'Stuur de *BLIND* naar de gewenste BOVEN positie.')
 
-_moveblind_slatopen = TXT('Move the blind to the desired SLAT OPEN position.',
-                          'Stuur de blind naar de gewenste SLAT OPEN positie.')
+_moveblind_slatopen = TXT('Move the *BLIND* to the desired SLAT OPEN position.',
+                          'Stuur de *BLIND* naar de gewenste SLAT OPEN positie.')
 
 _test_move_blinds = TXT('Check TOP and BOTTOM limits.',
                         'Controleer BOVEN en ONDER limiet.')
@@ -124,7 +124,7 @@ _saveslat = TXT('Save this as SLAT OPEN position.',
                 'Stel in als SLAT OPEN positie.')
 
 _limits_ok = TXT('Limits are OK. Do a new blind.',
-                 'Limieten zijn OK. Nieuwe blind inprogrammeren.')
+                 'Limieten zijn OK. Nieuwe *BLIND* inprogrammeren.')
 
 _limits_not_ok = TXT('Limits are NOT OK. Re-set them',
                      'Limieten zijn NIET OK. Opnieuw instellen.')

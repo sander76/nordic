@@ -61,15 +61,10 @@
         <app-location use-hash-as-path route="{{route}}"></app-location>
         <app-route active="{{routeActive}}" route="{{route}}" pattern="instructions/:page/:product" data="{{routeData}}"></app-route>
 
-        <iron-ajax id='instruction' url="/app/instructions/instructions-[[page]].json" handle-as="json" on-response="getInstructions"></iron-ajax>
+        <iron-ajax id='instruction' url="/app/instructions/instructions-[[page]].json" handle-as="json" on-response="getInstructions" on-error="handleError"></iron-ajax>
 
         <app-drawer-layout fullbleed>
             <app-drawer>
-                <!-- Drawer Toolbar -->
-                <!-- <app-toolbar>Menu</app-toolbar> -->
-                <!-- <div class="vertical layout" style="height:100%;"> -->
-                <!-- Drawer Content -->
-                <!-- <paper-menu class="flex" flex> -->
                 <div class="layout flex fullbleed vertical" style="height:100%;">
                     <div class="flex">
                         <iron-selector selected="[[product]]" class="drawer-list layout flex">
@@ -206,6 +201,9 @@
                         break;
                     }
                 }
+            },
+            handleError:function(e,response){
+              console.log("error");
             },
             // handleProductChange: function(e) {
             //     //t.current_product = t.all_products[e.target.selected];

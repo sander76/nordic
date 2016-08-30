@@ -20,14 +20,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta name="theme-color" content="#2E3AA1">
 
     <!-- Web Application Manifest -->
-    <link rel="manifest" href="manifest.json">
+    <!-- <link rel="manifest" href="manifest.json"> -->
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="PSK">
     <link rel="icon" sizes="192x192" href="/app/images/touch/chrome-touch-icon-192x192.png">
 
-    <link rel="stylesheet" href="/app/styles/main.css">
+    <!-- <link rel="stylesheet" href="/app/styles/main.css"> -->
 
     <script>
         // setup Polymer options
@@ -53,22 +53,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <link rel="import" href="/app/elements/my-app.html">
     <!-- For shared styles, shared-styles.html import in elements.html -->
-    <style is="custom-style" include="shared-styles"></style>
-    <style include="iron-flex iron-flex-alignment"></style>
-    <style>
-        paper-tabs,
-        paper-toolbar {
-            background-color: var(--paper-blue-900);
-            color: #fff;
-        }
-
-        iron-pages.pages {
-            height: 100%;
-            padding: 0px;
-        }
 
 
-    </style>
+    <link rel="import" href="styles/app-theme.html">
+    
 </head>
 
 <body>
