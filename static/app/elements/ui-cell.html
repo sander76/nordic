@@ -1,9 +1,10 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
-<link rel="import" href="../styles/app-theme.html" />
+<link rel="import" href="../styles/app-theme.html" >
+<link rel="import" href="pv-keypad.html">
 <dom-module id="ui-cell">
     <style include="iron-flex iron-flex-alignment"></style>
-    <style include="custom-style"></style>
+
     <style>
         img {
             width: 100%;
@@ -43,9 +44,9 @@
                 <icon-nav-button active="[[active]]" data="[[data]]"></icon-nav-button>
             </div>
         </template>
-        <template is="dom-if" if="[[isType(data,'keypad')]]">
+        <!-- <template is="dom-if" if="[[isType(data,'keypad')]]">
             <key-pad active="[[active]]"></key-pad>
-        </template>
+        </template> -->
         <template is="dom-if" if="[[isType(data,'pv-keypad')]]">
             <div class="container">
                 <pv-keypad active="[[active]]" data="[[data]]"></pv-keypad>

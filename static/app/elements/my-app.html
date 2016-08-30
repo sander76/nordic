@@ -1,0 +1,257 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+
+<!-- <link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html"> -->
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<!-- <link rel="import" href="../bower_components/paper-tabs/paper-tab.html" />
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html" /> -->
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<link rel="import" href="../bower_components/paper-material/paper-material.html">
+<!-- <link rel="import" href="../elements/paper-menu/paper-menu.html"> -->
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="my-modal.html">
+
+
+<link rel="import" href="instruction-step.html">
+<link rel="import" href='serial-data.html' />
+
+<dom-module id="my-app">
+    <template>
+        <style include="iron-flex"></style>
+        <style>
+            app-header {
+                background-color: var(--primary-color);
+                color: #fff;
+            }
+
+            .drawer-list {
+                margin: 0 20px;
+            }
+
+            .drawer-list a {
+                display: block;
+                padding: 0 16px;
+                line-height: 40px;
+                text-decoration: none;
+                color: var(--app-secondary-color);
+            }
+
+            .drawer-list a.iron-selected {
+                color: white;
+                font-weight: bold;
+                background-color: var(--primary-color);
+            }
+
+            .detailedinfo {
+                font-size: 0.8em;
+                margin: 4px;
+            }
+        </style>
+        <app-location use-hash-as-path route="{{route}}"></app-location>
+        <app-route active="{{routeActive}}" route="{{route}}" pattern="instructions/:page/:product" data="{{routeData}}"></app-route>
+
+        <iron-ajax id='instruction' url="/app/instructions/instructions-[[page]].json" handle-as="json" on-response="getInstructions"></iron-ajax>
+
+        <app-drawer-layout fullbleed>
+            <app-drawer>
+                <!-- Drawer Toolbar -->
+                <!-- <app-toolbar>Menu</app-toolbar> -->
+                <!-- <div class="vertical layout" style="height:100%;"> -->
+                <!-- Drawer Content -->
+                <!-- <paper-menu class="flex" flex> -->
+                <div class="layout flex fullbleed vertical" style="height:100%;">
+                    <div class="flex">
+                        <iron-selector selected="[[product]]" class="drawer-list layout flex">
+                            <template is="dom-repeat" items="[[all_products]]">
+                                <a href="#instructions/[[page]]/[[index]]">[[item.title]]</a>
+
+                                <!-- <paper-item>[[item.title]]</paper-item> -->
+                            </template>
+                        </iron-selector>
+                    </div>
+                    <!-- </paper-menu> -->
+
+                    <div>
+                        <a href="http://localhost:8080/app/ws.html" class="detailedinfo" target="_blank">Nordic communication</a>
+                        <serial-data class="detailedinfo"></serial-data>
+                        <div class="detailedinfo">
+                            instruction version: <span>[[definitions_version]]</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- </div> -->
+            </app-drawer>
+
+
+            <!-- Main Area -->
+            <app-header-layout>
+                <app-header>
+                    <app-toolbar class="small">
+                        <!-- <div class="title" title>[[currentproduct.title]]</div> -->
+                        <!-- <div>[[currentproductsteps.selectedStep.title]]</div> -->
+                        <div>[[steptitle]]</div>
+                    </app-toolbar>
+                </app-header>
+                <iron-pages class="pages vertical layout" id="pages" selected="{{selectedStep}}">
+                    <template is="dom-repeat" items="[[currentproductsteps]]">
+                        <instruction-step class="vertical layout flex" data="[[item]]" curitem=[[index]] selected="[[selectedStep]]"></instruction-step>
+                    </template>
+                </iron-pages>
+
+            </app-header-layout>
+        </app-drawer-layout>
+        <paper-toast duration="0" id="toast" opened class="fit-bottom" text="loading instructions">
+
+        </paper-toast>
+        <my-modal modaldata="[[modaldata]]" id="modl"></my-modal>
+        <!-- <paper-dialog id="modal" modal>
+            <iron-a11y-keys id="modalconfirm" target='[[target]]' keys="enter" on-keys-pressed="closeModal">
+            </iron-a11y-keys>
+            <iron-a11y-keys id="modaldismiss" target='[[target]]' keys="[[modal_no.keys]]" on-keys-pressed="closeModalDismiss"></iron-a11y-keys>
+            <img src$="[[modaldata.img]]" />
+            <p>[[modaldata.text]]</p>
+            <div class="buttons">
+                <paper-button noink on-tap="closeModalDismiss">
+                    <iron-icon class="cross" icon="icomoon:cross"></iron-icon>[[modaldata.no_text]]</paper-button>
+                <paper-button noink on-tap="closeModal">
+                    <iron-icon class="ok" icon="icomoon:checkmark"></iron-icon>[[modaldata.yes_text]]</paper-button>
+            </div>
+        </paper-dialog> -->
+    </template>
+
+    <!-- build:js scripts/app.js -->
+    <!-- <script src="/app/scripts/app.js"></script> -->
+
+    </body>
+
+
+    <script>
+        //var t = document.querySelector("#app");
+        Polymer({
+            is: 'my-app',
+            properties: {
+                target: {
+                    type: Object,
+                    value: function() {
+                        return window;
+                    }
+                },
+                page: {
+                    type: String,
+                    reflectToAttribute: true,
+                },
+                currentproduct: {
+                    type: Object
+                },
+                modaldata: {
+                    type: Object
+                },
+                selectedStep: {
+                    type: Number,
+                    observer: '_stepChanged'
+                },
+                steptitle: {
+                    type: String
+                }
+            },
+            observers: [
+                '_routePageChanged(routeData.page)',
+                '_routeProductChanged(routeData.product,all_products)'
+            ],
+            listeners: {
+                'openmodal': "_openModal"
+            },
+            _openModal: function(e) {
+                console.log("open modal");
+                this.$.pages.items[this.selectedStep].deactivate();
+                this.$.modl.openmodal();
+            },
+            _stepChanged: function(newValue, oldValue) {
+                this.set("steptitle", this.currentproductsteps[newValue].title);
+                this.set("modaldata", this.currentproductsteps[newValue].confirm);
+            },
+
+            gotoStep: function(current, offset) {
+                if (offset === 0) {
+                  this.$.pages.items[this.selectedStep].activate();
+                } else {
+                    var _goto = current + offset;
+                    var goto = 0;
+                    if (_goto < 0) {
+                        //goto = (t.instructions.steps.length + _goto);
+                        goto = this.currentProduct.items.length + _goto;
+                    } else {
+                        goto = _goto % this.currentproductsteps.length;
+                    }
+                    //this.$.pages.select(goto);
+                    this.set('selectedStep', goto);
+                }
+            },
+            gotoId: function(id) {
+                for (var i = 0; i < this.$.pages.items.length; i++) {
+                    if (this.$.pages.items[i].data.id === id) {
+                        console.log('id found: ', id);
+                        this.$.pages.select(i);
+                        break;
+                    }
+                }
+            },
+            // handleProductChange: function(e) {
+            //     //t.current_product = t.all_products[e.target.selected];
+            //     this.ChangeProduct(e.target.selected);
+            // },
+            // ChangeProduct: function(idx) {
+            //     this.set("selectedproduct", idx);
+            //     this.set("selectedStep", 0);
+            // },
+            getInstructions: function(e, response) {
+                this.set('all_products', response.response.products);
+                this.definitions_version = response.response.version;
+            },
+
+            _routePageChanged: function(page) {
+                if (this.oldpage !== page) {
+                    this.page = page;
+                    this.$.instruction.generateRequest();
+                    this.oldpage = page;
+                }
+
+            },
+            _routeProductChanged: function(product, products) {
+                if (this.all_products !== undefined) {
+                    this.product = parseInt(this.routeData.product);
+                    this.set("currentproduct", this.all_products[this.product]);
+                    this.set("currentproductsteps", this.all_products[this.product].steps);
+                    this.set('selectedStep', 0);
+                }
+            },
+
+        });
+        var app = document.querySelector('my-app');
+        document.addEventListener("nextpage", function() {
+            this.currentProduct.selectNext();
+        });
+        document.addEventListener("gotopage", function(e) {
+            if (typeof(e.detail) === 'string') {
+                app.gotoId(e.detail);
+                //this.gotoId(e.detail);
+            } else {
+                app.gotoStep(app.selectedStep, e.detail);
+                //this.gotoStep(this.selectedStep, e.detail);
+            }
+        });
+        document.addEventListener("previouspage", function() {
+            this.currentProduct.selectPrevious();
+        });
+    </script>

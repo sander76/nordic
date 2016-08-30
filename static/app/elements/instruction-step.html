@@ -1,9 +1,10 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html" />
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
-<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
-<link rel="import" href="../bower_components/iron-a11y-keys/iron-a11y-keys.html">
 
+<link rel="import" href="../bower_components/iron-a11y-keys/iron-a11y-keys.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="nav-button.html">
 <link rel="import" href="ui-cell.html" />
 <!-- <link rel="import" href="pv-remote.html" /> -->
 <link rel="import" href="../styles/shared-styles.html" />
@@ -42,9 +43,9 @@
             margin: 5px;
         }
     </style>
-    <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
+    <style include="iron-flex iron-flex-alignment"></style>
     <template>
-        <paper-dialog id="modal" noink modal>
+        <!-- <paper-dialog id="modal" modal>
             <iron-a11y-keys id="modalconfirm" target='[[target]]' keys="[[modal_yes.keys]]" on-keys-pressed="closeModal">
             </iron-a11y-keys>
             <iron-a11y-keys id="modaldismiss" target='[[target]]' keys="[[modal_no.keys]]" on-keys-pressed="closeModalDismiss"></iron-a11y-keys>
@@ -56,7 +57,7 @@
                 <paper-button noink on-tap="closeModal">
                     <iron-icon class="ok" icon="icomoon:checkmark"></iron-icon>[[data.confirm.yes_text]]</paper-button>
             </div>
-        </paper-dialog>
+        </paper-dialog> -->
 
         <div class="vertical layout flex">
             <div class="flex">
@@ -97,36 +98,29 @@
                     type: Number,
                     observer: '_selectedChanged'
                 },
-                selectedinstruction: {
-                    type: Number,
-                    observer: '_selectedChanged'
-                },
-                instruction: {
-                    type: Number
-                },
-
-                modal_yes: {
-                    type: Object,
-                    value: {
-                        "keys": "enter"
-                    }
-                },
-                modal_no: {
-                    type: Object,
-                    value: {
-                        "keys": "x"
-                    }
-                },
-                target: {
-                    type: Object,
-                    value: function() {
-                        return this.$.modal;
-                    }
+                active: {
+                    type: Boolean
                 }
+                // selectedinstruction: {
+                //     type: Number,
+                //     observer: '_selectedChanged'
+                // },
+                // instruction: {
+                //     type: Number
+                // },
+
+
+                // ,
+                // target: {
+                //     type: Object,
+                //     value: function() {
+                //         return this.$.modal;
+                //     }
+                // }
             },
-            listeners: {
-                'openmodal': "_openModal"
-            },
+            // listeners: {
+            //     'openmodal': "_openModal"
+            // },
 
             ready: function() {
                 // if (this.data.next.keys === undefined) {
@@ -155,46 +149,28 @@
             _prev: function(e) {
                 this.fire('previouspage');
             },
-            closeModal: function(e) {
-                console.log("close modal confirmed");
-                this.$.modalconfirm.target = this.$.modal;
-                this.$.modaldismiss.target = this.$.modal;
-                this.$.modal.close();
 
-                if (this.data.confirm.yes) {
-                    this.fire("gotopage", this.data.confirm.yes);
-                } else {
-                    this._next();
-                }
-            },
 
-            closeModalDismiss: function(e) {
-                console.log("close modal dismissed");
-                this.$.modalconfirm.target = this.$.modal;
-                this.$.modaldismiss.target = this.$.modal;
-                this.$.modal.close();
-
-                if (this.data.confirm.no) {
-                    this.fire("gotopage", this.data.confirm.no);
-                } else {
-                    //this.active = true;
-                    this.set("active", true);
-                }
-                //}
-            },
-
-            _openModal: function(e) {
-                console.log("open modal");
-                this.$.modalconfirm.target = document.body;
-                this.$.modaldismiss.target = document.body;
-                //this.active = false;
-                this.set("active", false);
-                this.$.modal.open();
-            },
+            // _openModal: function(e) {
+            //   this.fire("opendialog");
+            //     // console.log("open modal");
+            //     // this.$.modalconfirm.target = document.body;
+            //     // this.$.modaldismiss.target = document.body;
+            //     // //this.active = false;
+            //     // this.set("active", false);
+            //     // this.$.modal.open();
+            // },
             _selectedChanged: function() {
-                var active = this.instruction === this.selectedinstruction && this.curitem === this.selected;
+                var active = this.curitem === this.selected;
                 this.set("active", active);
+            },
+            deactivate: function() {
+                this.set("active", false);
+            },
+            activate: function() {
+                this.set("active", true);
             }
+
 
         });
     </script>

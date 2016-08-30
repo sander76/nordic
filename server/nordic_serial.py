@@ -55,13 +55,12 @@ class NordicSerial:
         attempt = 1
         while True:
             if self.s.is_open:
-                lgr.debug("****************** Connected **************************")
+                lgr.debug("****************** Already Connected **************************")
                 send_connection_status(True, self.network_id)
             else:
                 try:
                     lgr.info("Connecting to serial port {}. Attempt: {}".format(self.serial_port, attempt))
                     self.s.open()
-                    lgr.info("****************** Connected **************************")
                     # yield from asyncio.sleep()
                     self._write_to_nordic(self.id_change)
                     send_connection_status(True, self.network_id)

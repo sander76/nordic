@@ -7,7 +7,8 @@ from server import nordic_serial
 from aiohttp import web
 from server.app import app
 from server.constants import SERIAL_SPEED
-from server.handlers import index_handler
+from server.handlers import instruction_handler
+
 from server.id_generator import get_id
 from server.websocket import websocket_handler
 
@@ -18,7 +19,7 @@ def add_routes(serial):
     # create some routes.
     app.router.add_route('POST', '/nordic', serial.send_nordic)
     app.router.add_static("/app/", "static/app/")
-    app.router.add_route("GET", '/site/{lang}/', index_handler)
+    app.router.add_route("GET", '/instructions/{lang}', instruction_handler)
 
 
 def setup_websocket():
@@ -36,7 +37,7 @@ if __name__ == "__main__":
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
     lgr = logging.getLogger()
-    lgr.setLevel(logging.DEBUG)
+    lgr.setLevel(logging.WARNING)
 
     ch = logging.StreamHandler()
     ch.setLevel(logging.DEBUG)

@@ -13,14 +13,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Nordic programmer">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
     <title>Powerview™ programmer</title>
-
-    <!-- Place favicon.ico in the `app/` directory -->
 
     <!-- Chrome for Android theme color -->
     <meta name="theme-color" content="#2E3AA1">
@@ -28,35 +23,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <!-- Web Application Manifest -->
     <link rel="manifest" href="manifest.json">
 
-    <!-- Tile color for Win8 -->
-    <meta name="msapplication-TileColor" content="#3372DF">
-
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="PSK">
     <link rel="icon" sizes="192x192" href="/app/images/touch/chrome-touch-icon-192x192.png">
 
-    <!-- Add to homescreen for Safari on iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Nordic programmer">
-    <link rel="apple-touch-icon" href="/app/images/touch/apple-touch-icon.png">
-
-    <!-- Tile icon for Win8 (144x144) -->
-    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
-
-    <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="/app/styles/main.css">
-    <!-- endbuild-->
 
-    <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
-    <script src="/app/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-    <!-- endbuild -->
+    <script>
+        // setup Polymer options
+        window.Polymer = {
+            lazyRegister: true,
+            dom: 'shadow'
+        };
 
-    <!-- Because this project uses vulcanize this should be your only html import
-       in this file. All other imports should go in elements.html -->
-    <link rel="import" href="/app/elements/elements.html">
+        // load webcomponents polyfills
+        (function() {
+            if ('registerElement' in document &&
+                'import' in document.createElement('link') &&
+                'content' in document.createElement('template')) {
+                // browser has web components
+            } else {
+                // polyfill web components
+                var e = document.createElement('script');
+                e.src = '/app/bower_components/webcomponentsjs/webcomponents-lite.min.js';
+                document.head.appendChild(e);
+            }
+        })();
 
+        
+    </script>
+
+    <link rel="import" href="/app/elements/my-app.html">
     <!-- For shared styles, shared-styles.html import in elements.html -->
     <style is="custom-style" include="shared-styles"></style>
     <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
@@ -76,160 +74,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             font-size: 0.8em;
             margin: 4px;
         }
-
-        
     </style>
-    <link rel="import" href="/app/elements/ajax-button.html">
-    <link rel="import" href="/app/elements/icon-ajax-button.html">
-    <link rel="import" href="/app/elements/icon-nav-button.html">
-    <link rel="import" href="/app/elements/nav-button.html">
-    <link rel="import" href="/app/elements/serial-data.html">
-    <link rel="import" href="/app/elements/instruction-step.html" />
-    <link rel="import" href="/app/elements/key-pad.html" />
-    <link rel="import" href='/app/elements/serial-data.html' />
-    <link rel="import" href='/app/elements/svg-button-connect.html' />
-    <link rel="import" href='/app/elements/pv-keypad.html' />
-
-    <!-- <link rel="import" href="/app/elements/icomoon-polymer/icomoon-iconset-svg.html" /> -->
 </head>
 
-<body unresolved fullbleed>
-    <!-- build:remove -->
-    <span id="browser-sync-binding"></span>
-    <!-- endbuild -->
-
-    <template is="dom-bind" id="app">
-        {% endraw %}
-        <iron-ajax url="/app/instructions/instructions-{{ lang }}.json" auto handle-as="json" on-response="getInstructions"></iron-ajax>
-        {% raw %}
-
-        <paper-drawer-panel id="paperDrawerPanel">
-            <!-- Drawer Scroll Header Panel -->
-
-            <paper-header-panel drawer fixed>
-
-                <!-- Drawer Toolbar -->
-                <paper-toolbar id="drawerToolbar">
-                    <span class="menu-name">Menu</span>
-                </paper-toolbar>
-                <div class="vertical layout" style="height:100%;">
-                    <!-- Drawer Content -->
-                    <paper-menu class="flex" flex on-iron-select="handleProductChange">
-                        <template is="dom-repeat" items="[[all_products]]">
-                            <paper-item>[[item.title]]</paper-item>
-                        </template>
-                    </paper-menu>
-
-
-                    <a href="http://localhost:8080/app/ws.html" class="detailedinfo" target="_blank">Nordic communication</a>
-                    <serial-data class="detailedinfo"></serial-data>
-                    <div class="detailedinfo">
-                        instruction version: <span>[[definitions_version]]</span>
-                    </div>
-                </div>
-            </paper-header-panel>
-
-
-            <!-- Main Area -->
-            <paper-header-panel main id="headerPanelMain" class="vertical layout" fixed>
-                <!-- Main Toolbar -->
-
-                <paper-toolbar id="mainToolbar" class="small">
-                    <div class="title">[[getCurrentStepTitle(selectedproduct,selectedStep)]]</div>
-                </paper-toolbar>
-                <iron-pages id="products" class="pages" selected="{{selectedproduct}}">
-                    <template is="dom-repeat" items="[[all_products]]" index-as="product-idx">
-                        <iron-pages class="pages vertical layout" id="pages" selected="{{selectedStep}}">
-                            <template is="dom-repeat" items="[[item.steps]]">
-                                <instruction-step class="vertical layout flex" data="[[item]]" selectedinstruction=[[selectedproduct]] instruction="[[product-idx]]" curitem=[[index]] selected="[[selectedStep]]"></instruction-step>
-                            </template>
-                        </iron-pages>
-                    </template>
-                </iron-pages>
-            </paper-header-panel>
-        </paper-drawer-panel>
-        <paper-toast duration="0" id="toast" opened class="fit-bottom" text="loading instructions">
-
-        </paper-toast>
-
-    </template>
-
-    <!-- build:js scripts/app.js -->
-    <!-- <script src="/app/scripts/app.js"></script> -->
-    <script>
-        var t = document.querySelector("#app");
-
-        t.getCurrentStepTitle = function(selectedproduct, selectedStep) {
-            //var title = t.all_products[instruction][selectedStep].title;
-            console.log(selectedStep);
-            var title = '';
-            t.currentProduct = t.$.products.items[selectedproduct];
-            t.currentStep = t.$.products.items[selectedproduct].items[selectedStep];
-            if (t.currentProduct === undefined) {} else {
-                title = t.currentProduct.items[selectedStep].data.title;
-            }
-            return title;
-
-        };
-
-        t.gotoStep = function(current, offset) {
-            var _goto = current + offset;
-            var goto = 0;
-            if (_goto < 0) {
-                //goto = (t.instructions.steps.length + _goto);
-                goto = t.currentProduct.items.length + _goto;
-            } else {
-                goto = _goto % t.currentProduct.items.length;
-            }
-            //t.$.pages.select(goto);
-            //e.currentTarget.select(goto);
-            t.currentProduct.select(goto);
-        };
-        t.gotoId = function(id) {
-            for (var i = 0; i < t.currentProduct.items.length; i++) {
-                if (t.currentProduct.items[i].data.id === id) {
-                    console.log('id found: ', id);
-                    t.currentProduct.select(i);
-                    break;
-                }
-            }
-        };
-
-        t.target = document.body;
-        //t.selectedStep = 0;
-
-        t.handleProductChange = function(e) {
-            //t.current_product = t.all_products[e.target.selected];
-            t.ChangeProduct(e.target.selected);
-        };
-        t.ChangeProduct = function(idx) {
-            t.set("selectedproduct", idx);
-            t.set("selectedStep", 0);
-        };
-        t.getInstructions = function(e, response) {
-            t.all_products = response.response.products;
-            t.definitions_version = response.response.version;
-            t.$.toast.close();
-        };
-        document.addEventListener("nextpage", function() {
-            t.currentProduct.selectNext();
-        });
-        document.addEventListener("gotopage", function(e) {
-            if (typeof(e.detail) === 'string') {
-                t.gotoId(e.detail);
-            } else {
-                t.gotoStep(t.selectedStep, e.detail);
-            }
-        });
-        document.addEventListener("previouspage", function() {
-            t.currentProduct.selectPrevious();
-        });
-        // t.addEventListener("dom-change", function() {
-        //     t.ChangeProduct(0);
-        // });
-        //t.instructions = undefined;
-    </script>
-    <!-- endbuild-->
+<body>
+    <my-app></my-app>
 </body>
 
 </html>
