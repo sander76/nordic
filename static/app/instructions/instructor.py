@@ -256,6 +256,9 @@ if __name__ == "__main__":
     with open('instructions-luxaflex-en.json', 'w') as fl:
         fl.write(en)
 
+    with open('instructions-en.json','w') as fl:
+        fl.write(en)
+
     make_twist = Product("make twist", [connect_make_twist])
     instruction3=Instruction('1.2')
     instruction3.products.append(make_twist)
