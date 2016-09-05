@@ -18,11 +18,11 @@ _blinddirection = TXT('CHECK BLIND DIRECTION.',
 _switchdirection = TXT('CHANGE BLIND DIRECTION.',
                        'WISSEL BLIND RICHTING.')
 
-_setbottomlimit = TXT('SET **BOTTOM** LIMIT.',
-                      'STEL **ONDERLIMIET** IN.')
+_setbottomlimit = TXT('SET BOTTOM LIMIT.',
+                      'STEL ONDERLIMIET IN.')
 
-_settoplimit = TXT('SET **TOP** LIMIT.',
-                   'STEL **BOVENLIMIET** IN.')
+_settoplimit = TXT('SET TOP LIMIT.',
+                   'STEL BOVENLIMIET IN.')
 
 _set_twist_slatposition = TXT('SET TWIST SLAT POSITION.',
                               'STEL TWIST SLAT POSITIE IN.')
