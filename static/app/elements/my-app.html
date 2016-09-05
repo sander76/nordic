@@ -30,6 +30,8 @@
     <template>
         <style include="iron-flex"></style>
         <style>
+        :host {height:100%;}
+
             app-header {
                 background-color: var(--primary-color);
                 color: #fff;
@@ -63,54 +65,39 @@
 
         <iron-ajax id='instruction' url="/app/instructions/instructions-[[page]].json" handle-as="json" on-response="getInstructions" on-error="handleError"></iron-ajax>
 
-        <app-drawer-layout fullbleed>
+        <app-drawer-layout>
             <app-drawer>
-                <div class="layout flex fullbleed vertical" style="height:100%;">
+                <div class="layout flex vertical" style="height:100%;">
                     <div class="flex">
                         <iron-selector selected="[[product]]" class="drawer-list layout flex">
                             <template is="dom-repeat" items="[[all_products]]">
                                 <a href="#instructions/[[page]]/[[index]]">[[item.title]]</a>
-
-                                <!-- <paper-item>[[item.title]]</paper-item> -->
                             </template>
-                        </iron-selector>
-                    </div>
-                    <!-- </paper-menu> -->
+    </iron-selector>
+    </div>
 
-                    <div>
-                        <a href="http://localhost:8080/app/ws.html" class="detailedinfo" target="_blank">Nordic communication</a>
-                        <serial-data class="detailedinfo"></serial-data>
-                        <div class="detailedinfo">
-                            instruction version: <span>[[definitions_version]]</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- </div> -->
-            </app-drawer>
+    <!-- </paper-menu> -->
 
-
-            <!-- Main Area -->
-            <app-header-layout>
-                <app-header>
-                    <app-toolbar class="small">
-                        <!-- <div class="title" title>[[currentproduct.title]]</div> -->
-                        <!-- <div>[[currentproductsteps.selectedStep.title]]</div> -->
-                        <div>[[steptitle]]</div>
-                    </app-toolbar>
-                </app-header>
-                <iron-pages class="pages vertical layout" id="pages" selected="{{selectedStep}}">
-                    <template is="dom-repeat" items="[[currentproductsteps]]">
-                        <instruction-step class="vertical layout flex" data="[[item]]" curitem=[[index]] selected="[[selectedStep]]"></instruction-step>
+    <div class='detailedinfo'>
+        <a href="http://localhost:8080/app/ws.html" target="_blank">Nordic communication</a>
+        <serial-data></serial-data>
+        <div>
+            instruction version: <span>[[definitions_version]]</span>
+        </div>
+    </div>
+    </div>
+    </app-drawer>
+    <iron-pages class="flex" id="pages" selected="{{selectedStep}}">
+        <template is="dom-repeat" items="[[currentproductsteps]]">
+                        <instruction-step data="[[item]]" curitem=[[index]] selected="[[selectedStep]]"></instruction-step>
                     </template>
-                </iron-pages>
+    </iron-pages>
+    </app-drawer-layout>
+    <paper-toast duration="0" id="toast" opened class="fit-bottom" text="loading instructions">
 
-            </app-header-layout>
-        </app-drawer-layout>
-        <paper-toast duration="0" id="toast" opened class="fit-bottom" text="loading instructions">
-
-        </paper-toast>
-        <my-modal modaldata="[[modaldata]]" id="modl"></my-modal>
-        <!-- <paper-dialog id="modal" modal>
+    </paper-toast>
+    <my-modal modaldata="[[modaldata]]" id="modl"></my-modal>
+    <!-- <paper-dialog id="modal" modal>
             <iron-a11y-keys id="modalconfirm" target='[[target]]' keys="enter" on-keys-pressed="closeModal">
             </iron-a11y-keys>
             <iron-a11y-keys id="modaldismiss" target='[[target]]' keys="[[modal_no.keys]]" on-keys-pressed="closeModalDismiss"></iron-a11y-keys>
@@ -128,7 +115,7 @@
     <!-- build:js scripts/app.js -->
     <!-- <script src="/app/scripts/app.js"></script> -->
 
-    </body>
+
 
 
     <script>
@@ -179,7 +166,7 @@
 
             gotoStep: function(current, offset) {
                 if (offset === 0) {
-                  this.$.pages.items[this.selectedStep].activate();
+                    this.$.pages.items[this.selectedStep].activate();
                 } else {
                     var _goto = current + offset;
                     var goto = 0;
@@ -202,8 +189,8 @@
                     }
                 }
             },
-            handleError:function(e,response){
-              console.log("error");
+            handleError: function(e, response) {
+                console.log("error");
             },
             // handleProductChange: function(e) {
             //     //t.current_product = t.all_products[e.target.selected];
@@ -253,3 +240,4 @@
             this.currentProduct.selectPrevious();
         });
     </script>
+</dom-module>

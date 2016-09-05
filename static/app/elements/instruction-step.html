@@ -26,6 +26,7 @@
 
         :host {
             margin: 50px;
+            height:100%;
         }
 
         #col1 {
@@ -41,6 +42,12 @@
 
         .rule {
             margin: 5px;
+        }
+
+        h1 {
+            font-size: 22px;
+            margin: 16px 0;
+            color: #212121;
         }
     </style>
     <style include="iron-flex iron-flex-alignment"></style>
@@ -60,6 +67,7 @@
         </paper-dialog> -->
 
         <div class="vertical layout flex">
+          <h1>[[data.title.content]]</h1>
             <div class="flex">
                 <template is="dom-repeat" items=[[data.instructions]]>
                     <div class="horizontal layout start rule">
@@ -71,17 +79,17 @@
                     <!-- <ui-row active="[[active]]" data="[[item]]"></ui-row> -->
                 </template>
 
-            </div>
-            <div class="horizontal layout justified">
-                <div>
-                    <nav-button hidden=[[!data.previous.active]] id="previousbutton" active="[[active]]" data="[[data.previous]]">[[data.previous.caption]]</nav-button>
-                </div>
-                <div>
-                    <nav-button hidden=[[!data.next.active]] id="nextbutton" active="[[active]]" data="[[data.next]]">[[data.next.caption]]</nav-button>
-                </div>
-            </div>
-
+    </div>
+    <div class="horizontal layout justified">
+        <div>
+            <nav-button hidden=[[!data.previous.active]] id="previousbutton" active="[[active]]" data="[[data.previous]]">[[data.previous.caption]]</nav-button>
         </div>
+        <div>
+            <nav-button hidden=[[!data.next.active]] id="nextbutton" active="[[active]]" data="[[data.next]]">[[data.next.caption]]</nav-button>
+        </div>
+    </div>
+
+    </div>
 
     </template>
     <script>

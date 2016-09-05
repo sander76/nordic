@@ -5,17 +5,22 @@ class NumberedText:
 
     def get_text(self, lang):
         txt = self.txt.get_text(lang)
-        val = '{}. {}'.format(self.number, txt)
-        return val
+        # val = '<div>{}</div> <div>{}</div>'.format(self.number, txt)
+        txt['bullet'] = self.number
+        # return val
+        return txt
+
 
 class TXT:
-    def __init__(self, en, nl):
+    def __init__(self, en, nl, pl=None):
         self.en = en
         self.nl = nl
+        self.pl = pl
 
     def get_text(self, lang):
         val = getattr(self, lang, 'en')
-        return val
+        # return val
+        return {'content': val}
 
     def add_number(self, number):
         nt = NumberedText(self, number)

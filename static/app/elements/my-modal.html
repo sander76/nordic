@@ -2,14 +2,15 @@
 <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
 
 <dom-module id="my-modal">
-  <style>
-  iron-icon.ok {
-      color: green !important;
-  }
-  iron-icon.cross {
-      color: red !important;
-  }
-  </style>
+    <style>
+        iron-icon.ok {
+            color: green !important;
+        }
+
+        iron-icon.cross {
+            color: red !important;
+        }
+    </style>
     <template>
         <paper-dialog id="modal" modal on-iron-overlay-closed="handleClose">
             <iron-a11y-keys id="modalconfirm" target='[[target]]' keys="enter" on-keys-pressed="closeModal">
@@ -90,7 +91,7 @@
                     //     this.fire("gotopage",0);
                     // }
                 } else {
-                  this.fire("gotopage",this.modaldata.yes||1);
+                    this.fire("gotopage", this.modaldata.yes || 1);
                     // if (this.modaldata.yes) {
                     //     this.fire("gotopage", this.modaldata.yes);
                     // } else {

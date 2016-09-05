@@ -23,6 +23,17 @@
             color: #c7254e;
             background-color: #f9f2f4;
         }
+
+        .markdown-html> p {
+            margin: 0;
+        }
+
+        .bullet {
+            margin-right: 0.5em;
+            font-size: 1.6em;
+            color: #555;
+            border-radius: 50%;
+        }
     </style>
     <template>
         <template is="dom-if" if="[[isType(data,'image')]]">
@@ -31,12 +42,14 @@
             </div>
         </template>
     <template is="dom-if" if="[[isType(data,'text')]]">
-          <div class="container">
+          <div class="container layout horizontal">
             <!-- <p>
                 {{data.content}}
             </p> -->
-            <marked-element markdown=[[data.content]]>
-              <div class="markdown-html"></div>
+            <span class="bullet">[[data.content.bullet]]</span>
+
+            <marked-element markdown=[[data.content.content]]>
+              <div class="markdown-html flex"></div>
             </marked-element>
           </div>
           </template>
