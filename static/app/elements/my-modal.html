@@ -21,19 +21,15 @@
     </style>
     <template>
         <paper-dialog id="modal" modal on-iron-overlay-closed="handleClose">
-            <iron-a11y-keys id="modalconfirm" target='[[target]]' keys="enter" on-keys-pressed="closeModal">
+            <!-- <iron-a11y-keys id="modalconfirm" target='[[target]]' keys="[[modal_yes.keys]]" on-keys-pressed="closeModal">
             </iron-a11y-keys>
-            <iron-a11y-keys id="modaldismiss" target='[[target]]' keys="[[modal_no.keys]]" on-keys-pressed="closeModalDismiss"></iron-a11y-keys>
+            <iron-a11y-keys id="modaldismiss" target='[[target]]' keys="[[modal_no.keys]]" on-keys-pressed="closeModalDismiss"></iron-a11y-keys> -->
             <img src$="[[modaldata.img]]" />
             <marked-element markdown=[[modaldata.text.content]]>
               <div class="markdown-html"></div>
             </marked-element>
             <!-- <p>[[modaldata.text.content]]</p> -->
             <div class="buttons">
-                <!-- <paper-button noink on-tap="closeModalDismiss">
-                    <iron-icon class="cross" icon="icomoon:cross"></iron-icon>[[modaldata.no_text]]</paper-button>
-                <paper-button noink on-tap="closeModal">
-                    <iron-icon class="ok" icon="icomoon:checkmark"></iron-icon>[[modaldata.yes_text]]</paper-button> -->
                 <paper-button noink dialog-dismiss>
                     <iron-icon class="cross" icon="icomoon:cross"></iron-icon>[[modaldata.no_text.content]]</paper-button>
                 <paper-button noink dialog-confirm>
@@ -49,28 +45,23 @@
                 modaldata: {
                     type: Object,
                     value: {}
-                },
-                modal_yes: {
-                    type: Object,
-                    value: {
-                        "keys": "enter"
-                    }
-                },
-                modal_no: {
-                    type: Object,
-                    value: {
-                        "keys": "x"
-                    }
-                }
+                } //,
+                // modal_yes: {
+                //     type: Object,
+                //     value: {
+                //         "keys": "Enter"
+                //     }
                 // },
-                // active: {
-                //     type: Boolean,
-                //     observer: '_activeChanged'
+                // modal_no: {
+                //     type: Object,
+                //     value: {
+                //         "keys": "x"
+                //     }
                 // }
             },
             ready: function() {
                 this.keys = {
-                    enter: {
+                    Enter: {
                         func: "modal_close",
                         handle: this.closeModal
                     },
@@ -81,55 +72,35 @@
                 };
             },
             openmodal: function() {
+                document.body.addEventListener("keydown", this, false);
                 this.$.modal.open();
-                document.body.addEventListener("modal_keydown", this, false);
+
+            },
+
+
+            handleClose: function(e) {
+                document.body.removeEventListener("keydown", this, false);
+                if (e.detail.confirmed) {
+                    this.fire("gotopage", this.modaldata.yes || 1);
+                } else {
+                    this.fire("gotopage", this.modaldata.no || 0);
+                }
             },
             closeModal: function(e) {
+                this.$.modal.closingReason.confirmed = true;
                 this.$.modal.close();
                 console.log("close modal confirmed");
 
             },
-
-            handleClose: function(e) {
-                document.body.removeEventListener("modal_keydown", this, false);
-
-                if (e.detail.canceled) {
-                    this.fire("gotopage", this.modaldata.no || 0);
-                    // if (this.modaldata.no) {
-                    //     this.fire("gotopage", this.modaldata.no||0);
-                    // } else {
-                    //     //this.active = true;
-                    //     this.fire("gotopage",0);
-                    // }
-                } else {
-                    this.fire("gotopage", this.modaldata.yes || 1);
-                    // if (this.modaldata.yes) {
-                    //     this.fire("gotopage", this.modaldata.yes);
-                    // } else {
-                    //     this._next();
-                    // }
-                }
-            },
-
             closeModalDismiss: function(e) {
-                this.$.modal.cancel();
+                this.$.modal.closingReason.confirmed = false;
+                this.$.modal.close();
                 console.log("close modal dismissed");
-                //document.body.removeEventListener("modal_keydown", this, false);
-                // this.$.modalconfirm.target = this.$.modal;
-                // this.$.modaldismiss.target = this.$.modal;
 
-
-                // if (this.modaldata.no) {
-                //     this.fire("gotopage", this.modaldata.no);
-                // } else {
-                //     //this.active = true;
-                //     this.set("active", true);
-                // }
-                //}
             },
             handleEvent: function(event) {
                 switch (event.type) {
-                    case "modal_keydown":
+                    case "keydown":
                         this.keylookup(event);
                         break;
                 }
