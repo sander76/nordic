@@ -84,7 +84,9 @@
                     }
                 },
                 data: {
-                    type: Object
+                    type: Object,
+                    value: {},
+                    observer: '_dataChanged'
                 }
 
             },
@@ -122,6 +124,11 @@
                 };
                 // When the key is not in the active_buttons array the handler
                 // should turn to empty.
+                this._dataChanged();
+
+
+            },
+            _dataChanged: function(newValue, oldValue) {
                 for (var key in this.keys) {
                     if (this.keys.hasOwnProperty(key)) {
                         this.keys[key].confirm = this.handleEmptyConfirm;
@@ -142,7 +149,6 @@
 
                     }
                 }
-
             },
             handleEmptyConfirm: function() {
                 console.log("not a confirm button");
@@ -215,24 +221,24 @@
                 //this.active = _new;
                 if (_new) {
                     //document.addEventListener("keydown",function(e){this.keylookup(e);});
-                    document.body.addEventListener("keydown", this,false);
+                    document.body.addEventListener("keydown", this, false);
                     //this.listen(this.$.tiltupbutton,'')
-                    this.$.tiltup.addEventListener("tap", this,false);
-                    this.$.tiltdown.addEventListener("tap", this,false);
-                    this.$.open.addEventListener("tap", this,false);
-                    this.$.close.addEventListener("tap", this,false);
-                    this.$.stop.addEventListener("tap", this,false);
-                    this.$.okay.addEventListener("tap", this,false);
-                    this.$.cancel.addEventListener("tap", this,false);
+                    this.$.tiltup.addEventListener("tap", this, false);
+                    this.$.tiltdown.addEventListener("tap", this, false);
+                    this.$.open.addEventListener("tap", this, false);
+                    this.$.close.addEventListener("tap", this, false);
+                    this.$.stop.addEventListener("tap", this, false);
+                    this.$.okay.addEventListener("tap", this, false);
+                    this.$.cancel.addEventListener("tap", this, false);
                 } else {
-                    document.body.removeEventListener("keydown", this,false);
-                    this.$.tiltup.removeEventListener("tap", this,false);
-                    this.$.tiltdown.removeEventListener("tap", this,false);
-                    this.$.open.removeEventListener("tap", this,false);
-                    this.$.close.removeEventListener("tap", this,false);
-                    this.$.stop.removeEventListener("tap", this,false);
-                    this.$.okay.removeEventListener("tap", this,false);
-                    this.$.cancel.removeEventListener("tap", this,false);
+                    document.body.removeEventListener("keydown", this, false);
+                    this.$.tiltup.removeEventListener("tap", this, false);
+                    this.$.tiltdown.removeEventListener("tap", this, false);
+                    this.$.open.removeEventListener("tap", this, false);
+                    this.$.close.removeEventListener("tap", this, false);
+                    this.$.stop.removeEventListener("tap", this, false);
+                    this.$.okay.removeEventListener("tap", this, false);
+                    this.$.cancel.removeEventListener("tap", this, false);
                 }
             },
 
@@ -293,19 +299,18 @@
                 this.command_logger(commands);
 
             },
-            command_logger:function(commands){
-              var first = true;
-              for (var i=0;i<commands.length;i+=1){
-                if (first){
-                  console.log("Sending commands to nordic:");
-                  console.log(commands[i]);
-                  first = false;
+            command_logger: function(commands) {
+                var first = true;
+                for (var i = 0; i < commands.length; i += 1) {
+                    if (first) {
+                        console.log("Sending commands to nordic:");
+                        console.log(commands[i]);
+                        first = false;
+                    } else {
+                        console.log(commands[i].command);
+                    }
                 }
-                else{
-                  console.log(commands[i].command);
-                }
-              }
             }
         });
-</script>
-</dom-element>
+    </script>
+    </dom-element>

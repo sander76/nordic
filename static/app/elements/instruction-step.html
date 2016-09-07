@@ -6,6 +6,7 @@
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="nav-button.html">
 <link rel="import" href="ui-cell.html" />
+<link rel="import" href="../bower_components/marked-element/marked-element.html">
 <!-- <link rel="import" href="pv-remote.html" /> -->
 <!-- <link rel="import" href="../styles/shared-styles.html" /> -->
 
@@ -49,25 +50,17 @@
             margin: 16px 0;
             color: #212121;
         }
+        .markdown-html{
+          font-size: 1.6em;
+        }
     </style>
     <style include="iron-flex iron-flex-alignment"></style>
     <template>
-        <!-- <paper-dialog id="modal" modal>
-            <iron-a11y-keys id="modalconfirm" target='[[target]]' keys="[[modal_yes.keys]]" on-keys-pressed="closeModal">
-            </iron-a11y-keys>
-            <iron-a11y-keys id="modaldismiss" target='[[target]]' keys="[[modal_no.keys]]" on-keys-pressed="closeModalDismiss"></iron-a11y-keys>
-            <img src$="[[data.confirm.img]]" />
-            <p>[[data.confirm.text]]</p>
-            <div class="buttons">
-                <paper-button noink on-tap="closeModalDismiss">
-                    <iron-icon class="cross" icon="icomoon:cross"></iron-icon>[[data.confirm.no_text]]</paper-button>
-                <paper-button noink on-tap="closeModal">
-                    <iron-icon class="ok" icon="icomoon:checkmark"></iron-icon>[[data.confirm.yes_text]]</paper-button>
-            </div>
-        </paper-dialog> -->
-
         <div class="vertical layout flex">
-          <h1>[[data.title.content]]</h1>
+          <marked-element markdown=[[data.title.content]]>
+            <div class="markdown-html"></div>
+          </marked-element>
+          <!-- <h1>[[data.title.content]]</h1> -->
             <div class="flex">
                 <template is="dom-repeat" items=[[data.instructions]]>
                     <div class="horizontal layout start rule">

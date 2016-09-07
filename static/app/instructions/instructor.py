@@ -11,7 +11,7 @@ if __name__ == "__main__":
         Row(Text(30, "another testing of content."), Image(30, '/testing/testing.png'))
     ]
 
-    hoist = Step(tr._hangproduct,
+    hang_twist = Step(tr._hangtwist,
                  [
                      Row(Text(40, tr._proper_product_hang.add_number(1)),
                          Text(30, tr._proper_product_hang_confirm.add_number(2))),
@@ -20,6 +20,26 @@ if __name__ == "__main__":
                  ],
                  nav_previous=Previous(active=False),
                  id='hoist')
+
+    hang_rollo = Step(tr._hangrollo,
+                      [
+                          Row(Text(40, tr._proper_product_hang.add_number(1)),
+                              Text(30, tr._proper_product_hang_confirm.add_number(2))),
+                          Row(Image(40, "/app/images/m25t_20cm.png"),
+                              PvKeypad(30, ['okay'], okay=NavigationCommand(goto=1)))
+                      ],
+                      nav_previous=Previous(active=False),
+                      id='hoist')
+    #
+    # hoist = Step(tr._hangproduct,
+    #              [
+    #                  Row(Text(40, tr._proper_product_hang.add_number(1)),
+    #                      Text(30, tr._proper_product_hang_confirm.add_number(2))),
+    #                  Row(Image(40, "/app/images/m25t_20cm.png"),
+    #                      PvKeypad(30, ['okay'], okay=NavigationCommand(goto=1)))
+    #              ],
+    #              nav_previous=Previous(active=False),
+    #              id='hoist')
 
     connect = Step(tr._connect,
                    [Row(Text(25, tr._press_hold_blind_button.add_number(1)),
@@ -204,7 +224,7 @@ if __name__ == "__main__":
                             PvKeypad(30, ['cancel'], cancel='testblinds'))
                     ])
 
-    rollerblind1 = Product("Roller blind", [hoist,
+    rollerblind1 = Product("Roller blind", [hang_rollo,
                                             connect,
                                             initialise_roller,
                                             enter_program_mode,
@@ -222,7 +242,7 @@ if __name__ == "__main__":
                                             re_set_bottom_limit
                                             ])
 
-    twist = Product("Twist", [hoist,
+    twist = Product("Twist", [hang_twist,
                               connect,
                               initialise_twist,
                               enter_program_mode,

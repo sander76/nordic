@@ -24,7 +24,7 @@
 
 
 <link rel="import" href="instruction-step.html">
-<link rel="import" href='serial-data.html' />
+<link rel="import" href='serial-data.html'/>
 
 <dom-module id="my-app">
     <template>
@@ -63,11 +63,14 @@
             #pages{
               margin:10px;
             }
+
         </style>
         <app-location use-hash-as-path route="{{route}}"></app-location>
-        <app-route active="{{routeActive}}" route="{{route}}" pattern="instructions/:page/:product" data="{{routeData}}"></app-route>
+        <app-route active="{{routeActive}}" route="{{route}}" pattern="instructions/:page/:product"
+                   data="{{routeData}}"></app-route>
 
-        <iron-ajax id='instruction' url="/app/instructions/instructions-[[page]].json" handle-as="json" on-response="getInstructions" on-error="handleError"></iron-ajax>
+        <iron-ajax id='instruction' url="/app/instructions/instructions-[[page]].json" handle-as="json"
+                   on-response="getInstructions" on-error="handleError"></iron-ajax>
 
         <app-drawer-layout>
             <app-drawer>
@@ -77,49 +80,47 @@
                             <template is="dom-repeat" items="[[all_products]]">
                                 <a href="#instructions/[[page]]/[[index]]">[[item.title]]</a>
                             </template>
-    </iron-selector>
-    </div>
+                        </iron-selector>
+                    </div>
 
-    <!-- </paper-menu> -->
+                    <!-- </paper-menu> -->
 
-    <div class='detailedinfo'>
-        <a href="http://localhost:8080/app/ws.html" target="_blank">Nordic communication</a>
-        <serial-data></serial-data>
-        <div>
-            instruction version: <span>[[definitions_version]]</span>
-        </div>
-    </div>
-    </div>
-    </app-drawer>
-    <iron-pages class="flex" id="pages" selected="{{selectedStep}}">
-        <template is="dom-repeat" items="[[currentproductsteps]]">
-                        <instruction-step data="[[item]]" curitem=[[index]] selected="[[selectedStep]]"></instruction-step>
-                    </template>
-    </iron-pages>
-    </app-drawer-layout>
-    <paper-toast duration="0" id="toast" opened class="fit-bottom" text="loading instructions">
+                    <div class='detailedinfo'>
+                        <a href="http://localhost:8080/app/ws.html" target="_blank">Nordic communication</a>
+                        <serial-data></serial-data>
+                        <div>
+                            instruction version: <span>[[definitions_version]]</span>
+                        </div>
+                    </div>
+                </div>
+            </app-drawer>
+            <iron-pages class="flex" id="pages" selected="{{selectedStep}}">
+                <template is="dom-repeat" items="[[currentproductsteps]]">
+                    <instruction-step data="[[item]]" curitem=[[index]] selected="[[selectedStep]]"></instruction-step>
+                </template>
+            </iron-pages>
+        </app-drawer-layout>
+        <paper-toast duration="0" id="toast" opened class="fit-bottom" text="loading instructions">
 
-    </paper-toast>
-    <my-modal modaldata="[[modaldata]]" id="modl"></my-modal>
-    <!-- <paper-dialog id="modal" modal>
-            <iron-a11y-keys id="modalconfirm" target='[[target]]' keys="enter" on-keys-pressed="closeModal">
-            </iron-a11y-keys>
-            <iron-a11y-keys id="modaldismiss" target='[[target]]' keys="[[modal_no.keys]]" on-keys-pressed="closeModalDismiss"></iron-a11y-keys>
-            <img src$="[[modaldata.img]]" />
-            <p>[[modaldata.text]]</p>
-            <div class="buttons">
-                <paper-button noink on-tap="closeModalDismiss">
-                    <iron-icon class="cross" icon="icomoon:cross"></iron-icon>[[modaldata.no_text]]</paper-button>
-                <paper-button noink on-tap="closeModal">
-                    <iron-icon class="ok" icon="icomoon:checkmark"></iron-icon>[[modaldata.yes_text]]</paper-button>
-            </div>
-        </paper-dialog> -->
+        </paper-toast>
+        <my-modal modaldata="[[modaldata]]" id="modl"></my-modal>
+        <!-- <paper-dialog id="modal" modal>
+                <iron-a11y-keys id="modalconfirm" target='[[target]]' keys="enter" on-keys-pressed="closeModal">
+                </iron-a11y-keys>
+                <iron-a11y-keys id="modaldismiss" target='[[target]]' keys="[[modal_no.keys]]" on-keys-pressed="closeModalDismiss"></iron-a11y-keys>
+                <img src$="[[modaldata.img]]" />
+                <p>[[modaldata.text]]</p>
+                <div class="buttons">
+                    <paper-button noink on-tap="closeModalDismiss">
+                        <iron-icon class="cross" icon="icomoon:cross"></iron-icon>[[modaldata.no_text]]</paper-button>
+                    <paper-button noink on-tap="closeModal">
+                        <iron-icon class="ok" icon="icomoon:checkmark"></iron-icon>[[modaldata.yes_text]]</paper-button>
+                </div>
+            </paper-dialog> -->
     </template>
 
     <!-- build:js scripts/app.js -->
     <!-- <script src="/app/scripts/app.js"></script> -->
-
-
 
 
     <script>
@@ -153,7 +154,8 @@
             },
             observers: [
                 '_routePageChanged(routeData.page)',
-                '_routeProductChanged(routeData.product,all_products)'
+                //'_routeProductChanged(routeData.product,all_products)'
+                '_routeProductChanged(routeData.product)'
             ],
             listeners: {
                 'openmodal': "_openModal"
@@ -205,8 +207,10 @@
             //     this.set("selectedStep", 0);
             // },
             getInstructions: function(e, response) {
-                this.set('all_products', response.response.products);
+                //this.set('all_products', response.response.products);
+                this.all_products = response.response.products;
                 this.definitions_version = response.response.version;
+                this._routeProductChanged(response.response.products);
             },
 
             _routePageChanged: function(page) {
@@ -217,11 +221,12 @@
                 }
 
             },
-            _routeProductChanged: function(product, products) {
+            _routeProductChanged: function(products) {
                 if (this.all_products !== undefined) {
-                    this.product = parseInt(this.routeData.product);
+                    var _product = parseInt(this.routeData.product);
+                    this.product = _product;
                     this.set("currentproduct", this.all_products[this.product]);
-                    this.set("currentproductsteps", this.all_products[this.product].steps);
+                    this.set("currentproductsteps", this.all_products[_product].steps);
                     this.set('selectedStep', 0);
                 }
             },
@@ -243,5 +248,6 @@
         document.addEventListener("previouspage", function() {
             this.currentProduct.selectPrevious();
         });
+
     </script>
 </dom-module>

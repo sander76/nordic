@@ -3,6 +3,11 @@ from static.app.instructions.helpers import TXT
 _hangproduct = TXT("HANG PRODUCT.",
                    "PRODUCT OPHANGEN.","your translation.")
 
+_hangtwist = TXT("HANG THE TWIST BLIND",
+                 "HANG DE TWIST BLIND OP")
+
+_hangrollo = TXT("HANG THE ROLLERBLIND","HANG HET ROLGORDIJN OP")
+
 _connect = TXT('CONNECT.',
                'VERBINDEN.')
 
