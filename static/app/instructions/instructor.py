@@ -280,7 +280,7 @@ if __name__ == "__main__":
         fl.write(en)
 
     make_twist = Product("make twist", [connect_make_twist])
-    instruction3=Instruction('1.2')
+    instruction3=Instruction('1.3')
     instruction3.products.append(make_twist)
     twst = ToJson(lang='en').encode(instruction3)
     with open('instructions-set-id.json','w') as fl:
