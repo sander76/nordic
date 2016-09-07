@@ -62,7 +62,7 @@ if __name__ == "__main__":
                                                                               DelayedCommand('reset', 5),
                                                                               DelayedCommand('twist', 5))))
                               ],
-                              Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog, yes=-1))
+                              Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog, yes=0))
 
     initialise_roller = Step(tr._initialise,
                              [Row(Text(30, tr._press_okay_button.add_number(1)),

@@ -226,6 +226,7 @@
                     var _product = parseInt(this.routeData.product);
                     this.product = _product;
                     this.set("currentproduct", this.all_products[this.product]);
+                    this.set("currentproductsteps",[]);
                     this.set("currentproductsteps", this.all_products[_product].steps);
                     this.set('selectedStep', 0);
                 }
