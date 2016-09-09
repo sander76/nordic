@@ -24,7 +24,7 @@
 
 
 <link rel="import" href="instruction-step.html">
-<link rel="import" href='serial-data.html'/>
+<link rel="import" href='serial-data.html' />
 
 <dom-module id="my-app">
     <template>
@@ -80,31 +80,31 @@
                             <template is="dom-repeat" items="[[all_products]]">
                                 <a href="#instructions/[[page]]/[[index]]">[[item.title]]</a>
                             </template>
-                        </iron-selector>
-                    </div>
+    </iron-selector>
+    </div>
 
-                    <!-- </paper-menu> -->
+    <!-- </paper-menu> -->
 
-                    <div class='detailedinfo'>
-                        <a href="http://localhost:8080/app/ws.html" target="_blank">Nordic communication</a>
-                        <serial-data></serial-data>
-                        <div>
-                            instruction version: <span>[[definitions_version]]</span>
-                        </div>
-                    </div>
-                </div>
-            </app-drawer>
-            <iron-pages class="flex" id="pages" selected="{{selectedStep}}">
-                <template is="dom-repeat" items="[[currentproductsteps]]">
+    <div class='detailedinfo'>
+        <a href="http://localhost:8080/app/ws.html" target="_blank">Nordic communication</a>
+        <serial-data></serial-data>
+        <div>
+            instruction version: <span>[[definitions_version]]</span>
+        </div>
+    </div>
+    </div>
+    </app-drawer>
+    <iron-pages class="flex" id="pages" selected="{{selectedStep}}">
+        <template is="dom-repeat" items="[[currentproductsteps]]">
                     <instruction-step data="[[item]]" curitem=[[index]] selected="[[selectedStep]]"></instruction-step>
                 </template>
-            </iron-pages>
-        </app-drawer-layout>
-        <paper-toast duration="0" id="toast" opened class="fit-bottom" text="loading instructions">
+    </iron-pages>
+    </app-drawer-layout>
+    <paper-toast duration="0" id="toast" opened class="fit-bottom" text="loading instructions">
 
-        </paper-toast>
-        <my-modal modaldata="[[modaldata]]" id="modl"></my-modal>
-        <!-- <paper-dialog id="modal" modal>
+    </paper-toast>
+    <my-modal modaldata="[[modaldata]]" id="modl"></my-modal>
+    <!-- <paper-dialog id="modal" modal>
                 <iron-a11y-keys id="modalconfirm" target='[[target]]' keys="enter" on-keys-pressed="closeModal">
                 </iron-a11y-keys>
                 <iron-a11y-keys id="modaldismiss" target='[[target]]' keys="[[modal_no.keys]]" on-keys-pressed="closeModalDismiss"></iron-a11y-keys>
@@ -154,8 +154,9 @@
             },
             observers: [
                 '_routePageChanged(routeData.page)',
+                //,
                 //'_routeProductChanged(routeData.product,all_products)'
-                '_routeProductChanged(routeData.product)'
+                '_routeProductChanged1(routeData.product)'
             ],
             listeners: {
                 'openmodal': "_openModal"
@@ -210,7 +211,7 @@
                 //this.set('all_products', response.response.products);
                 this.all_products = response.response.products;
                 this.definitions_version = response.response.version;
-                this._routeProductChanged(response.response.products);
+                this._routeProductChanged(this.routeData.product);
             },
 
             _routePageChanged: function(page) {
@@ -219,15 +220,47 @@
                     this.$.instruction.generateRequest();
                     this.oldpage = page;
                 }
-
             },
-            _routeProductChanged: function(products) {
+            _routeProductChanged1: function(newValue) {
+                if (this.oldRoute === undefined) {
+
+                }
+                else {
+                    window.location.reload(false);
+                }
+                this.oldRoute = newValue;
+            },
+            _routeProductChanged: function(product_idx) {
                 if (this.all_products !== undefined) {
-                    var _product = parseInt(this.routeData.product);
+
+                    //var _product = parseInt(this.routeData.product);
+                    var _product = parseInt(product_idx);
+                    var _currentproduct = this.all_products[_product];
+
                     this.product = _product;
                     this.set("currentproduct", this.all_products[this.product]);
-                    this.set("currentproductsteps",[]);
-                    this.set("currentproductsteps", this.all_products[_product].steps);
+                    this.currentproductsteps = _currentproduct.steps;
+
+
+                    // if (this.currentproductsteps !== undefined) {
+                    //     for (var i = 0; i < this.currentproductsteps.length; i += 1) {
+                    //         var instr = this.currentproductsteps[i];
+                    //         //this.splice('currentproductsteps.' + i + '.instructions', 0, instr.instructions.length);
+                    //         this.set('currentproductsteps.' + i + '.instructions', []);
+                    //         for (var ii=0;i<)
+                    //         this.set('currentproductsteps.' + i + '.instructions', _currentproduct.steps[i].instructions);
+                    //     }
+
+
+
+                    //this.splice('currentproductsteps', 0, this.currentproductsteps.length);
+                    // } else {
+                    //     this.currentproductsteps = _currentproduct.steps;
+                    // }
+
+                    // for (var j = 0; j < this.currentproduct.steps.length; j += 1) {
+                    //     this.push('currentproductsteps', this.currentproduct.steps[j]);
+                    // }
                     this.set('selectedStep', 0);
                 }
             },
@@ -249,6 +282,5 @@
         document.addEventListener("previouspage", function() {
             this.currentProduct.selectPrevious();
         });
-
     </script>
 </dom-module>

@@ -285,3 +285,12 @@ if __name__ == "__main__":
     twst = ToJson(lang='en').encode(instruction3)
     with open('instructions-set-id.json','w') as fl:
         fl.write(twst)
+
+    test1 = Product("test1", [test_blinds])
+    test2 = Product("test2", [hang_twist])
+    test_instruction4=Instruction('1.0')
+    test_instruction4.products.append(test1)
+    test_instruction4.products.append(test2)
+    tst = ToJson(lang='en').encode(test_instruction4)
+    with open('instructions-test.json','w') as fl:
+        fl.write(tst)
