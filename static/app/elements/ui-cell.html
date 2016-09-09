@@ -41,11 +41,8 @@
                 <img class="instr_img" src="[[data.src]]"/>
             </div>
         </template>
-    <template is="dom-if" if="[[isType(data,'txt')]]">
+    <template is="dom-if" if="[[isType(data,'text')]]">
             <div class="container layout horizontal">
-                <!-- <p>
-                    {{data.content}}
-                </p> -->
                 <span class="bullet">[[data.content.bullet]]</span>
 
                 <marked-element markdown=[[data.content.content]]>
