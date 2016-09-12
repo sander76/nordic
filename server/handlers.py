@@ -1,5 +1,5 @@
 import aiohttp.web
-import aiohttp_jinja2
+#import aiohttp_jinja2
 
 
 # @aiohttp_jinja2.template('index.html')
@@ -8,7 +8,10 @@ import aiohttp_jinja2
 #     lang = request.match_info.get('lang', 'en')
 #     return {'lang': lang}
 
+
+
 def instruction_handler(request):
     lang = request.match_info.get('lang', 'en')
     fl = "instructions-{}.json".format(lang)
     return aiohttp.web.HTTPFound("/app/instructions/{}".format(fl))
+

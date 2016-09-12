@@ -1,6 +1,6 @@
 import argparse
 import logging.handlers
-import aiohttp_jinja2
+#import aiohttp_jinja2
 import jinja2
 
 from server import nordic_serial
@@ -12,7 +12,7 @@ from server.handlers import instruction_handler
 from server.id_generator import get_id
 from server.websocket import websocket_handler
 
-aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
+#aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
 
 
 def add_routes(serial):
@@ -20,7 +20,6 @@ def add_routes(serial):
     app.router.add_route('POST', '/nordic', serial.send_nordic)
     app.router.add_static("/app/", "static/app/")
     app.router.add_route("GET", '/instructions/{lang}', instruction_handler)
-
 
 def setup_websocket():
     app.router.add_route('GET', '/ws', websocket_handler)

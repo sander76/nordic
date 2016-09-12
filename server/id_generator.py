@@ -1,13 +1,13 @@
-#from json.decoder import JSONDecodeError
+# from json.decoder import JSONDecodeError
 
 ID_FILE = 'network_id.json'
 
 
 def get_id():
-    int_id=0000
+    int_id = 0000
     try:
         int_id = _try_load_id()
-    except (FileNotFoundError,ValueError):
+    except (FileNotFoundError, ValueError):
         int_id = _create_id()
         _save_id(int_id)
     return _from_int(int_id)
@@ -34,4 +34,4 @@ def _try_load_id():
 def _save_id(int_id):
     import json
     with open(ID_FILE, 'w') as fl:
-        json.dump({"network_id_int": int_id},fl)
+        json.dump({"network_id_int": int_id}, fl)
