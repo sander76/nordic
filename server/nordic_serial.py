@@ -48,7 +48,6 @@ class NordicSerial:
         self.loop.create_task(self.get_from_serial_port())
         self.loop.create_task(self.connect())
 
-
     # handler
     def connect(self):
         # lgr.info("Connecting to serial port: {}".format(self.serial_port))
@@ -117,14 +116,14 @@ class NordicSerial:
         commands = rq['commands']
         first = True
         for cmd in commands:
-            #upstring = COMMANDS.get(cmd)
+            # upstring = COMMANDS.get(cmd)
             if first:
                 upstring = COMMANDS.get(cmd)
                 first = False
             else:
                 upstring = COMMANDS.get(cmd['command'])
-                    # get the delay value or use default SLEEP_BETWEEN_COMMANDS
-                delay = cmd.get('delay',SLEEP_BETWEEN_COMMANDS)
+                # get the delay value or use default SLEEP_BETWEEN_COMMANDS
+                delay = cmd.get('delay', SLEEP_BETWEEN_COMMANDS)
                 yield from asyncio.sleep(delay)
             try:
                 self._write_to_nordic(upstring)
@@ -132,32 +131,32 @@ class NordicSerial:
                 lgr.exception("writing to serial port failure.")
                 self.s.close()
                 send_connection_status(False, "unknown")
-            # else:
-            #     lgr.error("sending command {} did not succeed.".format(cmd))
-            #     return web.Response(text="sending command {} did not succeed.".format(cmd), status=500)
+                # else:
+                #     lgr.error("sending command {} did not succeed.".format(cmd))
+                #     return web.Response(text="sending command {} did not succeed.".format(cmd), status=500)
         return web.Response(body=b"okay")
 
-    # def send_nordic(self, request):
-    #     rq = yield from request.json()
-    #     commands = rq['commands']
-    #     first = True
-    #     for cmd in commands['commands']:
-    #         upstring = COMMANDS.get(cmd)
-    #         if upstring is not None:
-    #             if first:
-    #                 first = False
-    #             else:
-    #                 # get the delay value or use default SLEEP_BETWEEN_COMMANDS
-    #                 delay = commands.get("delay", SLEEP_BETWEEN_COMMANDS)
-    #                 yield from asyncio.sleep(delay)
-    #             try:
-    #                 self._write_to_nordic(upstring)
-    #             except SerialException:
-    #                 lgr.exception("writing to serial port failure.")
-    #                 self.s.close()
-    #                 send_connection_status(False, "unknown")
-    #         else:
-    #             lgr.error("sending command {} did not succeed.".format(cmd))
-    #             return web.Response(text="sending command {} did not succeed.".format(cmd), status=500)
-    #     return web.Response(body=b"okay")
-    #
+        # def send_nordic(self, request):
+        #     rq = yield from request.json()
+        #     commands = rq['commands']
+        #     first = True
+        #     for cmd in commands['commands']:
+        #         upstring = COMMANDS.get(cmd)
+        #         if upstring is not None:
+        #             if first:
+        #                 first = False
+        #             else:
+        #                 # get the delay value or use default SLEEP_BETWEEN_COMMANDS
+        #                 delay = commands.get("delay", SLEEP_BETWEEN_COMMANDS)
+        #                 yield from asyncio.sleep(delay)
+        #             try:
+        #                 self._write_to_nordic(upstring)
+        #             except SerialException:
+        #                 lgr.exception("writing to serial port failure.")
+        #                 self.s.close()
+        #                 send_connection_status(False, "unknown")
+        #         else:
+        #             lgr.error("sending command {} did not succeed.".format(cmd))
+        #             return web.Response(text="sending command {} did not succeed.".format(cmd), status=500)
+        #     return web.Response(body=b"okay")
+        #
