@@ -1,0 +1,5 @@
+/logs/nordic*.*
+/server/__pycache__/
+/.idea/
+*demo*
+network_id.json

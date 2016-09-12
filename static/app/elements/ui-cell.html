@@ -24,7 +24,7 @@
             background-color: #f9f2f4;
         }
 
-        .markdown-html>p {
+        .markdown-html > p {
             margin: 0;
         }
 
@@ -34,6 +34,7 @@
             color: #555;
             border-radius: 50%;
         }
+
     </style>
     <template>
         <template is="dom-if" if="[[isType(data,'image')]]">
@@ -41,7 +42,7 @@
                 <img class="instr_img" src="[[data.src]]"/>
             </div>
         </template>
-    <template is="dom-if" if="[[isType(data,'text')]]">
+        <template is="dom-if" if="[[isType(data,'text')]]">
             <div class="container layout horizontal">
                 <span class="bullet">[[data.content.bullet]]</span>
 
@@ -50,37 +51,37 @@
                 </marked-element>
             </div>
         </template>
-    <!-- <template is="dom-if" if="[[isType(data,'button')]]">
+        <!-- <template is="dom-if" if="[[isType(data,'button')]]">
             <ajax-button active="[[active]]" data="[[data]]">[[data.caption]]
                 <small>([[data.keys]])</small>
             </ajax-button>
         </template> -->
-    <!-- <template is="dom-if" if="[[isType(data,'svg-button-connect')]]">
+        <!-- <template is="dom-if" if="[[isType(data,'svg-button-connect')]]">
             <svg-button-connect active="[[active]]" data="[[data]]">
             </svg-button-connect>
         </template> -->
-    <!-- <template is="dom-if" if="[[isType(data,'icon-button')]]">
+        <!-- <template is="dom-if" if="[[isType(data,'icon-button')]]">
             <div class="container">
                 <icon-ajax-button active="[[active]]" data="[[data]]"></icon-ajax-button>
             </div>
         </template> -->
-    <!-- <template is="dom-if" if="[[isType(data,'icon-nav-button')]]">
+        <!-- <template is="dom-if" if="[[isType(data,'icon-nav-button')]]">
             <div class="container">
                 <icon-nav-button active="[[active]]" data="[[data]]"></icon-nav-button>
             </div>
         </template> -->
-    <!-- <template is="dom-if" if="[[isType(data,'keypad')]]">
+        <!-- <template is="dom-if" if="[[isType(data,'keypad')]]">
                 <key-pad active="[[active]]"></key-pad>
             </template> -->
-    <template is="dom-if" if="[[isType(data,'pv-keypad')]]" restamp="true">
+        <template is="dom-if" if="[[isType(data,'pv-keypad')]]" restamp="true">
             <div class="container">
                 <pv-keypad active="[[active]]" data="[[data]]"></pv-keypad>
             </div>
         </template>
-    <!-- <template is="dom-if" if="[[isType(data,'remote')]]">
+        <!-- <template is="dom-if" if="[[isType(data,'remote')]]">
                 <pv-remote active="[[active]]"></pv-remote>
             </template> -->
-    <template is="dom-if" if="[[isType(data,'navbutton')]]">
+        <template is="dom-if" if="[[isType(data,'navbutton')]]">
             <nav-button active="[[active]]" data="[[data]]">[[data.caption]]
                 <small>([[data.keys]])</small>
             </nav-button>
@@ -92,64 +93,27 @@
             properties: {
                 data: {
                     type: Object,
-                    value: {}//,
+                    value: {} //,
                     //observer: '_dataChanged'
-                },
-                navbutton: {
-                    type: Boolean,
-                    value: false
-                },
-                pvkeypad: {
-                    type: Boolean,
-                    value: false
-                },
-                image: {
-                    type: Boolean,
-                    value: false
-                },
-                txt: {
-                    type: Boolean,
-                    value: false
                 }
             },
-            // _dataChanged: function(data) {
-            //     this.navbutton = false;
-            //     this.pvkeypad = false;
-            //     this.image = false;
-            //     this.txt = false;
-            //     if (data !== undefined) {
-            //         switch (data.type) {
-            //             case "navbutton":
-            //                 this.navbutton = true;
-            //                 break;
-            //             case "pv-keypad":
-            //                 this.pvkeypad = true;
-            //                 break;
-            //             case "image":
-            //                 this.image = true;
-            //                 break;
-            //             case "text":
-            //                 this.txt = true;
-            //                 break;
-            //         }
-            //     }
-            //     console.log("data changed");
-            // },
-            ready: function() {
+            // _dataChanged: function(data) {     this.navbutton = false;     this.pvkeypad = false;     this.image = false;     this.txt = false;     if (data !== undefined) {         switch (data.type) {             case "navbutton":
+            // this.navbutton = true;                 break;             case "pv-keypad":                 this.pvkeypad = true;                 break;             case "image":                 this.image = true;                 break;             case "text":
+            //               this.txt = true;                 break;         }     }     console.log("data changed"); },
+            ready: function () {
                 this.checkWidth();
             },
-            checkWidth: function() {
+            checkWidth: function () {
                 if (this.data !== undefined) {
                     if (this.data.width !== undefined) {
                         this.setAttribute("style", "width:" + this.data.width);
                     }
                 }
             },
-            isType: function(instruction, _type) {
+            isType: function (instruction, _type) {
                 var tr = instruction.type === _type;
                 return tr;
             }
-
 
         });
     </script>

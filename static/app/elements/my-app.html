@@ -1,46 +1,56 @@
-<link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/app-route/app-location.html">
-<link rel="import" href="../bower_components/app-route/app-route.html">
-<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
-<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
-<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
-<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
-<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
-<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
-
+<link rel="import"
+    href="../bower_components/polymer/polymer.html">
+<link rel="import"
+    href="../bower_components/app-route/app-location.html">
+<link rel="import"
+    href="../bower_components/app-route/app-route.html">
+<link rel="import"
+    href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import"
+    href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import"
+    href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import"
+    href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import"
+    href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import"
+    href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
 <!-- <link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html"> -->
-<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import"
+    href="../bower_components/paper-card/paper-card.html">
 <!-- <link rel="import" href="../bower_components/paper-tabs/paper-tab.html" />
 <link rel="import" href="../bower_components/paper-tabs/paper-tabs.html" /> -->
-<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
-
-<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
-
-<link rel="import" href="../bower_components/paper-material/paper-material.html">
+<link rel="import"
+    href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import"
+    href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import"
+    href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import"
+    href="../bower_components/paper-material/paper-material.html">
 <!-- <link rel="import" href="../elements/paper-menu/paper-menu.html"> -->
-<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
-<link rel="import" href="my-modal.html">
-
-
-<link rel="import" href="instruction-step.html">
-<link rel="import" href='serial-data.html' />
-
-<dom-module id="my-app">
-    <template>
+<link rel="import"
+    href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import"
+    href="my-modal.html">
+<link rel="import"
+    href="instruction-step.html">
+<link rel="import"
+    href='serial-data.html' />
+<dom-module id="my-app"> <template>
         <style include="iron-flex"></style>
         <style>
-        :host {height:100%;}
-
+            :host {
+                height: 100%;
+            }
             app-header {
                 background-color: var(--primary-color);
                 color: #fff;
             }
-
             .drawer-list {
                 margin: 0 20px;
             }
-
             .drawer-list a {
                 display: block;
                 padding: 0 16px;
@@ -48,30 +58,22 @@
                 text-decoration: none;
                 color: var(--app-secondary-color);
             }
-
             .drawer-list a.iron-selected {
                 color: white;
                 font-weight: bold;
                 background-color: var(--primary-color);
             }
-
             .detailedinfo {
                 font-size: 0.6em;
                 margin: 4px;
             }
-
-            #pages{
-              margin:10px;
+            #pages {
+                margin: 10px;
             }
-
         </style>
         <app-location use-hash-as-path route="{{route}}"></app-location>
-        <app-route active="{{routeActive}}" route="{{route}}" pattern="instructions/:page/:product"
-                   data="{{routeData}}"></app-route>
-
-        <iron-ajax id='instruction' url="/app/instructions/instructions-[[page]].json" handle-as="json"
-                   on-response="getInstructions" on-error="handleError"></iron-ajax>
-
+        <app-route active="{{routeActive}}" route="{{route}}" pattern="instructions/:page/:product" data="{{routeData}}"></app-route>
+        <iron-ajax id='instruction' url="/app/instructions/instructions-[[page]].json" handle-as="json" on-response="getInstructions" on-error="handleError"></iron-ajax>
         <app-drawer-layout>
             <app-drawer>
                 <div class="layout flex vertical" style="height:100%;">
@@ -79,31 +81,30 @@
                         <iron-selector selected="[[product]]" class="drawer-list layout flex">
                             <template is="dom-repeat" items="[[all_products]]">
                                 <a href="#instructions/[[page]]/[[index]]">[[item.title]]</a>
-                            </template>
-    </iron-selector>
+                            </template> </iron-selector>
     </div>
-
     <!-- </paper-menu> -->
-
-    <div class='detailedinfo'>
-        <a href="http://localhost:8080/app/ws.html" target="_blank">Nordic communication</a>
+    <div class='detailedinfo'> <a href="http://localhost:8080/app/ws.html"
+            target="_blank">Nordic communication</a>
         <serial-data></serial-data>
-        <div>
-            instruction version: <span>[[definitions_version]]</span>
-        </div>
+        <div> instruction version: <span>[[definitions_version]]</span> </div>
     </div>
     </div>
     </app-drawer>
-    <iron-pages class="flex" id="pages" selected="{{selectedStep}}">
-        <template is="dom-repeat" items="[[currentproductsteps]]">
+    <iron-pages class="flex"
+        id="pages"
+        selected="{{selectedStep}}"> <template is="dom-repeat"
+            items="[[currentproductsteps]]">
                     <instruction-step data="[[item]]" curitem=[[index]] selected="[[selectedStep]]"></instruction-step>
-                </template>
-    </iron-pages>
+                </template> </iron-pages>
     </app-drawer-layout>
-    <paper-toast duration="0" id="toast" opened class="fit-bottom" text="loading instructions">
-
-    </paper-toast>
-    <my-modal modaldata="[[modaldata]]" id="modl"></my-modal>
+    <paper-toast duration="0"
+        id="toast"
+        opened
+        class="fit-bottom"
+        text="loading instructions"></paper-toast>
+    <my-modal modaldata="[[modaldata]]"
+        id="modl"></my-modal>
     <!-- <paper-dialog id="modal" modal>
                 <iron-a11y-keys id="modalconfirm" target='[[target]]' keys="enter" on-keys-pressed="closeModal">
                 </iron-a11y-keys>
@@ -118,169 +119,171 @@
                 </div>
             </paper-dialog> -->
     </template>
-
     <!-- build:js scripts/app.js -->
     <!-- <script src="/app/scripts/app.js"></script> -->
-
-
     <script>
         //var t = document.querySelector("#app");
-        Polymer({
+        Polymer(
+        {
             is: 'my-app',
-            properties: {
-                target: {
+            properties:
+            {
+                target:
+                {
                     type: Object,
-                    value: function() {
+                    value: function()
+                    {
                         return window;
                     }
                 },
-                page: {
+                page:
+                {
                     type: String,
-                    reflectToAttribute: true,
+                    reflectToAttribute: true
                 },
-                currentproduct: {
+                currentproduct:
+                {
                     type: Object
                 },
-                modaldata: {
+                modaldata:
+                {
                     type: Object
                 },
-                selectedStep: {
+                selectedStep:
+                {
                     type: Number,
                     observer: '_stepChanged'
                 },
-                steptitle: {
+                steptitle:
+                {
                     type: String
                 }
             },
-            observers: [
-                '_routePageChanged(routeData.page)',
-                //,
-                //'_routeProductChanged(routeData.product,all_products)'
+            observers: ['_routePageChanged(routeData.page)',
+                //, '_routeProductChanged(routeData.product,all_products)'
                 '_routeProductChanged1(routeData.product)'
             ],
-            listeners: {
+            listeners:
+            {
                 'openmodal': "_openModal"
             },
-            _openModal: function(e) {
+            _openModal: function(e)
+            {
                 console.log("open modal");
                 this.$.pages.items[this.selectedStep].deactivate();
                 this.$.modl.openmodal();
             },
-            _stepChanged: function(newValue, oldValue) {
+            _stepChanged: function(newValue, oldValue)
+            {
                 this.set("steptitle", this.currentproductsteps[newValue].title);
                 this.set("modaldata", this.currentproductsteps[newValue].confirm);
             },
-
-            gotoStep: function(current, offset) {
-                if (offset === 0) {
+            gotoStep: function(current, offset)
+            {
+                if (offset === 0)
+                {
                     this.$.pages.items[this.selectedStep].activate();
-                } else {
+                }
+                else
+                {
                     var _goto = current + offset;
                     var goto = 0;
-                    if (_goto < 0) {
+                    if (_goto < 0)
+                    {
                         //goto = (t.instructions.steps.length + _goto);
                         goto = this.currentProduct.items.length + _goto;
-                    } else {
+                    }
+                    else
+                    {
                         goto = _goto % this.currentproductsteps.length;
                     }
                     //this.$.pages.select(goto);
                     this.set('selectedStep', goto);
                 }
             },
-            gotoId: function(id) {
-                for (var i = 0; i < this.$.pages.items.length; i++) {
-                    if (this.$.pages.items[i].data.id === id) {
+            gotoId: function(id)
+            {
+                for (var i = 0; i < this.$.pages.items.length; i++)
+                {
+                    if (this.$.pages.items[i].data.id === id)
+                    {
                         console.log('id found: ', id);
                         this.$.pages.select(i);
                         break;
                     }
                 }
             },
-            handleError: function(e, response) {
+            handleError: function(e, response)
+            {
                 console.log("error");
             },
-            // handleProductChange: function(e) {
-            //     //t.current_product = t.all_products[e.target.selected];
-            //     this.ChangeProduct(e.target.selected);
-            // },
-            // ChangeProduct: function(idx) {
-            //     this.set("selectedproduct", idx);
-            //     this.set("selectedStep", 0);
-            // },
-            getInstructions: function(e, response) {
+            // handleProductChange: function(e) {     //t.current_product = t.all_products[e.target.selected];     this.ChangeProduct(e.target.selected); }, ChangeProduct: function(idx) {     this.set("selectedproduct", idx);     this.set("selectedStep", 0); },
+            getInstructions: function(e, response)
+            {
                 //this.set('all_products', response.response.products);
                 this.all_products = response.response.products;
                 this.definitions_version = response.response.version;
                 this._routeProductChanged(this.routeData.product);
             },
-
-            _routePageChanged: function(page) {
-                if (this.oldpage !== page) {
+            _routePageChanged: function(page)
+            {
+                if (this.oldpage !== page)
+                {
                     this.page = page;
                     this.$.instruction.generateRequest();
                     this.oldpage = page;
                 }
             },
-            _routeProductChanged1: function(newValue) {
-                if (this.oldRoute === undefined) {
-
-                }
-                else {
+            _routeProductChanged1: function(newValue)
+            {
+                if (this.oldRoute === undefined)
+                {}
+                else
+                {
                     window.location.reload(false);
                 }
                 this.oldRoute = newValue;
             },
-            _routeProductChanged: function(product_idx) {
-                if (this.all_products !== undefined) {
-
+            _routeProductChanged: function(product_idx)
+            {
+                if (this.all_products !== undefined)
+                {
                     //var _product = parseInt(this.routeData.product);
                     var _product = parseInt(product_idx);
                     var _currentproduct = this.all_products[_product];
-
                     this.product = _product;
                     this.set("currentproduct", this.all_products[this.product]);
                     this.currentproductsteps = _currentproduct.steps;
-
-
-                    // if (this.currentproductsteps !== undefined) {
-                    //     for (var i = 0; i < this.currentproductsteps.length; i += 1) {
-                    //         var instr = this.currentproductsteps[i];
-                    //         //this.splice('currentproductsteps.' + i + '.instructions', 0, instr.instructions.length);
-                    //         this.set('currentproductsteps.' + i + '.instructions', []);
-                    //         for (var ii=0;i<)
-                    //         this.set('currentproductsteps.' + i + '.instructions', _currentproduct.steps[i].instructions);
-                    //     }
-
-
-
-                    //this.splice('currentproductsteps', 0, this.currentproductsteps.length);
-                    // } else {
-                    //     this.currentproductsteps = _currentproduct.steps;
-                    // }
-
-                    // for (var j = 0; j < this.currentproduct.steps.length; j += 1) {
-                    //     this.push('currentproductsteps', this.currentproduct.steps[j]);
-                    // }
+                    // if (this.currentproductsteps !== undefined) {     for (var i = 0; i < this.currentproductsteps.length; i += 1) {         var instr = this.currentproductsteps[i];         //this.splice('currentproductsteps.' + i + '.instructions', 0,
+                    // instr.instructions.length);         this.set('currentproductsteps.' + i + '.instructions', []);         for (var ii=0;i<)         this.set('currentproductsteps.' + i + '.instructions', _currentproduct.steps[i].instructions);     }
+                    // this.splice('currentproductsteps', 0, this.currentproductsteps.length); } else {     this.currentproductsteps = _currentproduct.steps; } for (var j = 0; j < this.currentproduct.steps.length; j += 1) {     this.push('currentproductsteps',
+                    // this.currentproduct.steps[j]); }
                     this.set('selectedStep', 0);
                 }
-            },
-
+            }
         });
         var app = document.querySelector('my-app');
-        document.addEventListener("nextpage", function() {
+        document.addEventListener("nextpage", function()
+        {
             this.currentProduct.selectNext();
         });
-        document.addEventListener("gotopage", function(e) {
-            if (typeof(e.detail) === 'string') {
+        document.addEventListener("gotopage", function(e)
+        {
+            if (typeof(e.detail) === 'string')
+            {
                 app.gotoId(e.detail);
                 //this.gotoId(e.detail);
-            } else {
+            }
+            else
+            {
                 app.gotoStep(app.selectedStep, e.detail);
                 //this.gotoStep(this.selectedStep, e.detail);
             }
         });
-        document.addEventListener("previouspage", function() {
+        document.addEventListener("previouspage", function()
+        {
             this.currentProduct.selectPrevious();
         });
+
     </script>
 </dom-module>
