@@ -5,4 +5,6 @@ cd ~/nordic
 git checkout release
 git pull
 
+echo "please restart you computer"
+
 $SHELL
