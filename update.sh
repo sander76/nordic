@@ -4,3 +4,5 @@
 cd ~/nordic
 git checkout release
 git pull
+
+$SHELL
