@@ -1,56 +1,39 @@
-<link rel="import"
-    href="../bower_components/polymer/polymer.html">
-<link rel="import"
-    href="../bower_components/app-route/app-location.html">
-<link rel="import"
-    href="../bower_components/app-route/app-route.html">
-<link rel="import"
-    href="../bower_components/iron-pages/iron-pages.html">
-<link rel="import"
-    href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
-<link rel="import"
-    href="../bower_components/app-layout/app-drawer/app-drawer.html">
-<link rel="import"
-    href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
-<link rel="import"
-    href="../bower_components/app-layout/app-header/app-header.html">
-<link rel="import"
-    href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
-<!-- <link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html"> -->
-<link rel="import"
-    href="../bower_components/paper-card/paper-card.html">
-<!-- <link rel="import" href="../bower_components/paper-tabs/paper-tab.html" />
-<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html" /> -->
-<link rel="import"
-    href="../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import"
-    href="../bower_components/iron-flex-layout/iron-flex-layout.html">
-<link rel="import"
-    href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
-<link rel="import"
-    href="../bower_components/paper-material/paper-material.html">
-<!-- <link rel="import" href="../elements/paper-menu/paper-menu.html"> -->
-<link rel="import"
-    href="../bower_components/iron-selector/iron-selector.html">
-<link rel="import"
-    href="my-modal.html">
-<link rel="import"
-    href="instruction-step.html">
-<link rel="import"
-    href='serial-data.html' />
-<dom-module id="my-app"> <template>
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="my-modal.html">
+<link rel="import" href="instruction-step.html">
+<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="serial-data.html" />
+<dom-module id="my-app">
+    <template>
         <style include="iron-flex"></style>
         <style>
             :host {
                 height: 100%;
             }
+            
             app-header {
                 background-color: var(--primary-color);
                 color: #fff;
             }
+            
             .drawer-list {
                 margin: 0 20px;
             }
+            
             .drawer-list a {
                 display: block;
                 padding: 0 16px;
@@ -58,22 +41,30 @@
                 text-decoration: none;
                 color: var(--app-secondary-color);
             }
+            
             .drawer-list a.iron-selected {
                 color: white;
                 font-weight: bold;
                 background-color: var(--primary-color);
             }
+            
             .detailedinfo {
                 font-size: 0.6em;
                 margin: 4px;
             }
-            #pages {
+            /*#pages {
                 margin: 10px;
+            }*/
+            
+            iron-pages {
+                margin: 0;
+                height: 100vh;
             }
         </style>
         <app-location use-hash-as-path route="{{route}}"></app-location>
         <app-route active="{{routeActive}}" route="{{route}}" pattern="instructions/:page/:product" data="{{routeData}}"></app-route>
-        <iron-ajax id='instruction' url="/app/instructions/instructions-[[page]].json" handle-as="json" on-response="getInstructions" on-error="handleError"></iron-ajax>
+        <iron-ajax id="instruction" url="/app/instructions/instructions-[[page]].json" handle-as="json" on-response="getInstructions"
+            on-error="handleError"></iron-ajax>
         <app-drawer-layout>
             <app-drawer>
                 <div class="layout flex vertical" style="height:100%;">
@@ -81,43 +72,25 @@
                         <iron-selector selected="[[product]]" class="drawer-list layout flex">
                             <template is="dom-repeat" items="[[all_products]]">
                                 <a href="#instructions/[[page]]/[[index]]">[[item.title]]</a>
-                            </template> </iron-selector>
-    </div>
-    <!-- </paper-menu> -->
-    <div class='detailedinfo'> <a href="http://localhost:8080/app/ws.html"
-            target="_blank">Nordic communication</a>
-        <serial-data></serial-data>
-        <div> instruction version: <span>[[definitions_version]]</span> </div>
-    </div>
-    </div>
-    </app-drawer>
-    <iron-pages class="flex"
-        id="pages"
-        selected="{{selectedStep}}"> <template is="dom-repeat"
-            items="[[currentproductsteps]]">
-                    <instruction-step data="[[item]]" curitem=[[index]] selected="[[selectedStep]]"></instruction-step>
-                </template> </iron-pages>
-    </app-drawer-layout>
-    <paper-toast duration="0"
-        id="toast"
-        opened
-        class="fit-bottom"
-        text="loading instructions"></paper-toast>
-    <my-modal modaldata="[[modaldata]]"
-        id="modl"></my-modal>
-    <!-- <paper-dialog id="modal" modal>
-                <iron-a11y-keys id="modalconfirm" target='[[target]]' keys="enter" on-keys-pressed="closeModal">
-                </iron-a11y-keys>
-                <iron-a11y-keys id="modaldismiss" target='[[target]]' keys="[[modal_no.keys]]" on-keys-pressed="closeModalDismiss"></iron-a11y-keys>
-                <img src$="[[modaldata.img]]" />
-                <p>[[modaldata.text]]</p>
-                <div class="buttons">
-                    <paper-button noink on-tap="closeModalDismiss">
-                        <iron-icon class="cross" icon="icomoon:cross"></iron-icon>[[modaldata.no_text]]</paper-button>
-                    <paper-button noink on-tap="closeModal">
-                        <iron-icon class="ok" icon="icomoon:checkmark"></iron-icon>[[modaldata.yes_text]]</paper-button>
+                            </template>
+                        </iron-selector>
+                    </div>
+                    <div class="detailedinfo"> <a href="http://localhost:8080/app/ws.html" target="_blank">Nordic communication</a>
+                        <serial-data on-nordic-changed="handleNordicChanged"></serial-data>
+                        <div> instruction version: <span>[[definitions_version]]</span> </div>
+                    </div>
                 </div>
-            </paper-dialog> -->
+            </app-drawer>
+            <iron-pages class="flex" id="pages" selected="{{selectedStep}}">
+                <template is="dom-repeat" items="[[currentproductsteps]]">
+                    <instruction-step data="[[item]]" curitem="[[index]]" selected="[[selectedStep]]"></instruction-step>
+                </template>
+            </iron-pages>
+        </app-drawer-layout>
+        <paper-toast id="toast" duration="0" text="loading instructions"></paper-toast>
+        <!--<paper-toast duration="0" id="toast" text="loading instructions"></paper-toast>-->
+        <my-modal modaldata="[[modaldata]]" id="modl"></my-modal>
+
     </template>
     <!-- build:js scripts/app.js -->
     <!-- <script src="/app/scripts/app.js"></script> -->
@@ -213,6 +186,16 @@
                     }
                 }
             },
+            handleNordicChanged:function(e,response){
+                if (response.value === "not connected" || response.value ==="unknown")
+                {
+                    this.$.toast.text = "There is no connection with the blind. Trying to reconnect. Wait for this message to disappear."
+                    this.$.toast.open();
+                }
+                else{
+                    this.$.toast.close();
+                }
+            },
             handleError: function(e, response)
             {
                 console.log("error");
@@ -284,6 +267,7 @@
         {
             this.currentProduct.selectPrevious();
         });
+
 
     </script>
 </dom-module>

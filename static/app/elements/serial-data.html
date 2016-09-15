@@ -20,7 +20,8 @@
                 },
                 nordic: {
                     type: String,
-                    value: "Unknown"
+                    value: "Unknown",
+                    notify:true
                 },
                 networkid: {
                     type: String,
@@ -49,8 +50,6 @@
                 });
                 this.$.incoming.addEventListener('onopen', function(message) {
                     console.log(message.detail);
-                    //self.push('serialdata',message.detail);
-                    //this.connected = "connected";
                     self.set('nordic', "Not connected");
                 });
                 this.$.incoming.addEventListener('onclose', function(message) {
