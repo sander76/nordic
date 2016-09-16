@@ -5,21 +5,14 @@ import time
 from aiohttp import web
 from serial import Serial
 from serial.serialutil import SerialException
-
 from server.constants import TRYDELAY, SLEEP_BETWEEN_COMMANDS
-# from new_server import send_socket_message
 from server.helpers import from_string, up_string
 from server.messenger import Messengers
 from server.nordic import COMMANDS
-#from server.websocket import send_socket_message
 
 import logging
 
 lgr = logging.getLogger(__name__)
-
-
-# def send_connection_status(connected, network_id):
-#     send_socket_message({"nordic": connected, "networkid": network_id})
 
 
 def byte_to_string_rep(byte_instance):
@@ -34,7 +27,7 @@ def byte_to_string_rep(byte_instance):
 
 
 class NordicSerial:
-    def __init__(self, loop, serial_port, serial_speed, network_id, try_delay=TRYDELAY,messengers=Messengers()):
+    def __init__(self, loop, serial_port, serial_speed, network_id, try_delay=TRYDELAY, messengers=Messengers()):
         # self.network_id = b'\x00\x03I' + network_id
         self.network_id = byte_to_string_rep(network_id)  # string representation of the network id. in hex.
         self.id_change = b'\x00\x03I' + network_id  # the bytes object to send to nordic to change the network id of the dongle.
@@ -45,12 +38,11 @@ class NordicSerial:
         self.trydelay = try_delay
         self.loop = loop
         # task = asyncio.Task(get_and_print())
-
-        self.loop.create_task(self.get_from_serial_port())
         self.loop.create_task(self.connect())
-        self.messengers=messengers
+        self.messengers = messengers
 
-    def send_connection_status(self,connected,network_id):
+
+    def send_connection_status(self, connected, network_id):
         self.messengers.send_message({"nordic": connected, "networkid": network_id})
 
     # handler
@@ -66,6 +58,8 @@ class NordicSerial:
                 try:
                     lgr.info("Connecting to serial port {}. Attempt: {}".format(self.serial_port, attempt))
                     self.s.open()
+                    # serial port is open. Adding a incoming listener is okay now.
+                    self.loop.create_task(self.get_from_serial_port())
                     # yield from asyncio.sleep()
                     self._write_to_nordic(self.id_change)
                     self.send_connection_status(True, self.network_id)
@@ -110,15 +104,11 @@ class NordicSerial:
         _up = up_string(None, upstring)
         lgr.debug(_up)
         self.messengers.send_message(_up)
-        #send_socket_message(_up)
 
-    # def _write_to_nordic(self, upstring):
-    #     self.s.write(upstring["up"])
-    #     _up = up_string(None, upstring["up"])
-    #     lgr.debug(_up)
-    #     send_socket_message(_up)
+        # send_socket_message(_up)
 
     # handlers.
+    @asyncio.coroutine
     def send_nordic(self, request):
         rq = yield from request.json()
         commands = rq['commands']
@@ -143,4 +133,3 @@ class NordicSerial:
                 #     lgr.error("sending command {} did not succeed.".format(cmd))
                 #     return web.Response(text="sending command {} did not succeed.".format(cmd), status=500)
         return web.Response(body=b"okay")
-

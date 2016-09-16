@@ -1,4 +1,6 @@
 import aiohttp.web
+import asyncio
+
 #import aiohttp_jinja2
 
 
@@ -9,7 +11,7 @@ import aiohttp.web
 #     return {'lang': lang}
 
 
-
+asyncio.coroutine
 def instruction_handler(request):
     lang = request.match_info.get('lang', 'en')
     fl = "instructions-{}.json".format(lang)
