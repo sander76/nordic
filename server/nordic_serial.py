@@ -54,6 +54,7 @@ class NordicSerial:
         self.messengers.send_message({"nordic": connected, "networkid": network_id})
 
     # handler
+    @asyncio.coroutine
     def connect(self):
         # lgr.info("Connecting to serial port: {}".format(self.serial_port))
         attempt = 1
@@ -96,6 +97,7 @@ class NordicSerial:
             res = yield from self.loop.run_in_executor(executor, self.get_byte)
             return res
 
+    @asyncio.coroutine
     def get_from_serial_port(self):
         while 1:
             b = yield from self.get_byte_async()
