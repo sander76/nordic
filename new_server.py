@@ -10,6 +10,7 @@ from server.constants import SERIAL_SPEED
 from server.handlers import instruction_handler
 
 from server.id_generator import get_id
+from server.mylogger import setup_logging
 from server.websocket import websocket_handler
 
 #aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
@@ -33,23 +34,24 @@ if __name__ == "__main__":
     args = parser.parse_args()
     SERIAL_PORT = args.serialport
 
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-
-    lgr = logging.getLogger()
-    lgr.setLevel(logging.WARNING)
-
-    ch = logging.StreamHandler()
-    ch.setLevel(logging.DEBUG)
-
-    fh = logging.handlers.RotatingFileHandler("logs/nordic.log", 'a', 10000, 5)
-    fh.setLevel(logging.INFO)
-
-    ch.setFormatter(formatter)
-    fh.setFormatter(formatter)
-
-    lgr.addHandler(fh)
-    lgr.addHandler(ch)
-
+    # formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    #
+    # lgr = logging.getLogger()
+    # lgr.setLevel(logging.WARNING)
+    #
+    # ch = logging.StreamHandler()
+    # ch.setLevel(logging.DEBUG)
+    #
+    # fh = logging.handlers.RotatingFileHandler("logs/nordic.log", 'a', 10000, 5)
+    # fh.setLevel(logging.INFO)
+    #
+    # ch.setFormatter(formatter)
+    # fh.setFormatter(formatter)
+    #
+    # lgr.addHandler(fh)
+    # lgr.addHandler(ch)
+    setup_logging("server/logging.json")
+    lgr = logging.getLogger(__name__)
     lgr.info("***** start logging ******")
 
     network_id = get_id()
