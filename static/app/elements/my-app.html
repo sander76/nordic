@@ -187,9 +187,9 @@
                 }
             },
             handleNordicChanged:function(e,response){
-                if (response.value === "not connected" || response.value ==="unknown")
+                if (response.value === "not connected" || response.value ==="Unknown")
                 {
-                    this.$.toast.text = "There is no connection with the blind. Trying to reconnect. Wait for this message to disappear."
+                    this.$.toast.text = "There is no connection with the blind. Trying to reconnect. Wait for this message to disappear. Or hit F5 to retry to reconnect"
                     this.$.toast.open();
                 }
                 else{

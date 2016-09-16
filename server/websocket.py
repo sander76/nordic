@@ -4,11 +4,16 @@ import json
 from aiohttp.web import WebSocketResponse, MsgType
 
 from server.app import app
+from server.messenger import BaseMessenger
 
 
-def send_socket_message(message):
-    for ws in app['sockets']:
-        ws.send_str(json.dumps(message))
+class WebSocketMessenger(BaseMessenger):
+    def send_message(self, message):
+        self.send_socket_message(message)
+
+    def send_socket_message(self,message):
+        for ws in app['sockets']:
+            ws.send_str(json.dumps(message))
 
 
 @asyncio.coroutine
