@@ -75,7 +75,7 @@ class NordicSerial:
             if self.s.is_open:
                 try:
                     data = self.s.read(1)
-                    time.sleep(0.3)
+                    time.sleep(0.5)
                     tst = self.s.read(self.s.inWaiting())
                     data += tst
                     # data += bytearray(self.s.read(self.s.inWaiting()))

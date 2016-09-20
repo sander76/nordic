@@ -1,9 +1,16 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="serial-queue.html">
 <link rel="import" href="ws-element.html">
+
 <dom-module id="serial-data">
     <template>
-        <div>PowerView dongle: <span>[[nordic]]</span></div>
-        <div>Network id: <span>[[networkid]]</span></div>
+        <serial-queue id="queue"></serial-queue>
+        <div>PowerView dongle:
+            <span>[[nordic]]</span>
+        </div>
+        <div>Network id:
+            <span>[[networkid]]</span>
+        </div>
         <ws-element id="incoming" protocol="echo-protocol"></ws-element>
     </template>
     <script>
@@ -21,20 +28,26 @@
                 nordic: {
                     type: String,
                     value: "Unknown",
-                    notify:true
+                    notify: true
                 },
                 networkid: {
                     type: String,
                     value: "Unknown"
                 }
             },
-            ready: function() {
+            ready: function () {
                 var self = this;
                 var url = "ws:" + location.host + "/ws";
                 this.$.incoming.connect(url);
 
-                this.$.incoming.addEventListener('onmessage', function(message) {
+                this.$.incoming.addEventListener('onmessage', function (message) {
                     var msg = JSON.parse(message.detail);
+                    if (msg.to !== undefined) {
+                        self.$.queue.addToQueue(msg);
+                    }
+                    if (msg.from !== undefined) {
+                        self.$.queue.addToQueue(msg);
+                    }
                     if (msg.nordic !== undefined) {
                         if (msg.nordic) {
                             self.set('nordic', "connected");
@@ -45,14 +58,13 @@
                     if (msg.networkid !== undefined) {
                         self.set('networkid', msg.networkid);
                     }
-                    // var nordic = msg.nordic || self.nordic;
-                    // self.set('nordic',nordic);
+                    // var nordic = msg.nordic || self.nordic; self.set('nordic',nordic);
                 });
-                this.$.incoming.addEventListener('onopen', function(message) {
+                this.$.incoming.addEventListener('onopen', function (message) {
                     console.log(message.detail);
                     self.set('nordic', "Not connected");
                 });
-                this.$.incoming.addEventListener('onclose', function(message) {
+                this.$.incoming.addEventListener('onclose', function (message) {
                     self.set('nordic', 'Unknown');
                 });
             }
