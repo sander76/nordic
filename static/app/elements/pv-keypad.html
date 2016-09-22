@@ -91,7 +91,6 @@
 
             },
             ready: function() {
-
                 this.keys = {
                     w: {
                         function: "open",
@@ -176,7 +175,7 @@
                     case "keydown":
                         this.keylookup(event);
                         break;
-                    case "tap":
+                    case "mousedown":
                         switch (event.currentTarget.id) {
                             case "tiltup":
                                 this.keylookup({
@@ -223,22 +222,22 @@
                     //document.addEventListener("keydown",function(e){this.keylookup(e);});
                     document.body.addEventListener("keydown", this, false);
                     //this.listen(this.$.tiltupbutton,'')
-                    this.$.tiltup.addEventListener("tap", this, false);
-                    this.$.tiltdown.addEventListener("tap", this, false);
-                    this.$.open.addEventListener("tap", this, false);
-                    this.$.close.addEventListener("tap", this, false);
-                    this.$.stop.addEventListener("tap", this, false);
-                    this.$.okay.addEventListener("tap", this, false);
-                    this.$.cancel.addEventListener("tap", this, false);
+                    this.$.tiltup.addEventListener("mousedown", this, false);
+                    this.$.tiltdown.addEventListener("mousedown", this, false);
+                    this.$.open.addEventListener("mousedown", this, false);
+                    this.$.close.addEventListener("mousedown", this, false);
+                    this.$.stop.addEventListener("mousedown", this, false);
+                    this.$.okay.addEventListener("mousedown", this, false);
+                    this.$.cancel.addEventListener("mousedown", this, false);
                 } else {
                     document.body.removeEventListener("keydown", this, false);
-                    this.$.tiltup.removeEventListener("tap", this, false);
-                    this.$.tiltdown.removeEventListener("tap", this, false);
-                    this.$.open.removeEventListener("tap", this, false);
-                    this.$.close.removeEventListener("tap", this, false);
-                    this.$.stop.removeEventListener("tap", this, false);
-                    this.$.okay.removeEventListener("tap", this, false);
-                    this.$.cancel.removeEventListener("tap", this, false);
+                    this.$.tiltup.removeEventListener("mousedown", this, false);
+                    this.$.tiltdown.removeEventListener("mousedown", this, false);
+                    this.$.open.removeEventListener("mousedown", this, false);
+                    this.$.close.removeEventListener("mousedown", this, false);
+                    this.$.stop.removeEventListener("mousedown", this, false);
+                    this.$.okay.removeEventListener("mousedown", this, false);
+                    this.$.cancel.removeEventListener("mousedown", this, false);
                 }
             },
 
