@@ -15,7 +15,8 @@ COMMANDS = {
     "savepositiontop": b'\x00\x04#LPO',
     "savepositionbottom": b'\x00\x04#LPC',
     "saveslatopen":b'\x00\x04#LTO',
-    "reverse": b'\x00\x02#x'
+    "reverse": b'\x00\x02#x',
+    "12secondreset":b'\x04@r\x3F\x00'
 }
 #
 # COMMANDS = {

@@ -214,6 +214,11 @@ if __name__ == "__main__":
                                   ],
                                   Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog, yes="testblinds"))
 
+    reset_12_seconds = Step("12 second reset",
+                            [
+                                Row(PvKeypad(30,['okay'],okay=Commands('12secondreset')))
+                            ])
+
     skipslat = Step(tr._skipslattitle,
                     [
                         Row(Text(30, tr._make_choice),
@@ -253,6 +258,7 @@ if __name__ == "__main__":
                               set_top_limit,
                               set_twist_position,
                               test_blinds,
+                              reset_12_seconds,
                               skiptop,
                               enter_program_mode,
                               set_top_limit,
