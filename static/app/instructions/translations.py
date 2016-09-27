@@ -135,7 +135,7 @@ _test_move_blinds = TXT("Check TOP and BOTTOM limits.",
                         "Controleer BOVEN en ONDER limiet.", il=None)
 
 _savebottom = TXT("Save this as BOTTOM limit.",
-                  "Stel in als ONDER positie.", il=None)
+                  "Stel in als ONDER positie.", il=None,he="asdf;adslkfj sd;fl s",ru="asdfasdfsdf")
 
 _savetop = TXT("Save this as TOP limit.",
                "Stel in als BOVEN positie.", il=None)

@@ -12,14 +12,14 @@ if __name__ == "__main__":
     ]
 
     hang_twist = Step(tr._hangtwist,
-                 [
-                     Row(Text(40, tr._proper_product_hang.add_number(1)),
-                         Text(30, tr._proper_product_hang_confirm.add_number(2))),
-                     Row(Image(40, "/app/images/m25t_20cm.png"),
-                         PvKeypad(30, ['okay'], okay=NavigationCommand(goto=1)))
-                 ],
-                 nav_previous=Previous(active=False),
-                 id='hoist')
+                      [
+                          Row(Text(40, tr._proper_product_hang.add_number(1)),
+                              Text(30, tr._proper_product_hang_confirm.add_number(2))),
+                          Row(Image(40, "/app/images/m25t_20cm.png"),
+                              PvKeypad(30, ['okay'], okay=NavigationCommand(goto=1)))
+                      ],
+                      nav_previous=Previous(active=False),
+                      id='hoist')
 
     hang_rollo = Step(tr._hangrollo,
                       [
@@ -263,7 +263,6 @@ if __name__ == "__main__":
                               re_set_twist_slat_open
                               ])
 
-
     instruction = Instruction('1.4')
     instruction.products.append(rollerblind1)
     instruction.products.append(twist)
@@ -276,21 +275,21 @@ if __name__ == "__main__":
     with open('instructions-luxaflex-en.json', 'w') as fl:
         fl.write(en)
 
-    with open('instructions-en.json','w') as fl:
+    with open('instructions-en.json', 'w') as fl:
         fl.write(en)
 
     make_twist = Product("make twist", [connect_make_twist])
-    instruction3=Instruction('1.3')
+    instruction3 = Instruction('1.3')
     instruction3.products.append(make_twist)
     twst = ToJson(lang='en').encode(instruction3)
-    with open('instructions-set-id.json','w') as fl:
+    with open('instructions-set-id.json', 'w') as fl:
         fl.write(twst)
 
     test1 = Product("test1", [test_blinds])
     test2 = Product("test2", [hang_twist])
-    test_instruction4=Instruction('1.0')
+    test_instruction4 = Instruction('1.0')
     test_instruction4.products.append(test1)
     test_instruction4.products.append(test2)
     tst = ToJson(lang='en').encode(test_instruction4)
-    with open('instructions-test.json','w') as fl:
+    with open('instructions-test.json', 'w') as fl:
         fl.write(tst)
