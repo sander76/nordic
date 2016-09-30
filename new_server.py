@@ -1,22 +1,33 @@
 import argparse
 import logging.handlers
-# import aiohttp_jinja2
 import jinja2
 
 from server import nordic_serial
 from aiohttp import web
 from server.app import app
 from server.constants import SERIAL_SPEED
-from server.handlers import instruction_handler
+#from server.handlers import instruction_handler
 
 from server.id_generator import get_id
 from server.messenger import Messengers
 from server.mylogger import setup_logging
 from server.websocket import websocket_handler, WebSocketMessenger
+import asyncio
+import json
 
-
-# aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
-
+#@asyncio.coroutine
+def instruction_handler(request):
+    lang = request.match_info.get('lang', 'en')
+    fl = "instructions-{}.json".format(lang)
+    try:
+        lgr.info("opening from default location.")
+        with open("static/app/instructions/{}".format(fl)) as fl:
+            _js = json.load(fl)
+    except FileNotFoundError as e:
+        lgr.info("file not found. Now checking custom location.")
+        with open("custom_instructions/{}".format(fl)) as fl:
+            _js = json.load(fl)
+    return web.json_response(_js)
 
 def add_routes(serial):
     # create some routes.
@@ -37,22 +48,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     SERIAL_PORT = args.serialport
 
-    # formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    #
-    # lgr = logging.getLogger()
-    # lgr.setLevel(logging.WARNING)
-    #
-    # ch = logging.StreamHandler()
-    # ch.setLevel(logging.DEBUG)
-    #
-    # fh = logging.handlers.RotatingFileHandler("logs/nordic.log", 'a', 10000, 5)
-    # fh.setLevel(logging.INFO)
-    #
-    # ch.setFormatter(formatter)
-    # fh.setFormatter(formatter)
-    #
-    # lgr.addHandler(fh)
-    # lgr.addHandler(ch)
+
     setup_logging("server/logging.json")
     lgr = logging.getLogger(__name__)
     lgr.info("***** start logging ******")

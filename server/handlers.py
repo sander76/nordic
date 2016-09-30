@@ -1,19 +1,24 @@
-import aiohttp.web
+import json
 import asyncio
+from aiohttp import web
+import logging
 
-#import aiohttp_jinja2
+lgr=logging.getLogger(__name__)
 
-
-# @aiohttp_jinja2.template('index.html')
-# def index_handler(request):
-#     # Get the language part of the url. Defaults to "en" english.
+# @asyncio.coroutine
+# def instruction_handler(request):
 #     lang = request.match_info.get('lang', 'en')
-#     return {'lang': lang}
+#     fl = "instructions-{}.json".format(lang)
+#     try:
+#         lgr.info("opening from default location.")
+#         with open("/static/app/instructions/{}".format(fl)) as fl:
+#             _js = json.load(fl)
+#     except FileNotFoundError as e:
+#         lgr.info("file not found. Now checking custom location.")
+#         with open("/custom_instructions/{}".format(fl)) as fl:
+#             _js = json.load(fl)
+#
+#     return web.json_response(_js)
+    #return aiohttp.web.HTTPFound("/app/instructions/{}".format(fl))
 
-
-asyncio.coroutine
-def instruction_handler(request):
-    lang = request.match_info.get('lang', 'en')
-    fl = "instructions-{}.json".format(lang)
-    return aiohttp.web.HTTPFound("/app/instructions/{}".format(fl))
 
