@@ -6,7 +6,5 @@ instructions-<url>.json
 **example:**
 
 http://localhost:8080/app/index.html#instructions/testing/0
-
 will try and find the file:
-
 instructions-testing.json

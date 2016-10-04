@@ -15,7 +15,10 @@ COMMANDS = {
     "savepositiontop": b'\x00\x04#LPO',
     "savepositionbottom": b'\x00\x04#LPC',
     "saveslatopen":b'\x00\x04#LTO',
-    "reverse": b'\x00\x02#x'
+    "reverse": b'\x00\x02#x',
+    "m25s_venetian_16mm":b'\x00\x04#DS\x14',
+    "m25s_venetian_25mm":b'\x00\x04#DST'
+
 }
 #
 # COMMANDS = {
