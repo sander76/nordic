@@ -1,0 +1,11 @@
+[Unit]
+Description=PowerView programmer
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+ExecStart=/home/pi/nordic/scripts/server.sh
+
+[Install]
+WantedBy=multi-user.target
