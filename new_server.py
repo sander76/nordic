@@ -15,6 +15,7 @@ from server.websocket import websocket_handler, WebSocketMessenger
 import asyncio
 import json
 
+
 #@asyncio.coroutine
 def instruction_handler(request):
     lang = request.match_info.get('lang', 'en')
@@ -45,9 +46,10 @@ def setup_websocket():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--serialport")
+    parser.add_argument("--port",type=int)
     args = parser.parse_args()
     SERIAL_PORT = args.serialport
-
+    port = args.port
 
     setup_logging("server/logging.json")
     lgr = logging.getLogger(__name__)
@@ -63,6 +65,6 @@ if __name__ == "__main__":
     add_routes(serial)
     setup_websocket()
     try:
-        web.run_app(app)
+        web.run_app(app,port=port)
     except Exception as e:
         lgr.exception("Some error has occurred.")
