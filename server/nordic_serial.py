@@ -99,6 +99,7 @@ class NordicSerial:
             _from = from_string(None, b)
             self.messengers.send_message(_from)
 
+    @asyncio.coroutine
     def _write_to_nordic(self, upstring):
         self.s.write(upstring)
         _up = up_string(None, upstring)
@@ -124,7 +125,7 @@ class NordicSerial:
                 delay = cmd.get('delay', SLEEP_BETWEEN_COMMANDS)
                 yield from asyncio.sleep(delay)
             try:
-                self._write_to_nordic(upstring)
+                yield from self._write_to_nordic(upstring)
             except SerialException:
                 lgr.exception("writing to serial port failure.")
                 self.s.close()
