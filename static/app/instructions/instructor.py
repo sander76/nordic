@@ -143,8 +143,7 @@ if __name__ == "__main__":
                             PvKeypad(30, ['cancel'], cancel='testblinds'))
                     ])
 
-    rollerblind1 = Product("Roller blind", [hang_rollo,
-                                            connect,
+    rollerblind1 = Product("Roller blind", [connect,
                                             initialise_roller,
                                             left_backroller,
                                             right_backroller,
@@ -163,8 +162,7 @@ if __name__ == "__main__":
                                             re_set_bottom_limit
                                             ])
 
-    rollerblind_old = Product("Roller blind", [hang_rollo,
-                                               connect,
+    rollerblind_old = Product("Roller blind", [connect,
                                                initialise_roller,
                                                enter_program_mode,
                                                blind_direction,
@@ -181,12 +179,13 @@ if __name__ == "__main__":
                                                re_set_bottom_limit
                                                ])
 
-    twist = Product("Twist", [hang_twist,
-                              connect,
+    twist = Product("Twist", [connect,
                               initialise_twist,
+                              left_backroller,
+                              right_backroller,
+                              left_frontroller,
+                              right_frontroller,
                               enter_program_mode,
-                              blind_direction,
-                              switch_direction,
                               set_bottom_limit,
                               enter_program_mode,
                               set_top_limit,
@@ -201,6 +200,26 @@ if __name__ == "__main__":
                               skipslat,
                               re_set_twist_slat_open
                               ])
+
+    twist_old = Product("Twist", [connect,
+                                  initialise_twist,
+                                  enter_program_mode,
+                                  blind_direction,
+                                  switch_direction,
+                                  set_bottom_limit,
+                                  enter_program_mode,
+                                  set_top_limit,
+                                  set_twist_position,
+                                  test_blinds,
+                                  skiptop,
+                                  enter_program_mode,
+                                  set_top_limit,
+                                  skipbottom_twist,
+                                  enter_program_mode,
+                                  re_set_bottom_limit_twist,
+                                  skipslat,
+                                  re_set_twist_slat_open
+                                  ])
 
     instruction = Instruction('1.5')
     instruction.products.append(rollerblind1)
