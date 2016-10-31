@@ -37,7 +37,6 @@ class NordicSerial:
         self.s.baudrate = serial_speed
         self.trydelay = try_delay
         self.loop = loop
-        # task = asyncio.Task(get_and_print())
         self.loop.create_task(self.connect())
         self.messengers = messengers
         self.incoming=False
@@ -78,7 +77,6 @@ class NordicSerial:
                     time.sleep(0.5)
                     tst = self.s.read(self.s.inWaiting())
                     data += tst
-                    # data += bytearray(self.s.read(self.s.inWaiting()))
                     return data
                 except SerialException as e:
                     lgr.exception(e)
@@ -106,9 +104,7 @@ class NordicSerial:
         _up = up_string(None, upstring)
         lgr.debug(_up)
         self.messengers.send_message(_up)
-        # yield from asyncio.sleep(2)
         yield from self._incoming_check()
-        # send_socket_message(_up)
 
     @asyncio.coroutine
     def _incoming_check(self):
@@ -122,14 +118,12 @@ class NordicSerial:
         self.send_connection_status(False, "unknown")
         self.incoming = False
 
-    # handlers.
     @asyncio.coroutine
     def send_nordic(self, request):
         rq = yield from request.json()
         commands = rq['commands']
         first = True
         for cmd in commands:
-            # upstring = COMMANDS.get(cmd)
             if first:
                 upstring = COMMANDS.get(cmd)
                 first = False
@@ -144,7 +138,4 @@ class NordicSerial:
                 lgr.exception("writing to serial port failure.")
                 self.s.close()
                 self.send_connection_status(False, "unknown")
-                # else:
-                #     lgr.error("sending command {} did not succeed.".format(cmd))
-                #     return web.Response(text="sending command {} did not succeed.".format(cmd), status=500)
         return web.Response(body=b"okay")
