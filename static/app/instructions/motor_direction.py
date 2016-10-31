@@ -92,3 +92,26 @@ right_frontroller = Step(tr._frontroller_right_title,
                                  tr._did_the_motor_jog,
                                  yes=1)
                          )
+
+blind_direction = Step(tr._blinddirection,
+                       [
+                           Row(Text(30, tr._press_okay_button.add_number(1)),
+                               Text(30, tr._motor_should_move_down.add_number(2))),
+                           Row(PvKeypad(30, ['okay'], 'okay', Commands('tiltclose', DelayedCommand('stop', 3),
+                                                                       DelayedCommand('stop', 0.4),
+                                                                       DelayedCommand('stop', 0.4)), cancel=1),
+                               Image(30, "/app/images/m25t_motor_top_limit_move_down_rollo.png"))
+                       ],
+                       Confirm("/app/images/m25t_motor_top_limit_move_down_rollo.png", tr._did_motor_move_down,
+                               yes=2,
+                               no=1))
+
+switch_direction = Step(tr._switchdirection,
+                        [
+                            Row(Text(30, tr._press_okay_button.add_number(1)),
+                                Text(30, tr._watch_the_blind_jog_two_times.add_number(2))),
+                            Row(PvKeypad(30, ['okay'], 'okay',
+                                         Commands('startprogram', DelayedCommand('reverse', 2))),
+                                Image(30, "/app/images/m25t_motor_jog2x.png"))
+                        ],
+                        Confirm('/app/images/m25t_motor_jog2x.png', tr._did_the_motor_jog_two_times))
