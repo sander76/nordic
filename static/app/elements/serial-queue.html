@@ -13,21 +13,21 @@
             properties: {
                 serialqueue: {
                     type: Array,
-                    value: [0,0]
+                    value: []
                 },
                 queueLength: {
                     type: Number,
                     value: 6
                 }
             },
-            addToQueue: function (data) {
+            addToQueue: function(data) {
                 console.log(data.to || data.from);
                 //
                 var txt;
                 if (data.to !== undefined) {
-                    txt = "> " + data.to;
+                    txt = "to: " + data.to;
                 } else {
-                    txt = "< " + data.from;
+                    txt = "from: " + data.from;
                 }
                 this.unshift('serialqueue', txt);
                 if (this.serialqueue.length > this.queueLength) {

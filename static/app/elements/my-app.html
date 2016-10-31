@@ -19,118 +19,114 @@
 <link rel="import" href="serial-data.html" />
 <dom-module id="my-app">
     <template>
-        <style include="iron-flex"></style>
-        <style>
-            :host {
-                height: 100%;
-            }
-            
-            app-header {
-                background-color: var(--primary-color);
-                color: #fff;
-            }
-            
-            .drawer-list {
-                margin: 0 20px;
-            }
-            
-            .drawer-list a {
-                display: block;
-                padding: 0 16px;
-                line-height: 40px;
-                text-decoration: none;
-                color: var(--app-secondary-color);
-            }
-            
-            .drawer-list a.iron-selected {
-                color: white;
-                font-weight: bold;
-                background-color: var(--primary-color);
-            }
-            
-            .detailedinfo {
-                font-size: 0.6em;
-                margin: 4px;
-            }
-            /*#pages {
+		<style include="iron-flex"></style>
+		<style>
+			:host {
+				height: 100%;
+			}
+			
+			app-header {
+				background-color: var(--primary-color);
+				color: #fff;
+			}
+			
+			.drawer-list {
+				margin: 0 20px;
+			}
+			
+			.drawer-list a {
+				display: block;
+				padding: 0 16px;
+				line-height: 40px;
+				text-decoration: none;
+				color: var(--app-secondary-color);
+			}
+			
+			.drawer-list a.iron-selected {
+				color: white;
+				font-weight: bold;
+				background-color: var(--primary-color);
+			}
+			
+			.detailedinfo {
+				font-size: 0.6em;
+				margin: 4px;
+			}
+			/*#pages {
                 margin: 10px;
             }*/
-            
-            iron-pages {
-                margin: 0;
-                height: 100vh;
-            }
-        </style>
-        <app-location use-hash-as-path route="{{route}}"></app-location>
-        <app-route active="{{routeActive}}" route="{{route}}" pattern="instructions/:page/:product" data="{{routeData}}"></app-route>
-        <!--<iron-ajax id="instruction" url="/app/instructions/instructions-[[page]].json" handle-as="json" on-response="getInstructions"
+			
+			iron-pages {
+				margin: 0;
+				height: 100vh;
+			}
+		</style>
+		<app-location use-hash-as-path route="{{route}}"></app-location>
+		<app-route active="{{routeActive}}" route="{{route}}" pattern="instructions/:page/:product" data="{{routeData}}"></app-route>
+		<!--<iron-ajax id="instruction" url="/app/instructions/instructions-[[page]].json" handle-as="json" on-response="getInstructions"
             on-error="handleError"></iron-ajax>-->
-            <iron-ajax id="instruction" url="/instructions/[[page]]" handle-as="json" on-response="getInstructions"
-            on-error="handleError"></iron-ajax>
-        <app-drawer-layout>
-            <app-drawer>
-                <div class="layout flex vertical" style="height:100%;">
-                    <div class="flex">
-                        <iron-selector selected="[[product]]" class="drawer-list layout flex">
-                            <template is="dom-repeat" items="[[all_products]]">
-                                <a href="#instructions/[[page]]/[[index]]">[[item.title]]</a>
-                            </template>
-                        </iron-selector>
-                    </div>
-                    <div class="detailedinfo"> <a href="http://localhost:8080/app/ws.html" target="_blank">Nordic communication</a>
-                        <serial-data on-nordic-changed="handleNordicChanged"></serial-data>
-                        <div> instruction version: <span>[[definitions_version]]</span> </div>
-                    </div>
-                </div>
-            </app-drawer>
-            <iron-pages class="flex" id="pages" selected="{{selectedStep}}">
-                <template is="dom-repeat" items="[[currentproductsteps]]">
-                    <instruction-step data="[[item]]" curitem="[[index]]" selected="[[selectedStep]]"></instruction-step>
-                </template>
-            </iron-pages>
-        </app-drawer-layout>
-        <paper-toast id="toast" duration="0" text="loading instructions"></paper-toast>
-        <!--<paper-toast duration="0" id="toast" text="loading instructions"></paper-toast>-->
-        <my-modal modaldata="[[modaldata]]" id="modl"></my-modal>
+		<iron-ajax id="instruction" url="/instructions/[[page]]" handle-as="json" on-response="getInstructions" on-error="handleError"></iron-ajax>
+		<app-drawer-layout>
+			<app-drawer>
+				<div class="layout flex vertical" style="height:100%;">
+					<div class="flex">
+						<iron-selector selected="[[product]]" class="drawer-list layout flex">
+							<template is="dom-repeat" items="[[all_products]]">
+								<a href="#instructions/[[page]]/[[index]]">[[item.title]]</a>
+							</template>
+    </iron-selector>
+    </div>
+    <div class="detailedinfo"> <a href="http://localhost:8080/app/ws.html" target="_blank">Nordic communication</a>
+        <serial-data on-nordic-changed="handleNordicChanged"></serial-data>
+        <div> instruction version: <span>[[definitions_version]]</span> </div>
+    </div>
+    </div>
+    </app-drawer>
+    <iron-pages class="flex" id="pages" selected="{{selectedStep}}">
+        <template is="dom-repeat" items="[[currentproductsteps]]">
+					<instruction-step data="[[item]]" curitem="[[index]]" selected="[[selectedStep]]"></instruction-step>
+				</template>
+    </iron-pages>
+    </app-drawer-layout>
+    <paper-toast id="toast" duration="0">
+        No connection with the blind. Trying to (re)connect.<br> This message should disappear in approx 15 seconds.. If not:
+        <ul>
+            <li>Hit F5 to refresh this screen.</li>
+            <li>Unplug and plug the dongle</li>
+        </ul>
+    </paper-toast>
+    <!--<paper-toast duration="0" id="toast" text="loading instructions"></paper-toast>-->
+    <my-modal modaldata="[[modaldata]]" id="modl"></my-modal>
 
     </template>
     <!-- build:js scripts/app.js -->
     <!-- <script src="/app/scripts/app.js"></script> -->
     <script>
         //var t = document.querySelector("#app");
-        Polymer(
-        {
+        Polymer({
             is: 'my-app',
-            properties:
-            {
-                target:
-                {
+            properties: {
+                target: {
                     type: Object,
-                    value: function()
-                    {
+                    value: function() {
                         return window;
                     }
                 },
-                page:
-                {
+                page: {
                     type: String,
                     reflectToAttribute: true
                 },
-                currentproduct:
-                {
+                currentproduct: {
                     type: Object
                 },
-                modaldata:
-                {
+                modaldata: {
                     type: Object
                 },
-                selectedStep:
-                {
+                selectedStep: {
                     type: Number,
                     observer: '_stepChanged'
                 },
-                steptitle:
-                {
+                steptitle: {
                     type: String
                 }
             },
@@ -138,101 +134,76 @@
                 //, '_routeProductChanged(routeData.product,all_products)'
                 '_routeProductChanged1(routeData.product)'
             ],
-            listeners:
-            {
+            listeners: {
                 'openmodal': "_openModal"
             },
-            _openModal: function(e)
-            {
+            _openModal: function(e) {
                 console.log("open modal");
                 this.$.pages.items[this.selectedStep].deactivate();
                 this.$.modl.openmodal();
             },
-            _stepChanged: function(newValue, oldValue)
-            {
+            _stepChanged: function(newValue, oldValue) {
                 this.set("steptitle", this.currentproductsteps[newValue].title);
                 this.set("modaldata", this.currentproductsteps[newValue].confirm);
             },
-            gotoStep: function(current, offset)
-            {
-                if (offset === 0)
-                {
+            gotoStep: function(current, offset) {
+                if (offset === 0) {
                     this.$.pages.items[this.selectedStep].activate();
-                }
-                else
-                {
+                } else {
                     var _goto = current + offset;
                     var goto = 0;
-                    if (_goto < 0)
-                    {
+                    if (_goto < 0) {
                         //goto = (t.instructions.steps.length + _goto);
                         goto = this.currentProduct.items.length + _goto;
-                    }
-                    else
-                    {
+                    } else {
                         goto = _goto % this.currentproductsteps.length;
                     }
                     //this.$.pages.select(goto);
                     this.set('selectedStep', goto);
                 }
             },
-            gotoId: function(id)
-            {
-                for (var i = 0; i < this.$.pages.items.length; i++)
-                {
-                    if (this.$.pages.items[i].data.id === id)
-                    {
+            gotoId: function(id) {
+                for (var i = 0; i < this.$.pages.items.length; i++) {
+                    if (this.$.pages.items[i].data.id === id) {
                         console.log('id found: ', id);
                         this.$.pages.select(i);
                         break;
                     }
                 }
             },
-            handleNordicChanged:function(e,response){
-                if (response.value === "not connected" || response.value ==="Unknown")
-                {
-                    this.$.toast.text = "There is no connection with the blind. Trying to reconnect. Wait for this message to disappear. Or hit F5 to retry to reconnect"
+            handleNordicChanged: function(e, response) {
+                if (response.value === "not connected" || response.value === "Unknown") {
+                    // this.$.toast.text = "There is no connection with the blind. Trying to reconnect. Wait for this message to disappear. Or hit F5 to retry to reconnect"
                     this.$.toast.open();
-                }
-                else{
+                } else {
                     this.$.toast.close();
                 }
             },
-            handleError: function(e, response)
-            {
+            handleError: function(e, response) {
                 console.log("error");
             },
             // handleProductChange: function(e) {     //t.current_product = t.all_products[e.target.selected];     this.ChangeProduct(e.target.selected); }, ChangeProduct: function(idx) {     this.set("selectedproduct", idx);     this.set("selectedStep", 0); },
-            getInstructions: function(e, response)
-            {
+            getInstructions: function(e, response) {
                 //this.set('all_products', response.response.products);
                 this.all_products = response.response.products;
                 this.definitions_version = response.response.version;
                 this._routeProductChanged(this.routeData.product);
             },
-            _routePageChanged: function(page)
-            {
-                if (this.oldpage !== page)
-                {
+            _routePageChanged: function(page) {
+                if (this.oldpage !== page) {
                     this.page = page;
                     this.$.instruction.generateRequest();
                     this.oldpage = page;
                 }
             },
-            _routeProductChanged1: function(newValue)
-            {
-                if (this.oldRoute === undefined)
-                {}
-                else
-                {
+            _routeProductChanged1: function(newValue) {
+                if (this.oldRoute === undefined) {} else {
                     window.location.reload(false);
                 }
                 this.oldRoute = newValue;
             },
-            _routeProductChanged: function(product_idx)
-            {
-                if (this.all_products !== undefined)
-                {
+            _routeProductChanged: function(product_idx) {
+                if (this.all_products !== undefined) {
                     //var _product = parseInt(this.routeData.product);
                     var _product = parseInt(product_idx);
                     var _currentproduct = this.all_products[_product];
@@ -248,28 +219,20 @@
             }
         });
         var app = document.querySelector('my-app');
-        document.addEventListener("nextpage", function()
-        {
+        document.addEventListener("nextpage", function() {
             this.currentProduct.selectNext();
         });
-        document.addEventListener("gotopage", function(e)
-        {
-            if (typeof(e.detail) === 'string')
-            {
+        document.addEventListener("gotopage", function(e) {
+            if (typeof(e.detail) === 'string') {
                 app.gotoId(e.detail);
                 //this.gotoId(e.detail);
-            }
-            else
-            {
+            } else {
                 app.gotoStep(app.selectedStep, e.detail);
                 //this.gotoStep(this.selectedStep, e.detail);
             }
         });
-        document.addEventListener("previouspage", function()
-        {
+        document.addEventListener("previouspage", function() {
             this.currentProduct.selectPrevious();
         });
-
-
     </script>
 </dom-module>

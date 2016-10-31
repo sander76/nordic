@@ -40,7 +40,7 @@ class NordicSerial:
         # task = asyncio.Task(get_and_print())
         self.loop.create_task(self.connect())
         self.messengers = messengers
-
+        self.incoming=False
 
     def send_connection_status(self, connected, network_id):
         self.messengers.send_message({"nordic": connected, "networkid": network_id})
@@ -96,16 +96,31 @@ class NordicSerial:
         while 1:
             b = yield from self.get_byte_async()
             lgr.debug("incoming: {}".format(b))
+            self.incoming = True
             _from = from_string(None, b)
             self.messengers.send_message(_from)
 
+    @asyncio.coroutine
     def _write_to_nordic(self, upstring):
         self.s.write(upstring)
         _up = up_string(None, upstring)
         lgr.debug(_up)
         self.messengers.send_message(_up)
-
+        # yield from asyncio.sleep(2)
+        yield from self._incoming_check()
         # send_socket_message(_up)
+
+    @asyncio.coroutine
+    def _incoming_check(self):
+        tries = 0
+        while tries < 4:
+            if self.incoming:
+                self.incoming = False
+                return
+            asyncio.sleep(1)
+            tries += 1
+        self.send_connection_status(False, "unknown")
+        self.incoming = False
 
     # handlers.
     @asyncio.coroutine
@@ -124,7 +139,7 @@ class NordicSerial:
                 delay = cmd.get('delay', SLEEP_BETWEEN_COMMANDS)
                 yield from asyncio.sleep(delay)
             try:
-                self._write_to_nordic(upstring)
+                yield from self._write_to_nordic(upstring)
             except SerialException:
                 lgr.exception("writing to serial port failure.")
                 self.s.close()
