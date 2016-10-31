@@ -12,11 +12,13 @@ class NumberedText:
 
 
 class TXT:
-    def __init__(self, en, nl, il=None, pl=None):
+    def __init__(self, en, nl, il=None, pl=None, ru=None, he=None):
         self.en = en
         self.nl = nl
         self.pl = pl
         self.il = il
+        self.ru = ru
+        self.he = he
 
     def get_text(self, lang):
         val = getattr(self, lang, 'en')

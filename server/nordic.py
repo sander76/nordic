@@ -14,11 +14,13 @@ COMMANDS = {
     "startprogram": b'\x00\x04#LPE',
     "savepositiontop": b'\x00\x04#LPO',
     "savepositionbottom": b'\x00\x04#LPC',
-    "saveslatopen":b'\x00\x04#LTO',
+    "enableslat": b'\x00\x04#LPr',
+    "saveslatopen": b'\x00\x04#LTO',
     "reverse": b'\x00\x02#x',
-    "m25s_venetian_16mm":b'\x00\x04#DS\x14',
-    "m25s_venetian_25mm":b'\x00\x04#DST'
-
+    "m25s_venetian_16mm": b'\x00\x04#DS\x14',
+    "m25s_venetian_25mm": b'\x00\x04#DST',
+    "backroller_left": b'\x00\x03#dL',
+    "backroller_right": b'\x00\x03#dR'
 }
 #
 # COMMANDS = {

@@ -48,7 +48,7 @@ class Commands:
         for _command in next_commands:
             if _command.command not in COMMANDS.keys():
                 raise UserWarning("{} not a valid nordic command".format(_command.command))
-        self.commands=[first_command] + [cmd for cmd in next_commands]
+        self.commands = [first_command] + [cmd for cmd in next_commands]
         # self.command = first_command
         # self.commands = next_commands
 
@@ -132,9 +132,11 @@ class UiElement:
         else:
             raise UserWarning("not an integer : {}".format(width))
 
+
 class NavigationCommand:
-    def __init__(self,goto):
-        self.goto=goto
+    def __init__(self, goto):
+        self.goto = goto
+
 
 # class OkayCommand(Commands):
 #     def __init__(self,first_command=None, goto=None, *next_commands):
@@ -166,6 +168,10 @@ pv_keypad = {'width': {'type': 'string', 'regex': '\d{1,2}%'},
 
 class PvKeypad(UiElement):
     allowed = ['open', 'close', 'tiltup', 'tiltdown', 'stop', 'okay', 'cancel']
+    open = 'open'
+    close = 'close'
+    cancel = 'cancel'
+    okay = 'okay'
 
     def __init__(self, width, active_buttons, confirm=None, okay=None, cancel=None):
         '''

@@ -28,6 +28,25 @@ _blinddirection = TXT("CHECK BLIND DIRECTION.",
                       "CONTROLEER BLIND RICHTING.",
                       il=None)
 
+_backroller_left_title=TXT("LEFT BACKROLLER","LINKS BACKROLLER")
+_backroller_right_title=TXT("RIGHT BACKROLLER","RECHTS BACKROLLER")
+_frontroller_left_title=TXT("LEFT FRONTROLLER","LINKS FRONTROLLER")
+_frontroller_right_title=TXT("RIGHT FRONTROLLER","RECHTS FRONTROLLER")
+
+_is_left_backroller=TXT("Is the motor on the **left** and **backroller** ?",
+                        "Is de motor **links** gemonteerd en **backroller** ?")
+
+_is_right_backroller=TXT("Is the motor on the **right** and **backroller** ?",
+                         "Is de motor **rechts** gemonteerd en **backroller** ?")
+
+_is_left_frontroller=TXT("Is the motor on the **left** and **frontroller** ?",
+                         "Is de motor **links** gemonteerd en **contrarollend** ?")
+
+_is_right_frontroller=TXT("Is the motor on the **right** and **frontroller** ?",
+                          "Is de motor **rechts** gemonteerd en **contrarollend** ?")
+
+
+
 _switchdirection = TXT("CHANGE BLIND DIRECTION.",
                        "WISSEL BLIND RICHTING.",
                        il=None)

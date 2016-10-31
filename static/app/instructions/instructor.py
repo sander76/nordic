@@ -1,6 +1,9 @@
 from static.app.instructions.components import Row, Text, PvKeypad, Step, Image, Confirm, Next, \
     Previous, Product, Instruction, ToJson, Spacer, DelayedCommand, Commands, NavigationCommand
 
+from static.app.instructions.motor_direction import left_frontroller, left_backroller, right_frontroller, \
+    right_backroller
+
 from static.app.instructions.helpers import TXT
 
 import static.app.instructions.translations as tr
@@ -227,9 +230,11 @@ if __name__ == "__main__":
     rollerblind1 = Product("Roller blind", [hang_rollo,
                                             connect,
                                             initialise_roller,
+                                            left_backroller,
+                                            right_backroller,
+                                            left_frontroller,
+                                            right_frontroller,
                                             enter_program_mode,
-                                            blind_direction,
-                                            switch_direction,
                                             set_bottom_limit,
                                             enter_program_mode,
                                             set_top_limit,
@@ -241,6 +246,8 @@ if __name__ == "__main__":
                                             enter_program_mode,
                                             re_set_bottom_limit
                                             ])
+
+
 
     twist = Product("Twist", [hang_twist,
                               connect,
@@ -263,7 +270,7 @@ if __name__ == "__main__":
                               re_set_twist_slat_open
                               ])
 
-    instruction = Instruction('1.4')
+    instruction = Instruction('1.5')
     instruction.products.append(rollerblind1)
     instruction.products.append(twist)
 
