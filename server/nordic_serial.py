@@ -4,7 +4,7 @@ import time
 
 from aiohttp import web
 from serial import Serial
-from serial.serialutil import SerialException
+from serial.serialutil import SerialException, portNotOpenError
 from server.constants import TRYDELAY, SLEEP_BETWEEN_COMMANDS
 from server.helpers import from_string, up_string
 from server.messenger import Messengers
@@ -39,7 +39,7 @@ class NordicSerial:
         self.loop = loop
         self.loop.create_task(self.connect())
         self.messengers = messengers
-        self.incoming=False
+        self.incoming = False
 
     def send_connection_status(self, connected, network_id):
         self.messengers.send_message({"nordic": connected, "networkid": network_id})
@@ -58,9 +58,12 @@ class NordicSerial:
                     lgr.info("Connecting to serial port {}. Attempt: {}".format(self.serial_port, attempt))
                     self.s.open()
                     # serial port is open. Adding a incoming listener is okay now.
+
+                    # check all tasks:
+                    # tasks = asyncio.Task.all_tasks(self.loop)
                     self.loop.create_task(self.get_from_serial_port())
                     # yield from asyncio.sleep()
-                    self._write_to_nordic(self.id_change)
+                    yield from self._write_to_nordic(self.id_change)
                     self.send_connection_status(True, self.network_id)
                 except SerialException:
                     lgr.error("serial port opening problem.")
@@ -70,33 +73,43 @@ class NordicSerial:
 
     # the method which gets wrapped in the asyncio thread executor.
     def get_byte(self):
-        while 1:
-            if self.s.is_open:
-                try:
-                    data = self.s.read(1)
-                    time.sleep(0.5)
-                    tst = self.s.read(self.s.inWaiting())
-                    data += tst
-                    return data
-                except SerialException as e:
-                    lgr.exception(e)
-            time.sleep(self.trydelay)
+        # while 1:
+        # if self.s.is_open:
+        data = self.s.read(1)
+        time.sleep(0.5)
+        tst = self.s.read(self.s.inWaiting())
+        data += tst
+        return data
+        # except SerialException as e:
+        #     lgr.exception(e)
+        #   time.sleep(self.trydelay)
 
     # Runs blocking function in executor, yielding the result
     @asyncio.coroutine
     def get_byte_async(self):
+        # try:
         with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
             res = yield from self.loop.run_in_executor(executor, self.get_byte)
             return res
+        #        except SerialException as e:
+        #            self.s.close()
 
     @asyncio.coroutine
     def get_from_serial_port(self):
         while 1:
-            b = yield from self.get_byte_async()
-            lgr.debug("incoming: {}".format(b))
-            self.incoming = True
-            _from = from_string(None, b)
-            self.messengers.send_message(_from)
+            try:
+                b = yield from self.get_byte_async()
+                lgr.debug("incoming: {}".format(b))
+                self.incoming = True
+                _from = from_string(None, b)
+                self.messengers.send_message(_from)
+            except SerialException as e:
+                self.close_serial()
+                break
+
+    def close_serial(self):
+        self.s.close()
+        self.send_connection_status(False, None)
 
     @asyncio.coroutine
     def _write_to_nordic(self, upstring):
@@ -113,10 +126,11 @@ class NordicSerial:
             if self.incoming:
                 self.incoming = False
                 return
-            asyncio.sleep(1)
+            yield from asyncio.sleep(1)
             tries += 1
-        self.send_connection_status(False, "unknown")
-        self.incoming = False
+        # incoming should be true after something has been sent.
+        # resetting connection:
+        self.close_serial()
 
     @asyncio.coroutine
     def send_nordic(self, request):
@@ -136,6 +150,5 @@ class NordicSerial:
                 yield from self._write_to_nordic(upstring)
             except SerialException:
                 lgr.exception("writing to serial port failure.")
-                self.s.close()
-                self.send_connection_status(False, "unknown")
+                self.close_serial()
         return web.Response(body=b"okay")

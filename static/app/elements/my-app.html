@@ -88,13 +88,13 @@
 				</template>
     </iron-pages>
     </app-drawer-layout>
-    <paper-toast id="toast" duration="0">
+    <!--<paper-toast id="toast" duration="0">
         No connection with the blind. Trying to (re)connect.<br> This message should disappear in approx 15 seconds.. If not:
         <ul>
             <li>Hit F5 to refresh this screen.</li>
             <li>Unplug and plug the dongle</li>
         </ul>
-    </paper-toast>
+    </paper-toast>-->
     <!--<paper-toast duration="0" id="toast" text="loading instructions"></paper-toast>-->
     <my-modal modaldata="[[modaldata]]" id="modl"></my-modal>
 
@@ -130,6 +130,7 @@
                     type: String
                 }
             },
+
             observers: ['_routePageChanged(routeData.page)',
                 //, '_routeProductChanged(routeData.product,all_products)'
                 '_routeProductChanged1(routeData.product)'
@@ -173,7 +174,6 @@
             },
             handleNordicChanged: function(e, response) {
                 if (response.value === "not connected" || response.value === "Unknown") {
-                    // this.$.toast.text = "There is no connection with the blind. Trying to reconnect. Wait for this message to disappear. Or hit F5 to retry to reconnect"
                     this.$.toast.open();
                 } else {
                     this.$.toast.close();
