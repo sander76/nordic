@@ -42,6 +42,18 @@ _blinddirection = TXT("CHECK BLIND DIRECTION.",
                       de=None,
                       dk=None)
 
+_left_mount = TXT("MOTOR ON THE LEFT",
+                  "MOTOR LINKS")
+
+_is_left_mount=TXT("Is the motor on the **left** ?",
+                   "Is de motor **links** gemonteerd ?")
+
+_is_right_mount=TXT("Is the motor on the **right** ?",
+                   "Is de motor **rechts** gemonteerd ?")
+
+_right_mount = TXT("MOTOR ON THE RIGHT",
+                   "MOTOR RECHTS")
+
 _backroller_left_title = TXT("LEFT BACKROLLER", "LINKS BACKROLLER",
                              il=None,
                              de=None,

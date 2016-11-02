@@ -2,6 +2,7 @@ from static.app.instructions.connect import connect
 
 from static.app.instructions.components import Row, Text, PvKeypad, Step, Image, Confirm, Next, \
     Previous, Product, Instruction, ToJson, Spacer, DelayedCommand, Commands, NavigationCommand
+from static.app.instructions.general import enter_program_mode
 
 from static.app.instructions.motor_direction import left_frontroller, left_backroller, right_frontroller, \
     right_backroller, switch_direction, blind_direction
@@ -9,9 +10,11 @@ from static.app.instructions.motor_direction import left_frontroller, left_backr
 from static.app.instructions.helpers import TXT
 
 import static.app.instructions.translations as tr
+from static.app.instructions.roller import initialise_roller
 
 from static.app.instructions.twist import connect_make_twist, re_set_twist_slat_open, skipbottom_twist, \
     set_twist_position, initialise_twist
+from static.app.instructions.venetian import initialise_vb16, left_mount, right_mount
 
 if __name__ == "__main__":
     hang_twist = Step(tr._hangtwist,
@@ -48,20 +51,9 @@ if __name__ == "__main__":
 
 
 
-    initialise_roller = Step(tr._initialise,
-                             [Row(Text(30, tr._press_okay_button.add_number(1)),
-                                  Text(30, tr._watch_the_blind_jog_two_times.add_number(2))),
-                              Row(PvKeypad(30, ['okay'], 'okay', Commands('reset', DelayedCommand('roller', 4))),
-                                  Image(30, "/app/images/m25t_motor_jog2x.png"))
-                              ],
-                             Confirm('/app/images/m25t_motor_jog2x.png', tr._did_the_motor_jog_two_times))
 
-    enter_program_mode = Step(tr._enterprogrammode,
-                              [Row(Text(30, tr._press_okay_button.add_number(1)),
-                                   Text(30, tr._watch_the_blind_jog.add_number(2))),
-                               Row(PvKeypad(30, ['okay'], 'okay', Commands('startprogram')),
-                                   Image(30, "/app/images/m25t_motor_jog1x.png"))
-                               ], Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog))
+
+
 
     savepositionBottom = PvKeypad(30, ['okay'], 'okay', Commands('savepositionbottom'))
 
@@ -201,6 +193,27 @@ if __name__ == "__main__":
                               re_set_twist_slat_open
                               ])
 
+    venetian16 = Product("VB 16", [connect,
+                                   initialise_vb16,
+                                   left_mount,
+                                   right_mount,
+                                   enter_program_mode,
+                                   set_bottom_limit,
+                                   enter_program_mode,
+                                   set_top_limit,
+                                   test_blinds,
+                                   skiptop,
+                                   enter_program_mode,
+                                   set_top_limit,
+                                   skipbottom_twist,
+                                   enter_program_mode,
+                                   re_set_bottom_limit_twist,
+                                   skipslat,
+                                   re_set_twist_slat_open
+                                   ])
+
+
+
     twist_old = Product("Twist", [connect,
                                   initialise_twist,
                                   enter_program_mode,
@@ -221,7 +234,9 @@ if __name__ == "__main__":
                                   re_set_twist_slat_open
                                   ])
 
-    instruction = Instruction('1.5')
+    INSTRUCTION_VERSION = 1.6
+
+    instruction = Instruction(INSTRUCTION_VERSION)
     instruction.products.append(rollerblind1)
     instruction.products.append(twist)
 
@@ -236,8 +251,16 @@ if __name__ == "__main__":
     with open('instructions-en.json', 'w') as fl:
         fl.write(en)
 
+
+    instruction_vb = Instruction(INSTRUCTION_VERSION)
+    instruction_vb.products.append(venetian16)
+
+    en = ToJson(lang='en').encode(instruction_vb)
+    with open('instructions-vb16-en.json','w') as fl:
+        fl.write(en)
+
     make_twist = Product("make twist", [connect_make_twist])
-    instruction3 = Instruction('1.3')
+    instruction3 = Instruction(INSTRUCTION_VERSION)
     instruction3.products.append(make_twist)
     twst = ToJson(lang='en').encode(instruction3)
     with open('instructions-set-id.json', 'w') as fl:
@@ -245,7 +268,7 @@ if __name__ == "__main__":
 
     test1 = Product("test1", [test_blinds])
     test2 = Product("test2", [hang_twist])
-    test_instruction4 = Instruction('1.0')
+    test_instruction4 = Instruction(INSTRUCTION_VERSION)
     test_instruction4.products.append(test1)
     test_instruction4.products.append(test2)
     tst = ToJson(lang='en').encode(test_instruction4)

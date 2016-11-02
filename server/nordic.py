@@ -19,8 +19,9 @@ COMMANDS = {
     "reverse": b'\x00\x02#x',
     "m25s_venetian_16mm": b'\x00\x04#DS\x14',
     "m25s_venetian_25mm": b'\x00\x04#DST',
-    "backroller_left": b'\x00\x03#dL',
-    "backroller_right": b'\x00\x03#dR'
+    "backroller_left": b'\x00\x03#dL',  # works with venetian M25S too
+    "backroller_right": b'\x00\x03#dR',  # works with venetian M25S too
+    "save_venetian_slat": b'\x00\x04#LPR'
 }
 #
 # COMMANDS = {
