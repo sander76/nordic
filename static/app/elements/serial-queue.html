@@ -1,38 +1,50 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <dom-module id="serial-queue">
     <template>
-        <template is="dom-repeat" items="[[serialqueue]]">
+		<div>
+			<span>out: </span><span>{{outgoing}}</span>
+		</div>
+		<div>
+			<span>inc: </span><span>{{incoming}}</span>
+		</div>
+		<!--<template is="dom-repeat" items="[[serialqueue]]">
             <div>
                 [[item]]
             </div>
-        </template>
+        </template>-->
     </template>
     <script>
         Polymer({
             is: 'serial-queue',
             properties: {
-                serialqueue: {
-                    type: Array,
-                    value: []
-                },
-                queueLength: {
-                    type: Number,
-                    value: 6
-                }
+                //serialqueue: {
+                //    type: Array,
+                //    value: []
+                //},
+                //queueLength: {
+                //    type: Number,
+                //    value: 6
+                //}
             },
             addToQueue: function(data) {
                 console.log(data.to || data.from);
-                //
-                var txt;
                 if (data.to !== undefined) {
-                    txt = "to: " + data.to;
+                    this.outgoing = data.to;
+                    this.incoming = '';
                 } else {
-                    txt = "from: " + data.from;
+                    this.incoming = data.from;
                 }
-                this.unshift('serialqueue', txt);
-                if (this.serialqueue.length > this.queueLength) {
-                    this.pop('serialqueue');
-                }
+                //
+                //var txt;
+                //if (data.to !== undefined) {
+                //    txt = "to: " + data.to;
+                //} else {
+                //    txt = "from: " + data.from;
+                //}
+                //this.unshift('serialqueue', txt);
+                //if (this.serialqueue.length > this.queueLength) {
+                //    this.pop('serialqueue');
+                //}
             }
         });
     </script>
