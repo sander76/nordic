@@ -13,4 +13,5 @@ connect = Step(tr._connect,
                         Image(25, "/app/images/m25t_motor_button_release_top_limit_rollo.png"),
                         Image(25, "/app/images/m25t_motor_jog1x.png"))
                     ],
-                   Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog))
+                   Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog)
+               ,id="start")

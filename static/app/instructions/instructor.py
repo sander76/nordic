@@ -85,7 +85,7 @@ if __name__ == "__main__":
                                Text(30, tr._limits_ok),
                                Text(30, tr._limits_not_ok)),
                            Row(PvKeypad(30, ['open', 'close', 'tiltup', 'tiltdown', 'stop']),
-                               PvKeypad(30, ['okay'], okay=NavigationCommand(goto="hoist")),
+                               PvKeypad(30, ['okay'], okay=NavigationCommand(goto="start")),
                                PvKeypad(30, ['cancel'], cancel=1))
                        ], id="testblinds")
 
@@ -234,7 +234,7 @@ if __name__ == "__main__":
                                   re_set_twist_slat_open
                                   ])
 
-    INSTRUCTION_VERSION = 1.6
+    INSTRUCTION_VERSION = "1.6.1"
 
     instruction = Instruction(INSTRUCTION_VERSION)
     instruction.products.append(rollerblind1)
