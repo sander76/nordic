@@ -171,6 +171,17 @@ if __name__ == "__main__":
                                                re_set_bottom_limit
                                                ])
 
+    initialise_roman = Step(tr._initialise,
+                           [Row(Text(30, tr._press_okay_button.add_number(1)),
+                                Text(30, tr._watch_the_blind_jog_two_times.add_number(2))),
+                            Row(PvKeypad(30, ['okay'], 'okay',
+                                         Commands('make_roman')),
+                                Image(30, "/app/images/m25t_motor_jog2x.png"))
+                            ],
+                           Confirm('/app/images/m25t_motor_jog2x.png', tr._did_the_motor_jog_two_times))
+
+    make_roman = Product("Roman",[connect,initialise_roman])
+
     twist = Product("Twist", [connect,
                               initialise_twist,
                               left_backroller,
@@ -261,7 +272,7 @@ if __name__ == "__main__":
 
     make_twist = Product("make twist", [connect_make_twist])
     instruction3 = Instruction(INSTRUCTION_VERSION)
-    instruction3.products.append(make_twist)
+    instruction3.products.append(make_twist,make_roman)
     twst = ToJson(lang='en').encode(instruction3)
     with open('instructions-set-id.json', 'w') as fl:
         fl.write(twst)
