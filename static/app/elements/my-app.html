@@ -19,61 +19,62 @@
 <link rel="import" href="serial-data.html" />
 <dom-module id="my-app">
     <template>
-		<style include="iron-flex"></style>
-		<style>
-			:host {
-				height: 100%;
-			}
-			
-			app-header {
-				background-color: var(--primary-color);
-				color: #fff;
-			}
-			
-			.drawer-list {
-				margin: 0 20px;
-			}
-			
-			.drawer-list a {
-				display: block;
-				padding: 0 16px;
-				line-height: 40px;
-				text-decoration: none;
-				color: var(--app-secondary-color);
-			}
-			
-			.drawer-list a.iron-selected {
-				color: white;
-				font-weight: bold;
-				background-color: var(--primary-color);
-			}
-			
-			.detailedinfo {
-				font-size: 0.6em;
-				margin: 4px;
-			}
-			/*#pages {
+        <style include="iron-flex"></style>
+        <style>
+             :host {
+                height: 100%;
+            }
+            
+            app-header {
+                background-color: var(--primary-color);
+                color: #fff;
+            }
+            
+            .drawer-list {
+                margin: 0 20px;
+            }
+            
+            .drawer-list a {
+                display: block;
+                padding: 0 16px;
+                line-height: 40px;
+                text-decoration: none;
+                color: var(--app-secondary-color);
+            }
+            
+            .drawer-list a.iron-selected {
+                color: white;
+                font-weight: bold;
+                background-color: var(--primary-color);
+            }
+            
+            .detailedinfo {
+                font-size: 0.6em;
+                margin: 4px;
+            }
+            /*#pages {
                 margin: 10px;
             }*/
-			
-			iron-pages {
-				margin: 0;
-				height: 100vh;
-			}
-		</style>
-		<app-location use-hash-as-path route="{{route}}"></app-location>
-		<app-route active="{{routeActive}}" route="{{route}}" pattern="instructions/:page/:product" data="{{routeData}}"></app-route>
-		<!--<iron-ajax id="instruction" url="/app/instructions/instructions-[[page]].json" handle-as="json" on-response="getInstructions"
+            
+            iron-pages {
+                margin: 0;
+                height: 100vh;
+            }
+        </style>
+        <app-location use-hash-as-path route="{{route}}"></app-location>
+        <app-route active="{{routeActive}}" route="{{route}}" pattern="instructions/:page/:product" data="{{routeData}}"></app-route>
+        <!--<iron-ajax id="instruction" url="/app/instructions/instructions-[[page]].json" handle-as="json" on-response="getInstructions"
             on-error="handleError"></iron-ajax>-->
-		<iron-ajax id="instruction" url="/instructions/[[page]]" handle-as="json" on-response="getInstructions" on-error="handleError"></iron-ajax>
-		<app-drawer-layout>
-			<app-drawer>
-				<div class="layout flex vertical" style="height:100%;">
-					<div class="flex">
-						<iron-selector selected="[[product]]" class="drawer-list layout flex">
-							<template is="dom-repeat" items="[[all_products]]">
-								<a href="#instructions/[[page]]/[[index]]">[[item.title]]</a>
-							</template>
+        <iron-ajax id="instruction" url="/app/instructions/instructions-[[page]].json" handle-as="json" on-response="getInstructions"
+            on-error="handleError"></iron-ajax>
+        <app-drawer-layout>
+            <app-drawer>
+                <div class="layout flex vertical" style="height:100%;">
+                    <div class="flex">
+                        <iron-selector selected="[[product]]" class="drawer-list layout flex">
+                            <template is="dom-repeat" items="[[all_products]]">
+                                <a href="#instructions/[[page]]/[[index]]">[[item.title]]</a>
+                            </template>
     </iron-selector>
     </div>
     <div class="detailedinfo"> <a href="http://localhost:8080/app/ws.html" target="_blank">Nordic communication</a>
@@ -84,20 +85,12 @@
     </app-drawer>
     <iron-pages class="flex" id="pages" selected="{{selectedStep}}">
         <template is="dom-repeat" items="[[currentproductsteps]]">
-					<instruction-step data="[[item]]" curitem="[[index]]" selected="[[selectedStep]]"></instruction-step>
-				</template>
+                    <instruction-step data="[[item]]" curitem="[[index]]" selected="[[selectedStep]]"></instruction-step>
+                </template>
     </iron-pages>
     </app-drawer-layout>
-    <!--<paper-toast id="toast" duration="0">
-        No connection with the blind. Trying to (re)connect.<br> This message should disappear in approx 15 seconds.. If not:
-        <ul>
-            <li>Hit F5 to refresh this screen.</li>
-            <li>Unplug and plug the dongle</li>
-        </ul>
-    </paper-toast>-->
-    <!--<paper-toast duration="0" id="toast" text="loading instructions"></paper-toast>-->
-    <my-modal modaldata="[[modaldata]]" id="modl"></my-modal>
 
+    <my-modal modaldata="[[modaldata]]" id="modl"></my-modal>
     </template>
     <!-- build:js scripts/app.js -->
     <!-- <script src="/app/scripts/app.js"></script> -->
@@ -174,7 +167,9 @@
             },
             handleNordicChanged: function(e, response) {
                 if (response.value === "not connected" || response.value === "Unknown") {
-                    this.$.toast.open();
+                    if (this.$.toast) {
+                        this.$.toast.open();
+                    }
                 } else {
                     this.$.toast.close();
                 }
