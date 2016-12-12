@@ -63,8 +63,6 @@
         </style>
         <app-location use-hash-as-path route="{{route}}"></app-location>
         <app-route active="{{routeActive}}" route="{{route}}" pattern="instructions/:page/:product" data="{{routeData}}"></app-route>
-        <!--<iron-ajax id="instruction" url="/app/instructions/instructions-[[page]].json" handle-as="json" on-response="getInstructions"
-            on-error="handleError"></iron-ajax>-->
         <iron-ajax id="instruction" url="/app/instructions/instructions-[[page]].json" handle-as="json" on-response="getInstructions"
             on-error="handleError"></iron-ajax>
         <app-drawer-layout>
