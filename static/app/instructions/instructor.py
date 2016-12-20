@@ -154,7 +154,7 @@ if __name__ == "__main__":
                                             re_set_bottom_limit
                                             ])
 
-    rollerblind_old = Product("Roller blind", [connect,
+    rollerblind_old = Product("Roller blind OLD", [connect,
                                                initialise_roller,
                                                enter_program_mode,
                                                blind_direction,
@@ -214,7 +214,7 @@ if __name__ == "__main__":
 
 
 
-    twist_old = Product("Twist", [connect,
+    twist_old = Product("Twist OLD", [connect,
                                   initialise_twist,
                                   enter_program_mode,
                                   blind_direction,
@@ -234,15 +234,15 @@ if __name__ == "__main__":
                                   re_set_twist_slat_open
                                   ])
 
-    INSTRUCTION_VERSION = "1.6.1"
+    INSTRUCTION_VERSION = "1.6.3"
 
     instruction = Instruction(INSTRUCTION_VERSION)
     instruction.products.append(rollerblind1)
     instruction.products.append(twist)
 
-    nl = ToJson(lang='nl').encode(instruction)
-    with open('instructions-luxaflex-nl.json', 'w') as fl:
-        fl.write(nl)
+    # nl = ToJson(lang='nl').encode(instruction)
+    # with open('instructions-luxaflex-nl.json', 'w') as fl:
+    #     fl.write(nl)
 
     en = ToJson(lang='en').encode(instruction)
     with open('instructions-luxaflex-en.json', 'w') as fl:
@@ -250,6 +250,16 @@ if __name__ == "__main__":
 
     with open('instructions-en.json', 'w') as fl:
         fl.write(en)
+
+    instruction_old_included = Instruction(INSTRUCTION_VERSION)
+    instruction_old_included.products.append(rollerblind1)
+    instruction_old_included.products.append(rollerblind_old)
+    instruction_old_included.products.append(twist)
+    instruction_old_included.products.append(twist_old)
+
+    nl = ToJson(lang='nl').encode(instruction_old_included)
+    with open('instructions-luxaflex-nl.json', 'w') as fl:
+        fl.write(nl)
 
 
     instruction_vb = Instruction(INSTRUCTION_VERSION)

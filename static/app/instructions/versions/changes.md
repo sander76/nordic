@@ -20,3 +20,7 @@
 
 - Internal change: changed static routing to be able to remove separate demo modus file.
 - Cleaning up some old files.
+
+## Version 1.6.3
+
+- added old reverse direction instruction to their configuration.
