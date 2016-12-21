@@ -16,168 +16,211 @@ from static.app.instructions.twist import connect_make_twist, re_set_twist_slat_
     set_twist_position, initialise_twist
 from static.app.instructions.venetian import initialise_vb16, left_mount, right_mount
 
-if __name__ == "__main__":
-    hang_twist = Step(tr._hangtwist,
-                      [
-                          Row(Text(40, tr._proper_product_hang.add_number(1)),
-                              Text(30, tr._proper_product_hang_confirm.add_number(2))),
-                          Row(Image(40, "/app/images/m25t_20cm.png"),
-                              PvKeypad(30, ['okay'], okay=NavigationCommand(goto=1)))
-                      ],
-                      nav_previous=Previous(active=False),
-                      id='hoist')
-
-    hang_rollo = Step(tr._hangrollo,
-                      [
-                          Row(Text(40, tr._proper_product_hang.add_number(1)),
-                              Text(30, tr._proper_product_hang_confirm.add_number(2))),
-                          Row(Image(40, "/app/images/m25t_20cm.png"),
-                              PvKeypad(30, ['okay'], okay=NavigationCommand(goto=1)))
-                      ],
-                      nav_previous=Previous(active=False),
-                      id='hoist')
-    #
-    # hoist = Step(tr._hangproduct,
-    #              [
-    #                  Row(Text(40, tr._proper_product_hang.add_number(1)),
-    #                      Text(30, tr._proper_product_hang_confirm.add_number(2))),
-    #                  Row(Image(40, "/app/images/m25t_20cm.png"),
-    #                      PvKeypad(30, ['okay'], okay=NavigationCommand(goto=1)))
-    #              ],
-    #              nav_previous=Previous(active=False),
-    #              id='hoist')
+INSTRUCTION_VERSION = "1.6.4"
 
 
+hang_twist = Step(tr._hangtwist,
+                  [
+                      Row(Text(40, tr._proper_product_hang.add_number(1)),
+                          Text(30, tr._proper_product_hang_confirm.add_number(2))),
+                      Row(Image(40, "/app/images/m25t_20cm.png"),
+                          PvKeypad(30, ['okay'], okay=NavigationCommand(goto=1)))
+                  ],
+                  nav_previous=Previous(active=False),
+                  id='hoist')
 
-
+hang_rollo = Step(tr._hangrollo,
+                  [
+                      Row(Text(40, tr._proper_product_hang.add_number(1)),
+                          Text(30, tr._proper_product_hang_confirm.add_number(2))),
+                      Row(Image(40, "/app/images/m25t_20cm.png"),
+                          PvKeypad(30, ['okay'], okay=NavigationCommand(goto=1)))
+                  ],
+                  nav_previous=Previous(active=False),
+                  id='hoist')
+#
+# hoist = Step(tr._hangproduct,
+#              [
+#                  Row(Text(40, tr._proper_product_hang.add_number(1)),
+#                      Text(30, tr._proper_product_hang_confirm.add_number(2))),
+#                  Row(Image(40, "/app/images/m25t_20cm.png"),
+#                      PvKeypad(30, ['okay'], okay=NavigationCommand(goto=1)))
+#              ],
+#              nav_previous=Previous(active=False),
+#              id='hoist')
 
 
 
 
 
-    savepositionBottom = PvKeypad(30, ['okay'], 'okay', Commands('savepositionbottom'))
 
-    set_bottom_limit = Step(tr._setbottomlimit,
-                            [
-                                Row(Text(30, tr._moveblind_bottom.add_number(1)),
-                                    Text(30, tr._savebottom.add_number(2)),
-                                    Text(30, tr._watch_the_blind_jog.add_number(3))),
-                                Row(PvKeypad(30, ['open', 'close', 'tiltup', 'tiltdown', 'stop']),
-                                    savepositionBottom,
-                                    Image(30, "/app/images/m25t_motor_jog1x.png"))
-                            ],
-                            Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog))
 
-    set_top_limit = Step(tr._settoplimit,
-                         [
-                             Row(Text(30, tr._moveblind_top.add_number(1)),
-                                 Text(30, tr._savetop.add_number(2)),
-                                 Text(30, tr._watch_the_blind_jog.add_number(3))),
-                             Row(PvKeypad(30, ['open', 'close', 'tiltup', 'tiltdown', 'stop']),
-                                 PvKeypad(30, ['okay'], 'okay', Commands('savepositiontop')),
-                                 Image(30, "/app/images/m25t_motor_jog1x.png"))
-                         ],
-                         Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog))
 
-    test_blinds = Step(tr._testblinds,
-                       [
-                           Row(Text(30, tr._test_move_blinds),
-                               Text(30, tr._limits_ok),
-                               Text(30, tr._limits_not_ok)),
-                           Row(PvKeypad(30, ['open', 'close', 'tiltup', 'tiltdown', 'stop']),
-                               PvKeypad(30, ['okay'], okay=NavigationCommand(goto="start")),
-                               PvKeypad(30, ['cancel'], cancel=1))
-                       ], id="testblinds")
 
-    skiptop = Step(tr._skiptoptitle,
+savepositionBottom = PvKeypad(30, ['okay'], 'okay', Commands('savepositionbottom'))
+
+set_bottom_limit = Step(tr._setbottomlimit,
+                        [
+                            Row(Text(30, tr._moveblind_bottom.add_number(1)),
+                                Text(30, tr._savebottom.add_number(2)),
+                                Text(30, tr._watch_the_blind_jog.add_number(3))),
+                            Row(PvKeypad(30, ['open', 'close', 'tiltup', 'tiltdown', 'stop']),
+                                savepositionBottom,
+                                Image(30, "/app/images/m25t_motor_jog1x.png"))
+                        ],
+                        Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog))
+
+set_top_limit = Step(tr._settoplimit,
+                     [
+                         Row(Text(30, tr._moveblind_top.add_number(1)),
+                             Text(30, tr._savetop.add_number(2)),
+                             Text(30, tr._watch_the_blind_jog.add_number(3))),
+                         Row(PvKeypad(30, ['open', 'close', 'tiltup', 'tiltdown', 'stop']),
+                             PvKeypad(30, ['okay'], 'okay', Commands('savepositiontop')),
+                             Image(30, "/app/images/m25t_motor_jog1x.png"))
+                     ],
+                     Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog))
+
+test_blinds = Step(tr._testblinds,
                    [
-                       Row(Text(30, tr._make_choice),
-                           Text(30, tr._reset_top),
-                           Text(30, tr._select_skip_top)),
-                       Row(Spacer(30),
-                           PvKeypad(30, ['okay'], okay=NavigationCommand(goto=1)),
-                           PvKeypad(30, ['cancel'], cancel=3))
-                   ])
+                       Row(Text(30, tr._test_move_blinds),
+                           Text(30, tr._limits_ok),
+                           Text(30, tr._limits_not_ok)),
+                       Row(PvKeypad(30, ['open', 'close', 'tiltup', 'tiltdown', 'stop']),
+                           PvKeypad(30, ['okay'], okay=NavigationCommand(goto="start")),
+                           PvKeypad(30, ['cancel'], cancel=1))
+                   ], id="testblinds")
 
-    skipbottom_blind = Step(tr._skipbottomtitle,
-                            [
-                                Row(Text(30, tr._make_choice),
-                                    Text(30, tr._reset_bottom),
-                                    Text(30, tr._select_skip_bottom)),
-                                Row(Spacer(30),
-                                    PvKeypad(30, ['okay'], okay=NavigationCommand(goto=1)),
-                                    PvKeypad(30, ['cancel'], cancel="testblinds"))
-                            ])
+skiptop = Step(tr._skiptoptitle,
+               [
+                   Row(Text(30, tr._make_choice),
+                       Text(30, tr._reset_top),
+                       Text(30, tr._select_skip_top)),
+                   Row(Spacer(30),
+                       PvKeypad(30, ['okay'], okay=NavigationCommand(goto=1)),
+                       PvKeypad(30, ['cancel'], cancel=3))
+               ])
 
-    '''
-    Same as normal setting the bottom limits, but confirm dialog navigates to different page when ok.
-    '''
-    re_set_bottom_limit = Step(set_bottom_limit.title,
-                               set_bottom_limit.instructions,
-                               Confirm("/app/images/m25t_motor_top_limit_move_up_rollo.png", tr._did_the_motor_move_up,
-                                       yes="testblinds"))
+skipbottom_blind = Step(tr._skipbottomtitle,
+                        [
+                            Row(Text(30, tr._make_choice),
+                                Text(30, tr._reset_bottom),
+                                Text(30, tr._select_skip_bottom)),
+                            Row(Spacer(30),
+                                PvKeypad(30, ['okay'], okay=NavigationCommand(goto=1)),
+                                PvKeypad(30, ['cancel'], cancel="testblinds"))
+                        ])
 
-    '''
-    same as setting bottom limit.
-    '''
-    re_set_bottom_limit_twist = Step(tr._setbottomlimit,
-                                     set_bottom_limit.instructions,
-                                     Confirm("/app/images/m25t_motor_top_limit_move_up_rollo.png",
-                                             tr._did_the_motor_move_up))
+'''
+Same as normal setting the bottom limits, but confirm dialog navigates to different page when ok.
+'''
+re_set_bottom_limit = Step(set_bottom_limit.title,
+                           set_bottom_limit.instructions,
+                           Confirm("/app/images/m25t_motor_top_limit_move_up_rollo.png", tr._did_the_motor_move_up,
+                                   yes="testblinds"))
 
-    skipslat = Step(tr._skipslattitle,
-                    [
-                        Row(Text(30, tr._make_choice),
-                            Text(30, tr._reset_slat),
-                            Text(30, tr._select_skip_slat)),
-                        Row(Spacer(30),
-                            PvKeypad(30, ['okay'], okay=NavigationCommand(goto=1)),
-                            PvKeypad(30, ['cancel'], cancel='testblinds'))
-                    ])
+'''
+same as setting bottom limit.
+'''
+re_set_bottom_limit_twist = Step(tr._setbottomlimit,
+                                 set_bottom_limit.instructions,
+                                 Confirm("/app/images/m25t_motor_top_limit_move_up_rollo.png",
+                                         tr._did_the_motor_move_up))
 
-    rollerblind1 = Product("Roller blind", [connect,
-                                            initialise_roller,
-                                            left_backroller,
-                                            right_backroller,
-                                            left_frontroller,
-                                            right_frontroller,
-                                            enter_program_mode,
-                                            set_bottom_limit,
-                                            enter_program_mode,
-                                            set_top_limit,
-                                            test_blinds,
-                                            skiptop,
-                                            enter_program_mode,
-                                            set_top_limit,
-                                            skipbottom_blind,
-                                            enter_program_mode,
-                                            re_set_bottom_limit
-                                            ])
+skipslat = Step(tr._skipslattitle,
+                [
+                    Row(Text(30, tr._make_choice),
+                        Text(30, tr._reset_slat),
+                        Text(30, tr._select_skip_slat)),
+                    Row(Spacer(30),
+                        PvKeypad(30, ['okay'], okay=NavigationCommand(goto=1)),
+                        PvKeypad(30, ['cancel'], cancel='testblinds'))
+                ])
 
-    rollerblind_old = Product("Roller blind OLD", [connect,
-                                               initialise_roller,
-                                               enter_program_mode,
-                                               blind_direction,
-                                               switch_direction,
-                                               set_bottom_limit,
-                                               enter_program_mode,
-                                               set_top_limit,
-                                               test_blinds,
-                                               skiptop,
-                                               enter_program_mode,
-                                               set_top_limit,
-                                               skipbottom_blind,
-                                               enter_program_mode,
-                                               re_set_bottom_limit
-                                               ])
+rollerblind1 = Product("Roller blind", [connect,
+                                        initialise_roller,
+                                        left_backroller,
+                                        right_backroller,
+                                        left_frontroller,
+                                        right_frontroller,
+                                        enter_program_mode,
+                                        set_bottom_limit,
+                                        enter_program_mode,
+                                        set_top_limit,
+                                        test_blinds,
+                                        skiptop,
+                                        enter_program_mode,
+                                        set_top_limit,
+                                        skipbottom_blind,
+                                        enter_program_mode,
+                                        re_set_bottom_limit
+                                        ])
 
-    twist = Product("Twist", [connect,
+rollerblind_old = Product("Roller blind OLD", [connect,
+                                           initialise_roller,
+                                           enter_program_mode,
+                                           blind_direction,
+                                           switch_direction,
+                                           set_bottom_limit,
+                                           enter_program_mode,
+                                           set_top_limit,
+                                           test_blinds,
+                                           skiptop,
+                                           enter_program_mode,
+                                           set_top_limit,
+                                           skipbottom_blind,
+                                           enter_program_mode,
+                                           re_set_bottom_limit
+                                           ])
+
+twist = Product("Twist", [connect,
+                          initialise_twist,
+                          left_backroller,
+                          right_backroller,
+                          left_frontroller,
+                          right_frontroller,
+                          enter_program_mode,
+                          set_bottom_limit,
+                          enter_program_mode,
+                          set_top_limit,
+                          set_twist_position,
+                          test_blinds,
+                          skiptop,
+                          enter_program_mode,
+                          set_top_limit,
+                          skipbottom_twist,
+                          enter_program_mode,
+                          re_set_bottom_limit_twist,
+                          skipslat,
+                          re_set_twist_slat_open
+                          ])
+
+venetian16 = Product("VB 16", [connect,
+                               initialise_vb16,
+                               left_mount,
+                               right_mount,
+                               enter_program_mode,
+                               set_bottom_limit,
+                               enter_program_mode,
+                               set_top_limit,
+                               test_blinds,
+                               skiptop,
+                               enter_program_mode,
+                               set_top_limit,
+                               skipbottom_twist,
+                               enter_program_mode,
+                               re_set_bottom_limit_twist,
+                               skipslat,
+                               re_set_twist_slat_open
+                               ])
+
+
+
+twist_old = Product("Twist OLD", [connect,
                               initialise_twist,
-                              left_backroller,
-                              right_backroller,
-                              left_frontroller,
-                              right_frontroller,
                               enter_program_mode,
+                              blind_direction,
+                              switch_direction,
                               set_bottom_limit,
                               enter_program_mode,
                               set_top_limit,
@@ -193,48 +236,8 @@ if __name__ == "__main__":
                               re_set_twist_slat_open
                               ])
 
-    venetian16 = Product("VB 16", [connect,
-                                   initialise_vb16,
-                                   left_mount,
-                                   right_mount,
-                                   enter_program_mode,
-                                   set_bottom_limit,
-                                   enter_program_mode,
-                                   set_top_limit,
-                                   test_blinds,
-                                   skiptop,
-                                   enter_program_mode,
-                                   set_top_limit,
-                                   skipbottom_twist,
-                                   enter_program_mode,
-                                   re_set_bottom_limit_twist,
-                                   skipslat,
-                                   re_set_twist_slat_open
-                                   ])
+if __name__ == "__main__":
 
-
-
-    twist_old = Product("Twist OLD", [connect,
-                                  initialise_twist,
-                                  enter_program_mode,
-                                  blind_direction,
-                                  switch_direction,
-                                  set_bottom_limit,
-                                  enter_program_mode,
-                                  set_top_limit,
-                                  set_twist_position,
-                                  test_blinds,
-                                  skiptop,
-                                  enter_program_mode,
-                                  set_top_limit,
-                                  skipbottom_twist,
-                                  enter_program_mode,
-                                  re_set_bottom_limit_twist,
-                                  skipslat,
-                                  re_set_twist_slat_open
-                                  ])
-
-    INSTRUCTION_VERSION = "1.6.3"
 
     instruction = Instruction(INSTRUCTION_VERSION)
     instruction.products.append(rollerblind1)
@@ -284,3 +287,12 @@ if __name__ == "__main__":
     tst = ToJson(lang='en').encode(test_instruction4)
     with open('instructions-test.json', 'w') as fl:
         fl.write(tst)
+
+    # HOLIS
+
+    holis_instruction = Instruction(INSTRUCTION_VERSION)
+    holis_instruction.products.append(twist)
+    holis = ToJson(lang='en').encode(holis_instruction)
+    with open('instructions-holis-en.json', 'w') as fl:
+        fl.write(holis)
+

@@ -23,4 +23,8 @@
 
 ## Version 1.6.3
 
-- added old reverse direction instruction to their configuration.
+- added old reverse direction instruction to LN configuration.
+
+## Version 1.6.4
+
+- added holis definition. Twist only to prevent accidental mix up with roller blind.
