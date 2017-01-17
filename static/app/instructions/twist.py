@@ -1,7 +1,16 @@
+
 from static.app.instructions.components import Row, Text, PvKeypad, Step, Image, Confirm, \
-    DelayedCommand, Commands, Spacer, NavigationCommand
+    DelayedCommand, Commands, Spacer, NavigationCommand, Product
 
 import static.app.instructions.translations as tr
+from static.app.instructions.connect import connect
+from static.app.instructions.general import keypad_move_buttons, enter_program_mode, test_blinds, skipslat
+from static.app.instructions.initialise import initialise_twist
+from static.app.instructions.motor_direction import left_backroller, right_backroller, left_frontroller, \
+    right_frontroller, blind_direction, switch_direction
+from static.app.instructions.set_bottom_limit import set_bottom_limit, re_set_bottom_limit_twist
+from static.app.instructions.set_top_limit import set_top_limit
+from static.app.instructions.skip_step import skiptop, skipbottom_next
 
 '''Instruction to quickly make a rb a twist. Not user friendly !'''
 connect_make_twist = Step(tr._connect,
@@ -14,22 +23,19 @@ connect_make_twist = Step(tr._connect,
                           ],
                           Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog, yes=0))
 
-initialise_twist = Step(tr._initialise,
-                        [Row(Text(30, tr._press_okay_button.add_number(1)),
-                             Text(30, tr._watch_the_blind_jog_two_times.add_number(2))),
-                         Row(PvKeypad(30, ['okay'], 'okay', Commands('reset', DelayedCommand('twist', 4))),
-                             Image(30, "/app/images/m25t_motor_jog2x.png"))
-                         ],
-                        Confirm('/app/images/m25t_motor_jog2x.png', tr._did_the_motor_jog_two_times))
+
 
 saveSlatOpen = PvKeypad(30, ['okay'], 'okay', Commands('saveslatopen'))
 
+"""
+Setting the Twist slat open position
+"""
 set_twist_position = Step(tr._set_twist_slatposition,
                           [
                               Row(Text(30, tr._moveblind_slatopen),
                                   Text(30, tr._saveslat),
                                   Text(30, tr._watch_the_blind_jog)),
-                              Row(PvKeypad(30, ['open', 'close', 'tiltup', 'tiltdown', 'stop']),
+                              Row(keypad_move_buttons,
                                   saveSlatOpen,
                                   Image(30, "/app/images/m25t_motor_jog1x.png"))
                           ],
@@ -40,18 +46,51 @@ re_set_twist_slat_open = Step(tr._set_twist_slatposition,
                                   Row(Text(30, tr._moveblind_slatopen),
                                       Text(30, tr._saveslat),
                                       Text(30, tr._watch_the_blind_jog)),
-                                  Row(PvKeypad(30, ['open', 'close', 'tiltup', 'tiltdown', 'stop']),
+                                  Row(keypad_move_buttons,
                                       saveSlatOpen,
                                       Image(30, "/app/images/m25t_motor_jog1x.png"))
                               ],
                               Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog, yes="testblinds"))
 
-skipbottom_twist = Step(tr._skipbottomtitle,
-                        [
-                            Row(Text(30, tr._make_choice),
-                                Text(30, tr._reset_bottom),
-                                Text(30, tr._select_skip_bottom)),
-                            Row(Spacer(30),
-                                PvKeypad(30, ['okay'], okay=NavigationCommand(goto=1)),
-                                PvKeypad(30, ['cancel'], cancel=3))
-                        ])
+
+twist = Product("Twist", [connect,
+                          initialise_twist,
+                          left_backroller,
+                          right_backroller,
+                          left_frontroller,
+                          right_frontroller,
+                          enter_program_mode,
+                          set_bottom_limit,
+                          enter_program_mode,
+                          set_top_limit,
+                          set_twist_position,
+                          test_blinds,
+                          skiptop,
+                          enter_program_mode,
+                          set_top_limit,
+                          skipbottom_next,
+                          enter_program_mode,
+                          re_set_bottom_limit_twist,
+                          skipslat,
+                          re_set_twist_slat_open
+                          ])
+
+twist_old = Product("Twist OLD", [connect,
+                                  initialise_twist,
+                                  enter_program_mode,
+                                  blind_direction,
+                                  switch_direction,
+                                  set_bottom_limit,
+                                  enter_program_mode,
+                                  set_top_limit,
+                                  set_twist_position,
+                                  test_blinds,
+                                  skiptop,
+                                  enter_program_mode,
+                                  set_top_limit,
+                                  skipbottom_next,
+                                  enter_program_mode,
+                                  re_set_bottom_limit_twist,
+                                  skipslat,
+                                  re_set_twist_slat_open
+                                  ])

@@ -1,17 +1,15 @@
 from static.app.instructions.components import Row, Text, PvKeypad, Step, Image, Confirm, Next, \
     Previous, Product, Instruction, ToJson, Spacer, DelayedCommand, Commands, NavigationCommand
-
-from static.app.instructions.helpers import TXT
+from static.app.instructions.connect import connect_vb
+from static.app.instructions.general import enter_program_mode_vb, test_blinds, skipslat
 
 import static.app.instructions.translations as tr
+from static.app.instructions.initialise import initialise_vb
 
-initialise_vb16 = Step(tr._initialise,
-                        [Row(Text(30, tr._press_okay_button.add_number(1)),
-                             Text(30, tr._watch_the_blind_jog_two_times.add_number(2))),
-                         Row(PvKeypad(30, ['okay'], 'okay', Commands('reset', DelayedCommand('m25s_venetian_16mm', 4))),
-                             Image(30, "/app/images/m25t_motor_jog2x.png"))
-                         ],
-                        Confirm('/app/images/m25t_motor_jog2x.png', tr._did_the_motor_jog_two_times))
+from static.app.instructions.set_bottom_limit import set_bottom_limit_vb, re_set_bottom_limit_vb
+from static.app.instructions.set_top_limit import set_top_limit_vb
+from static.app.instructions.skip_step import skiptop, skipbottom_next, skipbottom_end
+from static.app.instructions.twist import re_set_twist_slat_open
 
 left_mount = Step(tr._left_mount,
                        [
@@ -31,7 +29,7 @@ left_mount = Step(tr._left_mount,
 
                            )
                        ],
-                       Confirm("/app/images/m25t_motor_jog1x.png",
+                       Confirm("/app/images/m25s_vb_motor_jog1x.png",
                                tr._did_the_motor_jog, yes=2)
                        )
 
@@ -70,3 +68,20 @@ save_slat_position = Step(tr._blinddirection,
                        Confirm("/app/images/m25t_motor_top_limit_move_down_rollo.png", tr._did_motor_move_down,
                                yes=2,
                                no=1))
+
+venetian16 = Product("VB 16", [connect_vb,
+                               initialise_vb,
+                               left_mount,
+                               right_mount,
+                               enter_program_mode_vb,
+                               set_bottom_limit_vb,
+                               enter_program_mode_vb,
+                               set_top_limit_vb,
+                               test_blinds,
+                               skiptop,
+                               enter_program_mode_vb,
+                               set_top_limit_vb,
+                               skipbottom_end,
+                               enter_program_mode_vb,
+                               re_set_bottom_limit_vb
+                               ])

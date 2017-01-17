@@ -1,13 +1,46 @@
-from static.app.instructions.components import Row, Text, PvKeypad, Step, Image, Confirm, \
-    DelayedCommand, Commands
 
-import static.app.instructions.translations as tr
+from static.app.instructions.components import Product
+from static.app.instructions.connect import connect
+from static.app.instructions.general import enter_program_mode, test_blinds
+from static.app.instructions.initialise import initialise_roller
+from static.app.instructions.motor_direction import left_backroller, right_backroller, left_frontroller, \
+    right_frontroller, blind_direction, switch_direction
+from static.app.instructions.set_bottom_limit import re_set_bottom_limit, set_bottom_limit
+from static.app.instructions.set_top_limit import set_top_limit
+from static.app.instructions.skip_step import skiptop, skipbottom_end
 
+rollerblind1 = Product("Roller blind", [connect,
+                                        initialise_roller,
+                                        left_backroller,
+                                        right_backroller,
+                                        left_frontroller,
+                                        right_frontroller,
+                                        enter_program_mode,
+                                        set_bottom_limit,
+                                        enter_program_mode,
+                                        set_top_limit,
+                                        test_blinds,
+                                        skiptop,
+                                        enter_program_mode,
+                                        set_top_limit,
+                                        skipbottom_end,
+                                        enter_program_mode,
+                                        re_set_bottom_limit
+                                        ])
 
-initialise_roller = Step(tr._initialise,
-                         [Row(Text(30, tr._press_okay_button.add_number(1)),
-                              Text(30, tr._watch_the_blind_jog_two_times.add_number(2))),
-                          Row(PvKeypad(30, ['okay'], 'okay', Commands('reset', DelayedCommand('roller', 4))),
-                              Image(30, "/app/images/m25t_motor_jog2x.png"))
-                          ],
-                         Confirm('/app/images/m25t_motor_jog2x.png', tr._did_the_motor_jog_two_times))
+rollerblind_old = Product("Roller blind OLD", [connect,
+                                               initialise_roller,
+                                               enter_program_mode,
+                                               blind_direction,
+                                               switch_direction,
+                                               set_bottom_limit,
+                                               enter_program_mode,
+                                               set_top_limit,
+                                               test_blinds,
+                                               skiptop,
+                                               enter_program_mode,
+                                               set_top_limit,
+                                               skipbottom_end,
+                                               enter_program_mode,
+                                               re_set_bottom_limit
+                                               ])

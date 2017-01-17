@@ -89,6 +89,8 @@ class Product:
 
 
 class Step:
+    title = None
+    instructions= None
     def __init__(self, title, instructions, confirm=None, nav_next=Next(), nav_previous=Previous(), id=None):
         for instruction in instructions:
             if not isinstance(instruction, Row):
