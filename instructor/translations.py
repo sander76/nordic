@@ -1,4 +1,4 @@
-from static.app.instructions.helpers import TXT
+from instructor.helpers import TXT
 
 _hangproduct = TXT("HANG PRODUCT.",  # English language.
                    "PRODUCT OPHANGEN.",  # Dutch language.

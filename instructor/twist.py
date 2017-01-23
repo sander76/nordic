@@ -1,16 +1,14 @@
-
-from static.app.instructions.components import Row, Text, PvKeypad, Step, Image, Confirm, \
-    DelayedCommand, Commands, Spacer, NavigationCommand, Product
-
-import static.app.instructions.translations as tr
-from static.app.instructions.connect import connect
-from static.app.instructions.general import keypad_move_buttons, enter_program_mode, test_blinds, skipslat
-from static.app.instructions.initialise import initialise_twist
-from static.app.instructions.motor_direction import left_backroller, right_backroller, left_frontroller, \
-    right_frontroller, blind_direction, switch_direction
-from static.app.instructions.set_bottom_limit import set_bottom_limit, re_set_bottom_limit_twist
-from static.app.instructions.set_top_limit import set_top_limit
-from static.app.instructions.skip_step import skiptop, skipbottom_next
+import instructor.translations as tr
+from instructor.components import Row, Text, PvKeypad, Step, Image, Confirm, \
+    DelayedCommand, Commands, Product
+from instructor.connect import connect_rb
+from instructor.general import keypad_move_buttons, enter_program_mode, test_blinds, skipslat
+from instructor.initialise import initialise_twist
+from instructor.motor_direction import left_backroller, right_backroller, left_frontroller, right_frontroller, \
+    blind_direction, switch_direction
+from instructor.set_bottom_limit import set_bottom_limit, re_set_bottom_limit_twist
+from instructor.set_top_limit import set_top_limit_roller
+from instructor.skip_step import skiptop, skipbottom_next
 
 '''Instruction to quickly make a rb a twist. Not user friendly !'''
 connect_make_twist = Step(tr._connect,
@@ -53,7 +51,7 @@ re_set_twist_slat_open = Step(tr._set_twist_slatposition,
                               Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog, yes="testblinds"))
 
 
-twist = Product("Twist", [connect,
+twist = Product("Twist", [connect_rb,
                           initialise_twist,
                           left_backroller,
                           right_backroller,
@@ -62,12 +60,12 @@ twist = Product("Twist", [connect,
                           enter_program_mode,
                           set_bottom_limit,
                           enter_program_mode,
-                          set_top_limit,
+                          set_top_limit_roller,
                           set_twist_position,
                           test_blinds,
                           skiptop,
                           enter_program_mode,
-                          set_top_limit,
+                          set_top_limit_roller,
                           skipbottom_next,
                           enter_program_mode,
                           re_set_bottom_limit_twist,
@@ -75,19 +73,19 @@ twist = Product("Twist", [connect,
                           re_set_twist_slat_open
                           ])
 
-twist_old = Product("Twist OLD", [connect,
+twist_old = Product("Twist OLD", [connect_rb,
                                   initialise_twist,
                                   enter_program_mode,
                                   blind_direction,
                                   switch_direction,
                                   set_bottom_limit,
                                   enter_program_mode,
-                                  set_top_limit,
+                                  set_top_limit_roller,
                                   set_twist_position,
                                   test_blinds,
                                   skiptop,
                                   enter_program_mode,
-                                  set_top_limit,
+                                  set_top_limit_roller,
                                   skipbottom_next,
                                   enter_program_mode,
                                   re_set_bottom_limit_twist,

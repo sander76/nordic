@@ -1,9 +1,5 @@
-from static.app.instructions.components import Row, Text, PvKeypad, Step, Image, Confirm, Next, \
-    Previous, Product, Instruction, ToJson, Spacer, DelayedCommand, Commands, NavigationCommand
-
-from static.app.instructions.helpers import TXT
-
-import static.app.instructions.translations as tr
+import instructor.translations as tr
+from instructor.components import Row, Text, PvKeypad, Step, Image, Confirm, Spacer, DelayedCommand, Commands
 
 left_backroller = Step(tr._backroller_left_title,
                        [

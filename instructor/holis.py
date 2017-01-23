@@ -3,8 +3,8 @@ Holis instructions.
 
 '''
 
-from static.app.instructions.components import Instruction, ToJson
-from static.app.instructions.instructor import INSTRUCTION_VERSION, twist
+from instructor.components import Instruction, ToJson
+from instructor.instruction_generator import INSTRUCTION_VERSION, twist
 
 holis_instruction = Instruction(INSTRUCTION_VERSION)
 

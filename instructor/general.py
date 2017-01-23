@@ -1,7 +1,6 @@
-from static.app.instructions.components import Row, Text, PvKeypad, Step, Image, Confirm, \
-    DelayedCommand, Commands, Spacer, NavigationCommand
-
-import static.app.instructions.translations as tr
+import instructor.translations as tr
+from instructor.components import Row, Text, PvKeypad, Step, Image, Confirm, \
+    Commands, Spacer, NavigationCommand
 
 keypad_move_buttons = PvKeypad(30, ['open', 'close', 'tiltup', 'tiltdown', 'stop'])
 

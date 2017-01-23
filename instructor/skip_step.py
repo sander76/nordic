@@ -1,5 +1,5 @@
-import static.app.instructions.translations as tr
-from static.app.instructions.components import Step, Row, Text, NavigationCommand, PvKeypad, Spacer
+import instructor.translations as tr
+from instructor.components import Step, Row, Text, NavigationCommand, PvKeypad, Spacer
 
 """
 Skips setting bottom limits and returns to testblinds screen.

@@ -1,11 +1,8 @@
 import json
 
+import instructor.translations as tr
+from instructor.helpers import TXT, NumberedText
 from server.nordic import COMMANDS
-
-import static.app.instructions.translations as tr
-
-# from static.app.instructions.translations import _yes
-from static.app.instructions.helpers import TXT, NumberedText
 
 
 class NextPrevious:
@@ -30,16 +27,6 @@ class DelayedCommand:
         self.command = command
         self.delay = delay
 
-
-# class ApiCommand:
-#     def __init__(self, commands, delay=None):
-#         for command in commands:
-#             if command not in COMMANDS.keys():
-#                 raise UserWarning("{} not a valid nordic command".format(command))
-#         self.commands = {'commands': commands}
-#         if delay is not None:
-#             # self.delay = delay
-#             self.commands['delay'] = delay
 
 class Commands:
     def __init__(self, first_command, *next_commands):

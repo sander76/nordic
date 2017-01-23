@@ -1,15 +1,12 @@
-from static.app.instructions.components import Row, Text, PvKeypad, Step, Image, Confirm, Next, \
-    Previous, Product, Instruction, ToJson, Spacer, DelayedCommand, Commands, NavigationCommand
-from static.app.instructions.connect import connect_vb
-from static.app.instructions.general import enter_program_mode_vb, test_blinds, skipslat
+import instructor.translations as tr
 
-import static.app.instructions.translations as tr
-from static.app.instructions.initialise import initialise_vb
-
-from static.app.instructions.set_bottom_limit import set_bottom_limit_vb, re_set_bottom_limit_vb
-from static.app.instructions.set_top_limit import set_top_limit_vb
-from static.app.instructions.skip_step import skiptop, skipbottom_next, skipbottom_end
-from static.app.instructions.twist import re_set_twist_slat_open
+from instructor.components import Row, Text, PvKeypad, Step, Image, Confirm, Product, Spacer, DelayedCommand, Commands
+from instructor.connect import connect_vb
+from instructor.general import enter_program_mode_vb, test_blinds
+from instructor.initialise import initialise_vb
+from instructor.set_bottom_limit import set_bottom_limit_vb, re_set_bottom_limit_vb
+from instructor.set_top_limit import set_top_limit_vb
+from instructor.skip_step import skiptop, skipbottom_end
 
 left_mount = Step(tr._left_mount,
                        [

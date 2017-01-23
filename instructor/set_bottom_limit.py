@@ -1,6 +1,6 @@
-from static.app.instructions.components import PvKeypad, Commands, Step, Row, Text, Image, Confirm
-import static.app.instructions.translations as tr
-from static.app.instructions.general import keypad_move_buttons
+import instructor.translations as tr
+from instructor.components import PvKeypad, Commands, Step, Row, Text, Image, Confirm
+from instructor.general import keypad_move_buttons
 
 savepositionBottom = PvKeypad(30, ['okay'], 'okay', Commands('savepositionbottom'))
 

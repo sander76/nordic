@@ -21,7 +21,11 @@ COMMANDS = {
     "m25s_venetian_25mm": b'\x00\x04#DST',
     "backroller_left": b'\x00\x03#dL',  # works with venetian M25S too
     "backroller_right": b'\x00\x03#dR',  # works with venetian M25S too
-    "save_venetian_slat": b'\x00\x04#LPR'
+    "save_venetian_slat": b'\x00\x04#LPR',
+    "m25s_pleated_free": b'\x00\x04#DS\x11',
+    "m25s_pleated_tensioned": b'\x00\x04#DS\x06',
+    "m25s_duette_free": b'\x00\x04#DSQ',
+    "m25s_duette_tensioned": b'\x00\x04#DSF'
 }
 #
 # COMMANDS = {

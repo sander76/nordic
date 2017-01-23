@@ -1,5 +1,5 @@
-from static.app.instructions.components import Step, Row, Text, NavigationCommand, PvKeypad, Image, Previous
-import static.app.instructions.translations as tr
+import instructor.translations as tr
+from instructor.components import Step, Row, Text, NavigationCommand, PvKeypad, Image, Previous
 
 textrow = Row(Text(40, tr._proper_product_hang.add_number(1)),
                           Text(30, tr._proper_product_hang_confirm.add_number(2)))

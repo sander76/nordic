@@ -1,6 +1,6 @@
-from static.app.instructions.components import PvKeypad, Commands, Step, Row, Text, Image, Confirm
-import static.app.instructions.translations as tr
-from static.app.instructions.general import keypad_move_buttons
+import instructor.translations as tr
+from instructor.components import PvKeypad, Commands, Step, Row, Text, Image, Confirm
+from instructor.general import keypad_move_buttons
 
 textrow = Row(Text(30, tr._moveblind_top.add_number(1)),
               Text(30, tr._savetop.add_number(2)),
@@ -8,7 +8,7 @@ textrow = Row(Text(30, tr._moveblind_top.add_number(1)),
 
 keypad_save_top = PvKeypad(30, ['okay'], 'okay', Commands('savepositiontop'))
 
-set_top_limit = Step(tr._settoplimit,
+set_top_limit_roller = Step(tr._settoplimit,
                      [
                          textrow,
                          Row(keypad_move_buttons,
