@@ -38,3 +38,7 @@ connect_m25s_duette = Step(tr._connect,
                     ],
                    Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog)
                ,id="start")
+
+connect_m25s_duette_tensioned = Step(tr._connect,
+                                     [connect_text,
+                                      ])

@@ -6,7 +6,7 @@ from instructor.twist import twist_old, twist
 from instructor.m25s_duette import m25s_duette
 from instructor.venetian import venetian16
 
-INSTRUCTION_VERSION = "1.6.5"
+INSTRUCTION_VERSION = "1.6.7"
 
 
 def make_luxaflex_nl(path):
@@ -38,7 +38,7 @@ def make_default(path):
     instruction = Instruction(INSTRUCTION_VERSION)
     instruction.products.append(rollerblind1)
     instruction.products.append(twist)
-    instruction.products.append(m25s_duette)
+    #instruction.products.append(m25s_duette)
 
     en = ToJson(lang='en').encode(instruction)
     with open(_path, 'w') as fl:
