@@ -31,10 +31,12 @@ class DelayedCommand:
 class Commands:
     def __init__(self, first_command, *next_commands):
         if first_command not in COMMANDS.keys():
-            raise UserWarning("{} not a valid nordic command".format(first_command))
+            raise UserWarning(
+                "{} not a valid nordic command".format(first_command))
         for _command in next_commands:
             if _command.command not in COMMANDS.keys():
-                raise UserWarning("{} not a valid nordic command".format(_command.command))
+                raise UserWarning(
+                    "{} not a valid nordic command".format(_command.command))
         self.commands = [first_command] + [cmd for cmd in next_commands]
         # self.command = first_command
         # self.commands = next_commands
@@ -77,8 +79,13 @@ class Product:
 
 class Step:
     title = None
-    instructions= None
-    def __init__(self, title, instructions, confirm=None, nav_next=Next(), nav_previous=Previous(), id=None):
+    instructions = None
+
+    def __init__(self, title, instructions, confirm=None, nav_next=Next(),
+                 nav_previous=Previous(), nav_id=None):
+        """
+        :type instructions: list[Row]
+        """
         for instruction in instructions:
             if not isinstance(instruction, Row):
                 raise UserWarning("instruction is not of type Row.")
@@ -87,7 +94,7 @@ class Step:
         self.confirm = confirm
         self.next = nav_next
         self.previous = nav_previous
-        self.id = id
+        self.id = nav_id
 
 
 '''
@@ -105,7 +112,8 @@ confirm = {'img': {'type': 'string', 'required': True},
 
 
 class Confirm:
-    def __init__(self, img, text, yes_text=tr._yes, no_text=tr._no, yes=1, no=0):
+    def __init__(self, img, text, yes_text=tr.YES, no_text=tr.NO, yes=1,
+                 no=0):
         self.img = img
         self.text = text
         self.yes = yes
@@ -141,52 +149,48 @@ class Spacer(UiElement):
         UiElement.__init__(self, width)
 
 
-'''
-pv_keypad = {'width': {'type': 'string', 'regex': '\d{1,2}%'},
-             'type': {'type': 'string', 'required': True, 'allowed': 'pv-keypad'},
-             'active_buttons': {'type': 'list',
-                                'allowed': ['open', 'close', 'stop', 'tiltup', 'tiltdown', 'okay', 'cancel'],
-                                'required': True},
-             'confirm': {'type': 'string',
-                         'allowed': ['open', 'close', 'stop', 'tiltup', 'tiltdown', 'okay', 'cancel']},
-             'okay': {'type': 'dict',
-                      'schema': {'commands': {'type': 'dict', 'schema': api_commands}, 'goto': {'type': 'integer'}}},
-             'cancel': {'type': 'integer', 'required': True}}
-'''
-
-
 class PvKeypad(UiElement):
     allowed = ['open', 'close', 'tiltup', 'tiltdown', 'stop', 'okay', 'cancel']
     open = 'open'
     close = 'close'
     cancel = 'cancel'
     okay = 'okay'
+    stop = 'stop'
+    tiltup = 'tiltup'
+    tiltdown = 'tiltdown'
 
-    def __init__(self, width, active_buttons, confirm=None, okay=None, cancel=None):
-        '''
+    def __init__(self, width, active_buttons, confirm=None, okay=None,
+                 cancel=None):
+        """
         :param width: defines the width in percentage of the element.
         :param active_buttons: which buttons to activate
-        :param confirm: which button will have an "open confirm dialog" method to it.
+        :param confirm: which button will have an "open confirm dialog"
+        method to it.
         :param okay: what actions should be taken when ok is clicked.
         :param cancel: where should cancel take you ?
-        '''
+        """
         UiElement.__init__(self, width)
         self.type = 'pv-keypad'
         self.active_buttons = active_buttons
         for button in active_buttons:
             if button not in PvKeypad.allowed:
-                raise UserWarning("'{}' not allowed as pvkeypad button".format(button))
+                raise UserWarning(
+                    "'{}' not allowed as pvkeypad button".format(button))
         if confirm is not None:
             if confirm not in active_buttons:
-                raise UserWarning("'{}' not allowed as it is not an active button".format(confirm))
+                raise UserWarning(
+                    "'{}' not allowed as it is not an active button".format(
+                        confirm))
             self.confirm = confirm
         if okay is not None:
             if 'okay' not in PvKeypad.allowed:
-                raise UserWarning("'okay' defined but not defined as an active button.")
+                raise UserWarning(
+                    "'okay' defined but not defined as an active button.")
             self.okay = okay
         if cancel is not None:
             if 'cancel' not in PvKeypad.allowed:
-                raise UserWarning("'cancel' defined but not defined as an active button.")
+                raise UserWarning(
+                    "'cancel' defined but not defined as an active button.")
             self.cancel = cancel
 
 
@@ -219,14 +223,6 @@ class Image(UiElement):
         self.src = src
 
 
-'''
-next_prev_buttons = [{'type': 'boolean'},
-                     {'type': 'dict',
-                      'schema': {'caption': {'type': 'string', 'required': True},
-                                 'goto': {'type': 'integer'}}}]
-'''
-
-
 class Row:
     allowed = [PvKeypad, Text, Image, Spacer]
 
@@ -247,4 +243,5 @@ class Row:
         for _allowed in Row.allowed:
             if isinstance(instance, _allowed):
                 return
-        raise UserWarning("not allowed: {} {}".format(repr(instance), repr(_allowed)))
+        raise UserWarning(
+            "not allowed: {} {}".format(repr(instance), repr(_allowed)))

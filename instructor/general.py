@@ -1,45 +1,53 @@
 import instructor.translations as tr
 from instructor.components import Row, Text, PvKeypad, Step, Image, Confirm, \
     Commands, Spacer, NavigationCommand
+from instructor.constants import ID_TEST_BLINDS, RB_JOG_1, VB_JOG_1, ID_START
+from server.nordic import STARTPROGRAM
 
-keypad_move_buttons = PvKeypad(30, ['open', 'close', 'tiltup', 'tiltdown', 'stop'])
+keypad_move_buttons = PvKeypad(
+    30,
+    [PvKeypad.open, PvKeypad.close, PvKeypad.tiltup,
+     PvKeypad.tiltdown, PvKeypad.stop])
 
-textrow = Row(Text(30, tr._press_okay_button.add_number(1)),
-              Text(30, tr._watch_the_blind_jog.add_number(2)))
+textrow = Row(Text(30, tr.PRESS_OKAY_BUTTON.add_number(1)),
+              Text(30, tr.WATCH_THE_BLIND_JOG.add_number(2)))
 
-keypad = PvKeypad(30, ['okay'], 'okay', Commands('startprogram'))
+keypad = PvKeypad(30, [PvKeypad.okay], PvKeypad.okay, Commands(STARTPROGRAM))
 
 
+def get_enter_program_mode(jog_image):
+    return Step(
+        tr.ENTER_PROGRAM_MODE,
+        [textrow,
+         Row(keypad,
+             Image(30, jog_image))
+         ], Confirm(jog_image,
+                    tr.DID_THE_MOTOR_JOG))
 
-enter_program_mode = Step(tr._enterprogrammode,
-                          [textrow,
-                           Row(keypad,
-                               Image(30, "/app/images/m25t_motor_jog1x.png"))
-                           ], Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog))
 
-enter_program_mode_vb = Step(tr._enterprogrammode,
-                             [textrow,
-                              Row(keypad,
-                                  Image(30, "/app/images/m25s_vb_motor_jog1x.png"))
-                              ], Confirm("/app/images/m25s_vb_motor_jog1x.png", tr._did_the_motor_jog))
+enter_program_mode = get_enter_program_mode(RB_JOG_1)
 
-test_blinds = Step(tr._testblinds,
-                   [
-                       Row(Text(30, tr._test_move_blinds),
-                           Text(30, tr._limits_ok),
-                           Text(30, tr._limits_not_ok)),
-                       Row(PvKeypad(30, ['open', 'close', 'tiltup', 'tiltdown', 'stop']),
-                           PvKeypad(30, ['okay'], okay=NavigationCommand(goto="start")),
-                           PvKeypad(30, ['cancel'], cancel=1))
-                   ], id="testblinds")
+enter_program_mode_vb = get_enter_program_mode(VB_JOG_1)
 
-skipslat = Step(tr._skipslattitle,
-                [
-                    Row(Text(30, tr._make_choice),
-                        Text(30, tr._reset_slat),
-                        Text(30, tr._select_skip_slat)),
-                    Row(Spacer(30),
-                        PvKeypad(30, ['okay'], okay=NavigationCommand(goto=1)),
-                        PvKeypad(30, ['cancel'], cancel='testblinds'))
-                ])
+test_blinds = Step(
+    tr.TEST_BLINDS,
+    [
+        Row(Text(30, tr.TEST_MOVE_BLINDS),
+            Text(30, tr.LIMITS_OK),
+            Text(30, tr.LIMITS_NOT_OK)),
+        Row(keypad_move_buttons,
+            PvKeypad(30, [PvKeypad.okay],
+                     okay=NavigationCommand(goto=ID_START)),
+            PvKeypad(30, [PvKeypad.cancel], cancel=1))
+    ], nav_id=ID_TEST_BLINDS)
 
+skipslat = Step(
+    tr.SKIP_SLAT_TITLE,
+    [
+        Row(Text(30, tr.MAKE_CHOICE),
+            Text(30, tr.RESET_SLAT),
+            Text(30, tr.SELECT_SKIP_SLAT)),
+        Row(Spacer(30),
+            PvKeypad(30, [PvKeypad.okay], okay=NavigationCommand(goto=1)),
+            PvKeypad(30, [PvKeypad.cancel], cancel=ID_TEST_BLINDS))
+    ])

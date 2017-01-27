@@ -28,3 +28,8 @@
 ## Version 1.6.4
 
 - added holis definition. Twist only to prevent accidental mix up with roller blind.
+
+## Version 1.6.5 - 1.6.7
+
+- Messing up some products -like twist- and fixing them again.
+

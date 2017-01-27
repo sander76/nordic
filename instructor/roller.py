@@ -1,10 +1,9 @@
-
 from instructor.components import Product
 from instructor.connect import connect_rb
 from instructor.general import enter_program_mode, test_blinds
 from instructor.initialise import initialise_rb
-from instructor.motor_direction import left_backroller, right_backroller, left_frontroller, right_frontroller, \
-    blind_direction, switch_direction
+from instructor.motor_direction import left_backroller, right_backroller, \
+    left_frontroller, right_frontroller, blind_direction, switch_direction
 from instructor.set_bottom_limit import re_set_bottom_limit, set_bottom_limit
 from instructor.set_top_limit import set_top_limit_roller
 from instructor.skip_step import skiptop, skipbottom_end

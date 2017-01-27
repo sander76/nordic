@@ -1,57 +1,70 @@
 import instructor.translations as tr
 from instructor.components import Row, Text, PvKeypad, Step, Image, Confirm, \
     DelayedCommand, Commands, Product
-from instructor.connect import connect_rb
-from instructor.general import keypad_move_buttons, enter_program_mode, test_blinds, skipslat
+from instructor.connect import connect_twist
+from instructor.constants import ID_TEST_BLINDS, TWIST_JOG_1
+from instructor.general import keypad_move_buttons, enter_program_mode, \
+    test_blinds, skipslat
 from instructor.initialise import initialise_twist
-from instructor.motor_direction import left_backroller, right_backroller, left_frontroller, right_frontroller, \
+from instructor.motor_direction import left_backroller, right_backroller, \
+    left_frontroller, right_frontroller, \
     blind_direction, switch_direction
-from instructor.set_bottom_limit import set_bottom_limit, re_set_bottom_limit_twist
+from instructor.set_bottom_limit import set_bottom_limit, \
+    re_set_bottom_limit_twist
 from instructor.set_top_limit import set_top_limit_roller
 from instructor.skip_step import skiptop, skipbottom_next
+from server.nordic import NETWORKADD, GROUP_ADD, SAVE_SLAT_OPEN, RESET, TWIST
 
 '''Instruction to quickly make a rb a twist. Not user friendly !'''
-connect_make_twist = Step(tr._connect,
-                          [
-                              Row(Text(100, "Connect your blind using normal procedure")),
-                              Row(PvKeypad(25, ['okay'], 'okay', Commands('networkadd',
-                                                                          DelayedCommand('group1add', 1),
-                                                                          DelayedCommand('reset', 5),
-                                                                          DelayedCommand('twist', 5))))
-                          ],
-                          Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog, yes=0))
+connect_make_twist = Step(
+    tr.CONNECT,
+    [
+        Row(Text(100,
+                 "Connect your blind using normal procedure")),
+        Row(PvKeypad(25, ['okay'], 'okay',
+                     Commands(NETWORKADD,
+                              DelayedCommand(GROUP_ADD,
+                                             1),
+                              DelayedCommand(RESET, 5),
+                              DelayedCommand(TWIST,
+                                             5))))
+    ],
+    Confirm(TWIST_JOG_1,
+            tr.DID_THE_MOTOR_JOG, yes=0))
 
-
-
-saveSlatOpen = PvKeypad(30, ['okay'], 'okay', Commands('saveslatopen'))
+saveSlatOpen = PvKeypad(30, ['okay'], 'okay', Commands(SAVE_SLAT_OPEN))
 
 """
 Setting the Twist slat open position
 """
-set_twist_position = Step(tr._set_twist_slatposition,
+set_twist_position = Step(tr.SET_TWIST_SLAT_POSITION,
                           [
-                              Row(Text(30, tr._moveblind_slatopen),
-                                  Text(30, tr._saveslat),
-                                  Text(30, tr._watch_the_blind_jog)),
+                              Row(Text(30, tr.MOVE_BLIND_SLAT_OPEN),
+                                  Text(30, tr.SAVE_SLAT),
+                                  Text(30, tr.WATCH_THE_BLIND_JOG)),
                               Row(keypad_move_buttons,
                                   saveSlatOpen,
-                                  Image(30, "/app/images/m25t_motor_jog1x.png"))
+                                  Image(30,
+                                        TWIST_JOG_1))
                           ],
-                          Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog))
+                          Confirm(TWIST_JOG_1,
+                                  tr.DID_THE_MOTOR_JOG))
 
-re_set_twist_slat_open = Step(tr._set_twist_slatposition,
-                              [
-                                  Row(Text(30, tr._moveblind_slatopen),
-                                      Text(30, tr._saveslat),
-                                      Text(30, tr._watch_the_blind_jog)),
-                                  Row(keypad_move_buttons,
-                                      saveSlatOpen,
-                                      Image(30, "/app/images/m25t_motor_jog1x.png"))
-                              ],
-                              Confirm("/app/images/m25t_motor_jog1x.png", tr._did_the_motor_jog, yes="testblinds"))
+re_set_twist_slat_open = Step(
+    tr.SET_TWIST_SLAT_POSITION,
+    [
+        Row(Text(30, tr.MOVE_BLIND_SLAT_OPEN),
+            Text(30, tr.SAVE_SLAT),
+            Text(30, tr.WATCH_THE_BLIND_JOG)),
+        Row(keypad_move_buttons,
+            saveSlatOpen,
+            Image(30,
+                  TWIST_JOG_1))
+    ],
+    Confirm(TWIST_JOG_1,
+            tr.DID_THE_MOTOR_JOG, yes=ID_TEST_BLINDS))
 
-
-twist = Product("Twist", [connect_rb,
+twist = Product("Twist", [connect_twist,
                           initialise_twist,
                           left_backroller,
                           right_backroller,
@@ -73,7 +86,7 @@ twist = Product("Twist", [connect_rb,
                           re_set_twist_slat_open
                           ])
 
-twist_old = Product("Twist OLD", [connect_rb,
+twist_old = Product("Twist OLD", [connect_twist,
                                   initialise_twist,
                                   enter_program_mode,
                                   blind_direction,

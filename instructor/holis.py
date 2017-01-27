@@ -1,7 +1,7 @@
-'''
+"""
 Holis instructions.
 
-'''
+"""
 
 from instructor.components import Instruction, ToJson
 from instructor.instruction_generator import INSTRUCTION_VERSION, twist

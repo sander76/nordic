@@ -12,7 +12,8 @@ class NumberedText:
 
 
 class TXT:
-    def __init__(self, en, nl, il=None, pl=None, ru=None, he=None, de=None, dk=None):
+    def __init__(self, en, nl, il=None, pl=None, ru=None, he=None, de=None,
+                 dk=None):
         self.en = en
         self.nl = nl
         self.pl = pl

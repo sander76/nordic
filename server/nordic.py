@@ -1,31 +1,59 @@
+OPEN = "open"
+CLOSE = "close"
+TILT_OPEN = "tiltopen"
+TILT_CLOSE = "tiltclose"
+STOP = "stop"
+JOG = "jog"
+STARTPROGRAM = "startprogram"
+SAVE_POSITION_TOP = "savepositiontop"
+BACKROLLER_LEFT = "backroller_left"
+BACKROLLER_RIGHT = "backroller_right"
+CONNECT = "connect"
+NETWORKADD = "networkadd"
+GROUP_ADD = "group1add"
+RESET = "reset"
+ROLLER = "roller"  # stopped here
+TWIST = "twist"
+SAVE_POSITION_BOTTOM = "savepositionbottom"
+ENABLE_SLAT = "enableslat"
+SAVE_SLAT_OPEN = "saveslatopen"
+REVERSE = "reverse"
+M25S_VENETIAN_16MM = "m25s_venetian_16mm"
+M25S_VENETIAN_25MM = "m25s_venetian_25mm"
+SAVE_VENETIAN_SLAT = "save_venetian_slat"
+M25S_PLEATED_FREE = "m25s_pleated_free"
+M25S_PLEATED_TENSIONED = "m25s_pleated_tensioned"
+M25S_DUETTE_FREE = "m25s_duette_free"
+M25S_DUETTE_TENSIONED = "m25s_duette_tensioned"
+
 COMMANDS = {
-    "open": b'\x00\x03RU\x00',
-    "close": b'\x00\x03RD\x00',
-    "tiltopen": b'\x00\x03RR\x00',
-    "tiltclose": b'\x00\x03RL\x00',
-    "stop": b'\x00\x03RS\x00',
-    "jog": b'\x00\x03cj.1',
-    "connect": b'\x00\x01N\x00\x01A',  # a network add and a add group 1 command combined.
-    "networkadd": b'\x00\x01N',
-    "group1add": b'\x00\x01A',
-    "reset": b'\x00\x03#@r',
-    "roller": b'\x00\x04#DS*',
-    "twist": b'\x00\x04#DS,',
-    "startprogram": b'\x00\x04#LPE',
-    "savepositiontop": b'\x00\x04#LPO',
-    "savepositionbottom": b'\x00\x04#LPC',
-    "enableslat": b'\x00\x04#LPr',
-    "saveslatopen": b'\x00\x04#LTO',
-    "reverse": b'\x00\x02#x',
-    "m25s_venetian_16mm": b'\x00\x04#DS\x14',
-    "m25s_venetian_25mm": b'\x00\x04#DST',
-    "backroller_left": b'\x00\x03#dL',  # works with venetian M25S too
-    "backroller_right": b'\x00\x03#dR',  # works with venetian M25S too
-    "save_venetian_slat": b'\x00\x04#LPR',
-    "m25s_pleated_free": b'\x00\x04#DS\x11',
-    "m25s_pleated_tensioned": b'\x00\x04#DS\x06',
-    "m25s_duette_free": b'\x00\x04#DSQ',
-    "m25s_duette_tensioned": b'\x00\x04#DSF'
+    OPEN: b'\x00\x03RU\x00',
+    CLOSE: b'\x00\x03RD\x00',
+    TILT_OPEN: b'\x00\x03RR\x00',
+    TILT_CLOSE: b'\x00\x03RL\x00',
+    STOP: b'\x00\x03RS\x00',
+    JOG: b'\x00\x03cj.1',
+    CONNECT: b'\x00\x01N\x00\x01A',
+    NETWORKADD: b'\x00\x01N',
+    GROUP_ADD: b'\x00\x01A',
+    RESET: b'\x00\x03#@r',
+    ROLLER: b'\x00\x04#DS*',
+    TWIST: b'\x00\x04#DS,',
+    STARTPROGRAM: b'\x00\x04#LPE',
+    SAVE_POSITION_TOP: b'\x00\x04#LPO',
+    SAVE_POSITION_BOTTOM: b'\x00\x04#LPC',
+    ENABLE_SLAT: b'\x00\x04#LPr',
+    SAVE_SLAT_OPEN: b'\x00\x04#LTO',
+    REVERSE: b'\x00\x02#x',
+    M25S_VENETIAN_16MM: b'\x00\x04#DS\x14',
+    M25S_VENETIAN_25MM: b'\x00\x04#DST',
+    BACKROLLER_LEFT: b'\x00\x03#dL',  # works with venetian M25S too
+    BACKROLLER_RIGHT: b'\x00\x03#dR',  # works with venetian M25S too
+    SAVE_VENETIAN_SLAT: b'\x00\x04#LPR',
+    M25S_PLEATED_FREE: b'\x00\x04#DS\x11',
+    M25S_PLEATED_TENSIONED: b'\x00\x04#DSQ',
+    M25S_DUETTE_FREE: b'\x00\x04#DS\x06',
+    M25S_DUETTE_TENSIONED: b'\x00\x04#DSF'
 }
 #
 # COMMANDS = {
