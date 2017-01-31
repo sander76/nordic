@@ -48,17 +48,17 @@ def get_confirm_top_limit(jog_image):
     )
 
 
-# Roller
+# ****** Roller
 set_top_limit_roller = get_top_limit(RB_JOG_1)
 
-# VB
+# ****** VB
 set_top_limit_vb = get_top_limit(VB_JOG_1)
 
 set_top_limit_alternative_vb = get_top_limit_alternative(VB_JOG_1)
 
 confirm_top_limit_vb = get_confirm_top_limit(VB_JOG_1)
 
-# Duette
+# ****** Duette
 set_top_limit_duette = get_top_limit(DUETTE_JOG_1)
 
 set_top_limit_duette_alternative = get_top_limit_alternative(DUETTE_JOG_1)

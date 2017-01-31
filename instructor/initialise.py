@@ -43,7 +43,7 @@ initialise_rb.instructions[1].col1.okay = Commands(RESET,
 
 initialise_vb = get_initialise(VB_JOG_2)
 initialise_vb.instructions[1].col1.okay = Commands(RESET, DelayedCommand(
-    M25S_VENETIAN_16MM, 4))
+    M25S_VENETIAN_16MM, 6))
 
 # initialise_vb = Step(tr._initialise,
 #                      [Row(Text(30, tr._press_okay_button.add_number(1)),
@@ -55,7 +55,7 @@ initialise_vb.instructions[1].col1.okay = Commands(RESET, DelayedCommand(
 
 initialise_duette = get_initialise(DUETTE_JOG_2)
 initialise_duette.instructions[1].col1.okay = Commands(RESET, DelayedCommand(
-    M25S_DUETTE_FREE, 4))
+    M25S_DUETTE_FREE, 6))
 
 # initialise_duette = Step(tr._initialise,
 #                          [Row(Text(30, tr._press_okay_button.add_number(1)),
@@ -70,7 +70,7 @@ initialise_duette_tensioned.instructions[1].col1.okay = Commands(
     RESET,
     DelayedCommand(
         M25S_DUETTE_TENSIONED,
-        4))
+        6))
 
 # initialise_duette_tensioned = Step(tr._initialise,
 #                                    [Row(Text(30, tr._press_okay_button.add_number(1)),

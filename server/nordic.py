@@ -45,8 +45,8 @@ COMMANDS = {
     ENABLE_SLAT: b'\x00\x04#LPr',
     SAVE_SLAT_OPEN: b'\x00\x04#LTO',
     REVERSE: b'\x00\x02#x',
-    M25S_VENETIAN_16MM: b'\x00\x04#DS\x14',
-    M25S_VENETIAN_25MM: b'\x00\x04#DST',
+    M25S_VENETIAN_16MM: b'\x00\x04#DS>',
+    M25S_VENETIAN_25MM: b'\x00\x04#DS~',
     BACKROLLER_LEFT: b'\x00\x03#dL',  # works with venetian M25S too
     BACKROLLER_RIGHT: b'\x00\x03#dR',  # works with venetian M25S too
     SAVE_VENETIAN_SLAT: b'\x00\x04#LPR',

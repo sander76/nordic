@@ -6,7 +6,7 @@ from server import nordic_serial
 from aiohttp import web
 from server.app import app
 from server.constants import SERIAL_SPEED
-#from server.handlers import instruction_handler
+# from server.handlers import instruction_handler
 
 from server.id_generator import get_id
 from server.messenger import Messengers
@@ -16,7 +16,7 @@ import asyncio
 import json
 
 
-#@asyncio.coroutine
+# @asyncio.coroutine
 def instruction_handler(request):
     lang = request.match_info.get('lang', 'en')
     fl = "instructions-{}.json".format(lang)
@@ -29,6 +29,7 @@ def instruction_handler(request):
         with open("custom_instructions/{}".format(fl)) as fl:
             _js = json.load(fl)
     return web.json_response(_js)
+
 
 def add_routes(serial):
     # create some routes.
@@ -46,7 +47,7 @@ def setup_websocket():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--serialport")
-    parser.add_argument("--port",type=int)
+    parser.add_argument("--port", type=int)
     args = parser.parse_args()
     SERIAL_PORT = args.serialport
     port = args.port
@@ -60,11 +61,12 @@ if __name__ == "__main__":
     ws_messenger = WebSocketMessenger()
     messengers = Messengers()
     messengers.append(ws_messenger)
-    serial = nordic_serial.NordicSerial(app.loop, SERIAL_PORT, SERIAL_SPEED, network_id,messengers=messengers)
+    serial = nordic_serial.NordicSerial(
+        app.loop, SERIAL_PORT, SERIAL_SPEED, network_id, messengers=messengers)
 
     add_routes(serial)
     setup_websocket()
     try:
-        web.run_app(app,port=port)
+        web.run_app(app, port=port)
     except Exception as e:
         lgr.exception("Some error has occurred.")

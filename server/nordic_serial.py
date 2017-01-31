@@ -63,18 +63,6 @@ class NordicSerial:
 
             else:
                 yield from self._connect()
-                # try:
-                #     lgr.info("Connecting to serial port {}. Attempt: {}".format(self.serial_port, attempt))
-                #     self.s.open()
-                #     # serial port is open. Adding a incoming listener is okay now.
-                #     self.loop.create_task(self.get_from_serial_port())
-                #     # yield from asyncio.sleep()
-                #     yield from self._write_to_nordic(self.id_change)
-                #     self.send_connection_status(True, self.network_id)
-                # except SerialException:
-                #     lgr.error("serial port opening problem.")
-                #     #attempt += 1
-                #     self.send_connection_status(False, "unknown")
             yield from asyncio.sleep(self.trydelay)
 
     @asyncio.coroutine
