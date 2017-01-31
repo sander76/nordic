@@ -33,3 +33,6 @@
 
 - Messing up some products -like twist- and fixing them again.
 
+## Version 1.6.7.1
+
+- Working on adding M25 S
