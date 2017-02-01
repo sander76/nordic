@@ -1,9 +1,9 @@
 import instructor.translations as tr
+from instructor.actions.general import keypad_move_buttons
 from instructor.components import PvKeypad, Commands, Step, Row, Text, Image, \
     Confirm
 from instructor.constants import RB_JOG_1, VB_JOG_1, RB_MOVE_UP, \
     DUETTE_JOG_1, TWIST_MOVE_UP, ID_TEST_BLINDS
-from instructor.general import keypad_move_buttons
 from server.nordic import SAVE_POSITION_BOTTOM
 
 savepositionBottom = PvKeypad(30, ['okay'], 'okay',

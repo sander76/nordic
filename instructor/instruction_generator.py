@@ -1,13 +1,11 @@
 import os
 
-
 from instructor.components import ToJson, Instruction
-from instructor.m25s_duette import m25s_duette_free, m25s_duette_free_alt
-from instructor.m25s_vb import m25s_vb_free, m25s_vb_free_alt
-from instructor.roller import rollerblind1, rollerblind_old
-from instructor.twist import twist_old, twist
-
-from instructor.venetian import venetian16
+from instructor.products.m25s_duette import m25s_duette_free, m25s_duette_free_alt
+from instructor.products.m25s_vb import m25s_vb_free, m25s_vb_free_alt
+from instructor.products.roller import rollerblind1, rollerblind_old
+from instructor.products.twist import twist_old, twist
+from instructor.products.venetian import venetian16
 
 INSTRUCTION_VERSION = "1.6.7.1"
 

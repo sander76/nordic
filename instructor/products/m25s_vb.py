@@ -1,13 +1,13 @@
-from instructor.components import Product
-from instructor.connect import connect_m25s_vb
-from instructor.general import enter_program_mode_vb, test_blinds
-from instructor.initialise import initialise_vb
-from instructor.motor_direction import right_mount_vb, left_mount_vb
-from instructor.set_bottom_limit import set_bottom_limit_vb, \
+from instructor.actions.connect import connect_m25s_vb
+from instructor.actions.general import enter_program_mode_vb, test_blinds
+from instructor.actions.initialise import initialise_vb
+from instructor.actions.motor_direction import right_mount_vb, left_mount_vb
+from instructor.actions.set_bottom_limit import set_bottom_limit_vb, \
     re_set_bottom_limit_vb
-from instructor.set_top_limit import set_top_limit_vb, \
+from instructor.actions.set_top_limit import set_top_limit_vb, \
     set_top_limit_alternative_vb, confirm_top_limit_vb
-from instructor.skip_step import skiptop, skipbottom_end
+from instructor.actions.skip_step import skiptop, skipbottom_end
+from instructor.components import Product
 
 m25s_vb_free = Product("M25S VB Free", [connect_m25s_vb,
                                            initialise_vb,

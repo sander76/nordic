@@ -1,8 +1,8 @@
 import instructor.translations as tr
+from instructor.actions.general import keypad_move_buttons
 from instructor.components import PvKeypad, Commands, Step, Row, Text, \
     Image, Confirm, DelayedCommand, Spacer
 from instructor.constants import VB_JOG_1, RB_JOG_1, DUETTE_JOG_1
-from instructor.general import keypad_move_buttons
 from server.nordic import STARTPROGRAM, OPEN, SAVE_POSITION_TOP
 
 textrow = Row(Text(30, tr.MOVE_BLIND_TOP.add_number(1)),

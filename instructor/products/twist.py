@@ -1,18 +1,18 @@
 import instructor.translations as tr
-from instructor.components import Row, Text, PvKeypad, Step, Image, Confirm, \
-    DelayedCommand, Commands, Product
-from instructor.connect import connect_twist
-from instructor.constants import ID_TEST_BLINDS, TWIST_JOG_1
-from instructor.general import keypad_move_buttons, enter_program_mode, \
+from instructor.actions.connect import connect_twist
+from instructor.actions.general import keypad_move_buttons, enter_program_mode, \
     test_blinds, skipslat
-from instructor.initialise import initialise_twist
-from instructor.motor_direction import left_backroller, right_backroller, \
+from instructor.actions.initialise import initialise_twist
+from instructor.actions.motor_direction import left_backroller, right_backroller, \
     left_frontroller, right_frontroller, \
     blind_direction, switch_direction
-from instructor.set_bottom_limit import set_bottom_limit, \
+from instructor.actions.set_bottom_limit import set_bottom_limit, \
     re_set_bottom_limit_twist
-from instructor.set_top_limit import set_top_limit_roller
-from instructor.skip_step import skiptop, skipbottom_next
+from instructor.actions.set_top_limit import set_top_limit_roller
+from instructor.actions.skip_step import skiptop, skipbottom_next
+from instructor.components import Row, Text, PvKeypad, Step, Image, Confirm, \
+    DelayedCommand, Commands, Product
+from instructor.constants import ID_TEST_BLINDS, TWIST_JOG_1
 from server.nordic import NETWORKADD, GROUP_ADD, SAVE_SLAT_OPEN, RESET, TWIST
 
 '''Instruction to quickly make a rb a twist. Not user friendly !'''
