@@ -35,7 +35,7 @@ initialise_rb.instructions[1].col1.okay = Commands(
 #                      Confirm('/app/images/m25t_motor_jog2x.png', tr._did_the_motor_jog_two_times))
 
 initialise_twist = get_initialise(TWIST_JOG_2)
-initialise_rb.instructions[1].col1.okay = Commands(
+initialise_twist.instructions[1].col1.okay = Commands(
     RESET, DelayedCommand(TWIST, PRODUCT_SET_DELAY))
 
 # initialise_twist = Step(tr._initialise,
