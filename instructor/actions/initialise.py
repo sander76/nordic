@@ -8,20 +8,24 @@ from server.nordic import M25S_VENETIAN_16MM, RESET, M25S_DUETTE_FREE, \
 textrow = Row(Text(30, tr.PRESS_OKAY_BUTTON.add_number(1)),
               Text(30, tr.WATCH_THE_BLIND_JOG_TWO_TIMES.add_number(2)))
 
+PRODUCT_SET_DELAY = 6
+
 
 def get_initialise(jog_image):
     return Step(tr.INITIALISE,
                 [textrow,
                  Row(PvKeypad(30, ['okay'], 'okay',
-                              Commands(RESET, DelayedCommand(ROLLER, 4))),
+                              Commands(RESET,
+                                       DelayedCommand(ROLLER,
+                                                      PRODUCT_SET_DELAY))),
                      Image(30, jog_image))
                  ],
                 Confirm(jog_image, tr.DID_THE_MOTOR_JOG_TWO_TIMES))
 
 
 initialise_rb = get_initialise(RB_JOG_2)
-initialise_rb.instructions[1].col1.okay = Commands(RESET,
-                                                   DelayedCommand(ROLLER, 4))
+initialise_rb.instructions[1].col1.okay = Commands(
+    RESET, DelayedCommand(ROLLER, PRODUCT_SET_DELAY))
 
 # initialise_rb = Step(tr._initialise,
 #                      [textrow,
@@ -31,8 +35,8 @@ initialise_rb.instructions[1].col1.okay = Commands(RESET,
 #                      Confirm('/app/images/m25t_motor_jog2x.png', tr._did_the_motor_jog_two_times))
 
 initialise_twist = get_initialise(TWIST_JOG_2)
-initialise_rb.instructions[1].col1.okay = Commands(RESET,
-                                                   DelayedCommand(TWIST, 4))
+initialise_rb.instructions[1].col1.okay = Commands(
+    RESET, DelayedCommand(TWIST, PRODUCT_SET_DELAY))
 
 # initialise_twist = Step(tr._initialise,
 #                         [textrow,
@@ -43,7 +47,7 @@ initialise_rb.instructions[1].col1.okay = Commands(RESET,
 
 initialise_vb = get_initialise(VB_JOG_2)
 initialise_vb.instructions[1].col1.okay = Commands(RESET, DelayedCommand(
-    M25S_VENETIAN_16MM, 6))
+    M25S_VENETIAN_16MM, PRODUCT_SET_DELAY))
 
 # initialise_vb = Step(tr._initialise,
 #                      [Row(Text(30, tr._press_okay_button.add_number(1)),
@@ -55,7 +59,7 @@ initialise_vb.instructions[1].col1.okay = Commands(RESET, DelayedCommand(
 
 initialise_duette = get_initialise(DUETTE_JOG_2)
 initialise_duette.instructions[1].col1.okay = Commands(RESET, DelayedCommand(
-    M25S_DUETTE_FREE, 6))
+    M25S_DUETTE_FREE, PRODUCT_SET_DELAY))
 
 # initialise_duette = Step(tr._initialise,
 #                          [Row(Text(30, tr._press_okay_button.add_number(1)),
@@ -70,7 +74,7 @@ initialise_duette_tensioned.instructions[1].col1.okay = Commands(
     RESET,
     DelayedCommand(
         M25S_DUETTE_TENSIONED,
-        6))
+        PRODUCT_SET_DELAY))
 
 # initialise_duette_tensioned = Step(tr._initialise,
 #                                    [Row(Text(30, tr._press_okay_button.add_number(1)),

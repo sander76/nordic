@@ -36,3 +36,7 @@
 ## Version 1.6.7.1
 
 - Working on adding M25 S
+
+## Version 1.6.7.2
+
+- Adding longer delay after reset.
