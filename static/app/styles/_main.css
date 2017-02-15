@@ -18,7 +18,10 @@ body {
 paper-item {
     cursor: pointer;
 }
-
+ .logo{
+     margin: 10 10 10 10;
+     
+ }
 
 /*paper-item {
   --paper-item: {

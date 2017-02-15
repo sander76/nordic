@@ -44,3 +44,8 @@
 ## Version 1.6.7.3
 
 - Adding vb 16 blind.
+
+## Version 1.6.8
+
+- Adding logo.
+- Improving scaling on different screen sizes.
