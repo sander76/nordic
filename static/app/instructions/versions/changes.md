@@ -40,3 +40,7 @@
 ## Version 1.6.7.2
 
 - Adding longer delay after reset.
+
+## Version 1.6.7.3
+
+- Adding vb 16 blind.

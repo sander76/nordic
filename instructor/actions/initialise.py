@@ -3,7 +3,7 @@ from instructor.components import Row, Text, PvKeypad, Step, Image, Confirm, \
     DelayedCommand, Commands
 from instructor.constants import RB_JOG_2, TWIST_JOG_2, VB_JOG_2, DUETTE_JOG_2
 from server.nordic import M25S_VENETIAN_16MM, RESET, M25S_DUETTE_FREE, \
-    M25S_DUETTE_TENSIONED, ROLLER, TWIST
+    M25S_DUETTE_TENSIONED, ROLLER, TWIST, M25S_VENETIAN_25MM
 
 textrow = Row(Text(30, tr.PRESS_OKAY_BUTTON.add_number(1)),
               Text(30, tr.WATCH_THE_BLIND_JOG_TWO_TIMES.add_number(2)))
@@ -45,9 +45,14 @@ initialise_twist.instructions[1].col1.okay = Commands(
 #                          ],
 #                         Confirm('/app/images/m25t_motor_jog2x.png', tr._did_the_motor_jog_two_times))
 
-initialise_vb = get_initialise(VB_JOG_2)
-initialise_vb.instructions[1].col1.okay = Commands(RESET, DelayedCommand(
+initialise_vb_16 = get_initialise(VB_JOG_2)
+initialise_vb_16.instructions[1].col1.okay = Commands(RESET, DelayedCommand(
     M25S_VENETIAN_16MM, PRODUCT_SET_DELAY))
+
+initialise_vb_25 = get_initialise(VB_JOG_2)
+initialise_vb_25.instructions[1].col1.okay = Commands(RESET, DelayedCommand(
+    M25S_VENETIAN_25MM, PRODUCT_SET_DELAY))
+
 
 # initialise_vb = Step(tr._initialise,
 #                      [Row(Text(30, tr._press_okay_button.add_number(1)),
