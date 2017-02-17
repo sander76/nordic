@@ -8,9 +8,11 @@ from server.messenger import BaseMessenger
 
 
 class WebSocketMessenger(BaseMessenger):
+    @asyncio.coroutine
     def send_message(self, message):
-        self.send_socket_message(message)
+        yield from self.send_socket_message(message)
 
+    @asyncio.coroutine
     def send_socket_message(self,message):
         for ws in app['sockets']:
             ws.send_str(json.dumps(message))

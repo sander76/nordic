@@ -32,9 +32,11 @@ def byte_to_string_rep(byte_instance):
 
 
 class NordicSerial:
-    def __init__(self, loop, serial_port, serial_speed, network_id, try_delay=TRYDELAY, messengers=Messengers()):
+    def __init__(self, loop, serial_port, serial_speed, network_id,
+                 try_delay=TRYDELAY, messengers=None):
         # self.network_id = b'\x00\x03I' + network_id
-        self.network_id = byte_to_string_rep(network_id)  # string representation of the network id. in hex.
+        self.network_id = byte_to_string_rep(
+            network_id)  # string representation of the network id. in hex.
         self.id_change = b'\x00\x03I' + network_id  # the bytes object to send to nordic to change the network id of the dongle.
         self.s = Serial()
         self.serial_port = serial_port
@@ -49,40 +51,43 @@ class NordicSerial:
         self.attempt = 1
         self.send_lock = asyncio.Lock(loop=self.loop)
 
+    @asyncio.coroutine
     def send_connection_status(self, connected, network_id):
-        self.messengers.send_message({"nordic": connected, "networkid": network_id})
+        yield from self.messengers.send_message(
+            {"nordic": connected, "networkid": network_id})
 
     # handler
     @asyncio.coroutine
     def connect(self):
-        # lgr.info("Connecting to serial port: {}".format(self.serial_port))
-        # attempt = 1
+        """Continuously trying to connect to the serial port in a loop."""
         refresh_count = 1
         while True:
             if self.s.is_open:
                 if refresh_count > 10:
-                    self.send_connection_status(True, self.network_id)
+                    yield from self.send_connection_status(True,
+                                                           self.network_id)
+                    refresh_count = 1
                 else:
                     refresh_count += 1
-                    # lgr.info("****************** Already Connected **************************")
-
             else:
                 yield from self._connect()
             yield from asyncio.sleep(self.trydelay)
 
     @asyncio.coroutine
     def _connect(self):
+
         try:
-            lgr.info("Connecting to serial port {}. Attempt: {}".format(self.serial_port, self.attempt))
+            lgr.info("Connecting to serial port {}. Attempt: {}".format(
+                self.serial_port, self.attempt))
             self.s.open()
             self.loop.create_task(self.get_from_serial_port())
             yield from self._write_to_nordic(self.id_change)
-            self.send_connection_status(True, self.network_id)
+            yield from self.send_connection_status(True, self.network_id)
             self.resetting = False
         except SerialException:
             lgr.error("serial port opening problem.")
             self.attempt += 1
-            self.send_connection_status(False, "unknown")
+            yield from self.send_connection_status(False, "unknown")
 
     # the method which gets wrapped in the asyncio thread executor.
     def get_byte(self):
@@ -95,7 +100,6 @@ class NordicSerial:
     # Runs blocking function in executor, yielding the result
     @asyncio.coroutine
     def get_byte_async(self):
-        # try:
         with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
             res = yield from self.loop.run_in_executor(executor, self.get_byte)
             return res
@@ -108,7 +112,7 @@ class NordicSerial:
                 lgr.info("incoming: {}".format(b))
                 self.incoming = True
                 _from = from_string(None, b)
-                self.messengers.send_message(_from)
+                yield from self.messengers.send_message(_from)
             except SerialException as e:
                 if not self.resetting:
                     yield from self.reset_serial()
@@ -119,7 +123,7 @@ class NordicSerial:
     def reset_serial(self):
         self.resetting = True
         self.s.close()
-        self.send_connection_status(False, None)
+        yield from self.send_connection_status(False, None)
 
     @asyncio.coroutine
     def _write_to_nordic(self, upstring):
@@ -128,7 +132,7 @@ class NordicSerial:
             self.s.write(upstring)
             _up = up_string(None, upstring)
             lgr.debug(_up)
-            self.messengers.send_message(_up)
+            yield from self.messengers.send_message(_up)
             yield from self._incoming_check()
 
     @asyncio.coroutine
@@ -140,7 +144,7 @@ class NordicSerial:
             if self.incoming:
                 self.incoming = False
                 return
-            yield from asyncio.sleep(1)
+            yield from asyncio.sleep(0.5)
             tries += 1
         # incoming should be true after something has been sent.
         # resetting connection:
