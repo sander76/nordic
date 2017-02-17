@@ -59,8 +59,8 @@ if __name__ == "__main__":
     network_id = get_id()
     #    network_id = b"N"
     ws_messenger = WebSocketMessenger()
-    messengers = Messengers()
-    messengers.append(ws_messenger)
+    messengers = Messengers(app.loop)
+    messengers.messengers.append(ws_messenger)
     serial = nordic_serial.NordicSerial(
         app.loop, SERIAL_PORT, SERIAL_SPEED, network_id, messengers=messengers)
 

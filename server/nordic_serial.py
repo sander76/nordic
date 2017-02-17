@@ -1,3 +1,8 @@
+"""
+All serial handling with the nordic dongle.
+
+"""
+
 import asyncio
 import concurrent
 import time
@@ -145,6 +150,9 @@ class NordicSerial:
     def send_nordic(self, request):
         rq = yield from request.json()
         commands = rq['commands']
+        # incoming is a list of commands. First command has simpler structure
+        # parsing is simpler so this bool keeps track whether to do the
+        # first parsing or the other parsing.
         first = True
         for cmd in commands:
             if first:
@@ -156,6 +164,7 @@ class NordicSerial:
                 delay = cmd.get('delay', SLEEP_BETWEEN_COMMANDS)
                 yield from asyncio.sleep(delay)
             try:
+                # send the upstring command to the serial port.
                 yield from self._write_to_nordic(upstring)
             except SerialException:
                 lgr.exception("writing to serial port failure.")
