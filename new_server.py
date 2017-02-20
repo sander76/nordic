@@ -24,7 +24,7 @@ def instruction_handler(request):
         lgr.info("opening from default location.")
         with open("static/app/instructions/{}".format(fl)) as fl:
             _js = json.load(fl)
-    except FileNotFoundError as e:
+    except FileNotFoundError:
         lgr.info("file not found. Now checking custom location.")
         with open("custom_instructions/{}".format(fl)) as fl:
             _js = json.load(fl)
@@ -57,7 +57,6 @@ if __name__ == "__main__":
     lgr.info("***** start logging ******")
 
     network_id = get_id()
-    #    network_id = b"N"
     ws_messenger = WebSocketMessenger()
     messengers = Messengers(app.loop)
     messengers.messengers.append(ws_messenger)

@@ -118,6 +118,10 @@ class NordicSerial:
 
     @asyncio.coroutine
     def _write_to_nordic(self):
+        """ Coroutine which is added to the main event loop.
+        It checks a queue for data to be sent to the nordic chip.
+        Also starts an incoming check to see whether a response is coming in.
+        If not the nordic connection will be reset."""
         while 1:
             # check the message queue for messages.
             upstring = yield from self.send_queue.get()
