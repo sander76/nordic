@@ -125,8 +125,8 @@ class NordicSerial:
         while 1:
             # check the message queue for messages.
             upstring = yield from self.send_queue.get()
-            lgr.debug("queue size: {}".format(self.send_queue.qsize()))
-            self.send_queue.task_done()
+            # lgr.debug("queue size: {}".format(self.send_queue.qsize()))
+            # self.send_queue.task_done()
             self.incoming = False
             sent = False
             while not sent:

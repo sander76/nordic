@@ -34,7 +34,7 @@ class Messengers:
         while 1:
             # check the message queue for messages.
             message = yield from self._messages.get()
-            self._messages.task_done()
+            # self._messages.task_done()
             yield from self._send_message(message)
 
     @asyncio.coroutine
