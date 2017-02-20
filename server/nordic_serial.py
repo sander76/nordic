@@ -4,15 +4,13 @@ All serial handling with the nordic dongle.
 """
 
 import asyncio
-import concurrent
 import time
+from threading import Thread
 
 from aiohttp import web
 from serial import Serial
-from serial.serialutil import SerialException, portNotOpenError
+from serial.serialutil import SerialException
 from server.constants import TRYDELAY, SLEEP_BETWEEN_COMMANDS
-from server.helpers import from_string, up_string
-from server.messenger import Messengers
 from server.nordic import COMMANDS
 
 import logging
@@ -23,7 +21,7 @@ lgr = logging.getLogger(__name__)
 def byte_to_string_rep(byte_instance):
     string_rep = []
     for bt in byte_instance:
-        if bt >= 32 and bt < 127:
+        if 32 <= bt < 127:
             string_rep.append(chr(bt))
         else:
             string_rep.append(hex(bt))
@@ -34,120 +32,120 @@ def byte_to_string_rep(byte_instance):
 class NordicSerial:
     def __init__(self, loop, serial_port, serial_speed, network_id,
                  try_delay=TRYDELAY, messengers=None):
-        # self.network_id = b'\x00\x03I' + network_id
         self.network_id = byte_to_string_rep(
             network_id)  # string representation of the network id. in hex.
-        self.id_change = b'\x00\x03I' + network_id  # the bytes object to send to nordic to change the network id of the dongle.
+        self.id_change = b'\x00\x03I' + network_id
         self.s = Serial()
-        self.serial_port = serial_port
         self.s.port = serial_port
         self.s.baudrate = serial_speed
-        self.trydelay = try_delay
-        self.loop = loop
+        self.trydelay = try_delay  # Delay time between connection tries
+        self.loop = loop  # The main event loop.
         self.loop.create_task(self.connect())
+        self.loop.create_task(self._write_to_nordic())
         self.messengers = messengers
         self.incoming = False
-        self.resetting = False
-        self.attempt = 1
-        self.send_lock = asyncio.Lock(loop=self.loop)
+        self.connect_attempts = 1
+        self.send_queue = asyncio.Queue(loop=loop)
+        self.refresh_count = 1
+        t = Thread(target=self.get_byte)
+        t.start()
 
     @asyncio.coroutine
     def send_connection_status(self, connected, network_id):
         yield from self.messengers.send_message(
             {"nordic": connected, "networkid": network_id})
 
-    # handler
     @asyncio.coroutine
     def connect(self):
         """Continuously trying to connect to the serial port in a loop."""
-        refresh_count = 1
         while True:
             if self.s.is_open:
-                if refresh_count > 10:
+                if self.refresh_count > 10:
                     yield from self.send_connection_status(True,
                                                            self.network_id)
-                    refresh_count = 1
+                    self.refresh_count = 1
                 else:
-                    refresh_count += 1
+                    self.refresh_count += 1
             else:
                 yield from self._connect()
             yield from asyncio.sleep(self.trydelay)
 
     @asyncio.coroutine
     def _connect(self):
-
+        """Connects to the serial port and prepares the nordic
+        for sending commands to the blinds."""
         try:
             lgr.info("Connecting to serial port {}. Attempt: {}".format(
-                self.serial_port, self.attempt))
+                self.s.port, self.connect_attempts))
             self.s.open()
-            self.loop.create_task(self.get_from_serial_port())
-            yield from self._write_to_nordic(self.id_change)
+            # The nordic chip has been reset.
+            yield from self.send_queue.put(self.id_change)
             yield from self.send_connection_status(True, self.network_id)
-            self.resetting = False
         except SerialException:
             lgr.error("serial port opening problem.")
-            self.attempt += 1
+            self.connect_attempts += 1
             yield from self.send_connection_status(False, "unknown")
 
-    # the method which gets wrapped in the asyncio thread executor.
     def get_byte(self):
-        data = self.s.read(1)
-        time.sleep(0.5)
-        tst = self.s.read(self.s.inWaiting())
-        data += tst
-        return data
-
-    # Runs blocking function in executor, yielding the result
-    @asyncio.coroutine
-    def get_byte_async(self):
-        with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
-            res = yield from self.loop.run_in_executor(executor, self.get_byte)
-            return res
-
-    @asyncio.coroutine
-    def get_from_serial_port(self):
+        """Method to be run inside a separate thread continuously checking
+        incoming data. When incoming data is captured it is sent
+        back to the main event loop."""
         while 1:
             try:
-                b = yield from self.get_byte_async()
-                lgr.info("incoming: {}".format(b))
-                self.incoming = True
-                _from = from_string(None, b)
-                yield from self.messengers.send_message(_from)
-            except SerialException as e:
-                if not self.resetting:
-                    yield from self.reset_serial()
-                break
-        return
+                data = self.s.read(1)
+                time.sleep(0.5)
+                tst = self.s.read(self.s.inWaiting())
+                data += tst
+                # run coroutine in main loop with the captured serial data.
+                asyncio.run_coroutine_threadsafe(
+                    self.set_incoming_serial(data), self.loop)
+            except SerialException:
+                lgr.error("error reading from serial port")
+                time.sleep(1)
+
+    @asyncio.coroutine
+    def set_incoming_serial(self, data):
+        """Method to be called from the serial thread capturing input.
+        This method notifies the main loop that data has come in from
+        the serial port."""
+        self.incoming = True
+        yield from self.messengers.send_incoming_data(data)
 
     @asyncio.coroutine
     def reset_serial(self):
-        self.resetting = True
         self.s.close()
         yield from self.send_connection_status(False, None)
 
     @asyncio.coroutine
-    def _write_to_nordic(self, upstring):
-        with (yield from self.send_lock):
+    def _write_to_nordic(self):
+        while 1:
+            # check the message queue for messages.
+            upstring = yield from self.send_queue.get()
+            lgr.debug("queue size: {}".format(self.send_queue.qsize()))
+            self.send_queue.task_done()
             self.incoming = False
-            self.s.write(upstring)
-            _up = up_string(None, upstring)
-            lgr.debug(_up)
-            yield from self.messengers.send_message(_up)
+            sent = False
+            while not sent:
+                try:
+                    self.s.write(upstring)
+                    sent = True
+                except SerialException:
+                    lgr.debug("serial port not open. Retrying...")
+                    yield from asyncio.sleep(1)
+            yield from self.messengers.send_outgoing_data(upstring)
             yield from self._incoming_check()
+
 
     @asyncio.coroutine
     def _incoming_check(self):
         tries = 0
-        while tries < 4:
-            if self.resetting:
-                return
+        while tries < 6:
             if self.incoming:
                 self.incoming = False
                 return
             yield from asyncio.sleep(0.5)
             tries += 1
-        # incoming should be true after something has been sent.
-        # resetting connection:
+        # No incoming data detected. Resetting connection.
         yield from self.reset_serial()
 
     @asyncio.coroutine
@@ -155,7 +153,7 @@ class NordicSerial:
         rq = yield from request.json()
         commands = rq['commands']
         # incoming is a list of commands. First command has simpler structure
-        # parsing is simpler so this bool keeps track whether to do the
+        # and parsing is simpler so this bool keeps track whether to do the
         # first parsing or the other parsing.
         first = True
         for cmd in commands:
@@ -167,11 +165,5 @@ class NordicSerial:
                 # get the delay value or use default SLEEP_BETWEEN_COMMANDS
                 delay = cmd.get('delay', SLEEP_BETWEEN_COMMANDS)
                 yield from asyncio.sleep(delay)
-            try:
-                # send the upstring command to the serial port.
-                yield from self._write_to_nordic(upstring)
-            except SerialException:
-                lgr.exception("writing to serial port failure.")
-                if not self.resetting:
-                    yield from self.reset_serial()
+            yield from self.send_queue.put(upstring)
         return web.Response(body=b"okay")

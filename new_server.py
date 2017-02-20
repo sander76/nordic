@@ -10,13 +10,13 @@ from server.constants import SERIAL_SPEED
 
 from server.id_generator import get_id
 from server.messenger import Messengers
-from server.mylogger import setup_logging
+from server.mylogger.mylogger import setup_logging
 from server.websocket import websocket_handler, WebSocketMessenger
 import asyncio
 import json
 
 
-# @asyncio.coroutine
+@asyncio.coroutine
 def instruction_handler(request):
     lang = request.match_info.get('lang', 'en')
     fl = "instructions-{}.json".format(lang)

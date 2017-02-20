@@ -3,8 +3,8 @@ import json
 
 from aiohttp.web import WebSocketResponse, MsgType
 
-from server.app import app
-from server.messenger import BaseMessenger
+from .app import app
+from .messenger import BaseMessenger
 
 
 class WebSocketMessenger(BaseMessenger):
@@ -13,7 +13,7 @@ class WebSocketMessenger(BaseMessenger):
         yield from self.send_socket_message(message)
 
     @asyncio.coroutine
-    def send_socket_message(self,message):
+    def send_socket_message(self, message):
         for ws in app['sockets']:
             ws.send_str(json.dumps(message))
 
@@ -23,7 +23,7 @@ def websocket_handler(request):
     resp = WebSocketResponse()
     yield from resp.prepare(request)
     request.app['sockets'].append(resp)
-    #resp.send_str("connected")
+    # resp.send_str("connected")
     while True:
         msg = yield from resp.receive()
         if msg.tp == MsgType.text:
@@ -34,4 +34,3 @@ def websocket_handler(request):
             break
     request.app["sockets"].remove(resp)
     return resp
-

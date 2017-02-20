@@ -55,26 +55,6 @@ COMMANDS = {
     M25S_DUETTE_FREE: b'\x00\x04#DS\x06',
     M25S_DUETTE_TENSIONED: b'\x00\x04#DSF'
 }
-#
-# COMMANDS = {
-#     "open": {"up": b'\x00\x03RU\x00', "down": b'\x03\RU\x00'},
-#     "close": {"up": b'\x00\x03RD\x00'},
-#     "tiltopen": {"up": b'\x00\x03RR\x00'},
-#     "tiltclose": {"up": b'\x00\x03RL\x00'},
-#     "stop": {"up": b'\x00\x03RS\x00'},
-#     "jog": {"up": b'\x00\x03cj.1'},
-#     "connect": {"up": b'\x00\x01N\x00\x01A'},  # a network add and a add group 1 command combined.
-#     "networkadd": {"up": b'\x00\x01N'},
-#     "group1add": {"up": b'\x00\x01A'},
-#     "reset": {"up": b'\x00\x03#@r'},
-#     "roller": {"up": b'\x00\x04#DS*'},
-#     "twist": {"up": b'\x00\x04#DS,'},
-#     "startprogram": {"up": b'\x00\x04#LPE'},
-#     "savepositiontop": {"up": b'\x00\x04#LPO'},
-#     "savepositionbottom": {"up": b'\x00\x04#LPC'},
-#     "saveslatopen": {"up": b'\x00\x04#LTO'},
-#     "reverse": {"up": b'\x00\x02#x'}
-# }
 
 if __name__ == "__main__":
     import argparse

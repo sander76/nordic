@@ -7,12 +7,12 @@ lgr = logging.getLogger(__name__)
 class BaseMessenger:
     @asyncio.coroutine
     def send_message(self, message):
-        lgr.info("sending message: {}".message)
+        lgr.debug("sending message: {}".format(message))
 
 
 class Messengers:
     def __init__(self, loop):
-        self.messengers = []
+        self.messengers = [BaseMessenger()]
         self._messages = asyncio.Queue(loop=loop)
         loop.create_task(self._check_queue())
 
@@ -21,11 +21,20 @@ class Messengers:
         yield from self._messages.put(message)
 
     @asyncio.coroutine
+    def send_outgoing_data(self, message):
+        yield from self._messages.put({"to": str(message)})
+
+    @asyncio.coroutine
+    def send_incoming_data(self, message):
+        yield from self._messages.put({"from": str(message)})
+
+    @asyncio.coroutine
     def _check_queue(self):
         """continuously check for incoming messages."""
         while 1:
             # check the message queue for messages.
             message = yield from self._messages.get()
+            self._messages.task_done()
             yield from self._send_message(message)
 
     @asyncio.coroutine

@@ -19,16 +19,16 @@ def _from_int(network_id):
 
 def _create_id():
     import random
-    id = random.randint(0, 65534)
-    return id
+    _id = random.randint(0, 65534)
+    return _id
 
 
 def _try_load_id():
     import json
     with open(ID_FILE, 'r') as fl:
         js = json.load(fl)
-        id = js["network_id_int"]
-        return id
+        _id = js["network_id_int"]
+        return _id
 
 
 def _save_id(int_id):
