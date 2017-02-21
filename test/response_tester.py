@@ -3,17 +3,17 @@ import asyncio
 import logging
 import argparse
 
-from server.messenger import Messengers
+from ..server.messenger import Messengers
 
-from server.constants import SERIAL_SPEED
-from server.id_generator import get_id
-import server.nordic
-from server.nordic import COMMANDS
-from server.nordic_serial import NordicSerial
+from ..server.constants import SERIAL_SPEED
+from ..server.id_generator import get_id
+from ..server import nordic
+from ..server.nordic import COMMANDS
+from ..server.nordic_serial import NordicSerial
 
 
 def keys():
-    _keys = (server.nordic.OPEN, server.nordic.CLOSE, server.nordic.STOP,
+    _keys = (nordic.OPEN, nordic.CLOSE, nordic.STOP,
              b'\x00\x03RU')
     i = 0
     for _key in _keys:
