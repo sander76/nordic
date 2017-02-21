@@ -3,7 +3,7 @@ import asyncio
 import logging
 import argparse
 
-from . import nordic
+from server import nordic
 from .messenger import Messengers
 
 from .constants import SERIAL_SPEED
