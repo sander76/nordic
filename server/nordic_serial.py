@@ -97,19 +97,24 @@ class NordicSerial:
                 tst = self.s.read(self.s.inWaiting())
                 data += tst
                 # run coroutine in main loop with the captured serial data.
-                asyncio.run_coroutine_threadsafe(
-                    self.set_incoming_serial(data), self.loop)
+                self.loop.call_soon_threadsafe(self.set_incoming_serial,data,)
+                # asyncio.run_coroutine_threadsafe(
+                #     self.set_incoming_serial(data), self.loop)
             except SerialException:
                 lgr.error("error reading from serial port")
                 time.sleep(1)
 
-    @asyncio.coroutine
-    def set_incoming_serial(self, data):
-        """Method to be called from the serial thread capturing input.
-        This method notifies the main loop that data has come in from
-        the serial port."""
-        self.incoming = True
-        yield from self.messengers.send_incoming_data(data)
+    # @asyncio.coroutine
+    # def set_incoming_serial(self, data):
+    #     """Method to be called from the serial thread capturing input.
+    #     This method notifies the main loop that data has come in from
+    #     the serial port."""
+    #     self.incoming = True
+    #     yield from self.messengers.send_incoming_data(data)
+
+    def set_incoming_serial(self,data):
+        self.incoming=True
+        self.loop.create_task(self.messengers.send_incoming_data(data))
 
     @asyncio.coroutine
     def reset_serial(self):
