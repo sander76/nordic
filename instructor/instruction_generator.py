@@ -9,7 +9,7 @@ from instructor.products.test_products import test1
 from instructor.products.twist import twist_old, twist
 # from instructor.products.venetian import venetian16
 
-INSTRUCTION_VERSION = "1.6.8"
+INSTRUCTION_VERSION = "1.6.9"
 
 
 def make_luxaflex_nl(path):
