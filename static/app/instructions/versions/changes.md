@@ -49,3 +49,8 @@
 
 - Adding logo.
 - Improving scaling on different screen sizes.
+
+## Version 1.6.9
+
+- Improving serial port connection
+- Disabling text selection to improve touch experience.
