@@ -5,16 +5,19 @@ lgr = logging.getLogger(__name__)
 
 
 class BaseMessenger:
+    def __init__(self, app):
+        self.app = app
+
     @asyncio.coroutine
     def send_message(self, message):
         lgr.debug("sending message: {}".format(message))
 
 
 class Messengers:
-    def __init__(self, loop):
-        self.messengers = [BaseMessenger()]
-        self._messages = asyncio.Queue(loop=loop)
-        loop.create_task(self._check_queue())
+    def __init__(self, app):
+        self.messengers = [BaseMessenger(app)]
+        self._messages = asyncio.Queue(loop=app.loop)
+        app.loop.create_task(self._check_queue())
 
     @asyncio.coroutine
     def send_message(self, message):

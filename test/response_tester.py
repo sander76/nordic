@@ -4,13 +4,13 @@ import logging
 import argparse
 
 from server import nordic
-from .messenger import Messengers
+from server.messenger import Messengers
 
-from .constants import SERIAL_SPEED
-from .id_generator import get_id
+from server.constants import SERIAL_SPEED
+from server.id_generator import get_id
 
-from .nordic import COMMANDS
-from .nordic_serial import NordicSerial
+from server.nordic import COMMANDS
+from server.nordic_serial import NordicSerial
 
 
 def keys():
