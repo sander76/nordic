@@ -47,8 +47,8 @@ class NordicSerial:
         self.connect_attempts = 1
         self.send_queue = asyncio.Queue(loop=loop)
         self.refresh_count = 1
-        t = Thread(target=self.get_byte)
-        t.start()
+        self.t = Thread(target=self.get_byte)
+        self.t.start()
 
     @asyncio.coroutine
     def send_connection_status(self, connected, network_id):
