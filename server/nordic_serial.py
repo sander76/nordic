@@ -11,7 +11,8 @@ from aiohttp import web
 from serial import Serial
 from serial.serialutil import SerialException
 from server.constants import TRYDELAY, SLEEP_BETWEEN_COMMANDS
-from server.nordic import COMMANDS
+import server.nordic
+
 
 import logging
 
@@ -28,6 +29,7 @@ def byte_to_string_rep(byte_instance):
     _string_rep = ''.join(string_rep)
     return _string_rep
 
+NORDIC_COMMANDS = server.nordic.__dict__
 
 class NordicSerial:
     def __init__(self, loop, serial_port, serial_speed, network_id,
@@ -167,10 +169,10 @@ class NordicSerial:
         first = True
         for cmd in commands:
             if first:
-                upstring = COMMANDS.get(cmd)
+                upstring = NORDIC_COMMANDS.get(cmd)
                 first = False
             else:
-                upstring = COMMANDS.get(cmd['command'])
+                upstring = NORDIC_COMMANDS.get(cmd['command'])
                 # get the delay value or use default SLEEP_BETWEEN_COMMANDS
                 delay = cmd.get('delay', SLEEP_BETWEEN_COMMANDS)
                 yield from asyncio.sleep(delay)
