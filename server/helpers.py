@@ -29,5 +29,3 @@ def view_factory(url, path):
     return static_view
 
 
-
-
