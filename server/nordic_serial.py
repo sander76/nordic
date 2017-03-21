@@ -11,6 +11,8 @@ from aiohttp import web
 from serial import Serial
 from serial.serialutil import SerialException
 from server.constants import TRYDELAY, SLEEP_BETWEEN_COMMANDS
+from server.nordic import Nd
+
 from server.id_generator import get_id
 from server.nordic import COMMANDS
 
@@ -180,10 +182,10 @@ class NordicSerial:
         first = True
         for cmd in commands:
             if first:
-                upstring = COMMANDS.get(cmd)
+                upstring = Nd[cmd].value
                 first = False
             else:
-                upstring = COMMANDS.get(cmd['command'])
+                upstring = Nd[cmd['command']].value
                 # get the delay value or use default SLEEP_BETWEEN_COMMANDS
                 delay = cmd.get('delay', SLEEP_BETWEEN_COMMANDS)
                 yield from asyncio.sleep(delay)

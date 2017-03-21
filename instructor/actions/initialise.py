@@ -1,9 +1,9 @@
 import instructor.translations as tr
 from instructor.components import Row, Text, PvKeypad, Step, Image, Confirm, \
     DelayedCommand, Commands
-from instructor.constants import RB_JOG_2, TWIST_JOG_2, VB_JOG_2, DUETTE_JOG_2
-from server.nordic import M25S_VENETIAN_16MM, RESET, M25S_DUETTE_FREE, \
-    M25S_DUETTE_TENSIONED, ROLLER, TWIST, M25S_VENETIAN_25MM
+from instructor.constants import RB_JOG_2, TWIST_JOG_2, VB_JOG_2, \
+    DUETTE_JOG_2, VVB_JOG_1, PLEATED_JOG_2
+from server.nordic import Nd
 
 textrow = Row(Text(30, tr.PRESS_OKAY_BUTTON.add_number(1)),
               Text(30, tr.WATCH_THE_BLIND_JOG_TWO_TIMES.add_number(2)))
@@ -11,12 +11,12 @@ textrow = Row(Text(30, tr.PRESS_OKAY_BUTTON.add_number(1)),
 PRODUCT_SET_DELAY = 6
 
 
-def get_initialise(jog_image):
+def get_initialise(jog_image, product_command=Nd.M25T_ROLLER):
     return Step(tr.INITIALISE,
                 [textrow,
                  Row(PvKeypad(30, ['okay'], 'okay',
-                              Commands(RESET,
-                                       DelayedCommand(ROLLER,
+                              Commands(Nd.RESET,
+                                       DelayedCommand(product_command,
                                                       PRODUCT_SET_DELAY))),
                      Image(30, jog_image))
                  ],
@@ -25,67 +25,44 @@ def get_initialise(jog_image):
 
 initialise_rb = get_initialise(RB_JOG_2)
 initialise_rb.instructions[1].col1.okay = Commands(
-    RESET, DelayedCommand(ROLLER, PRODUCT_SET_DELAY))
-
-# initialise_rb = Step(tr._initialise,
-#                      [textrow,
-#                       Row(PvKeypad(30, ['okay'], 'okay', Commands(RESET, DelayedCommand(ROLLER, 4))),
-#                           Image(30, "/app/images/m25t_motor_jog2x.png"))
-#                       ],
-#                      Confirm('/app/images/m25t_motor_jog2x.png', tr._did_the_motor_jog_two_times))
+    Nd.RESET, DelayedCommand(Nd.M25T_ROLLER, PRODUCT_SET_DELAY))
 
 initialise_twist = get_initialise(TWIST_JOG_2)
 initialise_twist.instructions[1].col1.okay = Commands(
-    RESET, DelayedCommand(TWIST, PRODUCT_SET_DELAY))
-
-# initialise_twist = Step(tr._initialise,
-#                         [textrow,
-#                          Row(PvKeypad(30, ['okay'], 'okay', Commands(RESET, DelayedCommand(TWIST, 4))),
-#                              Image(30, "/app/images/m25t_motor_jog2x.png"))
-#                          ],
-#                         Confirm('/app/images/m25t_motor_jog2x.png', tr._did_the_motor_jog_two_times))
+    Nd.RESET, DelayedCommand(Nd.TWIST, PRODUCT_SET_DELAY))
 
 initialise_vb_16 = get_initialise(VB_JOG_2)
-initialise_vb_16.instructions[1].col1.okay = Commands(RESET, DelayedCommand(
-    M25S_VENETIAN_16MM, PRODUCT_SET_DELAY))
+initialise_vb_16.instructions[1].col1.okay = Commands(Nd.RESET, DelayedCommand(
+    Nd.M25S_VENETIAN_16MM, PRODUCT_SET_DELAY))
 
 initialise_vb_25 = get_initialise(VB_JOG_2)
-initialise_vb_25.instructions[1].col1.okay = Commands(RESET, DelayedCommand(
-    M25S_VENETIAN_25MM, PRODUCT_SET_DELAY))
-
-
-# initialise_vb = Step(tr._initialise,
-#                      [Row(Text(30, tr._press_okay_button.add_number(1)),
-#                           Text(30, tr._watch_the_blind_jog_two_times.add_number(2))),
-#                       Row(PvKeypad(30, ['okay'], 'okay', Commands(RESET, DelayedCommand(M25S_VENETIAN_16MM, 4))),
-#                           Image(30, "/app/images/m25s_vb_motor_jog2x.png"))
-#                       ],
-#                      Confirm('/app/images/m25s_vb_motor_jog2x.png', tr._did_the_motor_jog_two_times))
+initialise_vb_25.instructions[1].col1.okay = Commands(Nd.RESET, DelayedCommand(
+    Nd.M25S_VENETIAN_25MM, PRODUCT_SET_DELAY))
 
 initialise_duette = get_initialise(DUETTE_JOG_2)
-initialise_duette.instructions[1].col1.okay = Commands(RESET, DelayedCommand(
-    M25S_DUETTE_FREE, PRODUCT_SET_DELAY))
-
-# initialise_duette = Step(tr._initialise,
-#                          [Row(Text(30, tr._press_okay_button.add_number(1)),
-#                               Text(30, tr._watch_the_blind_jog_two_times.add_number(2))),
-#                           Row(PvKeypad(30, ['okay'], 'okay', Commands(RESET, DelayedCommand(M25S_DUETTE_FREE, 4))),
-#                               Image(30, "/app/images/m25s_vb_motor_jog2x.png"))
-#                           ],
-#                          Confirm('/app/images/m25s_vb_motor_jog2x.png', tr._did_the_motor_jog_two_times))
+initialise_duette.instructions[1].col1.okay = Commands(Nd.RESET,
+                                                       DelayedCommand(
+                                                           Nd.M25S_DUETTE_FREE,
+                                                           PRODUCT_SET_DELAY))
 
 initialise_duette_tensioned = get_initialise(DUETTE_JOG_2)
 initialise_duette_tensioned.instructions[1].col1.okay = Commands(
-    RESET,
+    Nd.RESET,
     DelayedCommand(
-        M25S_DUETTE_TENSIONED,
+        Nd.M25S_DUETTE_TENSIONED,
         PRODUCT_SET_DELAY))
 
-# initialise_duette_tensioned = Step(tr._initialise,
-#                                    [Row(Text(30, tr._press_okay_button.add_number(1)),
-#                                         Text(30, tr._watch_the_blind_jog_two_times.add_number(2))),
-#                                     Row(PvKeypad(30, ['okay'], 'okay',
-#                                                  Commands(RESET, DelayedCommand(M25S_DUETTE_TENSIONED, 4))),
-#                                         Image(30, "/app/images/m25s_vb_motor_jog2x.png"))
-#                                     ],
-#                                    Confirm('/app/images/m25s_vb_motor_jog2x.png', tr._did_the_motor_jog_two_times))
+initialise_pleated = get_initialise(
+    PLEATED_JOG_2, Nd.M25S_PLEATED_FREE)
+
+initialise_vvb_right = get_initialise(
+    VVB_JOG_1, Nd.M25S_VVB_RIGHT_STACK)
+
+initialise_vvb_left = get_initialise(
+    VVB_JOG_1, Nd.M25S_VVB_LEFT_STACK)
+
+initialise_vvb_center = get_initialise(
+    VVB_JOG_1, Nd.M25S_VVB_CENTER_STACK)
+
+initialise_vvb_split = get_initialise(
+    VVB_JOG_1, Nd.M25S_VVB_SPLIT_STACK)

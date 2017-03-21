@@ -13,7 +13,7 @@ from instructor.actions.skip_step import skiptop, skipbottom_next
 from instructor.components import Row, Text, PvKeypad, Step, Image, Confirm, \
     DelayedCommand, Commands, Product
 from instructor.constants import ID_TEST_BLINDS, TWIST_JOG_1
-from server.nordic import NETWORKADD, GROUP_ADD, SAVE_SLAT_OPEN, RESET, TWIST
+from server.nordic import Nd
 
 '''Instruction to quickly make a rb a twist. Not user friendly !'''
 connect_make_twist = Step(
@@ -22,17 +22,17 @@ connect_make_twist = Step(
         Row(Text(100,
                  "Connect your blind using normal procedure")),
         Row(PvKeypad(25, ['okay'], 'okay',
-                     Commands(NETWORKADD,
-                              DelayedCommand(GROUP_ADD,
+                     Commands(Nd.NETWORKADD,
+                              DelayedCommand(Nd.GROUP_ADD,
                                              1),
-                              DelayedCommand(RESET, 5),
-                              DelayedCommand(TWIST,
+                              DelayedCommand(Nd.RESET, 5),
+                              DelayedCommand(Nd.TWIST,
                                              5))))
     ],
     Confirm(TWIST_JOG_1,
             tr.DID_THE_MOTOR_JOG, yes=0))
 
-saveSlatOpen = PvKeypad(30, ['okay'], 'okay', Commands(SAVE_SLAT_OPEN))
+saveSlatOpen = PvKeypad(30, ['okay'], 'okay', Commands(Nd.SAVE_SLAT_OPEN))
 
 """
 Setting the Twist slat open position

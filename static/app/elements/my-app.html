@@ -77,7 +77,7 @@
         <app-route active="{{routeActive}}" route="{{route}}" pattern="instructions/:page/:product" data="{{routeData}}"></app-route>
         <iron-ajax id="instruction" url="/app/instructions/instructions-[[page]].json" handle-as="json" on-response="getInstructions"
             on-error="handleError"></iron-ajax>
-        
+
         <app-drawer-layout>
             <app-drawer>
                 <div class="layout flex vertical" style="height:100%;">
@@ -92,7 +92,8 @@
                         </iron-selector>
                     </div>
                     <div class="detailedinfo"> <a href="http://localhost:8080/app/ws.html" target="_blank">Nordic communication</a>
-                        <serial-data on-nordic-changed="handleNordicChanged"></serial-data>
+                        <!--<serial-data on-nordic-changed="handleNordicChanged"></serial-data>-->
+                        <serial-data></serial-data>
                         <div> instruction version: <span>[[definitions_version]]</span> </div>
                     </div>
                 </div>
@@ -178,16 +179,15 @@
                     }
                 }
             },
-            handleNordicChanged: function (e, response) {
-
-                // if (response.value === "not connected" || response.value === "Unknown") {
-                //     if (this.$.toast) {
-                //         this.$.toast.open();
-                //     }
-                // } else {
-                //     this.$.toast.close();
-                // }
-            },
+            // handleNordicChanged: function (e, response) {
+            //     if (response.value === "not connected" || response.value === "Unknown") {
+            //         if (this.$.toast) {
+            //             this.$.toast.open();
+            //         }
+            //     } else {
+            //         this.$.toast.close();
+            //     }
+            // },
             handleError: function (e, response) {
                 console.log("error");
             },

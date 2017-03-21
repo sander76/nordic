@@ -53,6 +53,8 @@ LEFT_MOUNT = TXT(
     "MOTOR ON THE LEFT",
     "MOTOR LINKS")
 
+# Product orientation questions.
+
 IS_LEFT_MOUNT = TXT(
     "Is the motor on the **left** ?",
     "Is de motor **links** gemonteerd ?")
@@ -64,6 +66,16 @@ IS_RIGHT_MOUNT = TXT(
 RIGHT_MOUNT = TXT(
     "MOTOR ON THE RIGHT",
     "MOTOR RECHTS")
+
+ORIENT_VVB_LEFT = TXT(
+    "MOTOR ON THE LEFT",
+    "MOTOR LEFT"
+)
+ORIENT_VVB_UPRIGHT_LEFT = TXT(
+    "MOTOR ON THE LEFT",
+    "MOTOR LEFT"
+)
+
 
 BACKROLLER_LEFT_TITLE = TXT(
     "LEFT BACKROLLER", "LINKS BACKROLLER",
