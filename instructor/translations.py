@@ -25,7 +25,7 @@ CONNECT = TXT(
     "CONNECT.",
     "VERBINDEN.",
     il=None,
-    de="Verbinden",
+    de="VERBINDEN",
     dk=None)
 
 INITIALISE = TXT(
