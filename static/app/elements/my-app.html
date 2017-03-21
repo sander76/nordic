@@ -91,7 +91,8 @@
                         </iron-selector>
                     </div>
                     <div class="detailedinfo"> <a href="http://localhost:8080/app/ws.html" target="_blank">Nordic communication</a>
-                        <serial-data on-nordic-changed="handleNordicChanged"></serial-data>
+                        <!--<serial-data on-nordic-changed="handleNordicChanged"></serial-data>-->
+                        <serial-data></serial-data>
                         <div> instruction version: <span>[[definitions_version]]</span> </div>
                     </div>
                 </div>
@@ -177,15 +178,15 @@
                     }
                 }
             },
-            handleNordicChanged: function (e, response) {
-                if (response.value === "not connected" || response.value === "Unknown") {
-                    if (this.$.toast) {
-                        this.$.toast.open();
-                    }
-                } else {
-                    this.$.toast.close();
-                }
-            },
+            // handleNordicChanged: function (e, response) {
+            //     if (response.value === "not connected" || response.value === "Unknown") {
+            //         if (this.$.toast) {
+            //             this.$.toast.open();
+            //         }
+            //     } else {
+            //         this.$.toast.close();
+            //     }
+            // },
             handleError: function (e, response) {
                 console.log("error");
             },

@@ -2,7 +2,11 @@ import json
 
 import instructor.translations as tr
 from instructor.helpers import TXT, NumberedText
-from server.nordic import COMMANDS
+# from server.nordic import COMMANDS
+import server.nordic
+from server.nordic import Nd
+
+COMMANDS = server.nordic.__dict__
 
 
 class NextPrevious:
@@ -24,22 +28,17 @@ class Previous(NextPrevious):
 
 class DelayedCommand:
     def __init__(self, command, delay):
-        self.command = command
+        if not isinstance(command, Nd):
+            raise UserWarning("Command is not correct")
+        self.command = command.name
         self.delay = delay
 
 
 class Commands:
     def __init__(self, first_command, *next_commands):
-        if first_command not in COMMANDS.keys():
-            raise UserWarning(
-                "{} not a valid nordic command".format(first_command))
-        for _command in next_commands:
-            if _command.command not in COMMANDS.keys():
-                raise UserWarning(
-                    "{} not a valid nordic command".format(_command.command))
-        self.commands = [first_command] + [cmd for cmd in next_commands]
-        # self.command = first_command
-        # self.commands = next_commands
+        if not isinstance(first_command, Nd):
+            raise UserWarning("Command is not correct.")
+        self.commands = [first_command.name] + [cmd for cmd in next_commands]
 
 
 class ToJson(json.JSONEncoder):

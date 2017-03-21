@@ -9,6 +9,7 @@ from instructor.actions.set_top_limit import set_top_limit_vb, \
 from instructor.actions.skip_step import skiptop, skipbottom_end
 from instructor.components import Product
 
+# Probably obsolete
 m25s_25mm_vb_free = Product("M25S 25mm VB Free obsolete", [connect_m25s_vb,
                                                            initialise_vb_25,
                                                            right_mount_vb,

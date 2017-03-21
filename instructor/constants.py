@@ -27,6 +27,12 @@ DUETTE_JOG_2 = "/app/images/m25s_duette_motor_jog2x.png"
 DUETTE_BUTTON_PUSH_HOLD = "/app/images/m25s_duette_motor_button_push.png"
 DUETTE_BUTTON_RELEASE = "/app/images/m25s_duette_motor_button_release.png"
 
+PLEATED_JOG_1 = "/app/images/m25s_duette_motor_jog1x.png"
+PLEATED_JOG_2 = "/app/images/m25s_duette_motor_jog2x.png"
+PLEATED_BUTTON_PUSH_HOLD = "/app/images/m25s_duette_motor_button_push.png"
+PLEATED_BUTTON_RELEASE = "/app/images/m25s_duette_motor_button_release.png"
+
+
 ID_START = "start"
 ID_TEST_BLINDS = "testblinds"
 ID_HOIST = "hoist"
