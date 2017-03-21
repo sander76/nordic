@@ -12,8 +12,12 @@ def get_direction(
         orientation_question=tr.IS_LEFT_BACKROLLER,
         confirm_orientation_command=Nd.ORIENT_BACKROLLER_LEFT,
         cancel_no=1,
-        confirm_yes=4
-):
+        confirm_yes=4,
+        orientation_image=None):
+    if orientation_image is not None:
+        pass
+    else:
+        orientation_image = Spacer(30)
     return Step(title,
                 [
                     Row(Text(30, orientation_question),
@@ -21,7 +25,7 @@ def get_direction(
                         Text(30, tr.NO)
                         ),
                     Row(
-                        Spacer(30),
+                        orientation_image,
                         PvKeypad(30,
                                  [PvKeypad.okay],
                                  confirm=PvKeypad.okay,
@@ -43,9 +47,9 @@ right_backroller = get_direction(
     RB_JOG_1,
     tr.BACKROLLER_RIGHT_TITLE,
     tr.IS_RIGHT_BACKROLLER,
-    Nd.ORIENT_BACKROLLER_RIGHT
+    Nd.ORIENT_BACKROLLER_RIGHT,
+    confirm_yes=3
 )
-right_backroller.confirm.yes = 3
 
 left_frontroller = get_direction(RB_JOG_1)
 left_frontroller.title = tr.FRONTROLLER_LEFT_TITLE
@@ -103,7 +107,23 @@ left_mount_vb.instructions[1].col3.cancel = -1
 left_mount_vb.confirm = Confirm(VB_JOG_1,
                                 tr.DID_THE_MOTOR_JOG, yes=1)
 
-vvb_back_left = get_direction(VVB_JOG_1, )
+vvb_back_left = get_direction(
+    VVB_JOG_1, tr.ORIENT_VVB_BACK_TITLE,
+    tr.ORIENT_VVB_BACK, Nd.ORIENT_VVB_LEFT)
+
+vvb_above_left = get_direction(
+    VVB_JOG_1, tr.ORIENT_VVB_UPRIGHT_TITLE,
+    tr.ORIENT_VVB_UPRIGHT, Nd.ORIENT_VVB_UPRIGHT_LEFT, cancel_no=-1,
+    confirm_yes=1)
+
+vvb_back_right = get_direction(
+    VVB_JOG_1, tr.ORIENT_VVB_BACK_TITLE,
+    tr.ORIENT_VVB_BACK, Nd.ORIENT_VVB_RIGHT)
+
+vvb_above_right = get_direction(
+    VVB_JOG_1, tr.ORIENT_VVB_UPRIGHT_TITLE,
+    tr.ORIENT_VVB_UPRIGHT, Nd.ORIENT_VVB_UPRIGHT_RIGHT, cancel_no=-1,
+    confirm_yes=1)
 
 blind_direction = Step(
     tr.BLIND_DIRECTION,
@@ -112,10 +132,10 @@ blind_direction = Step(
             Text(30,
                  tr.MOTOR_SHOULD_MOVE_DOWN.add_number(2))),
         Row(PvKeypad(30, ['okay'], 'okay',
-                     Commands(Nd.TILT_CLOSE,
-                              DelayedCommand(Nd.STOP, 3),
-                              DelayedCommand(Nd.STOP, 0.4),
-                              DelayedCommand(Nd.STOP, 0.4)),
+                     Commands(Nd.tiltclose,
+                              DelayedCommand(Nd.stop, 3),
+                              DelayedCommand(Nd.stop, 0.4),
+                              DelayedCommand(Nd.stop, 0.4)),
                      cancel=1),
             Image(30,
                   "/app/images/m25t_motor_top_limit_move_down_rollo.png"))

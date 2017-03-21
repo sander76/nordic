@@ -67,15 +67,24 @@ RIGHT_MOUNT = TXT(
     "MOTOR ON THE RIGHT",
     "MOTOR RECHTS")
 
-ORIENT_VVB_LEFT = TXT(
-    "MOTOR ON THE LEFT",
-    "MOTOR LEFT"
-)
-ORIENT_VVB_UPRIGHT_LEFT = TXT(
-    "MOTOR ON THE LEFT",
-    "MOTOR LEFT"
+ORIENT_VVB_BACK_TITLE = TXT(
+    "Is the motor mounted on the **back** ?",
+    "Is the motor **achter** gemonteerd ?"
 )
 
+ORIENT_VVB_UPRIGHT_TITLE = TXT(
+    "Is the motor mounted **above** ?",
+    "Is de motor **boven** gemonteerd ?"
+)
+
+ORIENT_VVB_BACK = TXT(
+    "MOTOR ON THE BACK",
+    "MOTOR ACHTER"
+)
+ORIENT_VVB_UPRIGHT = TXT(
+    "MOTOR ABOVE",
+    "MOTOR BOVEN"
+)
 
 BACKROLLER_LEFT_TITLE = TXT(
     "LEFT BACKROLLER", "LINKS BACKROLLER",

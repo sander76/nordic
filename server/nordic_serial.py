@@ -14,7 +14,7 @@ from server.constants import TRYDELAY, SLEEP_BETWEEN_COMMANDS
 from server.nordic import Nd
 
 from server.id_generator import get_id
-from server.nordic import COMMANDS
+
 
 import logging
 
@@ -43,15 +43,16 @@ class NordicSerial:
         self.s.port = serial_port
         self.s.baudrate = serial_speed
         self.trydelay = try_delay  # Delay time between connection tries
+        self.incoming = False  # Flag is set when data is to be expected.
+        self.resetting = True  # Flag is set when serial port is being reset.
+        self.connect_attempts = 1
         self.t = Thread(target=self.get_byte)
         self.t.start()
         self.loop = loop  # The main event loop.
         self.loop.create_task(self.connect())
         self.loop.create_task(self._write_to_nordic())
         self.messengers = messengers
-        self.incoming = False  # Flag is set when data is to be expected.
-        self.resetting = True  # Flag is set when serial port is being reset.
-        self.connect_attempts = 1
+
         self.send_queue = asyncio.Queue(loop=loop)
         self.refresh_count = 1
 

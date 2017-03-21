@@ -3,7 +3,7 @@ from instructor.actions.general import keypad_move_buttons
 from instructor.components import PvKeypad, Commands, Step, Row, Text, \
     Image, Confirm, DelayedCommand, Spacer
 from instructor.constants import VB_JOG_1, RB_JOG_1, DUETTE_JOG_1, \
-    PLEATED_JOG_1
+    PLEATED_JOG_1, VVB_JOG_1
 from server.nordic import Nd
 
 textrow = Row(Text(30, tr.MOVE_BLIND_TOP.add_number(1)),
@@ -32,7 +32,7 @@ def get_top_limit_alternative(jog_image):
             Row(
                 Text(30, tr.START_TOP_PROGRAMMING),
                 PvKeypad(30, [PvKeypad.okay, PvKeypad.stop], PvKeypad.okay,
-                         Commands(Nd.STARTPROGRAM, DelayedCommand(Nd.OPEN, 3)))
+                         Commands(Nd.STARTPROGRAM, DelayedCommand(Nd.open, 3)))
             )
         ], Confirm(None, tr.IS_BLIND_AT_TOP))
 
@@ -61,14 +61,16 @@ set_top_limit_alternative_vb = get_top_limit_alternative(VB_JOG_1)
 confirm_top_limit_vb = get_confirm_top_limit(VB_JOG_1)
 
 # ****** Duette
-set_top_limit_duette = get_top_limit(DUETTE_JOG_1)
 
-set_top_limit_pleated = get_top_limit(PLEATED_JOG_1)
 
-set_top_limit_duette_alternative = get_top_limit_alternative(DUETTE_JOG_1)
+duette_set_top_limit_moveup = get_top_limit_alternative(DUETTE_JOG_1)
+duette_confirm_top_limit = get_confirm_top_limit(DUETTE_JOG_1)
+duette_set_top_limit = get_top_limit(DUETTE_JOG_1)
 
-set_top_limit_pleated_alternative = get_top_limit_alternative(PLEATED_JOG_1)
+pleated_set_top_limit_moveup = get_top_limit_alternative(PLEATED_JOG_1)
+pleated_confirm_top_limit = get_confirm_top_limit(PLEATED_JOG_1)
+pleated_set_top_limit = get_top_limit(PLEATED_JOG_1)
 
-confirm_top_limit_duette = get_confirm_top_limit(DUETTE_JOG_1)
-
-confirm_top_limit_pleated = get_confirm_top_limit(PLEATED_JOG_1)
+vvb_set_top_limit_moveup = get_top_limit_alternative(VVB_JOG_1)
+vvb_confirm_top_limit = get_confirm_top_limit(VVB_JOG_1)
+vvb_set_top_limit = get_top_limit(VVB_JOG_1)

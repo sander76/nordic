@@ -3,7 +3,7 @@ from instructor.actions.general import keypad_move_buttons
 from instructor.components import PvKeypad, Commands, Step, Row, Text, Image, \
     Confirm
 from instructor.constants import RB_JOG_1, VB_JOG_1, RB_MOVE_UP, \
-    DUETTE_JOG_1, TWIST_MOVE_UP, ID_TEST_BLINDS, PLEATED_JOG_1
+    DUETTE_JOG_1, TWIST_MOVE_UP, ID_TEST_BLINDS, PLEATED_JOG_1, VVB_JOG_1
 from server.nordic import Nd
 
 savepositionBottom = PvKeypad(30, ['okay'], 'okay',
@@ -48,14 +48,21 @@ re_set_bottom_limit_vb.confirm = Confirm(VB_JOG_1, tr.DID_THE_MOTOR_JOG,
                                          yes=ID_TEST_BLINDS)
 
 # Duette and Pleated
-set_bottom_limit_duette = get_bottom_limit(DUETTE_JOG_1)
+duette_set_bottom_limit = get_bottom_limit(DUETTE_JOG_1)
 
-re_set_bottom_limit_duette = get_bottom_limit(DUETTE_JOG_1)
-re_set_bottom_limit_duette.confirm = Confirm(DUETTE_JOG_1,
-                                             tr.DID_THE_MOTOR_JOG,
-                                             yes=ID_TEST_BLINDS)
+duette_re_set_bottom_limit = get_bottom_limit(
+    DUETTE_JOG_1, DUETTE_JOG_1, tr.DID_THE_MOTOR_JOG,
+    confirm_yes_goto=ID_TEST_BLINDS)
+# re_set_bottom_limit_duette.confirm = Confirm(DUETTE_JOG_1,
+#                                              tr.DID_THE_MOTOR_JOG,
+#                                              yes=ID_TEST_BLINDS)
 
-set_bottom_limit_pleated = get_bottom_limit(PLEATED_JOG_1, PLEATED_JOG_1)
-
-re_set_bottom_limit_pleated = get_bottom_limit(
+pleated_set_bottom_limit = get_bottom_limit(PLEATED_JOG_1, PLEATED_JOG_1)
+pleated_re_set_bottom_limit = get_bottom_limit(
     PLEATED_JOG_1, PLEATED_JOG_1, confirm_yes_goto=ID_TEST_BLINDS)
+
+vvb_right_set_outer_limit = get_bottom_limit(VVB_JOG_1, VVB_JOG_1)
+vvb_right_re_set_outer_limit = get_bottom_limit(
+    VVB_JOG_1, VVB_JOG_1,confirm_yes_goto=ID_TEST_BLINDS)
+
+

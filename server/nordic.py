@@ -3,11 +3,14 @@ from enum import Enum
 
 
 class Nd(Enum):
-    OPEN = b'\x00\x03RU\x00'
-    CLOSE = b'\x00\x03RD\x00'
-    TILT_OPEN = b'\x00\x03RR\x00'
-    TILT_CLOSE = b'\x00\x03RL\x00'
-    STOP = b'\x00\x03RS\x00'
+    # these keys cannot be changed as they are hard wired into the keypad
+    # component.
+    open = b'\x00\x03RU\x00'
+    close = b'\x00\x03RD\x00'
+    tiltopen = b'\x00\x03RR\x00'
+    tiltclose = b'\x00\x03RL\x00'
+    stop = b'\x00\x03RS\x00'
+
     JOG = b'\x00\x03cj.1'
     CONNECT = b'\x00\x01N\x00\x01A'
     NETWORKADD = b'\x00\x01N'
@@ -19,9 +22,6 @@ class Nd(Enum):
     ENABLE_SLAT = b'\x00\x04#LPr'
     SAVE_SLAT_OPEN = b'\x00\x04#LTO'
     REVERSE = b'\x00\x02#x'
-    M25S_VENETIAN_16MM = b'\x00\x04#DS>'
-    M25S_VENETIAN_25MM = b'\x00\x04#DS~'
-
 
     SAVE_VENETIAN_SLAT = b'\x00\x04#LPR'
 
@@ -34,6 +34,8 @@ class Nd(Enum):
     M25S_VVB_RIGHT_STACK = b'\x00\x04#DS7'
     M25S_VVB_SPLIT_STACK = b'\x00\x04#DS8'
     M25S_VVB_CENTER_STACK = b'\x00\x04#DS?'
+    M25S_VENETIAN_16MM = b'\x00\x04#DS>'
+    M25S_VENETIAN_25MM = b'\x00\x04#DS~'
     M25T_ROLLER = b'\x00\x04#DS*'
     TWIST = b'\x00\x04#DS,'
 

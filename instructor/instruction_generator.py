@@ -8,6 +8,7 @@ from instructor.products.m25s_pleated import m25s_pleated_free
 from instructor.products.m25s_vb import m25s_25mm_vb_free, \
     m25s_25mm_vb_free_alt, \
     m25s_16mm_vb_free_alt
+from instructor.products.m25s_vvb import m25s_vvb_right
 from instructor.products.roller import rollerblind1, rollerblind_old
 from instructor.products.test_products import test1
 from instructor.products.twist import twist_old, twist
@@ -100,7 +101,7 @@ germania1_products = [m25s_duette_free_alt, m25s_pleated_free,
 germania1_lang = TXT.en
 
 germania2_file_name = "instructions-germania2-en.json"
-germania2_products = [rollerblind1, twist]
+germania2_products = [rollerblind1, twist,m25s_vvb_right]
 germania2_lang = TXT.en
 
 

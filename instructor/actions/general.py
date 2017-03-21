@@ -2,7 +2,7 @@ import instructor.translations as tr
 from instructor.components import Row, Text, PvKeypad, Step, Image, Confirm, \
     Commands, Spacer, NavigationCommand
 from instructor.constants import ID_TEST_BLINDS, RB_JOG_1, VB_JOG_1, ID_START, \
-    DUETTE_JOG_1, PLEATED_JOG_1
+    DUETTE_JOG_1, PLEATED_JOG_1, VVB_JOG_1
 from server.nordic import Nd
 
 keypad_move_buttons = PvKeypad(
@@ -33,6 +33,8 @@ enter_program_mode_vb = get_enter_program_mode(VB_JOG_1)
 enter_program_mode_duette = get_enter_program_mode(DUETTE_JOG_1)
 
 enter_program_mode_pleated = get_enter_program_mode(PLEATED_JOG_1)
+
+enter_program_mode_vvb = get_enter_program_mode(VVB_JOG_1)
 
 test_blinds = Step(
     tr.TEST_BLINDS,
