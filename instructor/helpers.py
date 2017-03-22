@@ -21,8 +21,10 @@ class TXT:
     de = 'de'
     dk = 'dk'
 
-    def __init__(self, en, nl, il=None, pl=None, ru=None, he=None, de=None,
-                 dk=None):
+    def __init__(self, en: str, nl: str, il: str = None, pl=None, ru=None,
+                 he=None,
+                 de=None,
+                 dk=None, to_upper=False):
         self.en = en
         self.nl = nl
         self.pl = pl
@@ -31,10 +33,13 @@ class TXT:
         self.he = he
         self.de = de
         self.dk = dk
+        self.to_upper = to_upper
 
     def get_text(self, lang):
         val = getattr(self, lang, TXT.en)
-        # return val
+        if self.to_upper:
+            val = val.upper()
+
         return {'content': val}
 
     def add_number(self, number):

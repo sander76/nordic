@@ -5,21 +5,25 @@ HANGPRODUCT = TXT(
     "PRODUCT OPHANGEN.",  # Dutch language.
     il=None,  # Israeli language.
     de="Produkt aufhängen",  # German language
-    dk=None)  # Danish language
+    dk=None,  # Danish language
+    to_upper=True
+)
 
 HANG_TWIST = TXT(
     "HANG THE TWIST BLIND",  # English language.
     "HANG DE TWIST BLIND OP",  # Dutch language.
     il=None,
     de="Hängen Sie das Doppelrollo auf",
-    dk=None)
+    dk=None,
+    to_upper=True)
 
 HANG_RB = TXT(
     "HANG THE ROLLERBLIND",
     "HANG HET ROLGORDIJN OP",
     il=None,
     de="Hängen Sie das Rollo auf",
-    dk=None)
+    dk=None,
+    to_upper=True)
 
 CONNECT = TXT(
     "CONNECT.",
@@ -40,7 +44,8 @@ ENTER_PROGRAM_MODE = TXT(
     "PROGRAMMEER MODUS.",
     il=None,
     de="Programmiermodus",
-    dk=None)
+    dk=None,
+    to_upper=True)
 
 BLIND_DIRECTION = TXT(
     "CHECK BLIND DIRECTION.",
@@ -67,7 +72,7 @@ IS_RIGHT_MOUNT = TXT(
 RIGHT_MOUNT = TXT(
     "MOTOR ON THE RIGHT",
     "MOTOR RECHTS",
-    de = "MOTOR RECHTS")
+    de="MOTOR RECHTS")
 
 ORIENT_VVB_BACK_TITLE = TXT(
     "Is the motor mounted on the **back** ?",
@@ -95,15 +100,19 @@ BACKROLLER_LEFT_TITLE = TXT(
     dk=None)
 
 BACKROLLER_RIGHT_TITLE = TXT(
-    "RIGHT BACKROLLER", "RECHTS BACKROLLER",
+    "RIGHT BACKROLLER",
+    "RECHTS BACKROLLER",
     il=None,
     de=None,
     dk=None)
+
 FRONTROLLER_LEFT_TITLE = TXT(
-    "LEFT FRONTROLLER", "LINKS FRONTROLLER",
+    "LEFT FRONTROLLER",
+    "LINKS FRONTROLLER",
     il=None,
     de="links, vorne abrollend",
     dk=None)
+
 FRONTROLLER_RIGHT_TITLE = TXT(
     "RIGHT FRONTROLLER", "RECHTS FRONTROLLER",
     il=None,

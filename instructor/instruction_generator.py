@@ -96,13 +96,15 @@ def make_test1():
 
 
 germania1_file_name = "instructions-germania1-en.json"
+germania1_file_name_de = "instructions-germania1-de.json"
 germania1_products = [m25s_duette_free_alt, m25s_pleated_free,
                       m25s_16mm_vb_free_alt, m25s_25mm_vb_free_alt]
-germania1_lang = TXT.en
+
+
 
 germania2_file_name = "instructions-germania2-en.json"
+germania2_file_name_de = "instructions-germania2-de.json"
 germania2_products = [rollerblind1, twist,m25s_vvb_right]
-germania2_lang = TXT.en
 
 
 def make_instruction(file_name, products, lang):
@@ -122,5 +124,8 @@ if __name__ == "__main__":
     # make_vb(outputpath)
     make_holis()
     make_test1()
-    make_instruction(germania1_file_name, germania1_products, germania1_lang)
-    make_instruction(germania2_file_name, germania2_products, germania2_lang)
+    make_instruction(germania1_file_name, germania1_products, TXT.en)
+    make_instruction(germania2_file_name, germania2_products, TXT.en)
+
+    make_instruction(germania1_file_name_de, germania1_products, TXT.de)
+    make_instruction(germania2_file_name_de, germania2_products, TXT.de)
