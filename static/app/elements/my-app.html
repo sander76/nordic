@@ -139,7 +139,6 @@
             },
 
             observers: ['_routePageChanged(routeData.page)',
-                //, '_routeProductChanged(routeData.product,all_products)'
                 '_routeProductChanged1(routeData.product)'
             ],
             listeners: {
@@ -179,15 +178,7 @@
                     }
                 }
             },
-            // handleNordicChanged: function (e, response) {
-            //     if (response.value === "not connected" || response.value === "Unknown") {
-            //         if (this.$.toast) {
-            //             this.$.toast.open();
-            //         }
-            //     } else {
-            //         this.$.toast.close();
-            //     }
-            // },
+            
             handleError: function (e, response) {
                 console.log("error");
             },
@@ -213,17 +204,13 @@
             },
             _routeProductChanged: function (product_idx) {
                 if (this.all_products !== undefined) {
-                    //var _product = parseInt(this.routeData.product);
                     var _product = parseInt(product_idx);
                     var _currentproduct = this.all_products[_product];
                     this.product = _product;
                     this.set("currentproduct", this.all_products[this.product]);
                     this.currentproductsteps = _currentproduct.steps;
-                    // if (this.currentproductsteps !== undefined) {     for (var i = 0; i < this.currentproductsteps.length; i += 1) {         var instr = this.currentproductsteps[i];         //this.splice('currentproductsteps.' + i + '.instructions', 0,
-                    // instr.instructions.length);         this.set('currentproductsteps.' + i + '.instructions', []);         for (var ii=0;i<)         this.set('currentproductsteps.' + i + '.instructions', _currentproduct.steps[i].instructions);     }
-                    // this.splice('currentproductsteps', 0, this.currentproductsteps.length); } else {     this.currentproductsteps = _currentproduct.steps; } for (var j = 0; j < this.currentproduct.steps.length; j += 1) {     this.push('currentproductsteps',
-                    // this.currentproduct.steps[j]); }
                     this.set('selectedStep', 0);
+                    
                 }
             }
         });

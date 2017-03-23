@@ -74,16 +74,6 @@ RIGHT_MOUNT = TXT(
     "MOTOR RECHTS",
     de="MOTOR RECHTS")
 
-ORIENT_VVB_BACK_TITLE = TXT(
-    "Is the motor mounted on the **back** ?",
-    "Is the motor **achter** gemonteerd ?"
-)
-
-ORIENT_VVB_UPRIGHT_TITLE = TXT(
-    "Is the motor mounted **above** ?",
-    "Is de motor **boven** gemonteerd ?"
-)
-
 ORIENT_VVB_BACK = TXT(
     "MOTOR ON THE BACK",
     "MOTOR ACHTER"
@@ -92,32 +82,6 @@ ORIENT_VVB_UPRIGHT = TXT(
     "MOTOR ABOVE",
     "MOTOR BOVEN"
 )
-
-BACKROLLER_LEFT_TITLE = TXT(
-    "LEFT BACKROLLER", "LINKS BACKROLLER",
-    il=None,
-    de="links, hinten abrollend",
-    dk=None)
-
-BACKROLLER_RIGHT_TITLE = TXT(
-    "RIGHT BACKROLLER",
-    "RECHTS BACKROLLER",
-    il=None,
-    de=None,
-    dk=None)
-
-FRONTROLLER_LEFT_TITLE = TXT(
-    "LEFT FRONTROLLER",
-    "LINKS FRONTROLLER",
-    il=None,
-    de="links, vorne abrollend",
-    dk=None)
-
-FRONTROLLER_RIGHT_TITLE = TXT(
-    "RIGHT FRONTROLLER", "RECHTS FRONTROLLER",
-    il=None,
-    de="rechts, vorne abrollend",
-    dk=None)
 
 IS_LEFT_BACKROLLER = TXT(
     "Is the motor on the **left** and **backroller** ?",
@@ -137,14 +101,14 @@ IS_LEFT_FRONTROLLER = TXT(
     "Is the motor on the **left** and **frontroller** ?",
     "Is de motor **links** gemonteerd en **contrarollend** ?",
     il=None,
-    de="ist der Motor links montiert und vorne abrollend?",
+    de="Ist der Motor links montiert und vorne abrollend?",
     dk=None)
 
 IS_RIGHT_FRONTROLLER = TXT(
     "Is the motor on the **right** and **frontroller** ?",
     "Is de motor **rechts** gemonteerd en **contrarollend** ?",
     il=None,
-    de="ist der Motor rechts montiert und vorne abrollend?",
+    de="Ist der Motor rechts montiert und vorne abrollend?",
     dk=None)
 
 SWITCH_DIRECTION = TXT(
@@ -178,27 +142,6 @@ SET_TWIST_SLAT_POSITION = TXT(
     "STEL TWIST SLAT POSITIE IN.",
     il=None,
     de="einstellen der Lamellenposition des Doppelrollos",
-    dk=None)
-
-SKIP_TOP_TITLE = TXT(
-    "SET *TOP* LIMIT?",
-    "STEL *BOVENLIMIET* IN?",
-    il=None,
-    de="Obere Endlage einstellen?",
-    dk=None)
-
-SKIP_BOTTOM_TITLE = TXT(
-    "SET *BOTTOM* LIMIT?",
-    "STEL *ONDERLIMIET* IN?",
-    il=None,
-    de="*Untere* Endlage einstellen?",
-    dk=None)
-
-SKIP_SLAT_TITLE = TXT(
-    "SET SLAT POSITION?",
-    "STEL SLAT POSITIE IN?",
-    il=None,
-    de="Lamellenposition einstellen?",
     dk=None)
 
 PROPER_PRODUCT_HANG = TXT(
@@ -440,4 +383,74 @@ NO = TXT(
     "nee",
     il=None,
     de="nein",
+    dk=None)
+
+TITLE_VVB_SET_CLOSE_LIMIT = TXT(
+    "Set the close limit",
+    "Sluit-limiet instellen",
+    de=None,
+    to_upper=True)
+
+TITLE_VVB_SET_OPEN_LIMIT = TXT(
+    "Set the open limit",
+    "Open limit instellen",
+    de=None,
+    to_upper=True
+)
+
+TITLE_SKIP_TOP = TXT(
+    "SET *TOP* LIMIT?",
+    "STEL *BOVENLIMIET* IN?",
+    il=None,
+    de="Obere Endlage einstellen?",
+    dk=None)
+
+TITLE_SKIP_BOTTOM = TXT(
+    "SET *BOTTOM* LIMIT?",
+    "STEL *ONDERLIMIET* IN?",
+    il=None,
+    de="*Untere* Endlage einstellen?",
+    dk=None)
+
+TITLE_SKIP_SLAT = TXT(
+    "SET SLAT POSITION?",
+    "STEL SLAT POSITIE IN?",
+    il=None,
+    de="Lamellenposition einstellen?",
+    dk=None)
+
+TITLE_ORIENT_VVB_BACK = TXT(
+    "Is the motor mounted on the **back** ?",
+    "Is the motor **achter** gemonteerd ?",
+    de=None)
+
+TITLE_ORIENT_VVB_UPRIGHT = TXT(
+    "Is the motor mounted **above** ?",
+    "Is de motor **boven** gemonteerd ?",
+    de=None)
+
+TITLE_BACKROLLER_LEFT = TXT(
+    "LEFT BACKROLLER", "LINKS BACKROLLER",
+    il=None,
+    de="links, hinten abrollend",
+    dk=None)
+
+TITLE_BACKROLLER_RIGHT = TXT(
+    "RIGHT BACKROLLER",
+    "RECHTS BACKROLLER",
+    il=None,
+    de=None,
+    dk=None)
+
+TITLE_FRONTROLLER_LEFT = TXT(
+    "LEFT FRONTROLLER",
+    "LINKS FRONTROLLER",
+    il=None,
+    de="links, vorne abrollend",
+    dk=None)
+
+TITLE_FRONTROLLER_RIGHT = TXT(
+    "RIGHT FRONTROLLER", "RECHTS FRONTROLLER",
+    il=None,
+    de="rechts, vorne abrollend",
     dk=None)
