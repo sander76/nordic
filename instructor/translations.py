@@ -74,77 +74,43 @@ RIGHT_MOUNT = TXT(
     "MOTOR RECHTS",
     de="MOTOR RECHTS")
 
-ORIENT_VVB_BACK_TITLE = TXT(
-    "Is the motor mounted on the **back** ?",
-    "Is the motor **achter** gemonteerd ?"
-)
-
-ORIENT_VVB_UPRIGHT_TITLE = TXT(
-    "Is the motor mounted **above** ?",
-    "Is de motor **boven** gemonteerd ?"
-)
-
 ORIENT_VVB_BACK = TXT(
     "MOTOR ON THE BACK",
-    "MOTOR ACHTER"
+    "MOTOR ACHTER",
+    de=None
 )
 ORIENT_VVB_UPRIGHT = TXT(
     "MOTOR ABOVE",
-    "MOTOR BOVEN"
+    "MOTOR BOVEN",
+    de=None
 )
-
-BACKROLLER_LEFT_TITLE = TXT(
-    "LEFT BACKROLLER", "LINKS BACKROLLER",
-    il=None,
-    de="links, hinten abrollend",
-    dk=None)
-
-BACKROLLER_RIGHT_TITLE = TXT(
-    "RIGHT BACKROLLER",
-    "RECHTS BACKROLLER",
-    il=None,
-    de=None,
-    dk=None)
-
-FRONTROLLER_LEFT_TITLE = TXT(
-    "LEFT FRONTROLLER",
-    "LINKS FRONTROLLER",
-    il=None,
-    de="links, vorne abrollend",
-    dk=None)
-
-FRONTROLLER_RIGHT_TITLE = TXT(
-    "RIGHT FRONTROLLER", "RECHTS FRONTROLLER",
-    il=None,
-    de="rechts, vorne abrollend",
-    dk=None)
 
 IS_LEFT_BACKROLLER = TXT(
     "Is the motor on the **left** and **backroller** ?",
     "Is de motor **links** gemonteerd en **backroller** ?",
     il=None,
-    de="Ist der Motor links montiert hinten abrollend?",
+    de="Ist der Motor **links** montiert hinten abrollend?",
     dk=None)
 
 IS_RIGHT_BACKROLLER = TXT(
     "Is the motor on the **right** and **backroller** ?",
     "Is de motor **rechts** gemonteerd en **backroller** ?",
     il=None,
-    de="Ist der Motor rechts montiert und hinten abrollend?",
+    de="Ist der Motor **rechts** montiert und hinten abrollend?",
     dk=None)
 
 IS_LEFT_FRONTROLLER = TXT(
     "Is the motor on the **left** and **frontroller** ?",
     "Is de motor **links** gemonteerd en **contrarollend** ?",
     il=None,
-    de="ist der Motor links montiert und vorne abrollend?",
+    de="Ist der Motor links montiert und vorne abrollend?",
     dk=None)
 
 IS_RIGHT_FRONTROLLER = TXT(
     "Is the motor on the **right** and **frontroller** ?",
     "Is de motor **rechts** gemonteerd en **contrarollend** ?",
     il=None,
-    de="ist der Motor rechts montiert und vorne abrollend?",
+    de="Ist der Motor rechts montiert und vorne abrollend?",
     dk=None)
 
 SWITCH_DIRECTION = TXT(
@@ -154,51 +120,16 @@ SWITCH_DIRECTION = TXT(
     de="Laufrichtung ändern",
     dk=None)
 
-SET_BOTTOM_LIMIT = TXT(
-    "SET BOTTOM LIMIT.",
-    "STEL ONDERLIMIET IN.",
-    il=None,
-    de="Untere Endlageneinstellung",
-    dk=None)
-
-SET_TOP_LIMIT = TXT(
-    "SET TOP LIMIT.",
-    "STEL BOVENLIMIET IN.",
-    il=None,
-    de="obere Endlageneinstellung",
-    dk=None)
-
 IS_BLIND_AT_TOP = TXT(
     "IS THE BLIND AT THE TOP ?",
-    "IS DE BLIND HELEMAAL BOVEN ?"
-    "ist die Anlage hochgefahren?")
+    "IS DE BLIND HELEMAAL BOVEN ?",
+    de="ist die Anlage hochgefahren?")
 
 SET_TWIST_SLAT_POSITION = TXT(
     "SET TWIST SLAT POSITION.",
     "STEL TWIST SLAT POSITIE IN.",
     il=None,
     de="einstellen der Lamellenposition des Doppelrollos",
-    dk=None)
-
-SKIP_TOP_TITLE = TXT(
-    "SET *TOP* LIMIT?",
-    "STEL *BOVENLIMIET* IN?",
-    il=None,
-    de="Obere Endlage einstellen?",
-    dk=None)
-
-SKIP_BOTTOM_TITLE = TXT(
-    "SET *BOTTOM* LIMIT?",
-    "STEL *ONDERLIMIET* IN?",
-    il=None,
-    de="*Untere* Endlage einstellen?",
-    dk=None)
-
-SKIP_SLAT_TITLE = TXT(
-    "SET SLAT POSITION?",
-    "STEL SLAT POSITIE IN?",
-    il=None,
-    de="Lamellenposition einstellen?",
     dk=None)
 
 PROPER_PRODUCT_HANG = TXT(
@@ -225,7 +156,7 @@ SELECT_SKIP_TOP = TXT(
     "I don't want to set the TOP limit",
     "BOVENLIMIET niet opnieuw instellen",
     il=None,
-    de="Obere Endlage nicht einstellen",
+    de="OBERE Endlage nicht einstellen",
     dk=None)
 
 SELECT_SKIP_BOTTOM = TXT(
@@ -246,13 +177,13 @@ RESET_TOP = TXT(
     "Re-set the TOP limit.",
     "BOVENLIMIET opnieuw instellen.",
     il=None,
-    de="Obere Endlage erneut festlegen",
+    de="OBERE Endlage erneut festlegen",
     dk=None)
 
 START_TOP_PROGRAMMING = TXT(
     "The blind will move completely to the top.",
-    "De blind zal helemaal naar boven bewegen."
-    "die Anlage wird ganz nach oben fahren")
+    "De blind zal helemaal naar boven bewegen.",
+    de="die Anlage wird ganz nach oben fahren")
 
 RESET_BOTTOM = TXT(
     "Re-set the BOTTOM limit.",
@@ -293,7 +224,7 @@ DID_THE_MOTOR_JOG_TWO_TIMES = TXT(
     "Did the motor jog two times?",
     "Heeft de motor twee keer bewogen?",
     il=None,
-    de="hat sich der Motor zweimal kurz bewegt?",
+    de="Hat sich der Motor zweimal kurz bewegt?",
     dk=None)
 
 DID_MOTOR_MOVE_DOWN = TXT(
@@ -335,7 +266,7 @@ WATCH_THE_BLIND_JOG = TXT(
     "Watch the *BLIND* jog.",
     "Zie de *BLIND* bewegen.",
     il=None,
-    de="gucken Sie, ob die Anlage sich bewegt",
+    de="Gucken Sie, ob die Anlage sich bewegt",
     dk=None)
 
 WATCH_THE_BLIND_MOVE_UP = TXT(
@@ -404,28 +335,28 @@ SAVE_TOP = TXT(
 
 SAVE_THIS_AS_TOP = TXT(
     "Save this as the TOP limit?",
-    "Deze positie als BOVEN limiet instellen?"
-    "Diese Position als OBERE Endlage einstellen?)")
+    "Deze positie als BOVEN limiet instellen?",
+    de="Diese Position als OBERE Endlage einstellen?")
 
 SAVE_SLAT = TXT(
     "Save this as SLAT OPEN position.",
     "Stel in als SLAT OPEN positie.",
     il=None,
-    de="Diese Lamellenposition als OFFEN sicher",
+    de="Diese Lamellenposition als OFFEN sichern",
     dk=None)
 
 LIMITS_OK = TXT(
     "Limits are OK. Do a new blind.",
     "Limieten zijn OK. Nieuwe *BLIND* inprogrammeren.",
     il=None,
-    de="Endlagen sind ok. Neue Anlage programmieren",
+    de="Endlagen sind OK. Neue Anlage programmieren",
     dk=None)
 
 LIMITS_NOT_OK = TXT(
     "Limits are NOT OK. Re-set them",
     "Limieten zijn NIET OK. Opnieuw instellen.",
     il=None,
-    de="Endlagen sind nicht OK. Erneut einstellen",
+    de="Endlagen sind NICHT OK. Erneut einstellen",
     dk=None)
 
 YES = TXT(
@@ -441,3 +372,98 @@ NO = TXT(
     il=None,
     de="nein",
     dk=None)
+
+TITLE_VVB_SET_CLOSE_LIMIT = TXT(
+    "Set the close limit",
+    "Sluit-limiet instellen",
+    de=None,
+    to_upper=True)
+
+TITLE_VVB_SET_OPEN_LIMIT = TXT(
+    "Set the open limit",
+    "Open limit instellen",
+    de=None,
+    to_upper=True
+)
+
+TITLE_SKIP_TOP = TXT(
+    "SET *TOP* LIMIT?",
+    "STEL *BOVENLIMIET* IN?",
+    il=None,
+    de="Obere Endlage einstellen?",
+    dk=None,
+    to_upper=True)
+
+TITLE_SKIP_BOTTOM = TXT(
+    "SET *BOTTOM* LIMIT?",
+    "STEL *ONDERLIMIET* IN?",
+    il=None,
+    de="*Untere* Endlage einstellen?",
+    dk=None,
+    to_upper=True)
+
+TITLE_SKIP_SLAT = TXT(
+    "SET SLAT POSITION?",
+    "STEL SLAT POSITIE IN?",
+    il=None,
+    de="Lamellenposition einstellen?",
+    dk=None,
+    to_upper=True)
+
+TITLE_ORIENT_VVB_BACK = TXT(
+    "Is the motor mounted on the **back** ?",
+    "Is the motor **achter** gemonteerd ?",
+    de=None,
+    to_upper=True)
+
+TITLE_ORIENT_VVB_UPRIGHT = TXT(
+    "Is the motor mounted **above** ?",
+    "Is de motor **boven** gemonteerd ?",
+    de=None,
+    to_upper=True)
+
+TITLE_BACKROLLER_LEFT = TXT(
+    "LEFT BACKROLLER", "LINKS BACKROLLER",
+    il=None,
+    de="links, hinten abrollend",
+    dk=None,
+    to_upper=True)
+
+TITLE_BACKROLLER_RIGHT = TXT(
+    "RIGHT BACKROLLER",
+    "RECHTS BACKROLLER",
+    il=None,
+    de="Rechts, vorne abrollend",
+    dk=None,
+    to_upper=True)
+
+TITLE_FRONTROLLER_LEFT = TXT(
+    "LEFT FRONTROLLER",
+    "LINKS FRONTROLLER",
+    il=None,
+    de="links, vorne abrollend",
+    dk=None,
+    to_upper=True)
+
+TITLE_FRONTROLLER_RIGHT = TXT(
+    "RIGHT FRONTROLLER", "RECHTS FRONTROLLER",
+    il=None,
+    de="rechts, vorne abrollend",
+    dk=None,
+    to_upper=True)
+
+TITLE_SET_BOTTOM_LIMIT = TXT(
+    "SET BOTTOM LIMIT.",
+    "STEL ONDERLIMIET IN.",
+    il=None,
+    de="Untere Endlageneinstellung",
+    dk=None,
+    to_upper=True)
+
+TITLE_SET_TOP_LIMIT = TXT(
+    "SET TOP LIMIT.",
+    "STEL BOVENLIMIET IN.",
+    il=None,
+    de="obere Endlageneinstellung",
+    dk=None,
+    to_upper=True)

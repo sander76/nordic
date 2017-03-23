@@ -16,8 +16,9 @@ textrow = Row(Text(30, tr.MOVE_BLIND_BOTTOM.add_number(1)),
 
 def get_bottom_limit(
         jog_image=RB_JOG_1, confirm_image=RB_JOG_1,
-        confirm_text=tr.DID_THE_MOTOR_JOG, confirm_yes_goto=1):
-    return Step(tr.SET_BOTTOM_LIMIT,
+        confirm_text=tr.DID_THE_MOTOR_JOG,title=tr.TITLE_SET_BOTTOM_LIMIT,
+        confirm_yes_goto=1):
+    return Step(title,
                 [
                     textrow,
                     Row(keypad_move_buttons,
@@ -49,20 +50,21 @@ re_set_bottom_limit_vb.confirm = Confirm(VB_JOG_1, tr.DID_THE_MOTOR_JOG,
 
 # Duette and Pleated
 duette_set_bottom_limit = get_bottom_limit(DUETTE_JOG_1)
-
 duette_re_set_bottom_limit = get_bottom_limit(
     DUETTE_JOG_1, DUETTE_JOG_1, tr.DID_THE_MOTOR_JOG,
     confirm_yes_goto=ID_TEST_BLINDS)
-# re_set_bottom_limit_duette.confirm = Confirm(DUETTE_JOG_1,
-#                                              tr.DID_THE_MOTOR_JOG,
-#                                              yes=ID_TEST_BLINDS)
 
+
+# Pleated
 pleated_set_bottom_limit = get_bottom_limit(PLEATED_JOG_1, PLEATED_JOG_1)
 pleated_re_set_bottom_limit = get_bottom_limit(
     PLEATED_JOG_1, PLEATED_JOG_1, confirm_yes_goto=ID_TEST_BLINDS)
 
-vvb_right_set_outer_limit = get_bottom_limit(VVB_JOG_1, VVB_JOG_1)
-vvb_right_re_set_outer_limit = get_bottom_limit(
-    VVB_JOG_1, VVB_JOG_1,confirm_yes_goto=ID_TEST_BLINDS)
+# VVB
+vvb_set_close_limit = get_bottom_limit(
+    VVB_JOG_1, VVB_JOG_1,title=tr.TITLE_VVB_SET_CLOSE_LIMIT)
+vvb_re_set_close_limit = get_bottom_limit(
+    VVB_JOG_1, VVB_JOG_1,
+    title=tr.TITLE_VVB_SET_CLOSE_LIMIT,confirm_yes_goto=ID_TEST_BLINDS)
 
 

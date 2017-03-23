@@ -49,7 +49,7 @@ test_blinds = Step(
     ], nav_id=ID_TEST_BLINDS)
 
 skipslat = Step(
-    tr.SKIP_SLAT_TITLE,
+    tr.TITLE_SKIP_SLAT,
     [
         Row(Text(30, tr.MAKE_CHOICE),
             Text(30, tr.RESET_SLAT),

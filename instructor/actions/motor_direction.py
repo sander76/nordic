@@ -8,7 +8,7 @@ from server.nordic import Nd
 
 def get_direction(
         jog_image,
-        title=tr.BACKROLLER_LEFT_TITLE,
+        title=tr.TITLE_BACKROLLER_LEFT,
         orientation_question=tr.IS_LEFT_BACKROLLER,
         confirm_orientation_command=Nd.ORIENT_BACKROLLER_LEFT,
         cancel_no=1,
@@ -45,21 +45,21 @@ left_backroller = get_direction(RB_JOG_1)
 
 right_backroller = get_direction(
     RB_JOG_1,
-    tr.BACKROLLER_RIGHT_TITLE,
+    tr.TITLE_BACKROLLER_RIGHT,
     tr.IS_RIGHT_BACKROLLER,
     Nd.ORIENT_BACKROLLER_RIGHT,
     confirm_yes=3
 )
 
 left_frontroller = get_direction(RB_JOG_1)
-left_frontroller.title = tr.FRONTROLLER_LEFT_TITLE
+left_frontroller.title = tr.TITLE_FRONTROLLER_LEFT
 left_frontroller.instructions[0].col1.content = tr.IS_LEFT_FRONTROLLER
 left_frontroller.instructions[1].col2.okay = Commands(
     Nd.ORIENT_BACKROLLER_RIGHT)
 left_frontroller.confirm.yes = 2
 
 right_frontroller = get_direction(RB_JOG_1)
-right_frontroller.title = tr.FRONTROLLER_RIGHT_TITLE
+right_frontroller.title = tr.TITLE_FRONTROLLER_RIGHT
 right_frontroller.instructions[0].col1.content = tr.IS_RIGHT_FRONTROLLER
 right_frontroller.instructions[1].col2.okay = Commands(
     Nd.ORIENT_BACKROLLER_LEFT)
@@ -108,20 +108,20 @@ left_mount_vb.confirm = Confirm(VB_JOG_1,
                                 tr.DID_THE_MOTOR_JOG, yes=1)
 
 vvb_back_left = get_direction(
-    VVB_JOG_1, tr.ORIENT_VVB_BACK_TITLE,
-    tr.ORIENT_VVB_BACK, Nd.ORIENT_VVB_LEFT)
+    VVB_JOG_1, tr.TITLE_ORIENT_VVB_BACK,
+    tr.ORIENT_VVB_BACK, Nd.ORIENT_VVB_LEFT,confirm_yes=2)
 
 vvb_above_left = get_direction(
-    VVB_JOG_1, tr.ORIENT_VVB_UPRIGHT_TITLE,
+    VVB_JOG_1, tr.TITLE_ORIENT_VVB_UPRIGHT,
     tr.ORIENT_VVB_UPRIGHT, Nd.ORIENT_VVB_UPRIGHT_LEFT, cancel_no=-1,
     confirm_yes=1)
 
 vvb_back_right = get_direction(
-    VVB_JOG_1, tr.ORIENT_VVB_BACK_TITLE,
-    tr.ORIENT_VVB_BACK, Nd.ORIENT_VVB_RIGHT)
+    VVB_JOG_1, tr.TITLE_ORIENT_VVB_BACK,
+    tr.ORIENT_VVB_BACK, Nd.ORIENT_VVB_RIGHT,confirm_yes=2)
 
 vvb_above_right = get_direction(
-    VVB_JOG_1, tr.ORIENT_VVB_UPRIGHT_TITLE,
+    VVB_JOG_1, tr.TITLE_ORIENT_VVB_UPRIGHT,
     tr.ORIENT_VVB_UPRIGHT, Nd.ORIENT_VVB_UPRIGHT_RIGHT, cancel_no=-1,
     confirm_yes=1)
 
