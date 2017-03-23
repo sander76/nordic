@@ -45,16 +45,16 @@ test_blinds = Step(
         Row(keypad_move_buttons,
             PvKeypad(30, [PvKeypad.okay],
                      okay=NavigationCommand(goto=ID_START)),
-            PvKeypad(30, [PvKeypad.cancel], cancel=1))
+            PvKeypad(30, [PvKeypad.cancel], cancel=NavigationCommand(1)))
     ], nav_id=ID_TEST_BLINDS)
 
 skipslat = Step(
-    tr.SKIP_SLAT_TITLE,
+    tr.TITLE_SKIP_SLAT,
     [
         Row(Text(30, tr.MAKE_CHOICE),
             Text(30, tr.RESET_SLAT),
             Text(30, tr.SELECT_SKIP_SLAT)),
         Row(Spacer(30),
             PvKeypad(30, [PvKeypad.okay], okay=NavigationCommand(goto=1)),
-            PvKeypad(30, [PvKeypad.cancel], cancel=ID_TEST_BLINDS))
+            PvKeypad(30, [PvKeypad.cancel], cancel=NavigationCommand(ID_TEST_BLINDS)))
     ])

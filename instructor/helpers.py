@@ -36,7 +36,9 @@ class TXT:
         self.to_upper = to_upper
 
     def get_text(self, lang):
-        val = getattr(self, lang, TXT.en)
+        val = getattr(self, lang)
+        if val is None:
+            val = getattr(self, TXT.en)
         if self.to_upper:
             val = val.upper()
 

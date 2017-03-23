@@ -25,8 +25,8 @@
             </iron-a11y-keys>
             <iron-a11y-keys id="modaldismiss" target='[[target]]' keys="[[modal_no.keys]]" on-keys-pressed="closeModalDismiss"></iron-a11y-keys> -->
             <img src$="[[modaldata.img]]" />
-            <marked-element markdown=[[modaldata.text.content]]>
-              <div class="markdown-html"></div>
+            <marked-element markdown="[[modaldata.text.content]]">
+                <div class="markdown-html"></div>
             </marked-element>
             <!-- <p>[[modaldata.text.content]]</p> -->
             <div class="buttons">
@@ -45,75 +45,42 @@
                 modaldata: {
                     type: Object,
                     value: {}
-                } //,
-                // modal_yes: {
-                //     type: Object,
-                //     value: {
-                //         "keys": "Enter"
-                //     }
-                // },
-                // modal_no: {
-                //     type: Object,
-                //     value: {
-                //         "keys": "x"
-                //     }
-                // }
+                }
             },
-            ready: function() {
-                this.keys = {
-                    Enter: {
-                        func: "modal_close",
-                        handle: this.closeModal
-                    },
-                    x: {
-                        func: "modal_dismiss",
-                        handle: this.closeModalDismiss
-                    }
-                };
-            },
-            openmodal: function() {
-                document.body.addEventListener("keydown", this, false);
+            openmodal: function () {
+                //document.body.addEventListener("keydown", this, false);
+                document.reset_keys();
+                document.handle_key_x = document.closeModalDismiss;
+                document.handle_key_okay = document.closeModalConfirm;
+                console.log("Registering modal x and okay key");
                 this.$.modal.open();
-
             },
 
-
-            handleClose: function(e) {
-                document.body.removeEventListener("keydown", this, false);
+            handleClose: function (e) {
+                
+                document.reset_keys();
                 if (e.detail.confirmed) {
                     this.fire("gotopage", this.modaldata.yes || 1);
+                    console.log("Closing modal confirmed.");
                 } else {
                     this.fire("gotopage", this.modaldata.no || 0);
+                    console.log("Closing modal dismissed.");
                 }
             },
-            closeModal: function(e) {
+
+            closeModal: function (e) {
+                //console.log("Close modal confirmed");
                 this.$.modal.closingReason.confirmed = true;
                 this.$.modal.close();
-                console.log("close modal confirmed");
+
 
             },
-            closeModalDismiss: function(e) {
+            closeModalDismiss: function (e) {
+                //console.log("Close modal dismissed");
                 this.$.modal.closingReason.confirmed = false;
                 this.$.modal.close();
-                console.log("close modal dismissed");
 
-            },
-            handleEvent: function(event) {
-                switch (event.type) {
-                    case "keydown":
-                        this.keylookup(event);
-                        break;
-                }
-            },
-            keylookup: function(e) {
-                var code = this.keys[e.key] || {
-                    handle: function() {
-                        return;
-                    }
-                };
-                code.handle.call(this);
-
-            }
+            } 
         });
     </script>
 </dom-module>

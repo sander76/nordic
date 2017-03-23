@@ -34,11 +34,7 @@ class DelayedCommand:
         self.delay = delay
 
 
-class Commands:
-    def __init__(self, first_command, *next_commands):
-        if not isinstance(first_command, Nd):
-            raise UserWarning("Command is not correct.")
-        self.commands = [first_command.name] + [cmd for cmd in next_commands]
+
 
 
 class ToJson(json.JSONEncoder):
@@ -133,6 +129,13 @@ class NavigationCommand:
     def __init__(self, goto):
         self.goto = goto
 
+
+class Commands:
+    def __init__(self, first_command, *next_commands):
+        if not isinstance(first_command, Nd):
+            raise UserWarning("Command is not correct.")
+        self.commands = [first_command.name] + [cmd for cmd in
+                                                next_commands]
 
 # class OkayCommand(Commands):
 #     def __init__(self,first_command=None, goto=None, *next_commands):

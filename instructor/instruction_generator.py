@@ -8,12 +8,10 @@ from instructor.products.m25s_pleated import m25s_pleated_free
 from instructor.products.m25s_vb import m25s_25mm_vb_free, \
     m25s_25mm_vb_free_alt, \
     m25s_16mm_vb_free_alt
-from instructor.products.m25s_vvb import m25s_vvb_right
+from instructor.products.m25s_vvb import m25s_vvb_right, m25s_vvb_left
 from instructor.products.roller import rollerblind1, rollerblind_old
 from instructor.products.test_products import test1
 from instructor.products.twist import twist_old, twist
-
-# from instructor.products.venetian import venetian16
 
 INSTRUCTION_VERSION = "1.7.0"
 MAIN_PATH = "../static/app/instructions"
@@ -67,16 +65,6 @@ def make_default():
         fl.write(en)
 
 
-# def make_vb(path):
-#     _path = os.path.join(path, 'instructions-vb16-en.json')
-#     instruction = Instruction(INSTRUCTION_VERSION)
-#     instruction.products.append(venetian16)
-#
-#     en = ToJson(lang='en').encode(instruction)
-#     with open(_path, 'w') as fl:
-#         fl.write(en)
-
-
 def make_holis():
     _path = os.path.join(MAIN_PATH, 'instructions-holis-en.json')
     instruction = Instruction(INSTRUCTION_VERSION)
@@ -95,16 +83,23 @@ def make_test1():
         fl.write(products)
 
 
-germania1_file_name = "instructions-germania1-en.json"
-germania1_file_name_de = "instructions-germania1-de.json"
-germania1_products = [m25s_duette_free_alt, m25s_pleated_free,
-                      m25s_16mm_vb_free_alt, m25s_25mm_vb_free_alt]
+def make_germania2():
+    germania2_products = [rollerblind1, twist, m25s_vvb_right, m25s_vvb_left]
+
+    make_instruction(
+        "instructions-germania2-en.json", germania2_products, TXT.en)
+    make_instruction(
+        "instructions-germania2-de.json", germania2_products, TXT.de)
 
 
-
-germania2_file_name = "instructions-germania2-en.json"
-germania2_file_name_de = "instructions-germania2-de.json"
-germania2_products = [rollerblind1, twist,m25s_vvb_right]
+def make_germania1():
+    germania1_products = [m25s_duette_free_alt, m25s_pleated_free,
+                          m25s_16mm_vb_free_alt, m25s_25mm_vb_free_alt]
+    make_instruction(
+        "instructions-germania1-en.json", germania1_products, TXT.en)
+    make_instruction(
+        "instructions-germania1-de.json", germania1_products, TXT.de
+    )
 
 
 def make_instruction(file_name, products, lang):
@@ -121,11 +116,7 @@ if __name__ == "__main__":
     make_test()
     make_luxaflex_uk()
     make_luxaflex_nl()
-    # make_vb(outputpath)
     make_holis()
     make_test1()
-    make_instruction(germania1_file_name, germania1_products, TXT.en)
-    make_instruction(germania2_file_name, germania2_products, TXT.en)
-
-    make_instruction(germania1_file_name_de, germania1_products, TXT.de)
-    make_instruction(germania2_file_name_de, germania2_products, TXT.de)
+    make_germania1()
+    make_germania2()

@@ -4,6 +4,7 @@
 
 <link rel="import" href="../bower_components/iron-a11y-keys/iron-a11y-keys.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+
 <link rel="import" href="nav-button.html">
 <link rel="import" href="ui-cell.html" />
 <link rel="import" href="../bower_components/marked-element/marked-element.html">
@@ -16,49 +17,48 @@
         iron-icon.ok {
             color: var(--icon-ok-color) !important;
         }
-        
+
         iron-icon.cross {
             color: var(--icon-cross-color) !important;
         }
-        
-        :host {
+
+         :host {
             height: 100%;
         }
-        
+
         #col1 {
             min-width: 4em;
         }
-        
+
         .instr_img {
             max-height: 150px;
             max-width: 300px;
             width: auto;
             height: auto;
         }
-        
+
         .rule {
             margin: 5px;
         }
-        
+
         h1 {
             font-size: 22px;
             margin: 16px 0;
             color: #212121;
         }
-        
+
         .markdown-html {
             font-size: 1.4em;
         }
-        
+
         footer {
             position: fixed;
             bottom: 0;
         }
-        
+
         #container {
             min-height: 100vh;
         }
-        
     </style>
     <style include="iron-flex iron-flex-alignment"></style>
     <template>
@@ -81,10 +81,16 @@
                 </div>
                 <div class="horizontal layout justified">
                     <div>
-                        <nav-button hidden="[[!data.previous.active]]" id="previousbutton" active="[[active]]" data="[[data.previous]]">[[data.previous.caption]]</nav-button>
+                        <paper-button noink class="instruction" raised on-tap="_prev" hidden="[[previous_hidden]]">
+                            [[data.previous.caption]]
+                        </paper-button>
+                        <!--<nav-button hidden="[[!data.previous.active]]" id="previousbutton" active="[[active]]" data="[[data.previous]]"></nav-button>-->
                     </div>
                     <div>
-                        <nav-button hidden="[[!data.next.active]]" id="nextbutton" active="[[active]]" data="[[data.next]]">[[data.next.caption]]</nav-button>
+                        <paper-button noink class="instruction" raised on-tap="_next">
+                            [[data.next.caption]]
+                        </paper-button>
+                        <!--<nav-button hidden="[[!data.next.active]]" id="nextbutton" active="[[active]]" data="[[data.next]]">[[data.next.caption]]</nav-button>-->
                     </div>
                 </div>
             </div>
@@ -110,28 +116,15 @@
                 active: {
                     type: Boolean
                 }
-                // selectedinstruction: {
-                //     type: Number,
-                //     observer: '_selectedChanged'
-                // },
-                // instruction: {
-                //     type: Number
-                // },
-
-
-                // ,
-                // target: {
-                //     type: Object,
-                //     value: function() {
-                //         return this.$.modal;
-                //     }
-                // }
             },
             // listeners: {
             //     'openmodal': "_openModal"
             // },
 
-            ready: function() {
+            ready: function () {
+                if (this.curitem==0){
+                    this.previous_hidden=true;
+                }
                 // if (this.data.next.keys === undefined) {
                 //     this.set("data.next.keys", "pagedown 3");
                 // }
@@ -140,7 +133,7 @@
                 // }
 
             },
-            getType: function(item, container) {
+            getType: function (item, container) {
                 if (item.type == "text") {
                     var el = document.createElement('p');
                     el.innerText = item.content;
@@ -148,35 +141,31 @@
 
                 }
             },
-            isType: function(instruction, _type) {
+            isType: function (instruction, _type) {
                 var tr = instruction.type === _type;
                 return tr;
             },
-            _next: function(e) {
-                this.fire('nextpage');
+            _next: function (e) {
+                this.fire('gotopage',1);
+                console.log("Next button clicked.");
             },
-            _prev: function(e) {
-                this.fire('previouspage');
+            _prev: function (e) {
+                this.fire('gotopage',-1);
+                console.log("Previous button clicked.");
             },
 
-
-            // _openModal: function(e) {
-            //   this.fire("opendialog");
-            //     // console.log("open modal");
-            //     // this.$.modalconfirm.target = document.body;
-            //     // this.$.modaldismiss.target = document.body;
-            //     // //this.active = false;
-            //     // this.set("active", false);
-            //     // this.$.modal.open();
-            // },
-            _selectedChanged: function() {
+            _selectedChanged: function () {
                 var active = this.curitem === this.selected;
+                if (active) {
+                    document.reset_keys();
+                }
                 this.set("active", active);
             },
-            deactivate: function() {
+            deactivate: function () {
                 this.set("active", false);
             },
-            activate: function() {
+            activate: function () {
+                document.reset_keys();
                 this.set("active", true);
             }
 
