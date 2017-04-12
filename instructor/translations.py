@@ -211,7 +211,7 @@ RESET_TOP = TXT(
     il=None,
     de="OBERE Endlage erneut festlegen",
     dk=None,
-    pl=None)
+    pl="Ustaw ponownie limit gorny")
 
 START_TOP_PROGRAMMING = TXT(
     "The blind will move completely to the top.",
@@ -225,7 +225,7 @@ RESET_BOTTOM = TXT(
     il=None,
     de="Untere Endlage erneut festlegen",
     dk=None,
-    pl="Ustaw ponownie dolny limit")
+    pl="Ustaw ponownie limit dolny")
 
 RESET_SLAT = TXT(
     "Re-set the SLAT position",
@@ -249,7 +249,7 @@ DID_THE_MOTOR_JOG = TXT(
     il=None,
     de="hat sich der Motor kurz bewegt?",
     dk=None,
-    pl=None)
+    pl="Czy produkt wykonał krótki ruch góra/dól?")
 
 DID_THE_MOTOR_MOVE_UP = TXT(
     "Did the blind move to the top?",
@@ -257,7 +257,7 @@ DID_THE_MOTOR_MOVE_UP = TXT(
     il=None,
     de="Ist die Anlage hochgefahren?",
     dk=None,
-    pl="Czy produkt wykonał krótki ruch góra/dól?")
+    pl="Czy produkt sie zwija")
 
 DID_THE_MOTOR_JOG_TWO_TIMES = TXT(
     "Did the motor jog two times?",
@@ -454,7 +454,7 @@ TITLE_SKIP_TOP = TXT(
     il=None,
     de="Obere Endlage einstellen?",
     dk=None,
-    pl=None,
+    pl="Ustaw limit gorny",
     to_upper=True)
 
 TITLE_SKIP_BOTTOM = TXT(
@@ -463,7 +463,7 @@ TITLE_SKIP_BOTTOM = TXT(
     il=None,
     de="*Untere* Endlage einstellen?",
     dk=None,
-    pl=None,
+    pl="Ustaw limit dolny",
     to_upper=True)
 
 TITLE_SKIP_SLAT = TXT(
@@ -494,7 +494,7 @@ TITLE_BACKROLLER_LEFT = TXT(
     il=None,
     de="links, hinten abrollend",
     dk=None,
-    pl=None,
+    pl="LEWA STRONA, ZWIJANIE NORMALNE",
     to_upper=True)
 
 TITLE_BACKROLLER_RIGHT = TXT(
@@ -503,7 +503,7 @@ TITLE_BACKROLLER_RIGHT = TXT(
     il=None,
     de="Rechts, vorne abrollend",
     dk=None,
-    pl=None,
+    pl="PRAWA STRONA, ZWIJANIE NORMALNE",
     to_upper=True)
 
 TITLE_FRONTROLLER_LEFT = TXT(
@@ -512,7 +512,7 @@ TITLE_FRONTROLLER_LEFT = TXT(
     il=None,
     de="links, vorne abrollend",
     dk=None,
-    pl=None,
+    pl="LEWA STRONA, ZWIJANIE ODWROTNE",
     to_upper=True)
 
 TITLE_FRONTROLLER_RIGHT = TXT(
@@ -520,7 +520,7 @@ TITLE_FRONTROLLER_RIGHT = TXT(
     il=None,
     de="rechts, vorne abrollend",
     dk=None,
-    pl=None,
+    pl="PRAWA STRONA, ZWIJANIE ODWROTNE",
     to_upper=True)
 
 TITLE_SET_BOTTOM_LIMIT = TXT(
@@ -529,7 +529,7 @@ TITLE_SET_BOTTOM_LIMIT = TXT(
     il=None,
     de="Untere Endlageneinstellung",
     dk=None,
-    pl="Ustaw dolny limit",
+    pl="Ustaw limit dolny",
     to_upper=True)
 
 TITLE_SET_TOP_LIMIT = TXT(
@@ -538,5 +538,5 @@ TITLE_SET_TOP_LIMIT = TXT(
     il=None,
     de="obere Endlageneinstellung",
     dk=None,
-    pl="Ustaw górny limit",
+    pl="Ustaw limit gorny",
     to_upper=True)

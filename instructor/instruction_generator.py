@@ -13,7 +13,7 @@ from instructor.products.roller import rollerblind1, rollerblind_old
 from instructor.products.test_products import test1
 from instructor.products.twist import twist_old, twist
 
-INSTRUCTION_VERSION = "1.7.1"
+INSTRUCTION_VERSION = "1.7.2"
 MAIN_PATH = "../static/app/instructions"
 
 

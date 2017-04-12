@@ -58,3 +58,7 @@
 ## Version 1.7.1
 
 - Adding HDfab instructions version 1.
+
+## Version 1.7.2
+
+- Finishing polish language.
