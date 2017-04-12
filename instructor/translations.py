@@ -6,7 +6,7 @@ HANGPRODUCT = TXT(
     il=None,  # Israeli language.
     de="Produkt aufhängen",  # German language
     dk=None,  # Danish language
-    pl=None,  # Polish language
+    pl="ZAWIEŚ PRODUKT",  # Polish language
     to_upper=True
 )
 
@@ -16,7 +16,7 @@ HANG_TWIST = TXT(
     il=None,
     de="Hängen Sie das Doppelrollo auf",
     dk=None,
-    pl=None,
+    pl="ZAWIEŚ ROLETĘ TWIST",
     to_upper=True)
 
 HANG_RB = TXT(
@@ -25,7 +25,7 @@ HANG_RB = TXT(
     il=None,
     de="Hängen Sie das Rollo auf",
     dk=None,
-    pl=None,
+    pl="ZAWIEŚ ROLETĘ",
     to_upper=True)
 
 CONNECT = TXT(
@@ -33,7 +33,7 @@ CONNECT = TXT(
     "VERBINDEN.",
     il=None,
     de="VERBINDEN",
-    pl=None,
+    pl="PODŁĄCZ",
     dk=None)
 
 INITIALISE = TXT(
@@ -41,7 +41,7 @@ INITIALISE = TXT(
     "INITALISEREN.",
     il=None,
     de="Initialisieren",
-    pl=None,
+    pl="START",
     dk=None)
 
 ENTER_PROGRAM_MODE = TXT(
@@ -50,7 +50,7 @@ ENTER_PROGRAM_MODE = TXT(
     il=None,
     de="Programmiermodus",
     dk=None,
-    pl=None,
+    pl="WEJDŹ W TRYB PROGRAMOWANIA",
     to_upper=True)
 
 BLIND_DIRECTION = TXT(
@@ -58,44 +58,49 @@ BLIND_DIRECTION = TXT(
     "CONTROLEER BLIND RICHTING.",
     il=None,
     de="Kontrollieren Sie die Laufrichtung",
-    pl=None,
+    pl="SPRAWDŹ KIERUNEK ZWIJANIA ROLETY",
     dk=None)
 
 LEFT_MOUNT = TXT(
     "MOTOR ON THE LEFT",
     "MOTOR LINKS",
-    pl=None,
-    de="Motor Links")
+    pl="MOTOR ZAMONTOWANY LEWA STRONA",
+    de="Motor Links"
+)
 
 IS_LEFT_MOUNT = TXT(
     "Is the motor on the **left** ?",
     "Is de motor **links** gemonteerd ?",
     de="Ist der Motor **links** montiert?",
-    pl=None, )
+    pl="Czy motor jest po **lewej** stronie?"
+)
 
 IS_RIGHT_MOUNT = TXT(
     "Is the motor on the **right** ?",
     "Is de motor **rechts** gemonteerd ?",
     de="Ist der Motor **rechts** montiert?",
-    pl=None, )
+    pl="Czy motor jest po **prawej** stronie?"
+)
 
 RIGHT_MOUNT = TXT(
     "MOTOR ON THE RIGHT",
     "MOTOR RECHTS",
     de="MOTOR RECHTS",
-    pl=None)
+    pl="MOTOR ZAMONTOWANY PRAWA STRONA"
+)
 
 ORIENT_VVB_BACK = TXT(
     "MOTOR ON THE BACK",
     "MOTOR ACHTER",
     de=None,
-    pl=None
+    pl="MOTOR ZAMONTOWANY TYŁ"
 )
+
 ORIENT_VVB_UPRIGHT = TXT(
     "MOTOR ABOVE",
     "MOTOR BOVEN",
     de=None,
-    pl=None
+    pl="MOTOR ZAMONTOWANY GÓRA"
 )
 
 IS_LEFT_BACKROLLER = TXT(
@@ -104,7 +109,7 @@ IS_LEFT_BACKROLLER = TXT(
     il=None,
     de="Ist der Motor **links** montiert hinten abrollend?",
     dk=None,
-    pl=None)
+    pl="Czy jest motor **lewa** strona i **zwijanie normalne**?")
 
 IS_RIGHT_BACKROLLER = TXT(
     "Is the motor on the **right** and **backroller** ?",
@@ -112,7 +117,7 @@ IS_RIGHT_BACKROLLER = TXT(
     il=None,
     de="Ist der Motor **rechts** montiert und hinten abrollend?",
     dk=None,
-    pl=None)
+    pl="Czy jest motor **prawa** strona i **zwijanie normalne**?")
 
 IS_LEFT_FRONTROLLER = TXT(
     "Is the motor on the **left** and **frontroller** ?",
@@ -120,7 +125,7 @@ IS_LEFT_FRONTROLLER = TXT(
     il=None,
     de="Ist der Motor links montiert und vorne abrollend?",
     dk=None,
-    pl=None)
+    pl="Czy jest motor **lewa** strona i **zwijanie odwrotne**?")
 
 IS_RIGHT_FRONTROLLER = TXT(
     "Is the motor on the **right** and **frontroller** ?",
@@ -128,7 +133,7 @@ IS_RIGHT_FRONTROLLER = TXT(
     il=None,
     de="Ist der Motor rechts montiert und vorne abrollend?",
     dk=None,
-    pl=None)
+    pl="Czy jest motor **prawa** strona i **zwijanie odwrtone**?")
 
 SWITCH_DIRECTION = TXT(
     "CHANGE BLIND DIRECTION.",
@@ -136,13 +141,14 @@ SWITCH_DIRECTION = TXT(
     il=None,
     de="Laufrichtung ändern",
     dk=None,
-    pl=None)
+    pl="ZMIEŃ KIERUNEK ZWIJANIA"
+)
 
 IS_BLIND_AT_TOP = TXT(
     "IS THE BLIND AT THE TOP ?",
     "IS DE BLIND HELEMAAL BOVEN ?",
     de="ist die Anlage hochgefahren?",
-    pl=None)
+    pl="CZY PRODUKT JEST W POZYCJI GÓRNEJ ?")
 
 SET_TWIST_SLAT_POSITION = TXT(
     "SET TWIST SLAT POSITION.",
@@ -157,7 +163,7 @@ PROPER_PRODUCT_HANG = TXT(
     "Zorg dat de *ONDERLAT* ongeveer 20cm gezakt is.", il=None,
     de="sicherstellen, dass die Unterschiene ungefähr 20cm unten ist",
     dk=None,
-    pl=None)
+    pl="Upewnij sie, że listwa *DOLNA* jest ok 20cm od dołu")
 
 PROPER_PRODUCT_HANG_CONFIRM = TXT(
     "Product fixed *OK*.",
@@ -165,7 +171,7 @@ PROPER_PRODUCT_HANG_CONFIRM = TXT(
     il=None,
     de="Produkt is korrekt montiert",
     dk=None,
-    pl=None)
+    pl="Produkt ustawiony *OK*.")
 
 MAKE_CHOICE = TXT(
     "Make a choice:",
@@ -173,7 +179,7 @@ MAKE_CHOICE = TXT(
     il=None,
     de="auswählen",
     dk=None,
-    pl=None)
+    pl="Wybierz:")
 
 SELECT_SKIP_TOP = TXT(
     "I don't want to set the TOP limit",
@@ -181,7 +187,7 @@ SELECT_SKIP_TOP = TXT(
     il=None,
     de="OBERE Endlage nicht einstellen",
     dk=None,
-    pl=None)
+    pl="Nie chcę ustawić górnego limitu")
 
 SELECT_SKIP_BOTTOM = TXT(
     "I don't want to set the *BOTTOM* limit",
@@ -189,7 +195,7 @@ SELECT_SKIP_BOTTOM = TXT(
     il=None,
     de="untere Endlage nicht einstellen",
     dk=None,
-    pl=None)
+    pl="Nie chcę ustawić dolnego limitu")
 
 SELECT_SKIP_SLAT = TXT(
     "Don't re-set the *SLAT* position.",
@@ -211,7 +217,7 @@ START_TOP_PROGRAMMING = TXT(
     "The blind will move completely to the top.",
     "De blind zal helemaal naar boven bewegen.",
     de="die Anlage wird ganz nach oben fahren",
-    pl=None)
+    pl="Produkt zwija sie całkowicie")
 
 RESET_BOTTOM = TXT(
     "Re-set the BOTTOM limit.",
@@ -219,7 +225,7 @@ RESET_BOTTOM = TXT(
     il=None,
     de="Untere Endlage erneut festlegen",
     dk=None,
-    pl=None)
+    pl="Ustaw ponownie dolny limit")
 
 RESET_SLAT = TXT(
     "Re-set the SLAT position",
@@ -235,7 +241,7 @@ TEST_BLINDS = TXT(
     il=None,
     de="Anlagentest",
     dk=None,
-    pl=None)
+    pl="PRODUKT TESTOWY")
 
 DID_THE_MOTOR_JOG = TXT(
     "Did the motor jog?",
@@ -251,7 +257,7 @@ DID_THE_MOTOR_MOVE_UP = TXT(
     il=None,
     de="Ist die Anlage hochgefahren?",
     dk=None,
-    pl=None)
+    pl="Czy produkt wykonał krótki ruch góra/dól?")
 
 DID_THE_MOTOR_JOG_TWO_TIMES = TXT(
     "Did the motor jog two times?",
@@ -259,7 +265,7 @@ DID_THE_MOTOR_JOG_TWO_TIMES = TXT(
     il=None,
     de="Hat sich der Motor zweimal kurz bewegt?",
     dk=None,
-    pl=None)
+    pl="Czy produkt wykonał 2 x  krótki ruch góra/dól?")
 
 DID_MOTOR_MOVE_DOWN = TXT(
     "Did the blind move down?",
@@ -267,7 +273,7 @@ DID_MOTOR_MOVE_DOWN = TXT(
     il=None,
     de="Ist die Anlage runtergefahren?",
     dk=None,
-    pl=None)
+    pl="Czy produkt sie rozwija ?")
 
 PRESS_HOLD_BLIND_BUTTON = TXT(
     "`Press` and `hold` the *BLIND BUTTON* .",
@@ -275,7 +281,7 @@ PRESS_HOLD_BLIND_BUTTON = TXT(
     il=None,
     de="Drücken und halten Sie die Motortaste",
     dk=None,
-    pl=None)
+    pl="Naciśnij i przytrzymaj przycisk na motorze")
 
 KEEP_PRESSING_AND_OKAY = TXT(
     "Keep pressing the *BLIND BUTTON* and press the OK button.",
@@ -283,7 +289,7 @@ KEEP_PRESSING_AND_OKAY = TXT(
     il=None,
     de="Motortaste gedrückt halten und die OK Taste drücken",
     dk=None,
-    pl=None)
+    pl="Trzymaj przycisk na motorze i jednocześnie naciśnij przycisk OK")
 
 RELEASE_THE_BLIND_BUTTON = TXT(
     "Release the *BLIND BUTTON*",
@@ -291,7 +297,7 @@ RELEASE_THE_BLIND_BUTTON = TXT(
     il=None,
     de="Motortaste loslassen",
     dk=None,
-    pl=None)
+    pl="Puść przycisk na motorze")
 
 PRESS_OKAY_BUTTON = TXT(
     "Press OK button",
@@ -299,7 +305,7 @@ PRESS_OKAY_BUTTON = TXT(
     il=None,
     de="OK Taste drücken",
     dk=None,
-    pl=None)
+    pl="Naciśnij przycisk OK")
 
 WATCH_THE_BLIND_JOG = TXT(
     "Watch the *BLIND* jog.",
@@ -307,7 +313,7 @@ WATCH_THE_BLIND_JOG = TXT(
     il=None,
     de="Gucken Sie, ob die Anlage sich bewegt",
     dk=None,
-    pl=None)
+    pl="Spójrz czy produkt wykonuje ruch góra/dół")
 
 WATCH_THE_BLIND_MOVE_UP = TXT(
     "Watch the *BLIND* move up.",
@@ -315,7 +321,7 @@ WATCH_THE_BLIND_MOVE_UP = TXT(
     il=None,
     de="Gucken Sie, ob die Anlage hochfährt",
     dk=None,
-    pl=None)
+    pl="Spójrz czy produkt sie zwija")
 
 WATCH_THE_BLIND_JOG_TWO_TIMES = TXT(
     "Motor jogs two times.",
@@ -323,7 +329,7 @@ WATCH_THE_BLIND_JOG_TWO_TIMES = TXT(
     il=None,
     de="Motor bewegt sich zweimal kurz",
     dk=None,
-    pl=None)
+    pl="Motor wykonuje 2x ruch góra/dół")
 
 MOTOR_SHOULD_MOVE_DOWN = TXT(
     "Blind should move down/close.",
@@ -331,7 +337,7 @@ MOTOR_SHOULD_MOVE_DOWN = TXT(
     il=None,
     de="Anlage sollte herunterfahren/schließen",
     dk=None,
-    pl=None
+    pl="Produkt powinien się rozwijać/zamykać"
 )
 
 MOVE_BLIND_BOTTOM = TXT(
@@ -340,7 +346,7 @@ MOVE_BLIND_BOTTOM = TXT(
     il=None,
     de="Bewegen Sie die Anlage auf die gewünschte untere Endlage",
     dk=None,
-    pl=None)
+    pl="Produkt rozwija sie do pożądanej pozycji dolnej")
 
 MOVE_BLIND_TOP = TXT(
     "Move the *BLIND* to the desired TOP position.",
@@ -348,7 +354,7 @@ MOVE_BLIND_TOP = TXT(
     il=None,
     de="Bewegen Sie die Anlage in die gewünschte obere Endlage",
     dk=None,
-    pl=None)
+    pl="Produkt zwija sie do pożądanej pozycji górnej")
 
 MOVE_BLIND_SLAT_OPEN = TXT(
     "Move the *BLIND* to the desired SLAT OPEN position.",
@@ -363,7 +369,7 @@ TEST_MOVE_BLINDS = TXT(
     "Controleer BOVEN en ONDER limiet.",
     il=None,
     de="Kontrollieren Sie obere und untere Endlage",
-    dk=None)
+    dk="Sprawdź limit górny i dolny")
 
 SAVE_BOTTOM = TXT(
     "Save this as BOTTOM limit.",
@@ -371,7 +377,7 @@ SAVE_BOTTOM = TXT(
     il=None,
     de="Speichern als untere Endlage",
     dk=None,
-    pl=None)
+    pl="Zapisz dolną pozycję")
 
 SAVE_TOP = TXT(
     "Save this as TOP limit.",
@@ -379,13 +385,13 @@ SAVE_TOP = TXT(
     il=None,
     de="Speichern als OBERE Endlage",
     dk=None,
-    pl=None)
+    pl="Sprawdź górną pozycję")
 
 SAVE_THIS_AS_TOP = TXT(
     "Save this as the TOP limit?",
     "Deze positie als BOVEN limiet instellen?",
     de="Diese Position als OBERE Endlage einstellen?",
-    pl=None)
+    pl="Czy zatwierdzić pozycję górna?")
 
 SAVE_SLAT = TXT(
     "Save this as SLAT OPEN position.",
@@ -401,7 +407,7 @@ LIMITS_OK = TXT(
     il=None,
     de="Endlagen sind OK. Neue Anlage programmieren",
     dk=None,
-    pl=None)
+    pl="Limity są poprawne. Przejdź do nowego produktu")
 
 LIMITS_NOT_OK = TXT(
     "Limits are NOT OK. Re-set them",
@@ -409,7 +415,7 @@ LIMITS_NOT_OK = TXT(
     il=None,
     de="Endlagen sind NICHT OK. Erneut einstellen",
     dk=None,
-    pl=None)
+    pl="Limity są niepoprawne. Ustaw ponownie")
 
 YES = TXT(
     "yes",
@@ -417,7 +423,7 @@ YES = TXT(
     il=None,
     de="ja",
     dk=None,
-    pl=None)
+    pl="tak")
 
 NO = TXT(
     "no",
@@ -425,20 +431,20 @@ NO = TXT(
     il=None,
     de="nein",
     dk=None,
-    pl=None)
+    pl="nie")
 
 TITLE_VVB_SET_CLOSE_LIMIT = TXT(
     "Set the close limit",
     "Sluit-limiet instellen",
     de=None,
-    pl=None,
+    pl="Ustaw pozycję zamkniętą",
     to_upper=True)
 
 TITLE_VVB_SET_OPEN_LIMIT = TXT(
     "Set the open limit",
     "Open limit instellen",
     de=None,
-    pl=None,
+    pl="Ustaw pozycję otwartą",
     to_upper=True
 )
 
@@ -473,14 +479,14 @@ TITLE_ORIENT_VVB_BACK = TXT(
     "Is the motor mounted on the **back** ?",
     "Is the motor **achter** gemonteerd ?",
     de=None,
-    pl=None,
+    pl="Czy motor jest zamontowany z **tyłu** ?",
     to_upper=True)
 
 TITLE_ORIENT_VVB_UPRIGHT = TXT(
     "Is the motor mounted **above** ?",
     "Is de motor **boven** gemonteerd ?",
     de=None,
-    pl=None,
+    pl="Czy motor jest zamontowany u **góry** ?",
     to_upper=True)
 
 TITLE_BACKROLLER_LEFT = TXT(
@@ -523,7 +529,7 @@ TITLE_SET_BOTTOM_LIMIT = TXT(
     il=None,
     de="Untere Endlageneinstellung",
     dk=None,
-    pl=None,
+    pl="Ustaw dolny limit",
     to_upper=True)
 
 TITLE_SET_TOP_LIMIT = TXT(
@@ -532,5 +538,5 @@ TITLE_SET_TOP_LIMIT = TXT(
     il=None,
     de="obere Endlageneinstellung",
     dk=None,
-    pl=None,
+    pl="Ustaw górny limit",
     to_upper=True)

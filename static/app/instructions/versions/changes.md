@@ -54,3 +54,7 @@
 
 - Improving serial port connection
 - Disabling text selection to improve touch experience.
+
+## Version 1.7.1
+
+- Adding HDfab instructions version 1.

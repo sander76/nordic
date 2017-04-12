@@ -13,7 +13,7 @@ from instructor.products.roller import rollerblind1, rollerblind_old
 from instructor.products.test_products import test1
 from instructor.products.twist import twist_old, twist
 
-INSTRUCTION_VERSION = "1.7.0"
+INSTRUCTION_VERSION = "1.7.1"
 MAIN_PATH = "../static/app/instructions"
 
 
@@ -102,6 +102,13 @@ def make_germania1():
     )
 
 
+def make_poland():
+    poland_products = [rollerblind1, m25s_vvb_left, m25s_vvb_right]
+
+    make_instruction("instructions-hdfab-pl.json", poland_products, TXT.pl)
+    make_instruction("instructions-hdfab-en.json", poland_products, TXT.en)
+
+
 def make_instruction(file_name, products, lang):
     _path = os.path.join(MAIN_PATH, file_name)
     instruction = Instruction(INSTRUCTION_VERSION)
@@ -120,3 +127,4 @@ if __name__ == "__main__":
     make_test1()
     make_germania1()
     make_germania2()
+    make_poland()
