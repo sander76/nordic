@@ -43,10 +43,6 @@ connect_m25s_vb = get_connect(
 connect_m25s_duette = get_connect(
     DUETTE_JOG_1, DUETTE_BUTTON_PUSH_HOLD, DUETTE_BUTTON_RELEASE)
 
-connect_m25s_duette_tensioned = Step(tr.CONNECT,
-                                     [connect_text,
-                                      ])
-
 connect_m25s_pleated = get_connect(
     PLEATED_JOG_1, PLEATED_BUTTON_PUSH_HOLD, PLEATED_BUTTON_RELEASE)
 
