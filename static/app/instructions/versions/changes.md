@@ -62,3 +62,7 @@
 ## Version 1.7.2
 
 - Finishing polish language.
+
+## Version 1.7.3
+
+- Adding TS

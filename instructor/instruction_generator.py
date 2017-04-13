@@ -3,8 +3,9 @@ import os
 from instructor.components import ToJson, Instruction
 from instructor.helpers import TXT
 from instructor.products.m25s_duette import m25s_duette_free, \
-    m25s_duette_free_alt
-from instructor.products.m25s_pleated import m25s_pleated_free
+    m25s_duette_free_alt, m25s_duette_tensioned
+from instructor.products.m25s_pleated import m25s_pleated_free, \
+    m25s_pleated_tensioned
 from instructor.products.m25s_vb import m25s_25mm_vb_free, \
     m25s_25mm_vb_free_alt, \
     m25s_16mm_vb_free_alt
@@ -13,7 +14,7 @@ from instructor.products.roller import rollerblind1, rollerblind_old
 from instructor.products.test_products import test1
 from instructor.products.twist import twist_old, twist
 
-INSTRUCTION_VERSION = "1.7.2"
+INSTRUCTION_VERSION = "1.7.3"
 MAIN_PATH = "../static/app/instructions"
 
 
@@ -109,6 +110,18 @@ def make_poland():
     make_instruction("instructions-hdfab-en.json", poland_products, TXT.en)
 
 
+def make_ts():
+    ts_products = [
+        m25s_duette_free_alt,
+        m25s_duette_tensioned,
+        m25s_pleated_free,
+        m25s_pleated_tensioned,
+        m25s_16mm_vb_free_alt,
+        m25s_25mm_vb_free_alt]
+
+    make_instruction("instructions-ts-en.json", ts_products, TXT.en)
+
+
 def make_instruction(file_name, products, lang):
     _path = os.path.join(MAIN_PATH, file_name)
     instruction = Instruction(INSTRUCTION_VERSION)
@@ -128,3 +141,4 @@ if __name__ == "__main__":
     make_germania1()
     make_germania2()
     make_poland()
+    make_ts()

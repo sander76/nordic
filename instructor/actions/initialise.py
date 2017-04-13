@@ -39,21 +39,17 @@ initialise_vb_25 = get_initialise(VB_JOG_2)
 initialise_vb_25.instructions[1].col1.okay = Commands(Nd.RESET, DelayedCommand(
     Nd.M25S_VENETIAN_25MM, PRODUCT_SET_DELAY))
 
-initialise_duette = get_initialise(DUETTE_JOG_2)
-initialise_duette.instructions[1].col1.okay = Commands(Nd.RESET,
-                                                       DelayedCommand(
-                                                           Nd.M25S_DUETTE_FREE,
-                                                           PRODUCT_SET_DELAY))
+initialise_duette = get_initialise(
+    DUETTE_JOG_2,Nd.M25S_DUETTE_FREE)
 
-initialise_duette_tensioned = get_initialise(DUETTE_JOG_2)
-initialise_duette_tensioned.instructions[1].col1.okay = Commands(
-    Nd.RESET,
-    DelayedCommand(
-        Nd.M25S_DUETTE_TENSIONED,
-        PRODUCT_SET_DELAY))
+initialise_duette_tensioned = get_initialise(
+    DUETTE_JOG_2,Nd.M25S_DUETTE_TENSIONED)
 
 initialise_pleated = get_initialise(
     PLEATED_JOG_2, Nd.M25S_PLEATED_FREE)
+
+initialise_pleated_tensioned = get_initialise(
+    PLEATED_JOG_2, Nd.M25S_PLEATED_TENSIONED)
 
 initialise_vvb_right = get_initialise(
     VVB_JOG_1, Nd.M25S_VVB_RIGHT_STACK)
