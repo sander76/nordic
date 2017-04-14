@@ -66,6 +66,16 @@ def make_default():
         fl.write(en)
 
 
+# def make_vb(path):
+#     _path = os.path.join(path, 'instructions-vb16-en.json')
+#     instruction = Instruction(INSTRUCTION_VERSION)
+#     instruction.products.append(venetian16)
+#
+#     en = ToJson(lang='en').encode(instruction)
+#     with open(_path, 'w') as fl:
+#         fl.write(en)
+
+
 def make_holis():
     _path = os.path.join(MAIN_PATH, 'instructions-holis-en.json')
     instruction = Instruction(INSTRUCTION_VERSION)

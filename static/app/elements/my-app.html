@@ -24,16 +24,16 @@
              :host {
                 height: 100%;
             }
-            
+
             app-header {
                 background-color: var(--primary-color);
                 color: #fff;
             }
-            
+
             .drawer-list {
                 margin: 0 20px;
             }
-            
+
             .drawer-list a {
                 display: block;
                 padding: 0 16px;
@@ -41,13 +41,13 @@
                 text-decoration: none;
                 color: var(--app-secondary-color);
             }
-            
+
             .drawer-list a.iron-selected {
                 color: white;
                 font-weight: bold;
                 background-color: var(--primary-color);
             }
-            
+
             .detailedinfo {
                 font-size: 0.6em;
                 margin: 4px;
@@ -55,21 +55,21 @@
             /*#pages {
                 margin: 10px;
             }*/
-            
+
             iron-pages {
                 margin: 0;
                 height: 100vh;
             }
-            
+
             .logo {
-                
+
                 border-bottom: 1px solid #eceff1;
             }
-            
+
             .logo img {
-                margin-left:20px;
-                margin-top:10px;
-                margin-bottom:10px;
+                margin-left: 20px;
+                margin-top: 10px;
+                margin-bottom: 10px;
                 width: 70%;
             }
         </style>
@@ -77,6 +77,7 @@
         <app-route active="{{routeActive}}" route="{{route}}" pattern="instructions/:page/:product" data="{{routeData}}"></app-route>
         <iron-ajax id="instruction" url="/app/instructions/instructions-[[page]].json" handle-as="json" on-response="getInstructions"
             on-error="handleError"></iron-ajax>
+        <iron-ajax id="sendCommand" url="/nordic" method="POST" content-type="application/json"></iron-ajax>
 
         <app-drawer-layout>
             <app-drawer>
@@ -92,7 +93,6 @@
                         </iron-selector>
                     </div>
                     <div class="detailedinfo"> <a href="http://localhost:8080/app/ws.html" target="_blank">Nordic communication</a>
-                        <!--<serial-data on-nordic-changed="handleNordicChanged"></serial-data>-->
                         <serial-data></serial-data>
                         <div> instruction version: <span>[[definitions_version]]</span> </div>
                     </div>
@@ -109,7 +109,6 @@
     <!-- build:js scripts/app.js -->
     <!-- <script src="/app/scripts/app.js"></script> -->
     <script>
-        //var t = document.querySelector("#app");
         Polymer({
             is: 'my-app',
             properties: {
@@ -130,30 +129,36 @@
                     type: Object
                 },
                 selectedStep: {
-                    type: Number,
-                    observer: '_stepChanged'
-                },
-                steptitle: {
-                    type: String
+                    type: Number //,
+                    //observer: '_stepChanged'
                 }
+                // },
+                // steptitle: {
+                //     type: String
+                // }
             },
 
             observers: ['_routePageChanged(routeData.page)',
                 '_routeProductChanged1(routeData.product)'
             ],
-            listeners: {
-                'openmodal': "_openModal"
-            },
+            
+            // listeners: {
+            //     'openmodal': "_openModal"
+            // },
             _openModal: function (e) {
-                console.log("open modal");
+                console.log("Open modal");
+                this.set("modaldata", this.currentproductsteps[this.selectedStep].confirm);
                 this.$.pages.items[this.selectedStep].deactivate();
                 this.$.modl.openmodal();
             },
-            _stepChanged: function (newValue, oldValue) {
-                this.set("steptitle", this.currentproductsteps[newValue].title);
-                this.set("modaldata", this.currentproductsteps[newValue].confirm);
-            },
+
+            // _stepChanged: function (newValue, oldValue) {
+            //     //this.set("steptitle", this.currentproductsteps[newValue].title);
+            //     //this.set("modaldata", this.currentproductsteps[newValue].confirm);
+            // },
             gotoStep: function (current, offset) {
+                console.log("");
+                console.log("Going to page step: " + offset);
                 if (offset === 0) {
                     this.$.pages.items[this.selectedStep].activate();
                 } else {
@@ -161,15 +166,16 @@
                     var goto = 0;
                     if (_goto < 0) {
                         //goto = (t.instructions.steps.length + _goto);
-                        goto = this.currentProduct.items.length + _goto;
+                        goto = this.currentproductsteps.length + _goto;
                     } else {
                         goto = _goto % this.currentproductsteps.length;
                     }
-                    //this.$.pages.select(goto);
                     this.set('selectedStep', goto);
                 }
             },
             gotoId: function (id) {
+                console.log("");
+                console.log("Going to page with id: " + id);
                 for (var i = 0; i < this.$.pages.items.length; i++) {
                     if (this.$.pages.items[i].data.id === id) {
                         console.log('id found: ', id);
@@ -178,11 +184,10 @@
                     }
                 }
             },
-            
+
             handleError: function (e, response) {
                 console.log("error");
             },
-            // handleProductChange: function(e) {     //t.current_product = t.all_products[e.target.selected];     this.ChangeProduct(e.target.selected); }, ChangeProduct: function(idx) {     this.set("selectedproduct", idx);     this.set("selectedStep", 0); },
             getInstructions: function (e, response) {
                 //this.set('all_products', response.response.products);
                 this.all_products = response.response.products;
@@ -210,25 +215,154 @@
                     this.set("currentproduct", this.all_products[this.product]);
                     this.currentproductsteps = _currentproduct.steps;
                     this.set('selectedStep', 0);
-                    
+
+                }
+            },
+            send: function (commands) {
+                //populate the body of the request.
+                this.$.sendCommand.body = {
+                    "commands": commands
+                };
+                this.$.sendCommand.generateRequest();
+                //console.log("command sent: " + commands.command);
+                this.command_logger(commands);
+
+            },
+            command_logger: function (commands) {
+                var first = true;
+                for (var i = 0; i < commands.length; i += 1) {
+                    if (first) {
+                        console.log("Sending commands to nordic:");
+                        console.log("  " + commands[i]);
+                        first = false;
+                    } else {
+                        console.log("  " + commands[i].command);
+                    }
                 }
             }
         });
+
         var app = document.querySelector('my-app');
-        document.addEventListener("nextpage", function () {
-            this.currentProduct.selectNext();
-        });
+
+        var no_func = function () {
+            console.log("Pressed an inactive key.");
+        };
+
+        document.closeModalConfirm = function () {
+            console.log("Close modal confirm");
+            app.$.modl.closeModal();
+        };
+
+        document.closeModalDismiss = function () {
+            console.log("Close modal dismiss");
+            app.$.modl.closeModalDismiss();
+        };
+
+        document._handle_key_d = function () {
+            app.send(["tiltopen"]);
+            console.log("Pressed d key");
+        };
+
+        document._handle_key_okay = function (okay_data, confirm) {
+            return _handle_command(okay_data, confirm, "Okay");
+        }
+
+        document._handle_key_x = function (cancel_data, confirm) {
+            return _handle_command(cancel_data, confirm, 'X');
+        }
+
+        var _handle_command = function (command_data, confirm, key) {
+            var myfunc = function () {
+                var cmd = command_data.commands || undefined;
+                if (cmd !== undefined) {
+                    app.send(cmd);
+                }
+                var goto = command_data.goto || undefined;
+                if (goto !== undefined) {
+                    goto_page(goto);
+                    //this.fire("gotopage", goto);
+                }
+
+                console.log("Pressed " + key + " key.");
+                if (confirm) {
+                    app._openModal()
+                }
+            }
+            return myfunc;
+        }
+
+        document._handle_key_s = function () {
+            app.send(["stop"]);
+            console.log("Pressed s key");
+        };
+
+        document._handle_key_a = function () {
+            app.send(["tiltclose"]);
+            console.log("Pressed a key, sending tiltclose.");
+        };
+        document._handle_key_w = function () {
+            app.send(["open"]);
+            console.log("Pressed w key, sending open");
+        };
+        document._handle_key_z = function () {
+            app.send(["close"]);
+            console.log("Pressed z key");
+        }
+
+        document.reset_keys = function () {
+
+            document.handle_key_d = no_func;
+            document.handle_key_okay = no_func;
+            document.handle_key_x = no_func;
+            document.handle_key_s = no_func;
+            document.handle_key_a = no_func;
+            document.handle_key_w = no_func;
+            document.handle_key_z = no_func;
+            console.log("Resetting key handles.")
+
+        }
+
+        document.addEventListener("keypress", function (e) {
+            switch (e.key) {
+                case "d":
+                    document.handle_key_d();
+                    break;
+                case "a":
+                    document.handle_key_a();
+                    break;
+                case "w":
+                    document.handle_key_w();
+                    break;
+                case "z":
+                    document.handle_key_z();
+                    break;
+                case "s": // stop.
+                    document.handle_key_s();
+                    break;
+                case "enter":
+                    document.handle_key_okay();
+                    break;
+                case "Enter":
+                    document.handle_key_okay();
+                    break;
+                case "x":
+                    document.handle_key_x();
+                    break;
+            }
+        }, false);
         document.addEventListener("gotopage", function (e) {
-            if (typeof (e.detail) === 'string') {
+            goto_page(e.detail);
+        });
+        var goto_page = function (goto_value) {
+            if (typeof (goto_value) === 'string') {
                 app.gotoId(e.detail);
                 //this.gotoId(e.detail);
             } else {
-                app.gotoStep(app.selectedStep, e.detail);
+                app.gotoStep(app.selectedStep, goto_value);
                 //this.gotoStep(this.selectedStep, e.detail);
             }
-        });
-        document.addEventListener("previouspage", function () {
-            this.currentProduct.selectPrevious();
-        });
+        };
+
+        document.reset_keys();
     </script>
 </dom-module>

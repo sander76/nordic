@@ -14,7 +14,7 @@ skipbottom_end = Step(tr.TITLE_SKIP_BOTTOM,
                           Row(Spacer(30),
                               PvKeypad(30, ['okay'],
                                        okay=NavigationCommand(goto=1)),
-                              PvKeypad(30, ['cancel'], cancel=ID_TEST_BLINDS))
+                              PvKeypad(30, ['cancel'], cancel=NavigationCommand(ID_TEST_BLINDS)))
                       ])
 
 """
@@ -28,7 +28,7 @@ skipbottom_next = Step(tr.TITLE_SKIP_BOTTOM,
                            Row(Spacer(30),
                                PvKeypad(30, ['okay'],
                                         okay=NavigationCommand(goto=1)),
-                               PvKeypad(30, ['cancel'], cancel=3))
+                               PvKeypad(30, ['cancel'], cancel=NavigationCommand(3)))
                        ])
 
 skiptop = Step(tr.TITLE_SKIP_TOP,
@@ -38,5 +38,5 @@ skiptop = Step(tr.TITLE_SKIP_TOP,
                        Text(30, tr.SELECT_SKIP_TOP)),
                    Row(Spacer(30),
                        PvKeypad(30, ['okay'], okay=NavigationCommand(goto=1)),
-                       PvKeypad(30, ['cancel'], cancel=3))
+                       PvKeypad(30, ['cancel'], cancel=NavigationCommand(3)))
                ])
