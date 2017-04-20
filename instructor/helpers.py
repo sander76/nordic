@@ -44,6 +44,11 @@ class TXT:
 
         return {'content': val}
 
+    def get_plain_text(self, lang):
+        val = getattr(self, lang, '')
+        val = val if val else ''
+        return val
+
     def add_number(self, number):
         nt = NumberedText(self, number)
         return nt

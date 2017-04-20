@@ -1,4 +1,4 @@
-import instructor.translations as tr
+from instructor.translations import Translations as tr
 from instructor.components import Row, Text, PvKeypad, Step, Image, Confirm, \
     DelayedCommand, Commands
 from instructor.constants import TWIST_JOG_1, TWIST_BUTTON_PUSH_HOLD, \
