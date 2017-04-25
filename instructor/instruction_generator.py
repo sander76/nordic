@@ -132,6 +132,24 @@ def make_ts():
     make_instruction("instructions-ts-en.json", ts_products, TXT.en)
 
 
+def make_all():
+    products = [
+        m25s_duette_free,
+        m25s_duette_free_alt,
+        m25s_duette_tensioned,
+        m25s_pleated_free,
+        m25s_pleated_tensioned,
+        m25s_25mm_vb_free,
+        m25s_25mm_vb_free_alt,
+        m25s_16mm_vb_free_alt,
+        m25s_vvb_right,
+        m25s_vvb_left,
+        rollerblind1,
+        twist
+    ]
+    make_instruction("instructions-all-en.json", products, TXT.en)
+
+
 def make_instruction(file_name, products, lang):
     _path = os.path.join(MAIN_PATH, file_name)
     instruction = Instruction(INSTRUCTION_VERSION)
@@ -152,3 +170,4 @@ if __name__ == "__main__":
     make_germania2()
     make_poland()
     make_ts()
+    make_all()
