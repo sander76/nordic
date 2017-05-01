@@ -131,10 +131,6 @@
         "ref_en": "SET SLAT POSITION?",
         "de": "Lamellenposition einstellen?"
     },
-    "TITLE_VVB": {
-        "ref_en": "VVB title",
-        "de": ""
-    },
     "RESET_TOP": {
         "ref_en": "Re-set the TOP limit.",
         "de": "OBERE Endlage erneut festlegen"

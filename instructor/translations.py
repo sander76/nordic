@@ -1,3 +1,10 @@
+"""
+Work in progress.
+
+
+
+"""
+
 import json
 import pprint
 
@@ -543,6 +550,11 @@ def _get_translation_file_path(lang):
 
 
 def load_translations():
+    """
+    Loads all available json translation files and populates the Translations
+     class. This function is called before creation of instructions is
+     initiated.
+    """
     for lang in AVAILABLE_TRANSLATIONS:
         full_name = _get_translation_file_path(lang)
 
@@ -564,7 +576,11 @@ def _open_current_translation(json_file):
 
 
 def export_translations():
-    """Exports all current translations to json files"""
+    """
+    Loads the current json files with tranlations.
+    It then checks the current Translation class for
+    new entries and puts them in the above json file.
+    """
 
     for lang in AVAILABLE_TRANSLATIONS:
         full_name = _get_translation_file_path(lang)
@@ -579,14 +595,14 @@ def export_translations():
                         _val = getattr(value, lang)
                     except AttributeError as e:
                         print(e)
-                    _val = _val if _val else ""
-                    _org_json[key] = {"ref_en": value.en,
-                                      lang: _val}
+                    else:
+                        _val = _val if _val else ""
+                        _org_json[key] = {"ref_en": value.en,
+                                          lang: _val}
 
         with open(full_name, 'w', encoding="utf-8") as _fl:
             json.dump(_org_json, _fl, ensure_ascii=False,
                       indent=4)
-            # _fl.write(trans)
 
 
 if __name__ == "__main__":

@@ -131,10 +131,6 @@
         "ref_en": "SET SLAT POSITION?",
         "cz": ""
     },
-    "TITLE_VVB": {
-        "ref_en": "VVB title",
-        "cz": ""
-    },
     "RESET_TOP": {
         "ref_en": "Re-set the TOP limit.",
         "cz": ""
