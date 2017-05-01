@@ -1,4 +1,4 @@
-import instructor.translations as tr
+from instructor.translations import Translations as tr
 from instructor.actions.general import keypad_move_buttons
 from instructor.components import PvKeypad, Commands, Step, Row, Text, Image, \
     Confirm

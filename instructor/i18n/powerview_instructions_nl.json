@@ -1,1 +1,278 @@
-{"IS_LEFT_MOUNT": "Is de motor **links** gemonteerd ?", "NO": "nee", "__dict__": null, "TITLE_BACKROLLER_RIGHT": "RECHTS BACKROLLER", "IS_RIGHT_BACKROLLER": "Is de motor **rechts** gemonteerd en **backroller** ?", "DID_THE_MOTOR_JOG": "Heeft de motor kort bewogen?", "WATCH_THE_BLIND_MOVE_UP": "Zie de *BLIND* naar boven bewegen.", "TITLE_ORIENT_VVB_BACK": "Is the motor **achter** gemonteerd ?", "PROPER_PRODUCT_HANG": "Zorg dat de *ONDERLAT* ongeveer 20cm gezakt is.", "PRESS_HOLD_BLIND_BUTTON": "`Druk` de *BLIND BUTTON*  in en `houd vast`.", "SWITCH_DIRECTION": "WISSEL BLIND RICHTING.", "WATCH_THE_BLIND_JOG": "Zie de *BLIND* bewegen.", "CONNECT": "VERBINDEN.", "DID_THE_MOTOR_JOG_TWO_TIMES": "Heeft de motor twee keer bewogen?", "INITIALISE": "INITALISEREN.", "SELECT_SKIP_BOTTOM": "*ONDERLIMIET* niet opnieuw instellen", "HANG_RB": "HANG HET ROLGORDIJN OP", "SAVE_SLAT": "Stel in als SLAT OPEN positie.", "TITLE_SKIP_TOP": "STEL *BOVENLIMIET* IN?", "RESET_TOP": "BOVENLIMIET opnieuw instellen.", "SAVE_BOTTOM": "Stel in als ONDER positie.", "PROPER_PRODUCT_HANG_CONFIRM": "Product is correct opgehangen.", "ENTER_PROGRAM_MODE": "PROGRAMMEER MODUS.", "DID_MOTOR_MOVE_DOWN": "Is de blind naar beneden bewogen?", "YES": "ja", "MOVE_BLIND_SLAT_OPEN": "Stuur de *BLIND* naar de gewenste SLAT OPEN positie.", "MOVE_BLIND_BOTTOM": "Stuur de *BLIND* naar de gewenste ONDER positie.", "TITLE_VVB_SET_OPEN_LIMIT": "Open limit instellen", "LIMITS_OK": "Limieten zijn OK. Nieuwe *BLIND* inprogrammeren.", "RIGHT_MOUNT": "MOTOR RECHTS", "__doc__": null, "BLIND_DIRECTION": "CONTROLEER BLIND RICHTING.", "KEEP_PRESSING_AND_OKAY": "Blijf de *BLIND BUTTON* indrukken en druk op de OK knop.", "SELECT_SKIP_SLAT": "*SLAT OPEN* positie niet opnieuw instellen.", "IS_BLIND_AT_TOP": "IS DE BLIND HELEMAAL BOVEN ?", "SET_TWIST_SLAT_POSITION": "STEL TWIST SLAT POSITIE IN.", "IS_RIGHT_FRONTROLLER": "Is de motor **rechts** gemonteerd en **contrarollend** ?", "RELEASE_THE_BLIND_BUTTON": "Laat de *BLIND BUTTON* los.", "START_TOP_PROGRAMMING": "De blind zal helemaal naar boven bewegen.", "SAVE_TOP": "Stel in als BOVEN positie.", "TITLE_SET_TOP_LIMIT": "STEL BOVENLIMIET IN.", "IS_LEFT_BACKROLLER": "Is de motor **links** gemonteerd en **backroller** ?", "TITLE_FRONTROLLER_RIGHT": "RECHTS FRONTROLLER", "TEST_MOVE_BLINDS": "Controleer BOVEN en ONDER limiet.", "PRESS_OKAY_BUTTON": "Druk op de OK knop", "TITLE_BACKROLLER_LEFT": "LINKS BACKROLLER", "__module__": "__main__", "WATCH_THE_BLIND_JOG_TWO_TIMES": "Motor beweegt twee keer.", "RESET_SLAT": "SLAT positie opnieuw instellen.", "HANGPRODUCT": "PRODUCT OPHANGEN.", "SAVE_THIS_AS_TOP": "Deze positie als BOVEN limiet instellen?", "DID_THE_MOTOR_MOVE_UP": "Is de blind naar boven bewogen?", "ORIENT_VVB_BACK": "MOTOR ACHTER", "RESET_BOTTOM": "ONDERLIMIET opnieuw instellen.", "__weakref__": null, "MAKE_CHOICE": "Maak een keuze:", "SELECT_SKIP_TOP": "BOVENLIMIET niet opnieuw instellen", "TITLE_SKIP_BOTTOM": "STEL *ONDERLIMIET* IN?", "MOTOR_SHOULD_MOVE_DOWN": "Blind moet naar beneden bewegen/sluiten.", "ORIENT_VVB_UPRIGHT": "MOTOR BOVEN", "IS_RIGHT_MOUNT": "Is de motor **rechts** gemonteerd ?", "HANG_TWIST": "HANG DE TWIST BLIND OP", "TITLE_SKIP_SLAT": "STEL SLAT POSITIE IN?", "TITLE_VVB_SET_CLOSE_LIMIT": "Sluit-limiet instellen", "TEST_BLINDS": "TEST BLINDS", "MOVE_BLIND_TOP": "Stuur de *BLIND* naar de gewenste BOVEN positie.", "LEFT_MOUNT": "MOTOR LINKS", "TITLE_ORIENT_VVB_UPRIGHT": "Is de motor **boven** gemonteerd ?", "IS_LEFT_FRONTROLLER": "Is de motor **links** gemonteerd en **contrarollend** ?", "TITLE_SET_BOTTOM_LIMIT": "STEL ONDERLIMIET IN.", "LIMITS_NOT_OK": "Limieten zijn NIET OK. Opnieuw instellen.", "TITLE_FRONTROLLER_LEFT": "LINKS FRONTROLLER"}
+{
+    "TITLE_SKIP_TOP": {
+        "ref_en": "SET *TOP* LIMIT?",
+        "nl": "STEL *BOVENLIMIET* IN?"
+    },
+    "TITLE_BACKROLLER_RIGHT": {
+        "ref_en": "RIGHT BACKROLLER",
+        "nl": "RECHTS BACKROLLER"
+    },
+    "IS_RIGHT_FRONTROLLER": {
+        "ref_en": "Is the motor on the **right** and **frontroller** ?",
+        "nl": "Is de motor **rechts** gemonteerd en **contrarollend** ?"
+    },
+    "NO": {
+        "ref_en": "no",
+        "nl": "nee"
+    },
+    "MOVE_BLIND_BOTTOM": {
+        "ref_en": "Move the *BLIND* to the desired BOTTOM position.",
+        "nl": "Stuur de *BLIND* naar de gewenste ONDER positie."
+    },
+    "RESET_SLAT": {
+        "ref_en": "Re-set the SLAT position",
+        "nl": "SLAT positie opnieuw instellen."
+    },
+    "DID_MOTOR_MOVE_DOWN": {
+        "ref_en": "Did the blind move down?",
+        "nl": "Is de blind naar beneden bewogen?"
+    },
+    "HANG_RB": {
+        "ref_en": "HANG THE ROLLERBLIND",
+        "nl": "HANG HET ROLGORDIJN OP"
+    },
+    "WATCH_THE_BLIND_JOG_TWO_TIMES": {
+        "ref_en": "Motor jogs two times.",
+        "nl": "Motor beweegt twee keer."
+    },
+    "RIGHT_MOUNT": {
+        "ref_en": "MOTOR ON THE RIGHT",
+        "nl": "MOTOR RECHTS"
+    },
+    "KEEP_PRESSING_AND_OKAY": {
+        "ref_en": "Keep pressing the *BLIND BUTTON* and press the OK button.",
+        "nl": "Blijf de *BLIND BUTTON* indrukken en druk op de OK knop."
+    },
+    "TEST_BLINDS": {
+        "ref_en": "TEST BLINDS",
+        "nl": "TEST BLINDS"
+    },
+    "SAVE_BOTTOM": {
+        "ref_en": "Save this as BOTTOM limit.",
+        "nl": "Stel in als ONDER positie."
+    },
+    "DID_THE_MOTOR_JOG_TWO_TIMES": {
+        "ref_en": "Did the motor jog two times?",
+        "nl": "Heeft de motor twee keer bewogen?"
+    },
+    "YES": {
+        "ref_en": "yes",
+        "nl": "ja"
+    },
+    "MOVE_BLIND_SLAT_OPEN": {
+        "ref_en": "Move the *BLIND* to the desired SLAT OPEN position.",
+        "nl": "Stuur de *BLIND* naar de gewenste SLAT OPEN positie."
+    },
+    "IS_BLIND_AT_TOP": {
+        "ref_en": "IS THE BLIND AT THE TOP ?",
+        "nl": "IS DE BLIND HELEMAAL BOVEN ?"
+    },
+    "IS_LEFT_FRONTROLLER": {
+        "ref_en": "Is the motor on the **left** and **frontroller** ?",
+        "nl": "Is de motor **links** gemonteerd en **contrarollend** ?"
+    },
+    "TITLE_VVB_SET_OPEN_LIMIT": {
+        "ref_en": "Set the open limit",
+        "nl": "Open limit instellen"
+    },
+    "MOVE_BLIND_TOP": {
+        "ref_en": "Move the *BLIND* to the desired TOP position.",
+        "nl": "Stuur de *BLIND* naar de gewenste BOVEN positie."
+    },
+    "TITLE_ORIENT_VVB_UPRIGHT": {
+        "ref_en": "Is the motor mounted **above** ?",
+        "nl": "Is de motor **boven** gemonteerd ?"
+    },
+    "PROPER_PRODUCT_HANG": {
+        "ref_en": "Make sure *BOTTOM* bar is approximately 20cm down.",
+        "nl": "Zorg dat de *ONDERLAT* ongeveer 20cm gezakt is."
+    },
+    "HANG_TWIST": {
+        "ref_en": "HANG THE TWIST BLIND",
+        "nl": "HANG DE TWIST BLIND OP"
+    },
+    "ORIENT_VVB_BACK": {
+        "ref_en": "MOTOR ON THE BACK",
+        "nl": "MOTOR ACHTER"
+    },
+    "IS_RIGHT_BACKROLLER": {
+        "ref_en": "Is the motor on the **right** and **backroller** ?",
+        "nl": "Is de motor **rechts** gemonteerd en **backroller** ?"
+    },
+    "WATCH_THE_BLIND_JOG": {
+        "ref_en": "Watch the *BLIND* jog.",
+        "nl": "Zie de *BLIND* bewegen."
+    },
+    "PRESS_HOLD_BLIND_BUTTON": {
+        "ref_en": "`Press` and `hold` the *BLIND BUTTON* .",
+        "nl": "`Druk` de *BLIND BUTTON*  in en `houd vast`."
+    },
+    "ORIENT_VVB_UPRIGHT": {
+        "ref_en": "MOTOR ABOVE",
+        "nl": "MOTOR BOVEN"
+    },
+    "SELECT_SKIP_TOP": {
+        "ref_en": "I don't want to set the TOP limit",
+        "nl": "BOVENLIMIET niet opnieuw instellen"
+    },
+    "DID_THE_MOTOR_JOG": {
+        "ref_en": "Did the motor jog?",
+        "nl": "Heeft de motor kort bewogen?"
+    },
+    "IS_LEFT_BACKROLLER": {
+        "ref_en": "Is the motor on the **left** and **backroller** ?",
+        "nl": "Is de motor **links** gemonteerd en **backroller** ?"
+    },
+    "LIMITS_OK": {
+        "ref_en": "Limits are OK. Do a new blind.",
+        "nl": "Limieten zijn OK. Nieuwe *BLIND* inprogrammeren."
+    },
+    "TITLE_SKIP_SLAT": {
+        "ref_en": "SET SLAT POSITION?",
+        "nl": "STEL SLAT POSITIE IN?"
+    },
+    "TITLE_VVB": {
+        "ref_en": "VVB title",
+        "nl": "VVB titel"
+    },
+    "RESET_TOP": {
+        "ref_en": "Re-set the TOP limit.",
+        "nl": "BOVENLIMIET opnieuw instellen."
+    },
+    "LEFT_MOUNT": {
+        "ref_en": "MOTOR ON THE LEFT",
+        "nl": "MOTOR LINKS"
+    },
+    "INITIALISE": {
+        "ref_en": "INIT.",
+        "nl": "INITALISEREN."
+    },
+    "TITLE_SET_BOTTOM_LIMIT": {
+        "ref_en": "SET BOTTOM LIMIT.",
+        "nl": "STEL ONDERLIMIET IN."
+    },
+    "SAVE_TOP": {
+        "ref_en": "Save this as TOP limit.",
+        "nl": "Stel in als BOVEN positie."
+    },
+    "TITLE_SET_TOP_LIMIT": {
+        "ref_en": "SET TOP LIMIT.",
+        "nl": "STEL BOVENLIMIET IN."
+    },
+    "BLIND_DIRECTION": {
+        "ref_en": "CHECK BLIND DIRECTION.",
+        "nl": "CONTROLEER BLIND RICHTING."
+    },
+    "CONNECT": {
+        "ref_en": "CONNECT.",
+        "nl": "VERBINDEN."
+    },
+    "RELEASE_THE_BLIND_BUTTON": {
+        "ref_en": "Release the *BLIND BUTTON*",
+        "nl": "Laat de *BLIND BUTTON* los."
+    },
+    "MAKE_CHOICE": {
+        "ref_en": "Make a choice:",
+        "nl": "Maak een keuze:"
+    },
+    "MOTOR_SHOULD_MOVE_DOWN": {
+        "ref_en": "Blind should move down/close.",
+        "nl": "Blind moet naar beneden bewegen/sluiten."
+    },
+    "IS_LEFT_MOUNT": {
+        "ref_en": "Is the motor on the **left** ?",
+        "nl": "Is de motor **links** gemonteerd ?"
+    },
+    "SWITCH_DIRECTION": {
+        "ref_en": "CHANGE BLIND DIRECTION.",
+        "nl": "WISSEL BLIND RICHTING."
+    },
+    "TITLE_BACKROLLER_LEFT": {
+        "ref_en": "LEFT BACKROLLER",
+        "nl": "LINKS BACKROLLER"
+    },
+    "SAVE_SLAT": {
+        "ref_en": "Save this as SLAT OPEN position.",
+        "nl": "Stel in als SLAT OPEN positie."
+    },
+    "TITLE_ORIENT_VVB_BACK": {
+        "ref_en": "Is the motor mounted on the **back** ?",
+        "nl": "Is the motor **achter** gemonteerd ?"
+    },
+    "TITLE_SKIP_BOTTOM": {
+        "ref_en": "SET *BOTTOM* LIMIT?",
+        "nl": "STEL *ONDERLIMIET* IN?"
+    },
+    "SET_TWIST_SLAT_POSITION": {
+        "ref_en": "SET TWIST SLAT POSITION.",
+        "nl": "STEL TWIST SLAT POSITIE IN."
+    },
+    "DID_THE_MOTOR_MOVE_UP": {
+        "ref_en": "Did the blind move to the top?",
+        "nl": "Is de blind naar boven bewogen?"
+    },
+    "SELECT_SKIP_BOTTOM": {
+        "ref_en": "I don't want to set the *BOTTOM* limit",
+        "nl": "*ONDERLIMIET* niet opnieuw instellen"
+    },
+    "IS_RIGHT_MOUNT": {
+        "ref_en": "Is the motor on the **right** ?",
+        "nl": "Is de motor **rechts** gemonteerd ?"
+    },
+    "SELECT_SKIP_SLAT": {
+        "ref_en": "Don't re-set the *SLAT* position.",
+        "nl": "*SLAT OPEN* positie niet opnieuw instellen."
+    },
+    "HANGPRODUCT": {
+        "ref_en": "HANG PRODUCT.",
+        "nl": "PRODUCT OPHANGEN."
+    },
+    "SAVE_THIS_AS_TOP": {
+        "ref_en": "Save this as the TOP limit?",
+        "nl": "Deze positie als BOVEN limiet instellen?"
+    },
+    "TITLE_FRONTROLLER_RIGHT": {
+        "ref_en": "RIGHT FRONTROLLER",
+        "nl": "RECHTS FRONTROLLER"
+    },
+    "START_TOP_PROGRAMMING": {
+        "ref_en": "The blind will move completely to the top.",
+        "nl": "De blind zal helemaal naar boven bewegen."
+    },
+    "ENTER_PROGRAM_MODE": {
+        "ref_en": "ENTER PROGRAM MODE.",
+        "nl": "PROGRAMMEER MODUS."
+    },
+    "TEST_MOVE_BLINDS": {
+        "ref_en": "Check TOP and BOTTOM limits.",
+        "nl": "Controleer BOVEN en ONDER limiet."
+    },
+    "TITLE_FRONTROLLER_LEFT": {
+        "ref_en": "LEFT FRONTROLLER",
+        "nl": "LINKS FRONTROLLER"
+    },
+    "PROPER_PRODUCT_HANG_CONFIRM": {
+        "ref_en": "Product fixed *OK*.",
+        "nl": "Product is correct opgehangen."
+    },
+    "RESET_BOTTOM": {
+        "ref_en": "Re-set the BOTTOM limit.",
+        "nl": "ONDERLIMIET opnieuw instellen."
+    },
+    "LIMITS_NOT_OK": {
+        "ref_en": "Limits are NOT OK. Re-set them",
+        "nl": "Limieten zijn NIET OK. Opnieuw instellen."
+    },
+    "PRESS_OKAY_BUTTON": {
+        "ref_en": "Press OK button",
+        "nl": "Druk op de OK knop"
+    },
+    "TITLE_VVB_SET_CLOSE_LIMIT": {
+        "ref_en": "Set the close limit",
+        "nl": "Sluit-limiet instellen"
+    },
+    "WATCH_THE_BLIND_MOVE_UP": {
+        "ref_en": "Watch the *BLIND* move up.",
+        "nl": "Zie de *BLIND* naar boven bewegen."
+    }
+}

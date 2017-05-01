@@ -1,4 +1,5 @@
-import instructor.translations as tr
+#import instructor.translations as tr
+from instructor.translations import Translations as tr
 from instructor.components import Step, Row, Text,\
     NavigationCommand, PvKeypad, Image, Previous
 from instructor.constants import ID_HOIST

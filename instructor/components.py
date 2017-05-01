@@ -1,6 +1,7 @@
 import json
 
-import instructor.translations as tr
+from instructor.translations import Translations as tr
+# import instructor.translations as tr
 from instructor.helpers import TXT, NumberedText
 # from server.nordic import COMMANDS
 import server.nordic
@@ -39,7 +40,7 @@ class DelayedCommand:
 
 class ToJson(json.JSONEncoder):
     def __init__(self, lang='en'):
-        json.JSONEncoder.__init__(self, sort_keys=True)
+        json.JSONEncoder.__init__(self, sort_keys=True,ensure_ascii=False)
         self.lang = lang
 
     def default(self, o):

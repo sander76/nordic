@@ -15,8 +15,11 @@ AVAILABLE_TRANSLATIONS = [
     'nl',
     'de',
     'pl',
-    'dk'
+    'dk',
+    'cz'
 ]
+
+BASE_FOLDER = "i18n"
 
 
 class Translations():
@@ -439,163 +442,153 @@ class Translations():
 
     YES = TXT(
         "yes",
-        "ja",
-        il=None,
-        de="ja",
-        dk=None,
-        pl="tak")
+        "ja")
 
     NO = TXT(
         "no",
-        "nee",
-        il=None,
-        de="nein",
-        dk=None,
-        pl="nie")
+        "nee")
 
     TITLE_VVB_SET_CLOSE_LIMIT = TXT(
         "Set the close limit",
         "Sluit-limiet instellen",
-        de=None,
-        pl="Ustaw pozycję zamkniętą",
         to_upper=True)
 
     TITLE_VVB_SET_OPEN_LIMIT = TXT(
         "Set the open limit",
         "Open limit instellen",
-        de=None,
-        pl="Ustaw pozycję otwartą",
         to_upper=True
     )
 
     TITLE_SKIP_TOP = TXT(
         "SET *TOP* LIMIT?",
         "STEL *BOVENLIMIET* IN?",
-        il=None,
-        de="Obere Endlage einstellen?",
-        dk=None,
-        pl="Ustaw limit gorny",
         to_upper=True)
 
     TITLE_SKIP_BOTTOM = TXT(
         "SET *BOTTOM* LIMIT?",
         "STEL *ONDERLIMIET* IN?",
-        il=None,
-        de="*Untere* Endlage einstellen?",
-        dk=None,
-        pl="Ustaw limit dolny",
         to_upper=True)
 
     TITLE_SKIP_SLAT = TXT(
         "SET SLAT POSITION?",
         "STEL SLAT POSITIE IN?",
-        il=None,
-        de="Lamellenposition einstellen?",
-        dk=None,
-        pl=None,
         to_upper=True)
 
     TITLE_ORIENT_VVB_BACK = TXT(
         "Is the motor mounted on the **back** ?",
         "Is the motor **achter** gemonteerd ?",
-        de=None,
-        pl="Czy motor jest zamontowany z **tyłu** ?",
         to_upper=True)
 
     TITLE_ORIENT_VVB_UPRIGHT = TXT(
         "Is the motor mounted **above** ?",
         "Is de motor **boven** gemonteerd ?",
-        de=None,
-        pl="Czy motor jest zamontowany u **góry** ?",
         to_upper=True)
 
     TITLE_BACKROLLER_LEFT = TXT(
         "LEFT BACKROLLER", "LINKS BACKROLLER",
-        il=None,
-        de="links, hinten abrollend",
-        dk=None,
-        pl="LEWA STRONA, ZWIJANIE NORMALNE",
         to_upper=True)
 
     TITLE_BACKROLLER_RIGHT = TXT(
         "RIGHT BACKROLLER",
         "RECHTS BACKROLLER",
-        il=None,
-        de="Rechts, vorne abrollend",
-        dk=None,
-        pl="PRAWA STRONA, ZWIJANIE NORMALNE",
         to_upper=True)
 
     TITLE_FRONTROLLER_LEFT = TXT(
         "LEFT FRONTROLLER",
         "LINKS FRONTROLLER",
-        il=None,
-        de="links, vorne abrollend",
-        dk=None,
-        pl="LEWA STRONA, ZWIJANIE ODWROTNE",
         to_upper=True)
 
     TITLE_FRONTROLLER_RIGHT = TXT(
-        "RIGHT FRONTROLLER", "RECHTS FRONTROLLER",
-        il=None,
-        de="rechts, vorne abrollend",
-        dk=None,
-        pl="PRAWA STRONA, ZWIJANIE ODWROTNE",
-        to_upper=True)
+        "RIGHT FRONTROLLER", "RECHTS FRONTROLLER",to_upper=True)
 
     TITLE_SET_BOTTOM_LIMIT = TXT(
         "SET BOTTOM LIMIT.",
         "STEL ONDERLIMIET IN.",
-        il=None,
-        de="Untere Endlageneinstellung",
-        dk=None,
-        pl="Ustaw limit dolny",
         to_upper=True)
 
     TITLE_SET_TOP_LIMIT = TXT(
         "SET TOP LIMIT.",
         "STEL BOVENLIMIET IN.",
-        il=None,
-        de="obere Endlageneinstellung",
-        dk=None,
-        pl="Ustaw limit gorny",
         to_upper=True)
+
+    TITLE_VVB = TXT(
+        "VVB title",
+        "VVB titel")
 
 
 def do_text(lang):
     def wrapper(o):
         if isinstance(o, TXT):
             txt = o.get_plain_text(lang)
-            return txt
+            return {
+                "ref_en": o.get_plain_text('en'),
+                lang: txt}
 
         elif o is Translations:
-            return dict(o.__dict__)
+            _dct = {key: value for key, value in vars(o).items() if
+                    not key.startswith('_')}
+
+            return _dct
+            # return dict(o.__dict__)
+        else:
+            return
 
     return wrapper
 
 
+def _get_translation_file_path(lang):
+    fname = "powerview_instructions_{}.json".format(lang)
+    full_name = os.path.join(BASE_FOLDER, fname)
+    return full_name
+
+
 def load_translations():
-    fname = "i18n/powerview_instructions_en.json"
-    lang = 'en'
-    with open(fname, 'r')as _fl:
-        _js = json.load(_fl)
-    for key, value in _js.items():
-        _txt = getattr(Translations, key)
-        if isinstance(_txt, TXT):
-            setattr(_txt, lang, value)
+    for lang in AVAILABLE_TRANSLATIONS:
+        full_name = _get_translation_file_path(lang)
+
+        with open(full_name, 'r',encoding='utf-8')as _fl:
+            _js = json.load(_fl)
+        for key, value in _js.items():
+            _txt = getattr(Translations, key)
+            if isinstance(_txt, TXT):
+                setattr(_txt, lang, value[lang])
+
+
+def _open_current_translation(json_file):
+    try:
+        with open(json_file, 'r') as _fl:
+            _js = json.load(_fl)
+            return _js
+    except (FileExistsError, FileNotFoundError) as e:
+        return {}
+
 
 def export_translations():
     """Exports all current translations to json files"""
 
-    base_folder = "i18n"
     for lang in AVAILABLE_TRANSLATIONS:
-        trans = json.dumps(Translations, default=do_text(lang))
-        fname = "powerview_instructions_{}.json".format(lang)
-        full_name = os.path.join(base_folder, fname)
-        with open(full_name, 'w') as _fl:
-            _fl.write(trans)
+        full_name = _get_translation_file_path(lang)
+
+        # open the current file:
+        _org_json = _open_current_translation(full_name)
+
+        for key, value in Translations.__dict__.items():
+            if not key.startswith("_"):
+                if key not in _org_json:
+                    try:
+                        _val = getattr(value, lang)
+                    except AttributeError as e:
+                        print(e)
+                    _val = _val if _val else ""
+                    _org_json[key] = {"ref_en": value.en,
+                                      lang: _val}
+
+        with open(full_name, 'w', encoding="utf-8") as _fl:
+            json.dump(_org_json, _fl, ensure_ascii=False,
+                      indent=4)
+            # _fl.write(trans)
 
 
 if __name__ == "__main__":
-    #export_translations()
-    load_translations()
+    export_translations()
+    # load_translations()
