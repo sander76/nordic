@@ -24,7 +24,7 @@ class TXT:
     def __init__(self, en: str, nl: str, il: str = None, pl=None, ru=None,
                  he=None,
                  de=None,
-                 dk=None, to_upper=False):
+                 dk=None, cz=None, to_upper=False):
         self.en = en
         self.nl = nl
         self.pl = pl
