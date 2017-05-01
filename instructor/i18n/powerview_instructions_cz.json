@@ -1,0 +1,278 @@
+{
+    "TITLE_SKIP_TOP": {
+        "ref_en": "SET *TOP* LIMIT?",
+        "cz": ""
+    },
+    "TITLE_BACKROLLER_RIGHT": {
+        "ref_en": "RIGHT BACKROLLER",
+        "cz": ""
+    },
+    "IS_RIGHT_FRONTROLLER": {
+        "ref_en": "Is the motor on the **right** and **frontroller** ?",
+        "cz": ""
+    },
+    "NO": {
+        "ref_en": "no",
+        "cz": ""
+    },
+    "MOVE_BLIND_BOTTOM": {
+        "ref_en": "Move the *BLIND* to the desired BOTTOM position.",
+        "cz": ""
+    },
+    "RESET_SLAT": {
+        "ref_en": "Re-set the SLAT position",
+        "cz": ""
+    },
+    "DID_MOTOR_MOVE_DOWN": {
+        "ref_en": "Did the blind move down?",
+        "cz": ""
+    },
+    "HANG_RB": {
+        "ref_en": "HANG THE ROLLERBLIND",
+        "cz": ""
+    },
+    "WATCH_THE_BLIND_JOG_TWO_TIMES": {
+        "ref_en": "Motor jogs two times.",
+        "cz": ""
+    },
+    "RIGHT_MOUNT": {
+        "ref_en": "MOTOR ON THE RIGHT",
+        "cz": ""
+    },
+    "KEEP_PRESSING_AND_OKAY": {
+        "ref_en": "Keep pressing the *BLIND BUTTON* and press the OK button.",
+        "cz": ""
+    },
+    "TEST_BLINDS": {
+        "ref_en": "TEST BLINDS",
+        "cz": ""
+    },
+    "SAVE_BOTTOM": {
+        "ref_en": "Save this as BOTTOM limit.",
+        "cz": ""
+    },
+    "DID_THE_MOTOR_JOG_TWO_TIMES": {
+        "ref_en": "Did the motor jog two times?",
+        "cz": ""
+    },
+    "YES": {
+        "ref_en": "yes",
+        "cz": ""
+    },
+    "MOVE_BLIND_SLAT_OPEN": {
+        "ref_en": "Move the *BLIND* to the desired SLAT OPEN position.",
+        "cz": ""
+    },
+    "IS_BLIND_AT_TOP": {
+        "ref_en": "IS THE BLIND AT THE TOP ?",
+        "cz": ""
+    },
+    "IS_LEFT_FRONTROLLER": {
+        "ref_en": "Is the motor on the **left** and **frontroller** ?",
+        "cz": ""
+    },
+    "TITLE_VVB_SET_OPEN_LIMIT": {
+        "ref_en": "Set the open limit",
+        "cz": ""
+    },
+    "MOVE_BLIND_TOP": {
+        "ref_en": "Move the *BLIND* to the desired TOP position.",
+        "cz": ""
+    },
+    "TITLE_ORIENT_VVB_UPRIGHT": {
+        "ref_en": "Is the motor mounted **above** ?",
+        "cz": ""
+    },
+    "PROPER_PRODUCT_HANG": {
+        "ref_en": "Make sure *BOTTOM* bar is approximately 20cm down.",
+        "cz": ""
+    },
+    "HANG_TWIST": {
+        "ref_en": "HANG THE TWIST BLIND",
+        "cz": ""
+    },
+    "ORIENT_VVB_BACK": {
+        "ref_en": "MOTOR ON THE BACK",
+        "cz": ""
+    },
+    "IS_RIGHT_BACKROLLER": {
+        "ref_en": "Is the motor on the **right** and **backroller** ?",
+        "cz": ""
+    },
+    "WATCH_THE_BLIND_JOG": {
+        "ref_en": "Watch the *BLIND* jog.",
+        "cz": ""
+    },
+    "PRESS_HOLD_BLIND_BUTTON": {
+        "ref_en": "`Press` and `hold` the *BLIND BUTTON* .",
+        "cz": ""
+    },
+    "ORIENT_VVB_UPRIGHT": {
+        "ref_en": "MOTOR ABOVE",
+        "cz": ""
+    },
+    "SELECT_SKIP_TOP": {
+        "ref_en": "I don't want to set the TOP limit",
+        "cz": ""
+    },
+    "DID_THE_MOTOR_JOG": {
+        "ref_en": "Did the motor jog?",
+        "cz": ""
+    },
+    "IS_LEFT_BACKROLLER": {
+        "ref_en": "Is the motor on the **left** and **backroller** ?",
+        "cz": ""
+    },
+    "LIMITS_OK": {
+        "ref_en": "Limits are OK. Do a new blind.",
+        "cz": ""
+    },
+    "TITLE_SKIP_SLAT": {
+        "ref_en": "SET SLAT POSITION?",
+        "cz": ""
+    },
+    "TITLE_VVB": {
+        "ref_en": "VVB title",
+        "cz": ""
+    },
+    "RESET_TOP": {
+        "ref_en": "Re-set the TOP limit.",
+        "cz": ""
+    },
+    "LEFT_MOUNT": {
+        "ref_en": "MOTOR ON THE LEFT",
+        "cz": ""
+    },
+    "INITIALISE": {
+        "ref_en": "INIT.",
+        "cz": ""
+    },
+    "TITLE_SET_BOTTOM_LIMIT": {
+        "ref_en": "SET BOTTOM LIMIT.",
+        "cz": ""
+    },
+    "SAVE_TOP": {
+        "ref_en": "Save this as TOP limit.",
+        "cz": ""
+    },
+    "TITLE_SET_TOP_LIMIT": {
+        "ref_en": "SET TOP LIMIT.",
+        "cz": ""
+    },
+    "BLIND_DIRECTION": {
+        "ref_en": "CHECK BLIND DIRECTION.",
+        "cz": ""
+    },
+    "CONNECT": {
+        "ref_en": "CONNECT.",
+        "cz": ""
+    },
+    "RELEASE_THE_BLIND_BUTTON": {
+        "ref_en": "Release the *BLIND BUTTON*",
+        "cz": ""
+    },
+    "MAKE_CHOICE": {
+        "ref_en": "Make a choice:",
+        "cz": ""
+    },
+    "MOTOR_SHOULD_MOVE_DOWN": {
+        "ref_en": "Blind should move down/close.",
+        "cz": ""
+    },
+    "IS_LEFT_MOUNT": {
+        "ref_en": "Is the motor on the **left** ?",
+        "cz": ""
+    },
+    "SWITCH_DIRECTION": {
+        "ref_en": "CHANGE BLIND DIRECTION.",
+        "cz": ""
+    },
+    "TITLE_BACKROLLER_LEFT": {
+        "ref_en": "LEFT BACKROLLER",
+        "cz": ""
+    },
+    "SAVE_SLAT": {
+        "ref_en": "Save this as SLAT OPEN position.",
+        "cz": ""
+    },
+    "TITLE_ORIENT_VVB_BACK": {
+        "ref_en": "Is the motor mounted on the **back** ?",
+        "cz": ""
+    },
+    "TITLE_SKIP_BOTTOM": {
+        "ref_en": "SET *BOTTOM* LIMIT?",
+        "cz": ""
+    },
+    "SET_TWIST_SLAT_POSITION": {
+        "ref_en": "SET TWIST SLAT POSITION.",
+        "cz": ""
+    },
+    "DID_THE_MOTOR_MOVE_UP": {
+        "ref_en": "Did the blind move to the top?",
+        "cz": ""
+    },
+    "SELECT_SKIP_BOTTOM": {
+        "ref_en": "I don't want to set the *BOTTOM* limit",
+        "cz": ""
+    },
+    "IS_RIGHT_MOUNT": {
+        "ref_en": "Is the motor on the **right** ?",
+        "cz": ""
+    },
+    "SELECT_SKIP_SLAT": {
+        "ref_en": "Don't re-set the *SLAT* position.",
+        "cz": ""
+    },
+    "HANGPRODUCT": {
+        "ref_en": "HANG PRODUCT.",
+        "cz": ""
+    },
+    "SAVE_THIS_AS_TOP": {
+        "ref_en": "Save this as the TOP limit?",
+        "cz": ""
+    },
+    "TITLE_FRONTROLLER_RIGHT": {
+        "ref_en": "RIGHT FRONTROLLER",
+        "cz": ""
+    },
+    "START_TOP_PROGRAMMING": {
+        "ref_en": "The blind will move completely to the top.",
+        "cz": ""
+    },
+    "ENTER_PROGRAM_MODE": {
+        "ref_en": "ENTER PROGRAM MODE.",
+        "cz": ""
+    },
+    "TEST_MOVE_BLINDS": {
+        "ref_en": "Check TOP and BOTTOM limits.",
+        "cz": ""
+    },
+    "TITLE_FRONTROLLER_LEFT": {
+        "ref_en": "LEFT FRONTROLLER",
+        "cz": ""
+    },
+    "PROPER_PRODUCT_HANG_CONFIRM": {
+        "ref_en": "Product fixed *OK*.",
+        "cz": ""
+    },
+    "RESET_BOTTOM": {
+        "ref_en": "Re-set the BOTTOM limit.",
+        "cz": ""
+    },
+    "LIMITS_NOT_OK": {
+        "ref_en": "Limits are NOT OK. Re-set them",
+        "cz": ""
+    },
+    "PRESS_OKAY_BUTTON": {
+        "ref_en": "Press OK button",
+        "cz": ""
+    },
+    "TITLE_VVB_SET_CLOSE_LIMIT": {
+        "ref_en": "Set the close limit",
+        "cz": ""
+    },
+    "WATCH_THE_BLIND_MOVE_UP": {
+        "ref_en": "Watch the *BLIND* move up.",
+        "cz": ""
+    }
+}

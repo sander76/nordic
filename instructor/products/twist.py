@@ -1,4 +1,4 @@
-import instructor.translations as tr
+from instructor.translations import Translations as tr
 from instructor.actions.connect import connect_twist
 from instructor.actions.general import keypad_move_buttons, enter_program_mode, \
     test_blinds, skipslat

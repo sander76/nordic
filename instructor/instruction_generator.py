@@ -13,6 +13,7 @@ from instructor.products.m25s_vvb import m25s_vvb_right, m25s_vvb_left
 from instructor.products.roller import rollerblind1, rollerblind_old
 from instructor.products.test_products import test1
 from instructor.products.twist import twist_old, twist
+from instructor.translations import load_translations
 
 INSTRUCTION_VERSION = "1.7.3"
 MAIN_PATH = "../static/app/instructions"
@@ -155,11 +156,14 @@ def make_instruction(file_name, products, lang):
     instruction = Instruction(INSTRUCTION_VERSION)
     instruction.products = products
     _products = ToJson(lang=lang).encode(instruction)
-    with open(_path, 'w') as fl:
+    with open(_path, 'w',encoding='utf-8') as fl:
         fl.write(_products)
 
 
 if __name__ == "__main__":
+    # load translation files.
+    load_translations()
+
     make_default()
     make_test()
     make_luxaflex_uk()

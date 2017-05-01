@@ -1,1 +1,3843 @@
-{"products": [{"steps": [{"confirm": {"img": "/app/images/m25t_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": "start", "instructions": [{"col1": {"content": {"bullet": 1, "content": "Naci\u015bnij i przytrzymaj przycisk na motorze"}, "type": "text", "width": "25%"}, "col2": {"content": {"bullet": 2, "content": "Trzymaj przycisk na motorze i jednocze\u015bnie naci\u015bnij przycisk OK"}, "type": "text", "width": "25%"}, "col3": {"content": {"bullet": 3, "content": "Pu\u015b\u0107 przycisk na motorze"}, "type": "text", "width": "25%"}, "col4": {"content": {"bullet": 4, "content": "Sp\u00f3jrz czy produkt wykonuje ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "25%"}}, {"col1": {"src": "/app/images/m25t_motor_button_push_top_limit_rollo.png", "type": "image", "width": "25%"}, "col2": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["NETWORKADD", {"command": "GROUP_ADD", "delay": 1}]}, "type": "pv-keypad", "width": "25%"}, "col3": {"src": "/app/images/m25t_motor_button_release_top_limit_rollo.png", "type": "image", "width": "25%"}, "col4": {"src": "/app/images/m25t_motor_jog1x.png", "type": "image", "width": "25%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "POD\u0141\u0104CZ"}}, {"confirm": {"img": "/app/images/m25t_motor_jog2x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 2 x  kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"bullet": 1, "content": "Naci\u015bnij przycisk OK"}, "type": "text", "width": "30%"}, "col2": {"content": {"bullet": 2, "content": "Motor wykonuje 2x ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["RESET", {"command": "M25T_ROLLER", "delay": 6}]}, "type": "pv-keypad", "width": "30%"}, "col2": {"src": "/app/images/m25t_motor_jog2x.png", "type": "image", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "START"}}, {"confirm": {"img": "/app/images/m25t_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 4, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"content": "Czy jest motor **lewa** strona i **zwijanie normalne**?"}, "type": "text", "width": "30%"}, "col2": {"content": {"content": "tak"}, "type": "text", "width": "30%"}, "col3": {"content": {"content": "nie"}, "type": "text", "width": "30%"}}, {"col1": {"width": "30%"}, "col2": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["ORIENT_VVB_RIGHT"]}, "type": "pv-keypad", "width": "30%"}, "col3": {"active_buttons": ["cancel"], "cancel": 1, "type": "pv-keypad", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "LEWA STRONA, ZWIJANIE NORMALNE"}}, {"confirm": {"img": "/app/images/m25t_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 3, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"content": "Czy jest motor **prawa** strona i **zwijanie normalne**?"}, "type": "text", "width": "30%"}, "col2": {"content": {"content": "tak"}, "type": "text", "width": "30%"}, "col3": {"content": {"content": "nie"}, "type": "text", "width": "30%"}}, {"col1": {"width": "30%"}, "col2": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["ORIENT_VVB_LEFT"]}, "type": "pv-keypad", "width": "30%"}, "col3": {"active_buttons": ["cancel"], "cancel": 1, "type": "pv-keypad", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "PRAWA STRONA, ZWIJANIE NORMALNE"}}, {"confirm": {"img": "/app/images/m25t_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 2, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"content": "Czy jest motor **lewa** strona i **zwijanie odwrotne**?"}, "type": "text", "width": "30%"}, "col2": {"content": {"content": "tak"}, "type": "text", "width": "30%"}, "col3": {"content": {"content": "nie"}, "type": "text", "width": "30%"}}, {"col1": {"width": "30%"}, "col2": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["ORIENT_VVB_LEFT"]}, "type": "pv-keypad", "width": "30%"}, "col3": {"active_buttons": ["cancel"], "cancel": 1, "type": "pv-keypad", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "LEWA STRONA, ZWIJANIE ODWROTNE"}}, {"confirm": {"img": "/app/images/m25t_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"content": "Czy jest motor **prawa** strona i **zwijanie odwrtone**?"}, "type": "text", "width": "30%"}, "col2": {"content": {"content": "tak"}, "type": "text", "width": "30%"}, "col3": {"content": {"content": "nie"}, "type": "text", "width": "30%"}}, {"col1": {"width": "30%"}, "col2": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["ORIENT_VVB_RIGHT"]}, "type": "pv-keypad", "width": "30%"}, "col3": {"active_buttons": ["cancel"], "cancel": -3, "type": "pv-keypad", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "PRAWA STRONA, ZWIJANIE ODWROTNE"}}, {"confirm": {"img": "/app/images/m25t_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"bullet": 1, "content": "Naci\u015bnij przycisk OK"}, "type": "text", "width": "30%"}, "col2": {"content": {"bullet": 2, "content": "Sp\u00f3jrz czy produkt wykonuje ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["STARTPROGRAM"]}, "type": "pv-keypad", "width": "30%"}, "col2": {"src": "/app/images/m25t_motor_jog1x.png", "type": "image", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "WEJD\u0179 W TRYB PROGRAMOWANIA"}}, {"confirm": {"img": "/app/images/m25t_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"bullet": 1, "content": "Produkt rozwija sie do po\u017c\u0105danej pozycji dolnej"}, "type": "text", "width": "30%"}, "col2": {"content": {"bullet": 2, "content": "Zapisz doln\u0105 pozycj\u0119"}, "type": "text", "width": "30%"}, "col3": {"content": {"bullet": 3, "content": "Sp\u00f3jrz czy produkt wykonuje ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["open", "close", "tiltup", "tiltdown", "stop"], "type": "pv-keypad", "width": "30%"}, "col2": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["SAVE_POSITION_BOTTOM"]}, "type": "pv-keypad", "width": "30%"}, "col3": {"src": "/app/images/m25t_motor_jog1x.png", "type": "image", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "USTAW LIMIT DOLNY"}}, {"confirm": {"img": "/app/images/m25t_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"bullet": 1, "content": "Naci\u015bnij przycisk OK"}, "type": "text", "width": "30%"}, "col2": {"content": {"bullet": 2, "content": "Sp\u00f3jrz czy produkt wykonuje ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["STARTPROGRAM"]}, "type": "pv-keypad", "width": "30%"}, "col2": {"src": "/app/images/m25t_motor_jog1x.png", "type": "image", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "WEJD\u0179 W TRYB PROGRAMOWANIA"}}, {"confirm": {"img": "/app/images/m25t_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"bullet": 1, "content": "Produkt zwija sie do po\u017c\u0105danej pozycji g\u00f3rnej"}, "type": "text", "width": "30%"}, "col2": {"content": {"bullet": 2, "content": "Sprawd\u017a g\u00f3rn\u0105 pozycj\u0119"}, "type": "text", "width": "30%"}, "col3": {"content": {"bullet": 3, "content": "Sp\u00f3jrz czy produkt wykonuje ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["open", "close", "tiltup", "tiltdown", "stop"], "type": "pv-keypad", "width": "30%"}, "col2": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["SAVE_POSITION_TOP"]}, "type": "pv-keypad", "width": "30%"}, "col3": {"src": "/app/images/m25t_motor_jog1x.png", "type": "image", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "USTAW LIMIT GORNY"}}, {"confirm": null, "id": "testblinds", "instructions": [{"col1": {"content": {"content": "Check TOP and BOTTOM limits."}, "type": "text", "width": "30%"}, "col2": {"content": {"content": "Limity s\u0105 poprawne. Przejd\u017a do nowego produktu"}, "type": "text", "width": "30%"}, "col3": {"content": {"content": "Limity s\u0105 niepoprawne. Ustaw ponownie"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["open", "close", "tiltup", "tiltdown", "stop"], "type": "pv-keypad", "width": "30%"}, "col2": {"active_buttons": ["okay"], "okay": {"goto": "start"}, "type": "pv-keypad", "width": "30%"}, "col3": {"active_buttons": ["cancel"], "cancel": {"goto": 1}, "type": "pv-keypad", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "PRODUKT TESTOWY"}}, {"confirm": null, "id": null, "instructions": [{"col1": {"content": {"content": "Wybierz:"}, "type": "text", "width": "30%"}, "col2": {"content": {"content": "Ustaw ponownie limit gorny"}, "type": "text", "width": "30%"}, "col3": {"content": {"content": "Nie chc\u0119 ustawi\u0107 g\u00f3rnego limitu"}, "type": "text", "width": "30%"}}, {"col1": {"width": "30%"}, "col2": {"active_buttons": ["okay"], "okay": {"goto": 1}, "type": "pv-keypad", "width": "30%"}, "col3": {"active_buttons": ["cancel"], "cancel": {"goto": 3}, "type": "pv-keypad", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "USTAW LIMIT GORNY"}}, {"confirm": {"img": "/app/images/m25t_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"bullet": 1, "content": "Naci\u015bnij przycisk OK"}, "type": "text", "width": "30%"}, "col2": {"content": {"bullet": 2, "content": "Sp\u00f3jrz czy produkt wykonuje ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["STARTPROGRAM"]}, "type": "pv-keypad", "width": "30%"}, "col2": {"src": "/app/images/m25t_motor_jog1x.png", "type": "image", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "WEJD\u0179 W TRYB PROGRAMOWANIA"}}, {"confirm": {"img": "/app/images/m25t_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"bullet": 1, "content": "Produkt zwija sie do po\u017c\u0105danej pozycji g\u00f3rnej"}, "type": "text", "width": "30%"}, "col2": {"content": {"bullet": 2, "content": "Sprawd\u017a g\u00f3rn\u0105 pozycj\u0119"}, "type": "text", "width": "30%"}, "col3": {"content": {"bullet": 3, "content": "Sp\u00f3jrz czy produkt wykonuje ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["open", "close", "tiltup", "tiltdown", "stop"], "type": "pv-keypad", "width": "30%"}, "col2": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["SAVE_POSITION_TOP"]}, "type": "pv-keypad", "width": "30%"}, "col3": {"src": "/app/images/m25t_motor_jog1x.png", "type": "image", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "USTAW LIMIT GORNY"}}, {"confirm": null, "id": null, "instructions": [{"col1": {"content": {"content": "Wybierz:"}, "type": "text", "width": "30%"}, "col2": {"content": {"content": "Ustaw ponownie limit dolny"}, "type": "text", "width": "30%"}, "col3": {"content": {"content": "Nie chc\u0119 ustawi\u0107 dolnego limitu"}, "type": "text", "width": "30%"}}, {"col1": {"width": "30%"}, "col2": {"active_buttons": ["okay"], "okay": {"goto": 1}, "type": "pv-keypad", "width": "30%"}, "col3": {"active_buttons": ["cancel"], "cancel": {"goto": "testblinds"}, "type": "pv-keypad", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "USTAW LIMIT DOLNY"}}, {"confirm": {"img": "/app/images/m25t_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"bullet": 1, "content": "Naci\u015bnij przycisk OK"}, "type": "text", "width": "30%"}, "col2": {"content": {"bullet": 2, "content": "Sp\u00f3jrz czy produkt wykonuje ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["STARTPROGRAM"]}, "type": "pv-keypad", "width": "30%"}, "col2": {"src": "/app/images/m25t_motor_jog1x.png", "type": "image", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "WEJD\u0179 W TRYB PROGRAMOWANIA"}}, {"confirm": {"img": "/app/images/m25t_motor_top_limit_move_up_rollo.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt sie zwija"}, "yes": "testblinds", "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"bullet": 1, "content": "Produkt rozwija sie do po\u017c\u0105danej pozycji dolnej"}, "type": "text", "width": "30%"}, "col2": {"content": {"bullet": 2, "content": "Zapisz doln\u0105 pozycj\u0119"}, "type": "text", "width": "30%"}, "col3": {"content": {"bullet": 3, "content": "Sp\u00f3jrz czy produkt wykonuje ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["open", "close", "tiltup", "tiltdown", "stop"], "type": "pv-keypad", "width": "30%"}, "col2": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["SAVE_POSITION_BOTTOM"]}, "type": "pv-keypad", "width": "30%"}, "col3": {"src": "/app/images/m25t_motor_top_limit_move_up_rollo.png", "type": "image", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "USTAW LIMIT DOLNY"}}], "title": ["Roller blind"]}, {"steps": [{"confirm": {"img": "/app/images/m25s_vvb_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": "start", "instructions": [{"col1": {"content": {"bullet": 1, "content": "Naci\u015bnij i przytrzymaj przycisk na motorze"}, "type": "text", "width": "25%"}, "col2": {"content": {"bullet": 2, "content": "Trzymaj przycisk na motorze i jednocze\u015bnie naci\u015bnij przycisk OK"}, "type": "text", "width": "25%"}, "col3": {"content": {"bullet": 3, "content": "Pu\u015b\u0107 przycisk na motorze"}, "type": "text", "width": "25%"}, "col4": {"content": {"bullet": 4, "content": "Sp\u00f3jrz czy produkt wykonuje ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "25%"}}, {"col1": {"src": "/app/images/m25s_vvb_motor_button_push.png", "type": "image", "width": "25%"}, "col2": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["NETWORKADD", {"command": "GROUP_ADD", "delay": 1}]}, "type": "pv-keypad", "width": "25%"}, "col3": {"src": "/app/images/m25s_vvb_motor_button_release.png", "type": "image", "width": "25%"}, "col4": {"src": "/app/images/m25s_vvb_motor_jog1x.png", "type": "image", "width": "25%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "POD\u0141\u0104CZ"}}, {"confirm": {"img": "/app/images/m25s_vvb_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 2 x  kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"bullet": 1, "content": "Naci\u015bnij przycisk OK"}, "type": "text", "width": "30%"}, "col2": {"content": {"bullet": 2, "content": "Motor wykonuje 2x ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["RESET", {"command": "M25S_VVB_LEFT_STACK", "delay": 6}]}, "type": "pv-keypad", "width": "30%"}, "col2": {"src": "/app/images/m25s_vvb_motor_jog1x.png", "type": "image", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "START"}}, {"confirm": {"img": "/app/images/m25s_vvb_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 2, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"content": "MOTOR ZAMONTOWANY TY\u0141"}, "type": "text", "width": "30%"}, "col2": {"content": {"content": "tak"}, "type": "text", "width": "30%"}, "col3": {"content": {"content": "nie"}, "type": "text", "width": "30%"}}, {"col1": {"width": "30%"}, "col2": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["ORIENT_VVB_LEFT"]}, "type": "pv-keypad", "width": "30%"}, "col3": {"active_buttons": ["cancel"], "cancel": 1, "type": "pv-keypad", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "CZY MOTOR JEST ZAMONTOWANY Z **TY\u0141U** ?"}}, {"confirm": {"img": "/app/images/m25s_vvb_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"content": "MOTOR ZAMONTOWANY G\u00d3RA"}, "type": "text", "width": "30%"}, "col2": {"content": {"content": "tak"}, "type": "text", "width": "30%"}, "col3": {"content": {"content": "nie"}, "type": "text", "width": "30%"}}, {"col1": {"width": "30%"}, "col2": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["ORIENT_VVB_UPRIGHT_LEFT"]}, "type": "pv-keypad", "width": "30%"}, "col3": {"active_buttons": ["cancel"], "cancel": -1, "type": "pv-keypad", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "CZY MOTOR JEST ZAMONTOWANY U **G\u00d3RY** ?"}}, {"confirm": {"img": "/app/images/m25s_vvb_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"bullet": 1, "content": "Naci\u015bnij przycisk OK"}, "type": "text", "width": "30%"}, "col2": {"content": {"bullet": 2, "content": "Sp\u00f3jrz czy produkt wykonuje ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["STARTPROGRAM"]}, "type": "pv-keypad", "width": "30%"}, "col2": {"src": "/app/images/m25s_vvb_motor_jog1x.png", "type": "image", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "WEJD\u0179 W TRYB PROGRAMOWANIA"}}, {"confirm": {"img": "/app/images/m25s_vvb_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"bullet": 1, "content": "Produkt rozwija sie do po\u017c\u0105danej pozycji dolnej"}, "type": "text", "width": "30%"}, "col2": {"content": {"bullet": 2, "content": "Zapisz doln\u0105 pozycj\u0119"}, "type": "text", "width": "30%"}, "col3": {"content": {"bullet": 3, "content": "Sp\u00f3jrz czy produkt wykonuje ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["open", "close", "tiltup", "tiltdown", "stop"], "type": "pv-keypad", "width": "30%"}, "col2": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["SAVE_POSITION_BOTTOM"]}, "type": "pv-keypad", "width": "30%"}, "col3": {"src": "/app/images/m25s_vvb_motor_jog1x.png", "type": "image", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "USTAW POZYCJ\u0118 ZAMKNI\u0118T\u0104"}}, {"confirm": {"img": null, "no": 0, "no_text": {"content": "nie"}, "text": {"content": "CZY PRODUKT JEST W POZYCJI G\u00d3RNEJ ?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"content": "Produkt zwija sie ca\u0142kowicie"}, "type": "text", "width": "30%"}, "col2": {"active_buttons": ["okay", "stop"], "confirm": "okay", "okay": {"commands": ["STARTPROGRAM", {"command": "open", "delay": 3}]}, "type": "pv-keypad", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "USTAW POZYCJ\u0118 OTWART\u0104"}}, {"confirm": {"img": "/app/images/m25s_vvb_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 2, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"content": "Czy zatwierdzi\u0107 pozycj\u0119 g\u00f3rna?"}, "type": "text", "width": "30%"}}, {"col1": {"width": "30%"}, "col2": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["SAVE_POSITION_TOP"]}, "type": "pv-keypad", "width": "30%"}, "col3": {"active_buttons": ["cancel"], "cancel": 1, "type": "pv-keypad", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "USTAW POZYCJ\u0118 OTWART\u0104"}}, {"confirm": {"img": "/app/images/m25s_vvb_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"bullet": 1, "content": "Produkt zwija sie do po\u017c\u0105danej pozycji g\u00f3rnej"}, "type": "text", "width": "30%"}, "col2": {"content": {"bullet": 2, "content": "Sprawd\u017a g\u00f3rn\u0105 pozycj\u0119"}, "type": "text", "width": "30%"}, "col3": {"content": {"bullet": 3, "content": "Sp\u00f3jrz czy produkt wykonuje ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["open", "close", "tiltup", "tiltdown", "stop"], "type": "pv-keypad", "width": "30%"}, "col2": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["SAVE_POSITION_TOP"]}, "type": "pv-keypad", "width": "30%"}, "col3": {"src": "/app/images/m25s_vvb_motor_jog1x.png", "type": "image", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "USTAW POZYCJ\u0118 OTWART\u0104"}}, {"confirm": null, "id": "testblinds", "instructions": [{"col1": {"content": {"content": "Check TOP and BOTTOM limits."}, "type": "text", "width": "30%"}, "col2": {"content": {"content": "Limity s\u0105 poprawne. Przejd\u017a do nowego produktu"}, "type": "text", "width": "30%"}, "col3": {"content": {"content": "Limity s\u0105 niepoprawne. Ustaw ponownie"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["open", "close", "tiltup", "tiltdown", "stop"], "type": "pv-keypad", "width": "30%"}, "col2": {"active_buttons": ["okay"], "okay": {"goto": "start"}, "type": "pv-keypad", "width": "30%"}, "col3": {"active_buttons": ["cancel"], "cancel": {"goto": 1}, "type": "pv-keypad", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "PRODUKT TESTOWY"}}, {"confirm": null, "id": null, "instructions": [{"col1": {"content": {"content": "Wybierz:"}, "type": "text", "width": "30%"}, "col2": {"content": {"content": "Ustaw ponownie limit gorny"}, "type": "text", "width": "30%"}, "col3": {"content": {"content": "Nie chc\u0119 ustawi\u0107 g\u00f3rnego limitu"}, "type": "text", "width": "30%"}}, {"col1": {"width": "30%"}, "col2": {"active_buttons": ["okay"], "okay": {"goto": 1}, "type": "pv-keypad", "width": "30%"}, "col3": {"active_buttons": ["cancel"], "cancel": {"goto": 3}, "type": "pv-keypad", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "USTAW LIMIT GORNY"}}, {"confirm": {"img": "/app/images/m25s_vvb_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"bullet": 1, "content": "Naci\u015bnij przycisk OK"}, "type": "text", "width": "30%"}, "col2": {"content": {"bullet": 2, "content": "Sp\u00f3jrz czy produkt wykonuje ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["STARTPROGRAM"]}, "type": "pv-keypad", "width": "30%"}, "col2": {"src": "/app/images/m25s_vvb_motor_jog1x.png", "type": "image", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "WEJD\u0179 W TRYB PROGRAMOWANIA"}}, {"confirm": {"img": "/app/images/m25s_vvb_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"bullet": 1, "content": "Produkt zwija sie do po\u017c\u0105danej pozycji g\u00f3rnej"}, "type": "text", "width": "30%"}, "col2": {"content": {"bullet": 2, "content": "Sprawd\u017a g\u00f3rn\u0105 pozycj\u0119"}, "type": "text", "width": "30%"}, "col3": {"content": {"bullet": 3, "content": "Sp\u00f3jrz czy produkt wykonuje ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["open", "close", "tiltup", "tiltdown", "stop"], "type": "pv-keypad", "width": "30%"}, "col2": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["SAVE_POSITION_TOP"]}, "type": "pv-keypad", "width": "30%"}, "col3": {"src": "/app/images/m25s_vvb_motor_jog1x.png", "type": "image", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "USTAW POZYCJ\u0118 OTWART\u0104"}}, {"confirm": null, "id": null, "instructions": [{"col1": {"content": {"content": "Wybierz:"}, "type": "text", "width": "30%"}, "col2": {"content": {"content": "Ustaw ponownie limit dolny"}, "type": "text", "width": "30%"}, "col3": {"content": {"content": "Nie chc\u0119 ustawi\u0107 dolnego limitu"}, "type": "text", "width": "30%"}}, {"col1": {"width": "30%"}, "col2": {"active_buttons": ["okay"], "okay": {"goto": 1}, "type": "pv-keypad", "width": "30%"}, "col3": {"active_buttons": ["cancel"], "cancel": {"goto": "testblinds"}, "type": "pv-keypad", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "USTAW LIMIT DOLNY"}}, {"confirm": {"img": "/app/images/m25s_vvb_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"bullet": 1, "content": "Naci\u015bnij przycisk OK"}, "type": "text", "width": "30%"}, "col2": {"content": {"bullet": 2, "content": "Sp\u00f3jrz czy produkt wykonuje ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["STARTPROGRAM"]}, "type": "pv-keypad", "width": "30%"}, "col2": {"src": "/app/images/m25s_vvb_motor_jog1x.png", "type": "image", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "WEJD\u0179 W TRYB PROGRAMOWANIA"}}, {"confirm": {"img": "/app/images/m25s_vvb_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": "testblinds", "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"bullet": 1, "content": "Produkt rozwija sie do po\u017c\u0105danej pozycji dolnej"}, "type": "text", "width": "30%"}, "col2": {"content": {"bullet": 2, "content": "Zapisz doln\u0105 pozycj\u0119"}, "type": "text", "width": "30%"}, "col3": {"content": {"bullet": 3, "content": "Sp\u00f3jrz czy produkt wykonuje ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["open", "close", "tiltup", "tiltdown", "stop"], "type": "pv-keypad", "width": "30%"}, "col2": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["SAVE_POSITION_BOTTOM"]}, "type": "pv-keypad", "width": "30%"}, "col3": {"src": "/app/images/m25s_vvb_motor_jog1x.png", "type": "image", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "USTAW POZYCJ\u0118 ZAMKNI\u0118T\u0104"}}], "title": ["M25 VVB Left"]}, {"steps": [{"confirm": {"img": "/app/images/m25s_vvb_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": "start", "instructions": [{"col1": {"content": {"bullet": 1, "content": "Naci\u015bnij i przytrzymaj przycisk na motorze"}, "type": "text", "width": "25%"}, "col2": {"content": {"bullet": 2, "content": "Trzymaj przycisk na motorze i jednocze\u015bnie naci\u015bnij przycisk OK"}, "type": "text", "width": "25%"}, "col3": {"content": {"bullet": 3, "content": "Pu\u015b\u0107 przycisk na motorze"}, "type": "text", "width": "25%"}, "col4": {"content": {"bullet": 4, "content": "Sp\u00f3jrz czy produkt wykonuje ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "25%"}}, {"col1": {"src": "/app/images/m25s_vvb_motor_button_push.png", "type": "image", "width": "25%"}, "col2": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["NETWORKADD", {"command": "GROUP_ADD", "delay": 1}]}, "type": "pv-keypad", "width": "25%"}, "col3": {"src": "/app/images/m25s_vvb_motor_button_release.png", "type": "image", "width": "25%"}, "col4": {"src": "/app/images/m25s_vvb_motor_jog1x.png", "type": "image", "width": "25%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "POD\u0141\u0104CZ"}}, {"confirm": {"img": "/app/images/m25s_vvb_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 2 x  kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"bullet": 1, "content": "Naci\u015bnij przycisk OK"}, "type": "text", "width": "30%"}, "col2": {"content": {"bullet": 2, "content": "Motor wykonuje 2x ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["RESET", {"command": "M25S_VVB_RIGHT_STACK", "delay": 6}]}, "type": "pv-keypad", "width": "30%"}, "col2": {"src": "/app/images/m25s_vvb_motor_jog1x.png", "type": "image", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "START"}}, {"confirm": {"img": "/app/images/m25s_vvb_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 2, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"content": "MOTOR ZAMONTOWANY TY\u0141"}, "type": "text", "width": "30%"}, "col2": {"content": {"content": "tak"}, "type": "text", "width": "30%"}, "col3": {"content": {"content": "nie"}, "type": "text", "width": "30%"}}, {"col1": {"width": "30%"}, "col2": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["ORIENT_VVB_RIGHT"]}, "type": "pv-keypad", "width": "30%"}, "col3": {"active_buttons": ["cancel"], "cancel": 1, "type": "pv-keypad", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "CZY MOTOR JEST ZAMONTOWANY Z **TY\u0141U** ?"}}, {"confirm": {"img": "/app/images/m25s_vvb_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"content": "MOTOR ZAMONTOWANY G\u00d3RA"}, "type": "text", "width": "30%"}, "col2": {"content": {"content": "tak"}, "type": "text", "width": "30%"}, "col3": {"content": {"content": "nie"}, "type": "text", "width": "30%"}}, {"col1": {"width": "30%"}, "col2": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["ORIENT_VVB_UPRIGHT_RIGHT"]}, "type": "pv-keypad", "width": "30%"}, "col3": {"active_buttons": ["cancel"], "cancel": -1, "type": "pv-keypad", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "CZY MOTOR JEST ZAMONTOWANY U **G\u00d3RY** ?"}}, {"confirm": {"img": "/app/images/m25s_vvb_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"bullet": 1, "content": "Naci\u015bnij przycisk OK"}, "type": "text", "width": "30%"}, "col2": {"content": {"bullet": 2, "content": "Sp\u00f3jrz czy produkt wykonuje ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["STARTPROGRAM"]}, "type": "pv-keypad", "width": "30%"}, "col2": {"src": "/app/images/m25s_vvb_motor_jog1x.png", "type": "image", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "WEJD\u0179 W TRYB PROGRAMOWANIA"}}, {"confirm": {"img": "/app/images/m25s_vvb_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"bullet": 1, "content": "Produkt rozwija sie do po\u017c\u0105danej pozycji dolnej"}, "type": "text", "width": "30%"}, "col2": {"content": {"bullet": 2, "content": "Zapisz doln\u0105 pozycj\u0119"}, "type": "text", "width": "30%"}, "col3": {"content": {"bullet": 3, "content": "Sp\u00f3jrz czy produkt wykonuje ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["open", "close", "tiltup", "tiltdown", "stop"], "type": "pv-keypad", "width": "30%"}, "col2": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["SAVE_POSITION_BOTTOM"]}, "type": "pv-keypad", "width": "30%"}, "col3": {"src": "/app/images/m25s_vvb_motor_jog1x.png", "type": "image", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "USTAW POZYCJ\u0118 ZAMKNI\u0118T\u0104"}}, {"confirm": {"img": null, "no": 0, "no_text": {"content": "nie"}, "text": {"content": "CZY PRODUKT JEST W POZYCJI G\u00d3RNEJ ?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"content": "Produkt zwija sie ca\u0142kowicie"}, "type": "text", "width": "30%"}, "col2": {"active_buttons": ["okay", "stop"], "confirm": "okay", "okay": {"commands": ["STARTPROGRAM", {"command": "open", "delay": 3}]}, "type": "pv-keypad", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "USTAW POZYCJ\u0118 OTWART\u0104"}}, {"confirm": {"img": "/app/images/m25s_vvb_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 2, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"content": "Czy zatwierdzi\u0107 pozycj\u0119 g\u00f3rna?"}, "type": "text", "width": "30%"}}, {"col1": {"width": "30%"}, "col2": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["SAVE_POSITION_TOP"]}, "type": "pv-keypad", "width": "30%"}, "col3": {"active_buttons": ["cancel"], "cancel": 1, "type": "pv-keypad", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "USTAW POZYCJ\u0118 OTWART\u0104"}}, {"confirm": {"img": "/app/images/m25s_vvb_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"bullet": 1, "content": "Produkt zwija sie do po\u017c\u0105danej pozycji g\u00f3rnej"}, "type": "text", "width": "30%"}, "col2": {"content": {"bullet": 2, "content": "Sprawd\u017a g\u00f3rn\u0105 pozycj\u0119"}, "type": "text", "width": "30%"}, "col3": {"content": {"bullet": 3, "content": "Sp\u00f3jrz czy produkt wykonuje ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["open", "close", "tiltup", "tiltdown", "stop"], "type": "pv-keypad", "width": "30%"}, "col2": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["SAVE_POSITION_TOP"]}, "type": "pv-keypad", "width": "30%"}, "col3": {"src": "/app/images/m25s_vvb_motor_jog1x.png", "type": "image", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "USTAW POZYCJ\u0118 OTWART\u0104"}}, {"confirm": null, "id": "testblinds", "instructions": [{"col1": {"content": {"content": "Check TOP and BOTTOM limits."}, "type": "text", "width": "30%"}, "col2": {"content": {"content": "Limity s\u0105 poprawne. Przejd\u017a do nowego produktu"}, "type": "text", "width": "30%"}, "col3": {"content": {"content": "Limity s\u0105 niepoprawne. Ustaw ponownie"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["open", "close", "tiltup", "tiltdown", "stop"], "type": "pv-keypad", "width": "30%"}, "col2": {"active_buttons": ["okay"], "okay": {"goto": "start"}, "type": "pv-keypad", "width": "30%"}, "col3": {"active_buttons": ["cancel"], "cancel": {"goto": 1}, "type": "pv-keypad", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "PRODUKT TESTOWY"}}, {"confirm": null, "id": null, "instructions": [{"col1": {"content": {"content": "Wybierz:"}, "type": "text", "width": "30%"}, "col2": {"content": {"content": "Ustaw ponownie limit gorny"}, "type": "text", "width": "30%"}, "col3": {"content": {"content": "Nie chc\u0119 ustawi\u0107 g\u00f3rnego limitu"}, "type": "text", "width": "30%"}}, {"col1": {"width": "30%"}, "col2": {"active_buttons": ["okay"], "okay": {"goto": 1}, "type": "pv-keypad", "width": "30%"}, "col3": {"active_buttons": ["cancel"], "cancel": {"goto": 3}, "type": "pv-keypad", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "USTAW LIMIT GORNY"}}, {"confirm": {"img": "/app/images/m25s_vvb_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"bullet": 1, "content": "Naci\u015bnij przycisk OK"}, "type": "text", "width": "30%"}, "col2": {"content": {"bullet": 2, "content": "Sp\u00f3jrz czy produkt wykonuje ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["STARTPROGRAM"]}, "type": "pv-keypad", "width": "30%"}, "col2": {"src": "/app/images/m25s_vvb_motor_jog1x.png", "type": "image", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "WEJD\u0179 W TRYB PROGRAMOWANIA"}}, {"confirm": {"img": "/app/images/m25s_vvb_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"bullet": 1, "content": "Produkt zwija sie do po\u017c\u0105danej pozycji g\u00f3rnej"}, "type": "text", "width": "30%"}, "col2": {"content": {"bullet": 2, "content": "Sprawd\u017a g\u00f3rn\u0105 pozycj\u0119"}, "type": "text", "width": "30%"}, "col3": {"content": {"bullet": 3, "content": "Sp\u00f3jrz czy produkt wykonuje ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["open", "close", "tiltup", "tiltdown", "stop"], "type": "pv-keypad", "width": "30%"}, "col2": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["SAVE_POSITION_TOP"]}, "type": "pv-keypad", "width": "30%"}, "col3": {"src": "/app/images/m25s_vvb_motor_jog1x.png", "type": "image", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "USTAW POZYCJ\u0118 OTWART\u0104"}}, {"confirm": null, "id": null, "instructions": [{"col1": {"content": {"content": "Wybierz:"}, "type": "text", "width": "30%"}, "col2": {"content": {"content": "Ustaw ponownie limit dolny"}, "type": "text", "width": "30%"}, "col3": {"content": {"content": "Nie chc\u0119 ustawi\u0107 dolnego limitu"}, "type": "text", "width": "30%"}}, {"col1": {"width": "30%"}, "col2": {"active_buttons": ["okay"], "okay": {"goto": 1}, "type": "pv-keypad", "width": "30%"}, "col3": {"active_buttons": ["cancel"], "cancel": {"goto": "testblinds"}, "type": "pv-keypad", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "USTAW LIMIT DOLNY"}}, {"confirm": {"img": "/app/images/m25s_vvb_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": 1, "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"bullet": 1, "content": "Naci\u015bnij przycisk OK"}, "type": "text", "width": "30%"}, "col2": {"content": {"bullet": 2, "content": "Sp\u00f3jrz czy produkt wykonuje ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["STARTPROGRAM"]}, "type": "pv-keypad", "width": "30%"}, "col2": {"src": "/app/images/m25s_vvb_motor_jog1x.png", "type": "image", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "WEJD\u0179 W TRYB PROGRAMOWANIA"}}, {"confirm": {"img": "/app/images/m25s_vvb_motor_jog1x.png", "no": 0, "no_text": {"content": "nie"}, "text": {"content": "Czy produkt wykona\u0142 kr\u00f3tki ruch g\u00f3ra/d\u00f3l?"}, "yes": "testblinds", "yes_text": {"content": "tak"}}, "id": null, "instructions": [{"col1": {"content": {"bullet": 1, "content": "Produkt rozwija sie do po\u017c\u0105danej pozycji dolnej"}, "type": "text", "width": "30%"}, "col2": {"content": {"bullet": 2, "content": "Zapisz doln\u0105 pozycj\u0119"}, "type": "text", "width": "30%"}, "col3": {"content": {"bullet": 3, "content": "Sp\u00f3jrz czy produkt wykonuje ruch g\u00f3ra/d\u00f3\u0142"}, "type": "text", "width": "30%"}}, {"col1": {"active_buttons": ["open", "close", "tiltup", "tiltdown", "stop"], "type": "pv-keypad", "width": "30%"}, "col2": {"active_buttons": ["okay"], "confirm": "okay", "okay": {"commands": ["SAVE_POSITION_BOTTOM"]}, "type": "pv-keypad", "width": "30%"}, "col3": {"src": "/app/images/m25s_vvb_motor_jog1x.png", "type": "image", "width": "30%"}}], "next": {"active": true, "caption": "next", "goto": 1}, "previous": {"active": true, "caption": "previous", "goto": -1}, "title": {"content": "USTAW POZYCJ\u0118 ZAMKNI\u0118T\u0104"}}], "title": ["M25 VVB Right"]}], "version": "1.7.3"}
+{
+  "products": [
+    {
+      "steps": [
+        {
+          "confirm": {
+            "img": "/app/images/m25t_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": "start",
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Naciśnij i przytrzymaj przycisk na motorze"
+                },
+                "type": "text",
+                "width": "25%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Trzymaj przycisk na motorze i jednocześnie naciśnij przycisk OK"
+                },
+                "type": "text",
+                "width": "25%"
+              },
+              "col3": {
+                "content": {
+                  "bullet": 3,
+                  "content": "Puść przycisk na motorze"
+                },
+                "type": "text",
+                "width": "25%"
+              },
+              "col4": {
+                "content": {
+                  "bullet": 4,
+                  "content": "Spójrz czy produkt wykonuje ruch góra/dół"
+                },
+                "type": "text",
+                "width": "25%"
+              }
+            },
+            {
+              "col1": {
+                "src": "/app/images/m25t_motor_button_push_top_limit_rollo.png",
+                "type": "image",
+                "width": "25%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "NETWORKADD",
+                    {
+                      "command": "GROUP_ADD",
+                      "delay": 1
+                    }
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "25%"
+              },
+              "col3": {
+                "src": "/app/images/m25t_motor_button_release_top_limit_rollo.png",
+                "type": "image",
+                "width": "25%"
+              },
+              "col4": {
+                "src": "/app/images/m25t_motor_jog1x.png",
+                "type": "image",
+                "width": "25%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "PODŁĄCZ"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25t_motor_jog2x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał 2 x  krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Naciśnij przycisk OK"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Motor wykonuje 2x ruch góra/dół"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "RESET",
+                    {
+                      "command": "M25T_ROLLER",
+                      "delay": 6
+                    }
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "src": "/app/images/m25t_motor_jog2x.png",
+                "type": "image",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "START"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25t_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 4,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "content": "Czy jest motor **lewa** strona i **zwijanie normalne**?"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "content": "tak"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "content": "nie"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "ORIENT_VVB_RIGHT"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "active_buttons": [
+                  "cancel"
+                ],
+                "cancel": 1,
+                "type": "pv-keypad",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "LEWA STRONA, ZWIJANIE NORMALNE"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25t_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 3,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "content": "Czy jest motor **prawa** strona i **zwijanie normalne**?"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "content": "tak"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "content": "nie"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "ORIENT_VVB_LEFT"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "active_buttons": [
+                  "cancel"
+                ],
+                "cancel": 1,
+                "type": "pv-keypad",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "PRAWA STRONA, ZWIJANIE NORMALNE"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25t_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 2,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "content": "Czy jest motor **lewa** strona i **zwijanie odwrotne**?"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "content": "tak"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "content": "nie"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "ORIENT_VVB_LEFT"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "active_buttons": [
+                  "cancel"
+                ],
+                "cancel": 1,
+                "type": "pv-keypad",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "LEWA STRONA, ZWIJANIE ODWROTNE"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25t_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "content": "Czy jest motor **prawa** strona i **zwijanie odwrtone**?"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "content": "tak"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "content": "nie"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "ORIENT_VVB_RIGHT"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "active_buttons": [
+                  "cancel"
+                ],
+                "cancel": -3,
+                "type": "pv-keypad",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "PRAWA STRONA, ZWIJANIE ODWROTNE"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25t_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Naciśnij przycisk OK"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Spójrz czy produkt wykonuje ruch góra/dół"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "STARTPROGRAM"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "src": "/app/images/m25t_motor_jog1x.png",
+                "type": "image",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "WEJDŹ W TRYB PROGRAMOWANIA"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25t_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Produkt rozwija sie do pożądanej pozycji dolnej"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Zapisz dolną pozycję"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "bullet": 3,
+                  "content": "Spójrz czy produkt wykonuje ruch góra/dół"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "open",
+                  "close",
+                  "tiltup",
+                  "tiltdown",
+                  "stop"
+                ],
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "SAVE_POSITION_BOTTOM"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "src": "/app/images/m25t_motor_jog1x.png",
+                "type": "image",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "USTAW LIMIT DOLNY"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25t_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Naciśnij przycisk OK"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Spójrz czy produkt wykonuje ruch góra/dół"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "STARTPROGRAM"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "src": "/app/images/m25t_motor_jog1x.png",
+                "type": "image",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "WEJDŹ W TRYB PROGRAMOWANIA"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25t_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Produkt zwija sie do pożądanej pozycji górnej"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Sprawdź górną pozycję"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "bullet": 3,
+                  "content": "Spójrz czy produkt wykonuje ruch góra/dół"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "open",
+                  "close",
+                  "tiltup",
+                  "tiltdown",
+                  "stop"
+                ],
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "SAVE_POSITION_TOP"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "src": "/app/images/m25t_motor_jog1x.png",
+                "type": "image",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "USTAW LIMIT GORNY"
+          }
+        },
+        {
+          "confirm": null,
+          "id": "testblinds",
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "content": ""
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "content": "Limity są poprawne. Przejdź do nowego produktu"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "content": "Limity są niepoprawne. Ustaw ponownie"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "open",
+                  "close",
+                  "tiltup",
+                  "tiltdown",
+                  "stop"
+                ],
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "okay": {
+                  "goto": "start"
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "active_buttons": [
+                  "cancel"
+                ],
+                "cancel": {
+                  "goto": 1
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "PRODUKT TESTOWY"
+          }
+        },
+        {
+          "confirm": null,
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "content": "Wybierz:"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "content": "Ustaw ponownie limit gorny"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "content": "Nie chcę ustawić górnego limitu"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "okay": {
+                  "goto": 1
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "active_buttons": [
+                  "cancel"
+                ],
+                "cancel": {
+                  "goto": 3
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "USTAW LIMIT GORNY"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25t_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Naciśnij przycisk OK"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Spójrz czy produkt wykonuje ruch góra/dół"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "STARTPROGRAM"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "src": "/app/images/m25t_motor_jog1x.png",
+                "type": "image",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "WEJDŹ W TRYB PROGRAMOWANIA"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25t_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Produkt zwija sie do pożądanej pozycji górnej"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Sprawdź górną pozycję"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "bullet": 3,
+                  "content": "Spójrz czy produkt wykonuje ruch góra/dół"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "open",
+                  "close",
+                  "tiltup",
+                  "tiltdown",
+                  "stop"
+                ],
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "SAVE_POSITION_TOP"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "src": "/app/images/m25t_motor_jog1x.png",
+                "type": "image",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "USTAW LIMIT GORNY"
+          }
+        },
+        {
+          "confirm": null,
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "content": "Wybierz:"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "content": "Ustaw ponownie limit dolny"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "content": "Nie chcę ustawić dolnego limitu"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "okay": {
+                  "goto": 1
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "active_buttons": [
+                  "cancel"
+                ],
+                "cancel": {
+                  "goto": "testblinds"
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "USTAW LIMIT DOLNY"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25t_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Naciśnij przycisk OK"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Spójrz czy produkt wykonuje ruch góra/dół"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "STARTPROGRAM"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "src": "/app/images/m25t_motor_jog1x.png",
+                "type": "image",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "WEJDŹ W TRYB PROGRAMOWANIA"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25t_motor_top_limit_move_up_rollo.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt sie zwija"
+            },
+            "yes": "testblinds",
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Produkt rozwija sie do pożądanej pozycji dolnej"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Zapisz dolną pozycję"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "bullet": 3,
+                  "content": "Spójrz czy produkt wykonuje ruch góra/dół"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "open",
+                  "close",
+                  "tiltup",
+                  "tiltdown",
+                  "stop"
+                ],
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "SAVE_POSITION_BOTTOM"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "src": "/app/images/m25t_motor_top_limit_move_up_rollo.png",
+                "type": "image",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "USTAW LIMIT DOLNY"
+          }
+        }
+      ],
+      "title": [
+        "Roller blind"
+      ]
+    },
+    {
+      "steps": [
+        {
+          "confirm": {
+            "img": "/app/images/m25s_vvb_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": "start",
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Naciśnij i przytrzymaj przycisk na motorze"
+                },
+                "type": "text",
+                "width": "25%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Trzymaj przycisk na motorze i jednocześnie naciśnij przycisk OK"
+                },
+                "type": "text",
+                "width": "25%"
+              },
+              "col3": {
+                "content": {
+                  "bullet": 3,
+                  "content": "Puść przycisk na motorze"
+                },
+                "type": "text",
+                "width": "25%"
+              },
+              "col4": {
+                "content": {
+                  "bullet": 4,
+                  "content": "Spójrz czy produkt wykonuje ruch góra/dół"
+                },
+                "type": "text",
+                "width": "25%"
+              }
+            },
+            {
+              "col1": {
+                "src": "/app/images/m25s_vvb_motor_button_push.png",
+                "type": "image",
+                "width": "25%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "NETWORKADD",
+                    {
+                      "command": "GROUP_ADD",
+                      "delay": 1
+                    }
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "25%"
+              },
+              "col3": {
+                "src": "/app/images/m25s_vvb_motor_button_release.png",
+                "type": "image",
+                "width": "25%"
+              },
+              "col4": {
+                "src": "/app/images/m25s_vvb_motor_jog1x.png",
+                "type": "image",
+                "width": "25%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "PODŁĄCZ"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25s_vvb_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał 2 x  krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Naciśnij przycisk OK"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Motor wykonuje 2x ruch góra/dół"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "RESET",
+                    {
+                      "command": "M25S_VVB_LEFT_STACK",
+                      "delay": 6
+                    }
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "src": "/app/images/m25s_vvb_motor_jog1x.png",
+                "type": "image",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "START"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25s_vvb_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 2,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "content": "MOTOR ZAMONTOWANY TYŁ"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "content": "tak"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "content": "nie"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "ORIENT_VVB_LEFT"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "active_buttons": [
+                  "cancel"
+                ],
+                "cancel": 1,
+                "type": "pv-keypad",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "CZY MOTOR JEST ZAMONTOWANY Z **TYŁU** ?"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25s_vvb_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "content": "MOTOR ZAMONTOWANY GÓRA"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "content": "tak"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "content": "nie"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "ORIENT_VVB_UPRIGHT_LEFT"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "active_buttons": [
+                  "cancel"
+                ],
+                "cancel": -1,
+                "type": "pv-keypad",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "CZY MOTOR JEST ZAMONTOWANY U **GÓRY** ?"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25s_vvb_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Naciśnij przycisk OK"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Spójrz czy produkt wykonuje ruch góra/dół"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "STARTPROGRAM"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "src": "/app/images/m25s_vvb_motor_jog1x.png",
+                "type": "image",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "WEJDŹ W TRYB PROGRAMOWANIA"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25s_vvb_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Produkt rozwija sie do pożądanej pozycji dolnej"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Zapisz dolną pozycję"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "bullet": 3,
+                  "content": "Spójrz czy produkt wykonuje ruch góra/dół"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "open",
+                  "close",
+                  "tiltup",
+                  "tiltdown",
+                  "stop"
+                ],
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "SAVE_POSITION_BOTTOM"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "src": "/app/images/m25s_vvb_motor_jog1x.png",
+                "type": "image",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "USTAW POZYCJĘ ZAMKNIĘTĄ"
+          }
+        },
+        {
+          "confirm": {
+            "img": null,
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "CZY PRODUKT JEST W POZYCJI GÓRNEJ ?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "content": "Produkt zwija sie całkowicie"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay",
+                  "stop"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "STARTPROGRAM",
+                    {
+                      "command": "open",
+                      "delay": 3
+                    }
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "USTAW POZYCJĘ OTWARTĄ"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25s_vvb_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 2,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "content": "Czy zatwierdzić pozycję górna?"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "SAVE_POSITION_TOP"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "active_buttons": [
+                  "cancel"
+                ],
+                "cancel": 1,
+                "type": "pv-keypad",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "USTAW POZYCJĘ OTWARTĄ"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25s_vvb_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Produkt zwija sie do pożądanej pozycji górnej"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Sprawdź górną pozycję"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "bullet": 3,
+                  "content": "Spójrz czy produkt wykonuje ruch góra/dół"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "open",
+                  "close",
+                  "tiltup",
+                  "tiltdown",
+                  "stop"
+                ],
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "SAVE_POSITION_TOP"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "src": "/app/images/m25s_vvb_motor_jog1x.png",
+                "type": "image",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "USTAW POZYCJĘ OTWARTĄ"
+          }
+        },
+        {
+          "confirm": null,
+          "id": "testblinds",
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "content": ""
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "content": "Limity są poprawne. Przejdź do nowego produktu"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "content": "Limity są niepoprawne. Ustaw ponownie"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "open",
+                  "close",
+                  "tiltup",
+                  "tiltdown",
+                  "stop"
+                ],
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "okay": {
+                  "goto": "start"
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "active_buttons": [
+                  "cancel"
+                ],
+                "cancel": {
+                  "goto": 1
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "PRODUKT TESTOWY"
+          }
+        },
+        {
+          "confirm": null,
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "content": "Wybierz:"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "content": "Ustaw ponownie limit gorny"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "content": "Nie chcę ustawić górnego limitu"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "okay": {
+                  "goto": 1
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "active_buttons": [
+                  "cancel"
+                ],
+                "cancel": {
+                  "goto": 3
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "USTAW LIMIT GORNY"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25s_vvb_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Naciśnij przycisk OK"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Spójrz czy produkt wykonuje ruch góra/dół"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "STARTPROGRAM"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "src": "/app/images/m25s_vvb_motor_jog1x.png",
+                "type": "image",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "WEJDŹ W TRYB PROGRAMOWANIA"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25s_vvb_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Produkt zwija sie do pożądanej pozycji górnej"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Sprawdź górną pozycję"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "bullet": 3,
+                  "content": "Spójrz czy produkt wykonuje ruch góra/dół"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "open",
+                  "close",
+                  "tiltup",
+                  "tiltdown",
+                  "stop"
+                ],
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "SAVE_POSITION_TOP"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "src": "/app/images/m25s_vvb_motor_jog1x.png",
+                "type": "image",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "USTAW POZYCJĘ OTWARTĄ"
+          }
+        },
+        {
+          "confirm": null,
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "content": "Wybierz:"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "content": "Ustaw ponownie limit dolny"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "content": "Nie chcę ustawić dolnego limitu"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "okay": {
+                  "goto": 1
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "active_buttons": [
+                  "cancel"
+                ],
+                "cancel": {
+                  "goto": "testblinds"
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "USTAW LIMIT DOLNY"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25s_vvb_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Naciśnij przycisk OK"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Spójrz czy produkt wykonuje ruch góra/dół"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "STARTPROGRAM"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "src": "/app/images/m25s_vvb_motor_jog1x.png",
+                "type": "image",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "WEJDŹ W TRYB PROGRAMOWANIA"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25s_vvb_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": "testblinds",
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Produkt rozwija sie do pożądanej pozycji dolnej"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Zapisz dolną pozycję"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "bullet": 3,
+                  "content": "Spójrz czy produkt wykonuje ruch góra/dół"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "open",
+                  "close",
+                  "tiltup",
+                  "tiltdown",
+                  "stop"
+                ],
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "SAVE_POSITION_BOTTOM"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "src": "/app/images/m25s_vvb_motor_jog1x.png",
+                "type": "image",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "USTAW POZYCJĘ ZAMKNIĘTĄ"
+          }
+        }
+      ],
+      "title": [
+        "M25 VVB Left"
+      ]
+    },
+    {
+      "steps": [
+        {
+          "confirm": {
+            "img": "/app/images/m25s_vvb_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": "start",
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Naciśnij i przytrzymaj przycisk na motorze"
+                },
+                "type": "text",
+                "width": "25%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Trzymaj przycisk na motorze i jednocześnie naciśnij przycisk OK"
+                },
+                "type": "text",
+                "width": "25%"
+              },
+              "col3": {
+                "content": {
+                  "bullet": 3,
+                  "content": "Puść przycisk na motorze"
+                },
+                "type": "text",
+                "width": "25%"
+              },
+              "col4": {
+                "content": {
+                  "bullet": 4,
+                  "content": "Spójrz czy produkt wykonuje ruch góra/dół"
+                },
+                "type": "text",
+                "width": "25%"
+              }
+            },
+            {
+              "col1": {
+                "src": "/app/images/m25s_vvb_motor_button_push.png",
+                "type": "image",
+                "width": "25%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "NETWORKADD",
+                    {
+                      "command": "GROUP_ADD",
+                      "delay": 1
+                    }
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "25%"
+              },
+              "col3": {
+                "src": "/app/images/m25s_vvb_motor_button_release.png",
+                "type": "image",
+                "width": "25%"
+              },
+              "col4": {
+                "src": "/app/images/m25s_vvb_motor_jog1x.png",
+                "type": "image",
+                "width": "25%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "PODŁĄCZ"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25s_vvb_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał 2 x  krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Naciśnij przycisk OK"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Motor wykonuje 2x ruch góra/dół"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "RESET",
+                    {
+                      "command": "M25S_VVB_RIGHT_STACK",
+                      "delay": 6
+                    }
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "src": "/app/images/m25s_vvb_motor_jog1x.png",
+                "type": "image",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "START"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25s_vvb_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 2,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "content": "MOTOR ZAMONTOWANY TYŁ"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "content": "tak"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "content": "nie"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "ORIENT_VVB_RIGHT"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "active_buttons": [
+                  "cancel"
+                ],
+                "cancel": 1,
+                "type": "pv-keypad",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "CZY MOTOR JEST ZAMONTOWANY Z **TYŁU** ?"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25s_vvb_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "content": "MOTOR ZAMONTOWANY GÓRA"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "content": "tak"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "content": "nie"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "ORIENT_VVB_UPRIGHT_RIGHT"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "active_buttons": [
+                  "cancel"
+                ],
+                "cancel": -1,
+                "type": "pv-keypad",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "CZY MOTOR JEST ZAMONTOWANY U **GÓRY** ?"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25s_vvb_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Naciśnij przycisk OK"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Spójrz czy produkt wykonuje ruch góra/dół"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "STARTPROGRAM"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "src": "/app/images/m25s_vvb_motor_jog1x.png",
+                "type": "image",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "WEJDŹ W TRYB PROGRAMOWANIA"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25s_vvb_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Produkt rozwija sie do pożądanej pozycji dolnej"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Zapisz dolną pozycję"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "bullet": 3,
+                  "content": "Spójrz czy produkt wykonuje ruch góra/dół"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "open",
+                  "close",
+                  "tiltup",
+                  "tiltdown",
+                  "stop"
+                ],
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "SAVE_POSITION_BOTTOM"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "src": "/app/images/m25s_vvb_motor_jog1x.png",
+                "type": "image",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "USTAW POZYCJĘ ZAMKNIĘTĄ"
+          }
+        },
+        {
+          "confirm": {
+            "img": null,
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "CZY PRODUKT JEST W POZYCJI GÓRNEJ ?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "content": "Produkt zwija sie całkowicie"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay",
+                  "stop"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "STARTPROGRAM",
+                    {
+                      "command": "open",
+                      "delay": 3
+                    }
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "USTAW POZYCJĘ OTWARTĄ"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25s_vvb_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 2,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "content": "Czy zatwierdzić pozycję górna?"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "SAVE_POSITION_TOP"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "active_buttons": [
+                  "cancel"
+                ],
+                "cancel": 1,
+                "type": "pv-keypad",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "USTAW POZYCJĘ OTWARTĄ"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25s_vvb_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Produkt zwija sie do pożądanej pozycji górnej"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Sprawdź górną pozycję"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "bullet": 3,
+                  "content": "Spójrz czy produkt wykonuje ruch góra/dół"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "open",
+                  "close",
+                  "tiltup",
+                  "tiltdown",
+                  "stop"
+                ],
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "SAVE_POSITION_TOP"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "src": "/app/images/m25s_vvb_motor_jog1x.png",
+                "type": "image",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "USTAW POZYCJĘ OTWARTĄ"
+          }
+        },
+        {
+          "confirm": null,
+          "id": "testblinds",
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "content": ""
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "content": "Limity są poprawne. Przejdź do nowego produktu"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "content": "Limity są niepoprawne. Ustaw ponownie"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "open",
+                  "close",
+                  "tiltup",
+                  "tiltdown",
+                  "stop"
+                ],
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "okay": {
+                  "goto": "start"
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "active_buttons": [
+                  "cancel"
+                ],
+                "cancel": {
+                  "goto": 1
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "PRODUKT TESTOWY"
+          }
+        },
+        {
+          "confirm": null,
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "content": "Wybierz:"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "content": "Ustaw ponownie limit gorny"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "content": "Nie chcę ustawić górnego limitu"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "okay": {
+                  "goto": 1
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "active_buttons": [
+                  "cancel"
+                ],
+                "cancel": {
+                  "goto": 3
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "USTAW LIMIT GORNY"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25s_vvb_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Naciśnij przycisk OK"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Spójrz czy produkt wykonuje ruch góra/dół"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "STARTPROGRAM"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "src": "/app/images/m25s_vvb_motor_jog1x.png",
+                "type": "image",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "WEJDŹ W TRYB PROGRAMOWANIA"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25s_vvb_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Produkt zwija sie do pożądanej pozycji górnej"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Sprawdź górną pozycję"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "bullet": 3,
+                  "content": "Spójrz czy produkt wykonuje ruch góra/dół"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "open",
+                  "close",
+                  "tiltup",
+                  "tiltdown",
+                  "stop"
+                ],
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "SAVE_POSITION_TOP"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "src": "/app/images/m25s_vvb_motor_jog1x.png",
+                "type": "image",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "USTAW POZYCJĘ OTWARTĄ"
+          }
+        },
+        {
+          "confirm": null,
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "content": "Wybierz:"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "content": "Ustaw ponownie limit dolny"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "content": "Nie chcę ustawić dolnego limitu"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "okay": {
+                  "goto": 1
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "active_buttons": [
+                  "cancel"
+                ],
+                "cancel": {
+                  "goto": "testblinds"
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "USTAW LIMIT DOLNY"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25s_vvb_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": 1,
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Naciśnij przycisk OK"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Spójrz czy produkt wykonuje ruch góra/dół"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "STARTPROGRAM"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "src": "/app/images/m25s_vvb_motor_jog1x.png",
+                "type": "image",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "WEJDŹ W TRYB PROGRAMOWANIA"
+          }
+        },
+        {
+          "confirm": {
+            "img": "/app/images/m25s_vvb_motor_jog1x.png",
+            "no": 0,
+            "no_text": {
+              "content": "nie"
+            },
+            "text": {
+              "content": "Czy produkt wykonał krótki ruch góra/dól?"
+            },
+            "yes": "testblinds",
+            "yes_text": {
+              "content": "tak"
+            }
+          },
+          "id": null,
+          "instructions": [
+            {
+              "col1": {
+                "content": {
+                  "bullet": 1,
+                  "content": "Produkt rozwija sie do pożądanej pozycji dolnej"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col2": {
+                "content": {
+                  "bullet": 2,
+                  "content": "Zapisz dolną pozycję"
+                },
+                "type": "text",
+                "width": "30%"
+              },
+              "col3": {
+                "content": {
+                  "bullet": 3,
+                  "content": "Spójrz czy produkt wykonuje ruch góra/dół"
+                },
+                "type": "text",
+                "width": "30%"
+              }
+            },
+            {
+              "col1": {
+                "active_buttons": [
+                  "open",
+                  "close",
+                  "tiltup",
+                  "tiltdown",
+                  "stop"
+                ],
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col2": {
+                "active_buttons": [
+                  "okay"
+                ],
+                "confirm": "okay",
+                "okay": {
+                  "commands": [
+                    "SAVE_POSITION_BOTTOM"
+                  ]
+                },
+                "type": "pv-keypad",
+                "width": "30%"
+              },
+              "col3": {
+                "src": "/app/images/m25s_vvb_motor_jog1x.png",
+                "type": "image",
+                "width": "30%"
+              }
+            }
+          ],
+          "next": {
+            "active": true,
+            "caption": "next",
+            "goto": 1
+          },
+          "previous": {
+            "active": true,
+            "caption": "previous",
+            "goto": -1
+          },
+          "title": {
+            "content": "USTAW POZYCJĘ ZAMKNIĘTĄ"
+          }
+        }
+      ],
+      "title": [
+        "M25 VVB Right"
+      ]
+    }
+  ],
+  "version": "1.7.3"
+}

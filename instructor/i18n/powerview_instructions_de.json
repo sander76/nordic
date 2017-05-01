@@ -1,0 +1,278 @@
+{
+    "TITLE_SKIP_TOP": {
+        "ref_en": "SET *TOP* LIMIT?",
+        "de": "Obere Endlage einstellen?"
+    },
+    "TITLE_BACKROLLER_RIGHT": {
+        "ref_en": "RIGHT BACKROLLER",
+        "de": "Rechts, vorne abrollend"
+    },
+    "IS_RIGHT_FRONTROLLER": {
+        "ref_en": "Is the motor on the **right** and **frontroller** ?",
+        "de": "Ist der Motor rechts montiert und vorne abrollend?"
+    },
+    "NO": {
+        "ref_en": "no",
+        "de": "nein"
+    },
+    "MOVE_BLIND_BOTTOM": {
+        "ref_en": "Move the *BLIND* to the desired BOTTOM position.",
+        "de": "Bewegen Sie die Anlage auf die gewünschte untere Endlage"
+    },
+    "RESET_SLAT": {
+        "ref_en": "Re-set the SLAT position",
+        "de": "Lamellenposition erneut festlegen"
+    },
+    "DID_MOTOR_MOVE_DOWN": {
+        "ref_en": "Did the blind move down?",
+        "de": "Ist die Anlage runtergefahren?"
+    },
+    "HANG_RB": {
+        "ref_en": "HANG THE ROLLERBLIND",
+        "de": "Hängen Sie das Rollo auf"
+    },
+    "WATCH_THE_BLIND_JOG_TWO_TIMES": {
+        "ref_en": "Motor jogs two times.",
+        "de": "Motor bewegt sich zweimal kurz"
+    },
+    "RIGHT_MOUNT": {
+        "ref_en": "MOTOR ON THE RIGHT",
+        "de": "MOTOR RECHTS"
+    },
+    "KEEP_PRESSING_AND_OKAY": {
+        "ref_en": "Keep pressing the *BLIND BUTTON* and press the OK button.",
+        "de": "Motortaste gedrückt halten und die OK Taste drücken"
+    },
+    "TEST_BLINDS": {
+        "ref_en": "TEST BLINDS",
+        "de": "Anlagentest"
+    },
+    "SAVE_BOTTOM": {
+        "ref_en": "Save this as BOTTOM limit.",
+        "de": "Speichern als untere Endlage"
+    },
+    "DID_THE_MOTOR_JOG_TWO_TIMES": {
+        "ref_en": "Did the motor jog two times?",
+        "de": "Hat sich der Motor zweimal kurz bewegt?"
+    },
+    "YES": {
+        "ref_en": "yes",
+        "de": "ja"
+    },
+    "MOVE_BLIND_SLAT_OPEN": {
+        "ref_en": "Move the *BLIND* to the desired SLAT OPEN position.",
+        "de": "Bewegen Sie die Lamellen in die gewünschte Position"
+    },
+    "IS_BLIND_AT_TOP": {
+        "ref_en": "IS THE BLIND AT THE TOP ?",
+        "de": "ist die Anlage hochgefahren?"
+    },
+    "IS_LEFT_FRONTROLLER": {
+        "ref_en": "Is the motor on the **left** and **frontroller** ?",
+        "de": "Ist der Motor links montiert und vorne abrollend?"
+    },
+    "TITLE_VVB_SET_OPEN_LIMIT": {
+        "ref_en": "Set the open limit",
+        "de": ""
+    },
+    "MOVE_BLIND_TOP": {
+        "ref_en": "Move the *BLIND* to the desired TOP position.",
+        "de": "Bewegen Sie die Anlage in die gewünschte obere Endlage"
+    },
+    "TITLE_ORIENT_VVB_UPRIGHT": {
+        "ref_en": "Is the motor mounted **above** ?",
+        "de": ""
+    },
+    "PROPER_PRODUCT_HANG": {
+        "ref_en": "Make sure *BOTTOM* bar is approximately 20cm down.",
+        "de": "sicherstellen, dass die Unterschiene ungefähr 20cm unten ist"
+    },
+    "HANG_TWIST": {
+        "ref_en": "HANG THE TWIST BLIND",
+        "de": "Hängen Sie das Doppelrollo auf"
+    },
+    "ORIENT_VVB_BACK": {
+        "ref_en": "MOTOR ON THE BACK",
+        "de": ""
+    },
+    "IS_RIGHT_BACKROLLER": {
+        "ref_en": "Is the motor on the **right** and **backroller** ?",
+        "de": "Ist der Motor **rechts** montiert und hinten abrollend?"
+    },
+    "WATCH_THE_BLIND_JOG": {
+        "ref_en": "Watch the *BLIND* jog.",
+        "de": "Gucken Sie, ob die Anlage sich bewegt"
+    },
+    "PRESS_HOLD_BLIND_BUTTON": {
+        "ref_en": "`Press` and `hold` the *BLIND BUTTON* .",
+        "de": "Drücken und halten Sie die Motortaste"
+    },
+    "ORIENT_VVB_UPRIGHT": {
+        "ref_en": "MOTOR ABOVE",
+        "de": ""
+    },
+    "SELECT_SKIP_TOP": {
+        "ref_en": "I don't want to set the TOP limit",
+        "de": "OBERE Endlage nicht einstellen"
+    },
+    "DID_THE_MOTOR_JOG": {
+        "ref_en": "Did the motor jog?",
+        "de": "hat sich der Motor kurz bewegt?"
+    },
+    "IS_LEFT_BACKROLLER": {
+        "ref_en": "Is the motor on the **left** and **backroller** ?",
+        "de": "Ist der Motor **links** montiert hinten abrollend?"
+    },
+    "LIMITS_OK": {
+        "ref_en": "Limits are OK. Do a new blind.",
+        "de": "Endlagen sind OK. Neue Anlage programmieren"
+    },
+    "TITLE_SKIP_SLAT": {
+        "ref_en": "SET SLAT POSITION?",
+        "de": "Lamellenposition einstellen?"
+    },
+    "TITLE_VVB": {
+        "ref_en": "VVB title",
+        "de": ""
+    },
+    "RESET_TOP": {
+        "ref_en": "Re-set the TOP limit.",
+        "de": "OBERE Endlage erneut festlegen"
+    },
+    "LEFT_MOUNT": {
+        "ref_en": "MOTOR ON THE LEFT",
+        "de": "Motor Links"
+    },
+    "INITIALISE": {
+        "ref_en": "INIT.",
+        "de": "Initialisieren"
+    },
+    "TITLE_SET_BOTTOM_LIMIT": {
+        "ref_en": "SET BOTTOM LIMIT.",
+        "de": "Untere Endlageneinstellung"
+    },
+    "SAVE_TOP": {
+        "ref_en": "Save this as TOP limit.",
+        "de": "Speichern als OBERE Endlage"
+    },
+    "TITLE_SET_TOP_LIMIT": {
+        "ref_en": "SET TOP LIMIT.",
+        "de": "obere Endlageneinstellung"
+    },
+    "BLIND_DIRECTION": {
+        "ref_en": "CHECK BLIND DIRECTION.",
+        "de": "Kontrollieren Sie die Laufrichtung"
+    },
+    "CONNECT": {
+        "ref_en": "CONNECT.",
+        "de": "VERBINDEN"
+    },
+    "RELEASE_THE_BLIND_BUTTON": {
+        "ref_en": "Release the *BLIND BUTTON*",
+        "de": "Motortaste loslassen"
+    },
+    "MAKE_CHOICE": {
+        "ref_en": "Make a choice:",
+        "de": "auswählen"
+    },
+    "MOTOR_SHOULD_MOVE_DOWN": {
+        "ref_en": "Blind should move down/close.",
+        "de": "Anlage sollte herunterfahren/schließen"
+    },
+    "IS_LEFT_MOUNT": {
+        "ref_en": "Is the motor on the **left** ?",
+        "de": "Ist der Motor **links** montiert?"
+    },
+    "SWITCH_DIRECTION": {
+        "ref_en": "CHANGE BLIND DIRECTION.",
+        "de": "Laufrichtung ändern"
+    },
+    "TITLE_BACKROLLER_LEFT": {
+        "ref_en": "LEFT BACKROLLER",
+        "de": "links, hinten abrollend"
+    },
+    "SAVE_SLAT": {
+        "ref_en": "Save this as SLAT OPEN position.",
+        "de": "Diese Lamellenposition als OFFEN sichern"
+    },
+    "TITLE_ORIENT_VVB_BACK": {
+        "ref_en": "Is the motor mounted on the **back** ?",
+        "de": ""
+    },
+    "TITLE_SKIP_BOTTOM": {
+        "ref_en": "SET *BOTTOM* LIMIT?",
+        "de": "*Untere* Endlage einstellen?"
+    },
+    "SET_TWIST_SLAT_POSITION": {
+        "ref_en": "SET TWIST SLAT POSITION.",
+        "de": "einstellen der Lamellenposition des Doppelrollos"
+    },
+    "DID_THE_MOTOR_MOVE_UP": {
+        "ref_en": "Did the blind move to the top?",
+        "de": "Ist die Anlage hochgefahren?"
+    },
+    "SELECT_SKIP_BOTTOM": {
+        "ref_en": "I don't want to set the *BOTTOM* limit",
+        "de": "untere Endlage nicht einstellen"
+    },
+    "IS_RIGHT_MOUNT": {
+        "ref_en": "Is the motor on the **right** ?",
+        "de": "Ist der Motor **rechts** montiert?"
+    },
+    "SELECT_SKIP_SLAT": {
+        "ref_en": "Don't re-set the *SLAT* position.",
+        "de": "Lamellenposition nicht erneut festlegen"
+    },
+    "HANGPRODUCT": {
+        "ref_en": "HANG PRODUCT.",
+        "de": "Produkt aufhängen"
+    },
+    "SAVE_THIS_AS_TOP": {
+        "ref_en": "Save this as the TOP limit?",
+        "de": "Diese Position als OBERE Endlage einstellen?"
+    },
+    "TITLE_FRONTROLLER_RIGHT": {
+        "ref_en": "RIGHT FRONTROLLER",
+        "de": "rechts, vorne abrollend"
+    },
+    "START_TOP_PROGRAMMING": {
+        "ref_en": "The blind will move completely to the top.",
+        "de": "die Anlage wird ganz nach oben fahren"
+    },
+    "ENTER_PROGRAM_MODE": {
+        "ref_en": "ENTER PROGRAM MODE.",
+        "de": "Programmiermodus"
+    },
+    "TEST_MOVE_BLINDS": {
+        "ref_en": "Check TOP and BOTTOM limits.",
+        "de": "Kontrollieren Sie obere und untere Endlage"
+    },
+    "TITLE_FRONTROLLER_LEFT": {
+        "ref_en": "LEFT FRONTROLLER",
+        "de": "links, vorne abrollend"
+    },
+    "PROPER_PRODUCT_HANG_CONFIRM": {
+        "ref_en": "Product fixed *OK*.",
+        "de": "Produkt is korrekt montiert"
+    },
+    "RESET_BOTTOM": {
+        "ref_en": "Re-set the BOTTOM limit.",
+        "de": "Untere Endlage erneut festlegen"
+    },
+    "LIMITS_NOT_OK": {
+        "ref_en": "Limits are NOT OK. Re-set them",
+        "de": "Endlagen sind NICHT OK. Erneut einstellen"
+    },
+    "PRESS_OKAY_BUTTON": {
+        "ref_en": "Press OK button",
+        "de": "OK Taste drücken"
+    },
+    "TITLE_VVB_SET_CLOSE_LIMIT": {
+        "ref_en": "Set the close limit",
+        "de": ""
+    },
+    "WATCH_THE_BLIND_MOVE_UP": {
+        "ref_en": "Watch the *BLIND* move up.",
+        "de": "Gucken Sie, ob die Anlage hochfährt"
+    }
+}

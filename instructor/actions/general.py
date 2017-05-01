@@ -1,4 +1,5 @@
-import instructor.translations as tr
+#import instructor.translations as tr
+from instructor.translations import Translations as tr
 from instructor.components import Row, Text, PvKeypad, Step, Image, Confirm, \
     Commands, Spacer, NavigationCommand
 from instructor.constants import ID_TEST_BLINDS, RB_JOG_1, VB_JOG_1, ID_START, \

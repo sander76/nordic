@@ -20,7 +20,7 @@ class Nd(Enum):
     SAVE_POSITION_BOTTOM = b'\x00\x04#LPC'
     ENABLE_SLAT = b'\x00\x04#LPr'
     SAVE_SLAT_OPEN = b'\x00\x04#LTO'
-    REVERSE = b'\x00\x02#x'
+    REVERSE = b'\x00\x02#x' # old
 
     SAVE_VENETIAN_SLAT = b'\x00\x04#LPR'
 
