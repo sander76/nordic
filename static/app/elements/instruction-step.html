@@ -30,12 +30,7 @@
             min-width: 4em;
         }
 
-        .instr_img {
-            max-height: 150px;
-            max-width: 300px;
-            width: auto;
-            height: auto;
-        }
+
 
         .rule {
             margin: 5px;
@@ -70,12 +65,16 @@
                 <div class="flex vertical layout">
                     <template is="dom-repeat" items="[[data.instructions]]">
                         <div class="horizontal layout start rule">
-                            <ui-cell id="col1" active="[[active]]" data="[[item.col1]]"></ui-cell>
-                            <ui-cell id="col2" active="[[active]]" data="[[item.col2]]"></ui-cell>
-                            <ui-cell id="col3" active="[[active]]" data="[[item.col3]]"></ui-cell>
-                            <ui-cell id="col4" active="[[active]]" data="[[item.col4]]"></ui-cell>
+                            <!--<ui-cell id="col1" idx="[[index]]" data="[[get_column(item,'col1')]]"></ui-cell>
+                            <ui-cell id="col2" data="[[get_column(item,'col2')]]" idx="[[index]]"></ui-cell>
+                            <ui-cell id="col3" data="[[get_column(item,'col3')]]" idx="[[index]]"></ui-cell>
+                            <ui-cell id="col4" data="[[get_column(item,'col4')]]" idx="[[index]]"></ui-cell>-->
+
+                            <ui-cell id="col1" idx="[[index]]" data="[[item.col1]]"></ui-cell>
+                            <ui-cell id="col2" data="[[item.col2]]" idx="[[index]]"></ui-cell>
+                            <ui-cell id="col3" data="[[item.col3]]" idx="[[index]]"></ui-cell>
+                            <ui-cell id="col4" data="[[item.col4]]" idx="[[index]]"></ui-cell>
                         </div>
-                        <!-- <ui-row active="[[active]]" data="[[item]]"></ui-row> -->
                     </template>
 
                 </div>
@@ -106,13 +105,10 @@
                 data: {
                     type: Object,
                 },
-                curitem: {
-                    type: Number
-                },
-                selected: {
-                    type: Number,
-                    observer: '_selectedChanged'
-                },
+                // curitem: {
+                //     type: Number
+                // },
+
                 active: {
                     type: Boolean
                 }
@@ -122,9 +118,9 @@
             // },
 
             ready: function () {
-                if (this.curitem==0){
-                    this.previous_hidden=true;
-                }
+                // if (this.curitem==0){
+                //     this.previous_hidden=true;
+                // }
                 // if (this.data.next.keys === undefined) {
                 //     this.set("data.next.keys", "pagedown 3");
                 // }
@@ -141,26 +137,30 @@
 
                 }
             },
-            isType: function (instruction, _type) {
-                var tr = instruction.type === _type;
-                return tr;
+            get_column: function (item, column) {
+                var col = item[column];
+                if (col) {
+                    return col;
+                } else {
+                    return {};
+                }
             },
             _next: function (e) {
-                this.fire('gotopage',1);
+                this.fire('gotopage', 1);
                 console.log("Next button clicked.");
             },
             _prev: function (e) {
-                this.fire('gotopage',-1);
+                this.fire('gotopage', -1);
                 console.log("Previous button clicked.");
             },
 
-            _selectedChanged: function () {
-                var active = this.curitem === this.selected;
-                if (active) {
-                    document.reset_keys();
-                }
-                this.set("active", active);
-            },
+            // _selectedChanged: function () {
+            //     var active = this.curitem === this.selected;
+            //     if (active) {
+            //         document.reset_keys();
+            //     }
+            //     this.set("active", active);
+            // },
             deactivate: function () {
                 this.set("active", false);
             },

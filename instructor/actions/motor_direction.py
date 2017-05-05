@@ -1,4 +1,4 @@
-#import instructor.translations as tr
+# import instructor.translations as tr
 from instructor.translations import Translations as tr
 from instructor.components import Row, Text, PvKeypad, Step, Image, \
     Confirm, Spacer, DelayedCommand, Commands
@@ -110,7 +110,7 @@ left_mount_vb.confirm = Confirm(VB_JOG_1,
 
 vvb_back_left = get_direction(
     VVB_JOG_1, tr.TITLE_ORIENT_VVB_BACK,
-    tr.ORIENT_VVB_BACK, Nd.ORIENT_VVB_LEFT,confirm_yes=2)
+    tr.ORIENT_VVB_BACK, Nd.ORIENT_VVB_LEFT, confirm_yes=2)
 
 vvb_above_left = get_direction(
     VVB_JOG_1, tr.TITLE_ORIENT_VVB_UPRIGHT,
@@ -119,12 +119,47 @@ vvb_above_left = get_direction(
 
 vvb_back_right = get_direction(
     VVB_JOG_1, tr.TITLE_ORIENT_VVB_BACK,
-    tr.ORIENT_VVB_BACK, Nd.ORIENT_VVB_RIGHT,confirm_yes=2)
+    tr.ORIENT_VVB_BACK, Nd.ORIENT_VVB_RIGHT, confirm_yes=2)
 
 vvb_above_right = get_direction(
     VVB_JOG_1, tr.TITLE_ORIENT_VVB_UPRIGHT,
     tr.ORIENT_VVB_UPRIGHT, Nd.ORIENT_VVB_UPRIGHT_RIGHT, cancel_no=-1,
     confirm_yes=1)
+
+tensioned_duette_direction = Step(
+    tr.BLIND_DIRECTION,
+    [
+        Row(Text(30, tr.PRESS_OKAY_BUTTON.add_number(1)),
+            Text(30,
+                 tr.MOTOR_SHOULD_MOVE_DOWN.add_number(2))),
+        Row(PvKeypad(30, ['okay', 'stop'], 'okay',
+                     Commands(Nd.close,
+                              DelayedCommand(Nd.stop, 3),
+                              DelayedCommand(Nd.stop, 0.4),
+                              DelayedCommand(Nd.stop, 0.4)),
+                     cancel=1),
+            Image(30,
+                  "/app/images/m25t_motor_top_limit_move_down_rollo.png"))
+    ],
+    Confirm(
+        "/app/images/m25t_motor_top_limit_move_down_rollo.png",
+        tr.DID_BLIND_CLOSE,
+        yes=2,
+        no=1))
+
+tensioned_duette_switch_direction = Step(
+    tr.SWITCH_DIRECTION,
+    [
+        Row(Text(30, tr.PRESS_OKAY_BUTTON.add_number(1)),
+            Text(30,
+                 tr.WATCH_THE_BLIND_JOG.add_number(
+                     2))),
+        Row(PvKeypad(30, ['okay'], 'okay',
+                     Commands(Nd.ORIENT_M25S_DUETTE_LEFT)),
+            Image(30, DUETTE_JOG_1))
+    ],
+    Confirm(DUETTE_JOG_1,
+            tr.DID_THE_MOTOR_JOG))
 
 blind_direction = Step(
     tr.BLIND_DIRECTION,
@@ -133,7 +168,7 @@ blind_direction = Step(
             Text(30,
                  tr.MOTOR_SHOULD_MOVE_DOWN.add_number(2))),
         Row(PvKeypad(30, ['okay'], 'okay',
-                     Commands(Nd.tiltclose,
+                     Commands(Nd.close,
                               DelayedCommand(Nd.stop, 3),
                               DelayedCommand(Nd.stop, 0.4),
                               DelayedCommand(Nd.stop, 0.4)),

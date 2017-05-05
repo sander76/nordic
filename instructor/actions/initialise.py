@@ -1,9 +1,9 @@
-#import instructor.translations as tr
+# import instructor.translations as tr
 from instructor.translations import Translations as tr
 from instructor.components import Row, Text, PvKeypad, Step, Image, Confirm, \
     DelayedCommand, Commands
 from instructor.constants import RB_JOG_2, TWIST_JOG_2, VB_JOG_2, \
-    DUETTE_JOG_2, VVB_JOG_1, PLEATED_JOG_2
+    DUETTE_JOG_2, VVB_JOG_1, PLEATED_JOG_2, DUETTE_JOG_3
 from server.nordic import Nd
 
 textrow = Row(Text(30, tr.PRESS_OKAY_BUTTON.add_number(1)),
@@ -41,10 +41,23 @@ initialise_vb_25.instructions[1].col1.okay = Commands(Nd.RESET, DelayedCommand(
     Nd.M25S_VENETIAN_25MM, PRODUCT_SET_DELAY))
 
 initialise_duette = get_initialise(
-    DUETTE_JOG_2,Nd.M25S_DUETTE_FREE)
+    DUETTE_JOG_2, Nd.M25S_DUETTE_FREE)
 
 initialise_duette_tensioned = get_initialise(
-    DUETTE_JOG_2,Nd.M25S_DUETTE_TENSIONED)
+    DUETTE_JOG_2, Nd.M25S_DUETTE_TENSIONED)
+
+# initialization including motor position on the right.
+initialise_duette_tensioned_alt = Step(
+    tr.INITIALISE,
+    [textrow,
+     Row(PvKeypad(30, ['okay'], 'okay',
+                  Commands(Nd.RESET,
+                           DelayedCommand(Nd.M25S_DUETTE_TENSIONED,
+                                          PRODUCT_SET_DELAY),
+                           DelayedCommand(Nd.ORIENT_M25S_DUETTE_RIGHT,
+                                          PRODUCT_SET_DELAY))),
+         Image(30, DUETTE_JOG_3))],
+    Confirm(DUETTE_JOG_3, tr.DID_THE_MOTOR_JOG_THREE_TIMES))
 
 initialise_pleated = get_initialise(
     PLEATED_JOG_2, Nd.M25S_PLEATED_FREE)

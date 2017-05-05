@@ -98,11 +98,7 @@
                     </div>
                 </div>
             </app-drawer>
-            <iron-pages class="flex" id="pages" selected="{{selectedStep}}">
-                <template is="dom-repeat" items="[[currentproductsteps]]">
-                    <instruction-step data="[[item]]" curitem="[[index]]" selected="[[selectedStep]]"></instruction-step>
-                </template>
-            </iron-pages>
+                    <instruction-step data="[[currentstep]]" ></instruction-step>
         </app-drawer-layout>
         <my-modal modaldata="[[modaldata]]" id="modl"></my-modal>
     </template>
@@ -128,10 +124,10 @@
                 modaldata: {
                     type: Object
                 },
-                selectedStep: {
-                    type: Number //,
-                    //observer: '_stepChanged'
-                }
+                // selectedStep: {
+                //     type: Number //,
+                //     //observer: '_stepChanged'
+                // }
                 // },
                 // steptitle: {
                 //     type: String
@@ -147,22 +143,19 @@
             // },
             _openModal: function (e) {
                 console.log("Open modal");
-                this.set("modaldata", this.currentproductsteps[this.selectedStep].confirm);
-                this.$.pages.items[this.selectedStep].deactivate();
+                this.set("modaldata", this.currentproductsteps[this.currentStepIdx].confirm);
+                //this.$.pages.items[this.selectedStep].deactivate();
                 this.$.modl.openmodal();
             },
 
-            // _stepChanged: function (newValue, oldValue) {
-            //     //this.set("steptitle", this.currentproductsteps[newValue].title);
-            //     //this.set("modaldata", this.currentproductsteps[newValue].confirm);
-            // },
-            gotoStep: function (current, offset) {
+            gotoStep: function (offset) {
                 console.log("");
                 console.log("Going to page step: " + offset);
                 if (offset === 0) {
-                    this.$.pages.items[this.selectedStep].activate();
+                    
+                    //this.$.pages.items[this.selectedStep].activate();
                 } else {
-                    var _goto = current + offset;
+                    var _goto = this.currentStepIdx + offset;
                     var goto = 0;
                     if (_goto < 0) {
                         //goto = (t.instructions.steps.length + _goto);
@@ -170,7 +163,8 @@
                     } else {
                         goto = _goto % this.currentproductsteps.length;
                     }
-                    this.set('selectedStep', goto);
+                    //this.set('selectedStep', goto);
+                    this.set_current_step(goto);
                 }
             },
             gotoId: function (id) {
@@ -214,10 +208,18 @@
                     this.product = _product;
                     this.set("currentproduct", this.all_products[this.product]);
                     this.currentproductsteps = _currentproduct.steps;
-                    this.set('selectedStep', 0);
+                    this.set_current_step(0)
+                    //this.set('selectedStep', 0);
 
                 }
             },
+
+            set_current_step: function(idx){
+                this.currentStepIdx=idx;
+                this.set("currentstep",{});
+                this.set("currentstep",this.currentproductsteps[idx]);
+            },
+
             send: function (commands) {
                 //populate the body of the request.
                 this.$.sendCommand.body = {
@@ -354,11 +356,12 @@
             goto_page(e.detail);
         });
         var goto_page = function (goto_value) {
+            document.reset_keys()
             if (typeof (goto_value) === 'string') {
                 app.gotoId(e.detail);
                 //this.gotoId(e.detail);
             } else {
-                app.gotoStep(app.selectedStep, goto_value);
+                app.gotoStep(goto_value);
                 //this.gotoStep(this.selectedStep, e.detail);
             }
         };

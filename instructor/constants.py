@@ -24,6 +24,7 @@ RB_MOVE_UP = "/app/images/m25t_motor_top_limit_move_up_rollo.png"
 
 DUETTE_JOG_1 = "/app/images/m25s_duette_motor_jog1x.png"
 DUETTE_JOG_2 = "/app/images/m25s_duette_motor_jog2x.png"
+DUETTE_JOG_3 = "/app/images/m25s_duette_motor_jog3x.png"
 DUETTE_BUTTON_PUSH_HOLD = "/app/images/m25s_duette_motor_button_push.png"
 DUETTE_BUTTON_RELEASE = "/app/images/m25s_duette_motor_button_release.png"
 

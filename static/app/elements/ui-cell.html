@@ -2,95 +2,55 @@
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../styles/app-theme.html">
 <link rel="import" href="pv-keypad.html">
-<link rel="import" href="../bower_components/marked-element/marked-element.html">
+<link rel="import" href="pv-image.html">
+<link rel="import" href="pv-text.html">
 <dom-module id="ui-cell">
     <style include="iron-flex iron-flex-alignment"></style>
 
     <style>
-        :host{
+         :host {
             align-self: stretch;
         }
+
         img {
             max-width: 100%;
             max-height: 100%;
-            
         }
 
-        .container {
-            margin: 20px;
-            height:100%;
-        }
+        
 
-        code {
-            background-color: red;
-            border-radius: 4px;
-            padding: 2px 5px;
-            color: #c7254e;
-            background-color: #f9f2f4;
-        }
+        
+        
 
-        .markdown-html > p {
-            margin: 0;
-        }
-
-        .bullet {
-            margin-right: 0.5em;
-            font-size: 1.6em;
-            color: #555;
-            border-radius: 50%;
-        }
-
+        
     </style>
     <template>
-        <template is="dom-if" if="[[isType(data,'image')]]">
+        <!--<template is="dom-if" hidden$="[[!isType(data,'image',0)]]">
             <div class="container">
                 <img class="instr_img" src="[[data.src]]"/>
             </div>
-        </template>
-        <template is="dom-if" if="[[isType(data,'text')]]">
+        </template>-->
+        <pv-image data="[[data]]"></pv-image>
+<pv-text data="[[data]]"></pv-text>
+        <!--<div hidden$="[[isType(data,'text',0)]]">
             <div class="container layout horizontal">
                 <span class="bullet">[[data.content.bullet]]</span>
 
-                <marked-element markdown=[[data.content.content]]>
+                <marked-element markdown="[[data.content.content]]">
                     <div class="markdown-html flex"></div>
                 </marked-element>
             </div>
-        </template>
-        <!-- <template is="dom-if" if="[[isType(data,'button')]]">
-            <ajax-button active="[[active]]" data="[[data]]">[[data.caption]]
-                <small>([[data.keys]])</small>
-            </ajax-button>
-        </template> -->
-        <!-- <template is="dom-if" if="[[isType(data,'svg-button-connect')]]">
-            <svg-button-connect active="[[active]]" data="[[data]]">
-            </svg-button-connect>
-        </template> -->
-        <!-- <template is="dom-if" if="[[isType(data,'icon-button')]]">
-            <div class="container">
-                <icon-ajax-button active="[[active]]" data="[[data]]"></icon-ajax-button>
-            </div>
-        </template> -->
-        <!-- <template is="dom-if" if="[[isType(data,'icon-nav-button')]]">
-            <div class="container">
-                <icon-nav-button active="[[active]]" data="[[data]]"></icon-nav-button>
-            </div>
-        </template> -->
-        <!-- <template is="dom-if" if="[[isType(data,'keypad')]]">
-                <key-pad active="[[active]]"></key-pad>
-            </template> -->
-        <template is="dom-if" if="[[isType(data,'pv-keypad')]]" restamp="true">
-            <div class="container">
-                <pv-keypad active="[[active]]" data="[[data]]"></pv-keypad>
-            </div>
-        </template>
+        </div>-->
+                <pv-keypad data="[[data]]"></pv-keypad>
+        
         <!-- <template is="dom-if" if="[[isType(data,'remote')]]">
                 <pv-remote active="[[active]]"></pv-remote>
             </template> -->
-        <template is="dom-if" if="[[isType(data,'navbutton')]]">
+        <!--<template is="dom-if" if="[[isType(data,'navbutton')]]">
             <nav-button active="[[active]]" data="[[data]]">[[data.caption]]
                 <small>([[data.keys]])</small>
             </nav-button>
-        </template>
+        </template>-->
     </template>
     <script>
         Polymer({
@@ -98,13 +58,18 @@
             properties: {
                 data: {
                     type: Object,
-                    value: {} //,
-                    //observer: '_dataChanged'
-                }
+                    value: {},
+                    observer: '_dataChanged'
+                },
+                idx:{type:Number}
             },
-            // _dataChanged: function(data) {     this.navbutton = false;     this.pvkeypad = false;     this.image = false;     this.txt = false;     if (data !== undefined) {         switch (data.type) {             case "navbutton":
-            // this.navbutton = true;                 break;             case "pv-keypad":                 this.pvkeypad = true;                 break;             case "image":                 this.image = true;                 break;             case "text":
-            //               this.txt = true;                 break;         }     }     console.log("data changed"); },
+
+            _dataChanged:function(_new,_old){
+
+                console.log("data changed in row "+ this.idx +" column " + this.id);
+                
+            },
+
             ready: function () {
                 this.checkWidth();
             },
@@ -115,10 +80,16 @@
                     }
                 }
             },
-            isType: function (instruction, _type) {
-                var tr = instruction.type === _type;
-                return tr;
-            }
+            // isType: function (instruction, _type, iftrue = true) {
+                
+            //     var tr = instruction.type === _type;
+            //     if (iftrue) {
+            //         return tr;
+            //     } else {
+            //         return !tr;
+            //     }
+
+            // }
 
         });
     </script>

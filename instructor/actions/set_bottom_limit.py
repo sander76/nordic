@@ -9,18 +9,18 @@ from server.nordic import Nd
 savepositionBottom = PvKeypad(30, ['okay'], 'okay',
                               Commands(Nd.SAVE_POSITION_BOTTOM))
 
-textrow = Row(Text(30, tr.MOVE_BLIND_BOTTOM.add_number(1)),
-              Text(30, tr.SAVE_BOTTOM.add_number(2)),
-              Text(30, tr.WATCH_THE_BLIND_JOG.add_number(3)))
-
 
 def get_bottom_limit(
         jog_image=RB_JOG_1, confirm_image=RB_JOG_1,
-        confirm_text=tr.DID_THE_MOTOR_JOG,title=tr.TITLE_SET_BOTTOM_LIMIT,
-        confirm_yes_goto=1):
+        confirm_text=tr.DID_THE_MOTOR_JOG, title=tr.TITLE_SET_BOTTOM_LIMIT,
+        confirm_yes_goto=1,
+        move_blind_message=tr.MOVE_BLIND_BOTTOM,
+        save_position=tr.SAVE_BOTTOM):
     return Step(title,
                 [
-                    textrow,
+                    Row(Text(30, move_blind_message.add_number(1)),
+                        Text(30, save_position.add_number(2)),
+                        Text(30, tr.WATCH_THE_BLIND_JOG.add_number(3))),
                     Row(keypad_move_buttons,
                         savepositionBottom,
                         Image(30, jog_image))
@@ -54,7 +54,6 @@ duette_re_set_bottom_limit = get_bottom_limit(
     DUETTE_JOG_1, DUETTE_JOG_1, tr.DID_THE_MOTOR_JOG,
     confirm_yes_goto=ID_TEST_BLINDS)
 
-
 # Pleated
 pleated_set_bottom_limit = get_bottom_limit(PLEATED_JOG_1, PLEATED_JOG_1)
 pleated_re_set_bottom_limit = get_bottom_limit(
@@ -62,9 +61,15 @@ pleated_re_set_bottom_limit = get_bottom_limit(
 
 # VVB
 vvb_set_close_limit = get_bottom_limit(
-    VVB_JOG_1, VVB_JOG_1,title=tr.TITLE_VVB_SET_CLOSE_LIMIT)
+    VVB_JOG_1, VVB_JOG_1,
+    title=tr.TITLE_VVB_SET_CLOSE_LIMIT,
+    move_blind_message=tr.MOVE_BLIND_CLOSE,
+    save_position=tr.SAVE_CLOSE)
+
 vvb_re_set_close_limit = get_bottom_limit(
     VVB_JOG_1, VVB_JOG_1,
-    title=tr.TITLE_VVB_SET_CLOSE_LIMIT,confirm_yes_goto=ID_TEST_BLINDS)
-
-
+    title=tr.TITLE_VVB_SET_CLOSE_LIMIT,
+    confirm_yes_goto=ID_TEST_BLINDS,
+    move_blind_message=tr.MOVE_BLIND_CLOSE,
+    save_position=tr.SAVE_CLOSE
+)
