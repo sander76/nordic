@@ -180,6 +180,10 @@ class Translations():
         de="ist die Anlage hochgefahren?",
         pl="CZY PRODUKT JEST W POZYCJI GÓRNEJ ?")
 
+    IS_BLIND_OPENED=TXT(
+        "Is the blind at open position ?",
+        to_upper=True)
+
     SET_TWIST_SLAT_POSITION = TXT(
         "SET TWIST SLAT POSITION.",
         "STEL TWIST SLAT POSITIE IN.",
@@ -219,6 +223,8 @@ class Translations():
         dk=None,
         pl="Nie chcę ustawić górnego limitu")
 
+    SELECT_SKIP_OPEN=TXT("I don't want to set the OPEN limit.")
+
     SELECT_SKIP_BOTTOM = TXT(
         "I don't want to set the *BOTTOM* limit",
         "*ONDERLIMIET* niet opnieuw instellen",
@@ -242,6 +248,9 @@ class Translations():
         de="OBERE Endlage erneut festlegen",
         dk=None,
         pl="Ustaw ponownie limit gorny")
+
+    RESET_OPEN = TXT("Re-set the OPEN limit.")
+    RESET_CLOSE = TXT("Re-set the CLOSE limit.")
 
     START_TOP_PROGRAMMING = TXT(
         "The blind will move completely to the top.",
@@ -372,6 +381,9 @@ class Translations():
         dk=None,
         pl="Motor wykonuje 2x ruch góra/dół")
 
+    WATCH_THE_BLIND_JOG_THREE_TIMES = TXT(
+        "Motor jogs three times.")
+
     MOTOR_SHOULD_MOVE_DOWN = TXT(
         "Blind should move down/close.",
         "Blind moet naar beneden bewegen/sluiten.",
@@ -481,10 +493,19 @@ class Translations():
         to_upper=True
     )
 
+    TITLE_SKIP_OPEN = TXT(
+        "Set the open limit ?",
+        "Open limit instellen ?",
+        to_upper=True
+    )
+
+    TITLE_SKIP_CLOSE = TXT("Set the close limit ?")
+
     TITLE_SKIP_TOP = TXT(
         "SET *TOP* LIMIT?",
         "STEL *BOVENLIMIET* IN?",
         to_upper=True)
+
 
     TITLE_SKIP_BOTTOM = TXT(
         "SET *BOTTOM* LIMIT?",

@@ -8,7 +8,7 @@ from instructor.actions.set_bottom_limit import vvb_set_close_limit, \
     vvb_re_set_close_limit
 from instructor.actions.set_top_limit import vvb_set_open_limit_moveup, \
     vvb_confirm_open_limit, vvb_set_open_limit
-from instructor.actions.skip_step import skiptop, skipbottom_end
+from instructor.actions.skip_step import skiptop, skipbottom_end, skipopen
 from instructor.components import Product
 
 m25s_vvb_left = Product(
@@ -23,7 +23,7 @@ m25s_vvb_left = Product(
      vvb_confirm_open_limit,
      vvb_set_open_limit,
      test_blinds,
-     skiptop,
+     skipopen,
      enter_program_mode_vvb,
      vvb_set_open_limit,
      skipbottom_end,
@@ -43,7 +43,7 @@ m25s_vvb_right = Product(
      vvb_confirm_open_limit,
      vvb_set_open_limit,
      test_blinds,
-     skiptop,
+     skipopen,
      enter_program_mode_vvb,
      vvb_set_open_limit,
      skipbottom_end,

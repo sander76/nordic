@@ -49,7 +49,8 @@ initialise_duette_tensioned = get_initialise(
 # initialization including motor position on the right.
 initialise_duette_tensioned_alt = Step(
     tr.INITIALISE,
-    [textrow,
+    [Row(Text(30, tr.PRESS_OKAY_BUTTON.add_number(1)),
+              Text(30, tr.WATCH_THE_BLIND_JOG_THREE_TIMES.add_number(2))),
      Row(PvKeypad(30, ['okay'], 'okay',
                   Commands(Nd.RESET,
                            DelayedCommand(Nd.M25S_DUETTE_TENSIONED,
