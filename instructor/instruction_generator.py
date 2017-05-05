@@ -3,7 +3,7 @@ import os
 from instructor.components import ToJson, Instruction
 from instructor.helpers import TXT
 from instructor.products.m25s_duette import m25s_duette_free, \
-    m25s_duette_free_alt, m25s_duette_tensioned
+    m25s_duette_free_alt, m25s_duette_tensioned, m25s_duette_tensioned_alt
 from instructor.products.m25s_pleated import m25s_pleated_free, \
     m25s_pleated_tensioned
 from instructor.products.m25s_vb import m25s_25mm_vb_free, \
@@ -138,6 +138,7 @@ def make_all():
         m25s_duette_free,
         m25s_duette_free_alt,
         m25s_duette_tensioned,
+        m25s_duette_tensioned_alt,
         m25s_pleated_free,
         m25s_pleated_tensioned,
         m25s_25mm_vb_free,

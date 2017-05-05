@@ -297,6 +297,14 @@ class Translations():
         dk=None,
         pl="Czy produkt wykonał 2 x  krótki ruch góra/dól?")
 
+    DID_THE_MOTOR_JOG_THREE_TIMES = TXT(
+        "Did the motor jog three times?",
+        "Heeft de motor drie keer bewogen?",
+        il=None,
+        de="Hat sich der Motor dreimal kurz bewegt?",
+        dk=None,
+        pl="Czy produkt wykonał 3 x  krótki ruch góra/dól?")
+
     DID_MOTOR_MOVE_DOWN = TXT(
         "Did the blind move down?",
         "Is de blind naar beneden bewogen?",
@@ -304,6 +312,9 @@ class Translations():
         de="Ist die Anlage runtergefahren?",
         dk=None,
         pl="Czy produkt sie rozwija ?")
+
+    DID_BLIND_CLOSE = TXT(
+        "Did the blind close?")
 
     PRESS_HOLD_BLIND_BUTTON = TXT(
         "`Press` and `hold` the *BLIND BUTTON* .",
@@ -370,6 +381,8 @@ class Translations():
         pl="Produkt powinien się rozwijać/zamykać"
     )
 
+    MOVE_BLIND_CLOSE = TXT("Move the *BLIND* to the desired CLOSE position")
+
     MOVE_BLIND_BOTTOM = TXT(
         "Move the *BLIND* to the desired BOTTOM position.",
         "Stuur de *BLIND* naar de gewenste ONDER positie.",
@@ -408,6 +421,8 @@ class Translations():
         de="Speichern als untere Endlage",
         dk=None,
         pl="Zapisz dolną pozycję")
+
+    SAVE_CLOSE = TXT("Save this as CLOSE position.")
 
     SAVE_TOP = TXT(
         "Save this as TOP limit.",
@@ -506,7 +521,7 @@ class Translations():
         to_upper=True)
 
     TITLE_FRONTROLLER_RIGHT = TXT(
-        "RIGHT FRONTROLLER", "RECHTS FRONTROLLER",to_upper=True)
+        "RIGHT FRONTROLLER", "RECHTS FRONTROLLER", to_upper=True)
 
     TITLE_SET_BOTTOM_LIMIT = TXT(
         "SET BOTTOM LIMIT.",
@@ -521,6 +536,11 @@ class Translations():
     TITLE_VVB = TXT(
         "VVB title",
         "VVB titel")
+
+    TITLE_MOTOR_CHECK_CLOSE = TXT(
+        "CHECK CLOSE DIRECTION",
+        "Sluit richting",
+        to_upper=True)
 
 
 def do_text(lang):
@@ -558,7 +578,7 @@ def load_translations():
     for lang in AVAILABLE_TRANSLATIONS:
         full_name = _get_translation_file_path(lang)
 
-        with open(full_name, 'r',encoding='utf-8')as _fl:
+        with open(full_name, 'r', encoding='utf-8')as _fl:
             _js = json.load(_fl)
         for key, value in _js.items():
             _txt = getattr(Translations, key)
