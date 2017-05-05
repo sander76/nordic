@@ -16,41 +16,11 @@
             max-width: 100%;
             max-height: 100%;
         }
-
-        
-
-        
-        
-
-        
     </style>
     <template>
-        <!--<template is="dom-if" hidden$="[[!isType(data,'image',0)]]">
-            <div class="container">
-                <img class="instr_img" src="[[data.src]]"/>
-            </div>
-        </template>-->
-        <pv-image data="[[data]]"></pv-image>
-<pv-text data="[[data]]"></pv-text>
-        <!--<div hidden$="[[isType(data,'text',0)]]">
-            <div class="container layout horizontal">
-                <span class="bullet">[[data.content.bullet]]</span>
-
-                <marked-element markdown="[[data.content.content]]">
-                    <div class="markdown-html flex"></div>
-                </marked-element>
-            </div>
-        </div>-->
-                <pv-keypad data="[[data]]"></pv-keypad>
-        
-        <!-- <template is="dom-if" if="[[isType(data,'remote')]]">
-                <pv-remote active="[[active]]"></pv-remote>
-            </template> -->
-        <!--<template is="dom-if" if="[[isType(data,'navbutton')]]">
-            <nav-button active="[[active]]" data="[[data]]">[[data.caption]]
-                <small>([[data.keys]])</small>
-            </nav-button>
-        </template>-->
+        <pv-image id="pvimg" data="[[data]]"></pv-image>
+        <pv-text id="pvtxt" data="[[data]]"></pv-text>
+        <pv-keypad id="keypad" data="[[data]]"></pv-keypad>
     </template>
     <script>
         Polymer({
@@ -61,13 +31,21 @@
                     value: {},
                     observer: '_dataChanged'
                 },
-                idx:{type:Number}
+                idx: {
+                    type: Number
+                },
+                active: {
+                    type: Boolean,
+                    value: true
+                }
             },
 
-            _dataChanged:function(_new,_old){
-
-                console.log("data changed in row "+ this.idx +" column " + this.id);
-                
+            _dataChanged: function (_new, _old) {
+                console.log("data changed in row " + this.idx + " column " + this.id);
+                this.$.pvimg._dataChanged(this.data);
+                this.$.keypad._dataChanged(this.data);
+                this.$.pvtxt._dataChanged(this.data);
+                this.checkWidth();
             },
 
             ready: function () {
@@ -80,17 +58,12 @@
                     }
                 }
             },
-            // isType: function (instruction, _type, iftrue = true) {
-                
-            //     var tr = instruction.type === _type;
-            //     if (iftrue) {
-            //         return tr;
-            //     } else {
-            //         return !tr;
-            //     }
 
-            // }
-
+            activate: function () {
+                this.$.pvimg._dataChanged(this.data);
+                this.$.keypad._dataChanged(this.data);
+                this.$.pvtxt._dataChanged(this.data);
+            }
         });
     </script>
 </dom-module>

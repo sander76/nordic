@@ -62,20 +62,28 @@
                 <marked-element markdown="[[data.title.content]]">
                     <div class="markdown-html"></div>
                 </marked-element>
-                <div class="flex vertical layout">
-                    <template is="dom-repeat" items="[[data.instructions]]">
-                        <div class="horizontal layout start rule">
-                            <!--<ui-cell id="col1" idx="[[index]]" data="[[get_column(item,'col1')]]"></ui-cell>
-                            <ui-cell id="col2" data="[[get_column(item,'col2')]]" idx="[[index]]"></ui-cell>
-                            <ui-cell id="col3" data="[[get_column(item,'col3')]]" idx="[[index]]"></ui-cell>
-                            <ui-cell id="col4" data="[[get_column(item,'col4')]]" idx="[[index]]"></ui-cell>-->
+                <div class="flex vertical layout" id="uicells">
+                    <!--<template is="dom-repeat" items="[[instructions]]">-->
 
-                            <ui-cell id="col1" idx="[[index]]" data="[[item.col1]]"></ui-cell>
-                            <ui-cell id="col2" data="[[item.col2]]" idx="[[index]]"></ui-cell>
-                            <ui-cell id="col3" data="[[item.col3]]" idx="[[index]]"></ui-cell>
-                            <ui-cell id="col4" data="[[item.col4]]" idx="[[index]]"></ui-cell>
-                        </div>
-                    </template>
+                    <div class="horizontal layout start rule">
+                        <ui-cell id="col1" data="[[row1.col1]]"></ui-cell>
+                        <ui-cell id="col2" data="[[row1.col2]]"></ui-cell>
+                        <ui-cell id="col3" data="[[row1.col3]]"></ui-cell>
+                        <ui-cell id="col4" data="[[row1.col4]]"></ui-cell>
+                    </div>
+                    <div class="horizontal layout start rule">
+                        <ui-cell data="[[row2.col1]]"></ui-cell>
+                        <ui-cell data="[[row2.col2]]"></ui-cell>
+                        <ui-cell data="[[row2.col3]]"></ui-cell>
+                        <ui-cell data="[[row2.col4]]"></ui-cell>
+                    </div>
+                    <div class="horizontal layout start rule">
+                        <ui-cell data="[[row3.col1]]"></ui-cell>
+                        <ui-cell data="[[row3.col2]]"></ui-cell>
+                        <ui-cell data="[[row3.col3]]"></ui-cell>
+                        <ui-cell data="[[row3.col4]]"></ui-cell>
+                    </div>
+                    <!--</template>-->
 
                 </div>
                 <div class="horizontal layout justified">
@@ -83,13 +91,11 @@
                         <paper-button noink class="instruction" raised on-tap="_prev" hidden="[[previous_hidden]]">
                             [[data.previous.caption]]
                         </paper-button>
-                        <!--<nav-button hidden="[[!data.previous.active]]" id="previousbutton" active="[[active]]" data="[[data.previous]]"></nav-button>-->
                     </div>
                     <div>
                         <paper-button noink class="instruction" raised on-tap="_next">
                             [[data.next.caption]]
                         </paper-button>
-                        <!--<nav-button hidden="[[!data.next.active]]" id="nextbutton" active="[[active]]" data="[[data.next]]">[[data.next.caption]]</nav-button>-->
                     </div>
                 </div>
             </div>
@@ -104,47 +110,43 @@
             properties: {
                 data: {
                     type: Object,
-                },
-                // curitem: {
-                //     type: Number
-                // },
-
-                active: {
-                    type: Boolean
+                    observer: "dataChanged"
                 }
+                // ,
+                // active: {
+                //     type: Boolean
+                // }
             },
-            // listeners: {
-            //     'openmodal': "_openModal"
+            dataChanged: function (_new, _old) {
+                var uicells = Polymer.dom(this.root).querySelectorAll("ui-cell");
+                this.instructions = this.data.instructions;
+                if (this.instructions) {
+                    this.row1 = this.data.instructions[0];
+                    this.row2 = this.data.instructions[1] || [{}, {}, {}, {}];
+                    this.row3 = this.data.instructions[2] || [{}, {}, {}, {}];
+                    for (var i = 0; i < uicells.length; i++) {
+                        uicells[i]._dataChanged();
+
+                    }
+                }
+
+            },
+            // getType: function (item, container) {
+            //     if (item.type == "text") {
+            //         var el = document.createElement('p');
+            //         el.innerText = item.content;
+            //         return el;
+
+            //     }
             // },
-
-            ready: function () {
-                // if (this.curitem==0){
-                //     this.previous_hidden=true;
-                // }
-                // if (this.data.next.keys === undefined) {
-                //     this.set("data.next.keys", "pagedown 3");
-                // }
-                // if (this.data.previous.keys === undefined) {
-                //     this.set("data.previous.keys", "end 1");
-                // }
-
-            },
-            getType: function (item, container) {
-                if (item.type == "text") {
-                    var el = document.createElement('p');
-                    el.innerText = item.content;
-                    return el;
-
-                }
-            },
-            get_column: function (item, column) {
-                var col = item[column];
-                if (col) {
-                    return col;
-                } else {
-                    return {};
-                }
-            },
+            // get_column: function (item, column) {
+            //     var col = item[column];
+            //     if (col) {
+            //         return col;
+            //     } else {
+            //         return {};
+            //     }
+            // },
             _next: function (e) {
                 this.fire('gotopage', 1);
                 console.log("Next button clicked.");
@@ -161,12 +163,16 @@
             //     }
             //     this.set("active", active);
             // },
-            deactivate: function () {
-                this.set("active", false);
-            },
+            // deactivate: function () {
+            //     //this.set("active", false);
+
+
+            // },
             activate: function () {
-                document.reset_keys();
-                this.set("active", true);
+                var keypads = Polymer.dom(this.root).querySelectorAll("ui-cell");
+                for (var i = 0; i < keypads.length; i++) {
+                    keypads[i].activate();
+                }
             }
 
 

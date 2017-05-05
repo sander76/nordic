@@ -23,7 +23,7 @@
         </style>
         <div class="container" hidden$="[[hide]]">
             <div style="height: 100%">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 377.15353 617.03544" height="658.171" width="402.297">
+                <svg id="keypad" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 377.15353 617.03544" height="658.171" width="402.297">
                     <g transform="translate(-233.705 -256.274)">
                         <rect width="376.654" height="132.389" x="233.955" y="256.524" rx="3.543" ry="3.543" fill="#646464" stroke="#000" stroke-width=".5"
                             stroke-linecap="round" stroke-linejoin="round" />
@@ -105,10 +105,10 @@
             properties: {
                 data: {
                     type: Object,
-                    value: {},
-                    observer: "_dataChanged"
+                    value: {}
+                    //,
+                    //observer: "_dataChanged"
                 }
-
             },
             buttons_ids: [
                 "close", "tiltup", "cancel", "open", "tiltdown", "okay", "stop"
@@ -139,58 +139,38 @@
                     console.log("pressed inactive cancel key");
                 }
             },
-            
+
+
             ready: function () {
-                this.$.tiltup.addEventListener("mousedown", this.d_key_handler, false);
-                this.$.tiltdown.addEventListener("mousedown", this.a_key_handler, false);
-                this.$.open.addEventListener("mousedown", this.w_key_handler, false);
-                this.$.close.addEventListener("mousedown", this.z_key_handler, false);
-                this.$.stop.addEventListener("mousedown", this.s_key_handler, false);
-                this.$.okay.addEventListener("mousedown", this.okay_key_handler, false);
-                this.$.cancel.addEventListener("mousedown", this.cancel_key_handler, false);
+                //this.reset_buttons();
+                this.$.keypad.addEventListener("tap", this.tap_handler.bind(this), false);
             },
-            //keys_defined: false,
-            // setup_keys: function () {
-            //     this.keys_defined=true;
-            //     for (var i = 0; i < this.data.active_buttons.length; i++) {
-            //         switch (this.data.active_buttons[i]) {
-            //             case "tiltup":
-            //                 this.d_key_handler = document._handle_key_d;
-            //                 break;
-            //             case "tiltdown":
-            //                 this.a_key_handler = document._handle_key_a;
-            //                 break;
-            //             case "open":
-            //                 this.w_key_handler = document._handle_key_w;
-            //                 break;
-            //             case "close":
-            //                 this.z_key_handler = document._handle_key_z;
-            //                 break;
-            //             case "stop":
-            //                 this.s_key_handler = document._handle_key_s;
-            //                 break;
-            //             case "okay":
-            //                 var confirm = false;
-            //                 if (this.data.confirm == "okay") {
-            //                     confirm = true;
-            //                 }
-            //                 this.okay_key_handler = document._handle_key_okay(
-            //                     this.data.okay, confirm);
-
-            //                 break;
-            //             case "cancel":
-            //                 var confirm = false;
-            //                 if (this.data.confirm == "cancel") {
-            //                     confirm = true;
-            //                 }
-            //                 this.cancel_key_hander = document._handle_key_x(
-            //                     this.data.cancel, confirm);
-
-            //                 break;
-            //         }
-
-            //     }
-            // },
+            tap_handler: function (event, e) {
+                switch (event.target.id) {
+                    case "cancel":
+                        this.cancel_key_handler();
+                        break;
+                    case "okay":
+                        this.okay_key_handler();
+                        break;
+                    case "tiltup":
+                        this.d_key_handler();
+                        break;
+                    case "tiltdown":
+                        this.a_key_handler();
+                        break;
+                    case "open":
+                        this.w_key_handler();
+                        break;
+                    case "close":
+                        this.z_key_handler();
+                        break;
+                    case "stop":
+                        this.s_key_handler();
+                        break;
+                }
+                console.log("test");
+            },
             _dataChanged: function (_new, _old) {
 
                 if (_new) {
@@ -260,35 +240,15 @@
                     console.log("disabled this button: ", key);
                 };
             },
-
-            _activeChanged: function (_new, _old) {
-
-                if (_new) {
-                    this._dataChanged(true);
-                    console.log("activating keypad")
-                    // if (this.d_key_handler) {
-                    //     document.handle_key_d = this.d_key_handler;
-                    // }
-                    // if (this.a_key_handler) {
-                    //     document.handle_key_a = this.a_key_handler;
-                    // }
-                    // if (this.w_key_handler) {
-                    //     document.handle_key_w = this.w_key_handler
-                    // }
-                    // if (this.z_key_handler) {
-                    //     document.handle_key_z = this.z_key_handler;
-                    // }
-                    // if (this.s_key_handler) {
-                    //     document.handle_key_s = this.s_key_handler;
-                    // }
-                    // if (this.okay_key_handler) {
-                    //     document.handle_key_okay = this.okay_key_handler;
-                    // }
-                    // if (this.cancel_key_hander) {
-                    //     document.handle_key_x = this.cancel_key_hander
-                    // }
-                }
-            },
+            // _activeChanged: function (_new, _old) {
+            //     console.log("activating old keypad");
+            // },
+            // activate: function (_new, _old) {
+            //     if (_new) {
+            //         this._dataChanged(true);
+            //         console.log("activating keypad")
+            //     }
+            // },
         });
     </script>
 </dom-module>
