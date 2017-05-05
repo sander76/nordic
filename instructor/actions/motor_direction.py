@@ -1,7 +1,7 @@
 # import instructor.translations as tr
 from instructor.translations import Translations as tr
 from instructor.components import Row, Text, PvKeypad, Step, Image, \
-    Confirm, Spacer, DelayedCommand, Commands
+    Confirm, Spacer, DelayedCommand, Commands, NavigationCommand
 from instructor.constants import RB_JOG_1, DUETTE_JOG_1, RB_JOG_2, VB_JOG_1, \
     VVB_JOG_1, PLEATED_JOG_1
 from server.nordic import Nd
@@ -12,7 +12,7 @@ def get_direction(
         title=tr.TITLE_BACKROLLER_LEFT,
         orientation_question=tr.IS_LEFT_BACKROLLER,
         confirm_orientation_command=Nd.ORIENT_BACKROLLER_LEFT,
-        cancel_no=1,
+        cancel_no=NavigationCommand(1),
         confirm_yes=4,
         orientation_image=None):
     if orientation_image is not None:
@@ -64,7 +64,7 @@ right_frontroller.title = tr.TITLE_FRONTROLLER_RIGHT
 right_frontroller.instructions[0].col1.content = tr.IS_RIGHT_FRONTROLLER
 right_frontroller.instructions[1].col2.okay = Commands(
     Nd.ORIENT_BACKROLLER_LEFT)
-right_frontroller.instructions[1].col3.cancel = -3
+right_frontroller.instructions[1].col3.cancel = NavigationCommand(-3)
 right_frontroller.confirm.yes = 1
 
 right_mount_duette = get_direction(DUETTE_JOG_1)
@@ -81,14 +81,14 @@ right_mount_pleated = get_direction(
 
 left_mount_pleated = get_direction(
     PLEATED_JOG_1, tr.IS_LEFT_MOUNT, tr.IS_LEFT_MOUNT,
-    Nd.ORIENT_M25S_DUETTE_LEFT, cancel_no=-1, confirm_yes=1)
+    Nd.ORIENT_M25S_DUETTE_LEFT, cancel_no=NavigationCommand(-1), confirm_yes=1)
 
 left_mount_duette = get_direction(DUETTE_JOG_1)
 left_mount_duette.title = tr.IS_LEFT_MOUNT
 left_mount_duette.instructions[0].col1.content = tr.IS_LEFT_MOUNT
 left_mount_duette.instructions[1].col2.okay = Commands(
     Nd.ORIENT_M25S_DUETTE_LEFT)
-left_mount_duette.instructions[1].col3.cancel = -1
+left_mount_duette.instructions[1].col3.cancel = NavigationCommand(-1)
 left_mount_duette.confirm = Confirm(DUETTE_JOG_1,
                                     tr.DID_THE_MOTOR_JOG, yes=1)
 
@@ -104,7 +104,7 @@ left_mount_vb.title = tr.IS_LEFT_MOUNT
 left_mount_vb.instructions[0].col1.content = tr.IS_LEFT_MOUNT
 # BACKROLLER RIGHT seems to be wrong, but it is actually correct.
 left_mount_vb.instructions[1].col2.okay = Commands(Nd.ORIENT_BACKROLLER_RIGHT)
-left_mount_vb.instructions[1].col3.cancel = -1
+left_mount_vb.instructions[1].col3.cancel = NavigationCommand(-1)
 left_mount_vb.confirm = Confirm(VB_JOG_1,
                                 tr.DID_THE_MOTOR_JOG, yes=1)
 
@@ -114,7 +114,7 @@ vvb_back_left = get_direction(
 
 vvb_above_left = get_direction(
     VVB_JOG_1, tr.TITLE_ORIENT_VVB_UPRIGHT,
-    tr.ORIENT_VVB_UPRIGHT, Nd.ORIENT_VVB_UPRIGHT_LEFT, cancel_no=-1,
+    tr.ORIENT_VVB_UPRIGHT, Nd.ORIENT_VVB_UPRIGHT_LEFT, cancel_no=NavigationCommand(-1),
     confirm_yes=1)
 
 vvb_back_right = get_direction(
@@ -123,7 +123,7 @@ vvb_back_right = get_direction(
 
 vvb_above_right = get_direction(
     VVB_JOG_1, tr.TITLE_ORIENT_VVB_UPRIGHT,
-    tr.ORIENT_VVB_UPRIGHT, Nd.ORIENT_VVB_UPRIGHT_RIGHT, cancel_no=-1,
+    tr.ORIENT_VVB_UPRIGHT, Nd.ORIENT_VVB_UPRIGHT_RIGHT, cancel_no=NavigationCommand(-1),
     confirm_yes=1)
 
 tensioned_duette_direction = Step(
@@ -137,7 +137,7 @@ tensioned_duette_direction = Step(
                               DelayedCommand(Nd.stop, 3),
                               DelayedCommand(Nd.stop, 0.4),
                               DelayedCommand(Nd.stop, 0.4)),
-                     cancel=1),
+                     cancel=NavigationCommand(1)),
             Image(30,
                   "/app/images/m25t_motor_top_limit_move_down_rollo.png"))
     ],
@@ -172,7 +172,7 @@ blind_direction = Step(
                               DelayedCommand(Nd.stop, 3),
                               DelayedCommand(Nd.stop, 0.4),
                               DelayedCommand(Nd.stop, 0.4)),
-                     cancel=1),
+                     cancel=NavigationCommand(1)),
             Image(30,
                   "/app/images/m25t_motor_top_limit_move_down_rollo.png"))
     ],
