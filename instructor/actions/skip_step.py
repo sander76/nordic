@@ -17,6 +17,9 @@ skipbottom_end = Step(tr.TITLE_SKIP_BOTTOM,
                               PvKeypad(30, ['cancel'], cancel=NavigationCommand(ID_TEST_BLINDS)))
                       ])
 
+skipclose_end = Step(tr.TITLE_SKIP_CLOSE,
+                     [])
+
 """
 skip setting bottom limits and proceeds to next question.
 """
@@ -40,3 +43,15 @@ skiptop = Step(tr.TITLE_SKIP_TOP,
                        PvKeypad(30, ['okay'], okay=NavigationCommand(goto=1)),
                        PvKeypad(30, ['cancel'], cancel=NavigationCommand(3)))
                ])
+
+
+skipopen = Step(tr.TITLE_SKIP_OPEN,
+                [
+                   Row(Text(30, tr.MAKE_CHOICE),
+                       Text(30, tr.RESET_OPEN),
+                       Text(30, tr.SELECT_SKIP_OPEN)),
+                   Row(Spacer(30),
+                       PvKeypad(30, ['okay'], okay=NavigationCommand(goto=1)),
+                       PvKeypad(30, ['cancel'], cancel=NavigationCommand(3)))
+               ])
+

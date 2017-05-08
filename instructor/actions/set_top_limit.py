@@ -26,7 +26,8 @@ def get_top_limit(jog_image, title=tr.TITLE_SET_TOP_LIMIT):
         Confirm(jog_image, tr.DID_THE_MOTOR_JOG))
 
 
-def get_top_limit_alternative(title=tr.TITLE_SET_TOP_LIMIT):
+def get_top_limit_alternative(title=tr.TITLE_SET_TOP_LIMIT,
+                              confirm_message=tr.IS_BLIND_AT_TOP):
     return Step(
         title,
         [
@@ -35,7 +36,7 @@ def get_top_limit_alternative(title=tr.TITLE_SET_TOP_LIMIT):
                 PvKeypad(30, [PvKeypad.okay, PvKeypad.stop], PvKeypad.okay,
                          Commands(Nd.STARTPROGRAM, DelayedCommand(Nd.open, 3)))
             )
-        ], Confirm(None, tr.IS_BLIND_AT_TOP))
+        ], Confirm(None, confirm_message))
 
 
 def get_confirm_top_limit(jog_image, title=tr.TITLE_SET_TOP_LIMIT):
@@ -73,7 +74,9 @@ pleated_confirm_top_limit = get_confirm_top_limit(PLEATED_JOG_1)
 pleated_set_top_limit = get_top_limit(PLEATED_JOG_1)
 
 vvb_set_open_limit_moveup = get_top_limit_alternative(
-    title=tr.TITLE_VVB_SET_OPEN_LIMIT)
+    title=tr.TITLE_VVB_SET_OPEN_LIMIT,
+    confirm_message=tr.IS_BLIND_OPENED)
+
 vvb_confirm_open_limit = get_confirm_top_limit(
     VVB_JOG_1, title=tr.TITLE_VVB_SET_OPEN_LIMIT)
 vvb_set_open_limit = get_top_limit(
