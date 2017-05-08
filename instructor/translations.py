@@ -112,6 +112,10 @@ class Translations():
         pl="Czy motor jest po **prawej** stronie?"
     )
 
+    IS_VVB_LEFT_STACK = TXT("Is the motor a left stack?")
+    IS_VVB_RIGHT_STACK = TXT("Is the motor a right stack?")
+    IS_VVB_CENTER_STACK = TXT("Is the motor a center stack?")
+
     RIGHT_MOUNT = TXT(
         "MOTOR ON THE RIGHT",
         "MOTOR RECHTS",
@@ -180,7 +184,7 @@ class Translations():
         de="ist die Anlage hochgefahren?",
         pl="CZY PRODUKT JEST W POZYCJI GÓRNEJ ?")
 
-    IS_BLIND_OPENED=TXT(
+    IS_BLIND_OPENED = TXT(
         "Is the blind at open position ?",
         to_upper=True)
 
@@ -223,7 +227,7 @@ class Translations():
         dk=None,
         pl="Nie chcę ustawić górnego limitu")
 
-    SELECT_SKIP_OPEN=TXT("I don't want to set the OPEN limit.")
+    SELECT_SKIP_OPEN = TXT("I don't want to set the OPEN limit.")
 
     SELECT_SKIP_BOTTOM = TXT(
         "I don't want to set the *BOTTOM* limit",
@@ -505,7 +509,6 @@ class Translations():
         "SET *TOP* LIMIT?",
         "STEL *BOVENLIMIET* IN?",
         to_upper=True)
-
 
     TITLE_SKIP_BOTTOM = TXT(
         "SET *BOTTOM* LIMIT?",

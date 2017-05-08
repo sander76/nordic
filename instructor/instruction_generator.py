@@ -2,6 +2,7 @@ import os
 
 from instructor.components import ToJson, Instruction
 from instructor.helpers import TXT
+
 from instructor.products.m25s_duette import m25s_duette_free, \
     m25s_duette_free_alt, m25s_duette_tensioned, m25s_duette_tensioned_alt
 from instructor.products.m25s_pleated import m25s_pleated_free, \
@@ -9,7 +10,7 @@ from instructor.products.m25s_pleated import m25s_pleated_free, \
 from instructor.products.m25s_vb import m25s_25mm_vb_free, \
     m25s_25mm_vb_free_alt, \
     m25s_16mm_vb_free_alt
-from instructor.products.m25s_vvb import m25s_vvb_right, m25s_vvb_left
+from instructor.products.m25s_vvb import m25s_vvb_right, m25s_vvb_left,m25s_vvb
 from instructor.products.roller import rollerblind1, rollerblind_old
 from instructor.products.test_products import test1
 from instructor.products.twist import twist_old, twist
@@ -146,6 +147,7 @@ def make_all():
         m25s_16mm_vb_free_alt,
         m25s_vvb_right,
         m25s_vvb_left,
+        m25s_vvb,
         rollerblind1,
         twist
     ]

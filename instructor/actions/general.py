@@ -1,4 +1,4 @@
-#import instructor.translations as tr
+# import instructor.translations as tr
 from instructor.translations import Translations as tr
 from instructor.components import Row, Text, PvKeypad, Step, Image, Confirm, \
     Commands, Spacer, NavigationCommand
@@ -14,17 +14,18 @@ keypad_move_buttons = PvKeypad(
 textrow = Row(Text(30, tr.PRESS_OKAY_BUTTON.add_number(1)),
               Text(30, tr.WATCH_THE_BLIND_JOG.add_number(2)))
 
-keypad = PvKeypad(30, [PvKeypad.okay], PvKeypad.okay, Commands(Nd.STARTPROGRAM))
+keypad = PvKeypad(30, [PvKeypad.okay], PvKeypad.okay,
+                  Commands(Nd.STARTPROGRAM))
 
 
-def get_enter_program_mode(jog_image):
+def get_enter_program_mode(jog_image, nav_id=None):
     return Step(
         tr.ENTER_PROGRAM_MODE,
         [textrow,
          Row(keypad,
              Image(30, jog_image))
          ], Confirm(jog_image,
-                    tr.DID_THE_MOTOR_JOG))
+                    tr.DID_THE_MOTOR_JOG), nav_id=nav_id)
 
 
 enter_program_mode = get_enter_program_mode(RB_JOG_1)
@@ -35,7 +36,9 @@ enter_program_mode_duette = get_enter_program_mode(DUETTE_JOG_1)
 
 enter_program_mode_pleated = get_enter_program_mode(PLEATED_JOG_1)
 
-enter_program_mode_vvb = get_enter_program_mode(VVB_JOG_1)
+enter_program_mode_vvb = get_enter_program_mode(
+    VVB_JOG_1,
+    nav_id="vvb_start_program")
 
 test_blinds = Step(
     tr.TEST_BLINDS,
@@ -57,5 +60,6 @@ skipslat = Step(
             Text(30, tr.SELECT_SKIP_SLAT)),
         Row(Spacer(30),
             PvKeypad(30, [PvKeypad.okay], okay=NavigationCommand(goto=1)),
-            PvKeypad(30, [PvKeypad.cancel], cancel=NavigationCommand(ID_TEST_BLINDS)))
+            PvKeypad(30, [PvKeypad.cancel],
+                     cancel=NavigationCommand(ID_TEST_BLINDS)))
     ])
