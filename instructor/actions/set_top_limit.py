@@ -1,55 +1,91 @@
 from instructor.translations import Translations as tr
 from instructor.actions.general import keypad_move_buttons
-from instructor.components import PvKeypad, Commands, Step, Row, Text, \
-    Image, Confirm, DelayedCommand, Spacer
+from instructor.components import NordicCommands, Step, Row, Text, \
+    Image, Confirm, DelayedCommand, Spacer, NavigationCommand, PvKeypadAlt, \
+    Commands
 from instructor.constants import VB_JOG_1, RB_JOG_1, DUETTE_JOG_1, \
     PLEATED_JOG_1, VVB_JOG_1
 from server.nordic import Nd
 
-textrow = Row(Text(30, tr.MOVE_BLIND_TOP.add_number(1)),
-              Text(30, tr.SAVE_TOP.add_number(2)),
-              Text(30, tr.WATCH_THE_BLIND_JOG.add_number(3)))
 
-keypad_save_top = PvKeypad(
-    30, ['okay'], 'okay', Commands(Nd.SAVE_POSITION_TOP))
+# keypad_save_top = PvKeypadAlt(
+#     30,
+#     okay=Commands(
+#         nordic_commands=NordicCommands(Nd.SAVE_POSITION_TOP),
+#         confirm_command=Confirm(jog_image, tr.DID_THE_MOTOR_JOG)
+#     )
+# )
 
 
-def get_top_limit(jog_image, title=tr.TITLE_SET_TOP_LIMIT):
+def get_top_limit(
+        jog_image,
+        title=tr.TITLE_SET_TOP_LIMIT):
     return Step(
         title,
         [
-            textrow,
+            Row(Text(30, tr.MOVE_BLIND_TOP.add_number(1)),
+                Text(30, tr.SAVE_TOP.add_number(2)),
+                Text(30, tr.WATCH_THE_BLIND_JOG.add_number(3))),
             Row(keypad_move_buttons,
-                keypad_save_top,
+                PvKeypadAlt(
+                    30,
+                    okay=Commands(
+                        nordic_commands=NordicCommands(Nd.SAVE_POSITION_TOP),
+                        confirm_command=Confirm(jog_image,
+                                                tr.DID_THE_MOTOR_JOG)
+                    )
+                ),
                 Image(30, jog_image))
         ],
-        Confirm(jog_image, tr.DID_THE_MOTOR_JOG))
+    )
 
 
-def get_top_limit_alternative(title=tr.TITLE_SET_TOP_LIMIT,
-                              confirm_message=tr.IS_BLIND_AT_TOP):
+def get_top_limit_alternative(
+        title=tr.TITLE_SET_TOP_LIMIT,
+        confirm_message=tr.IS_BLIND_AT_TOP,
+        introtext=tr.START_TOP_PROGRAMMING):
     return Step(
         title,
         [
             Row(
-                Text(30, tr.START_TOP_PROGRAMMING),
-                PvKeypad(30, [PvKeypad.okay, PvKeypad.stop], PvKeypad.okay,
-                         Commands(Nd.STARTPROGRAM, DelayedCommand(Nd.open, 3)))
+                Text(30, introtext),
+                PvKeypadAlt(
+                    30,
+                    okay=Commands(
+                        nordic_commands=NordicCommands(
+                            Nd.STARTPROGRAM, DelayedCommand(Nd.open, 3)),
+                        confirm_command=Confirm(None, confirm_message)
+                    )
+                )
             )
-        ], Confirm(None, confirm_message))
+        ])
 
 
-def get_confirm_top_limit(jog_image, title=tr.TITLE_SET_TOP_LIMIT):
+def get_confirm_top_limit(
+        jog_image,
+        title=tr.TITLE_SET_TOP_LIMIT,
+        intro_text=tr.SAVE_THIS_AS_TOP):
     return Step(
         title,
         [
-            Row(Text(30, tr.SAVE_THIS_AS_TOP)),
+            Row(Text(30, intro_text)),
             Row(Spacer(30),
-                keypad_save_top,
-                PvKeypad(30, [PvKeypad.cancel], cancel=1))
+                PvKeypadAlt(
+                    30,
+                    okay=Commands(
+                        nordic_commands=NordicCommands(Nd.SAVE_POSITION_TOP),
+                        confirm_command=Confirm(jog_image,
+                                                tr.DID_THE_MOTOR_JOG,
+                                                yes=NavigationCommand(2)
+                                                )
+                    )
+                ),
+                PvKeypadAlt(
+                    30,
+                    cancel=Commands(navigation_command=NavigationCommand(1)))
+                )
 
-        ], Confirm(jog_image, tr.DID_THE_MOTOR_JOG, yes=2)
-    )
+        ])
 
 
 # ****** Roller
@@ -75,9 +111,29 @@ pleated_set_top_limit = get_top_limit(PLEATED_JOG_1)
 
 vvb_set_open_limit_moveup = get_top_limit_alternative(
     title=tr.TITLE_VVB_SET_OPEN_LIMIT,
-    confirm_message=tr.IS_BLIND_OPENED)
+    confirm_message=tr.IS_BLIND_OPENED,
+    introtext=tr.START_OPEN_PROGRAMMING)
 
 vvb_confirm_open_limit = get_confirm_top_limit(
-    VVB_JOG_1, title=tr.TITLE_VVB_SET_OPEN_LIMIT)
-vvb_set_open_limit = get_top_limit(
-    VVB_JOG_1, title=tr.TITLE_VVB_SET_OPEN_LIMIT)
+    VVB_JOG_1,
+    title=tr.TITLE_VVB_SET_OPEN_LIMIT,
+    intro_text=tr.SAVE_THIS_AS_OPEN)
+
+vvb_set_open_limit = Step(
+    tr.TITLE_VVB_SET_OPEN_LIMIT,
+    [
+        Row(Text(30, tr.MOVE_BLIND_OPEN.add_number(1)),
+            Text(30, tr.SAVE_OPEN.add_number(2)),
+            Text(30, tr.WATCH_THE_BLIND_JOG.add_number(3))),
+        Row(keypad_move_buttons,
+            PvKeypadAlt(
+                30,
+                okay=Commands(
+                    nordic_commands=NordicCommands(Nd.SAVE_POSITION_TOP),
+                    confirm_command=Confirm(VVB_JOG_1,
+                                            tr.DID_THE_MOTOR_JOG)
+                )
+            ),
+            Image(30, VVB_JOG_1))
+    ]
+)

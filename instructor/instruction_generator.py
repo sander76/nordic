@@ -10,9 +10,10 @@ from instructor.products.m25s_pleated import m25s_pleated_free, \
 from instructor.products.m25s_vb import m25s_25mm_vb_free, \
     m25s_25mm_vb_free_alt, \
     m25s_16mm_vb_free_alt
-from instructor.products.m25s_vvb import m25s_vvb_right, m25s_vvb_left,m25s_vvb
+from instructor.products.m25s_vvb import m25s_vvb_right, m25s_vvb_left, \
+    m25s_vvb
 from instructor.products.roller import rollerblind1, rollerblind_old
-from instructor.products.test_products import test1
+from instructor.products.test_products import test1, test_blinds1
 from instructor.products.twist import twist_old, twist
 from instructor.translations import load_translations
 
@@ -38,19 +39,6 @@ def make_luxaflex_uk():
     instruction = Instruction(INSTRUCTION_VERSION)
     instruction.products.append(rollerblind1)
     instruction.products.append(twist)
-
-    en = ToJson(lang='en').encode(instruction)
-    with open(_path, 'w') as fl:
-        fl.write(en)
-
-
-def make_test():
-    _path = os.path.join(MAIN_PATH, 'instructions-test-en.json')
-    instruction = Instruction(INSTRUCTION_VERSION)
-    instruction.products.append(m25s_duette_free)
-    instruction.products.append(m25s_duette_free_alt)
-    instruction.products.append(m25s_25mm_vb_free)
-    instruction.products.append(m25s_16mm_vb_free_alt)
 
     en = ToJson(lang='en').encode(instruction)
     with open(_path, 'w') as fl:
@@ -122,6 +110,11 @@ def make_poland():
     make_instruction("instructions-hdfab-en.json", poland_products, TXT.en)
 
 
+def make_test():
+    test_products = [test_blinds1]
+    make_instruction("instructions-tester-en.json", test_products, TXT.en)
+
+
 def make_ts():
     ts_products = [
         m25s_duette_free_alt,
@@ -154,12 +147,18 @@ def make_all():
     make_instruction("instructions-all-en.json", products, TXT.en)
 
 
+def make_tensioned():
+    tensioned = [m25s_duette_tensioned,
+                 m25s_duette_tensioned_alt]
+    make_instruction("instructions-tensioned-en.json", tensioned, TXT.en)
+
+
 def make_instruction(file_name, products, lang):
     _path = os.path.join(MAIN_PATH, file_name)
     instruction = Instruction(INSTRUCTION_VERSION)
     instruction.products = products
     _products = ToJson(lang=lang).encode(instruction)
-    with open(_path, 'w',encoding='utf-8') as fl:
+    with open(_path, 'w', encoding='utf-8') as fl:
         fl.write(_products)
 
 
@@ -178,3 +177,4 @@ if __name__ == "__main__":
     make_poland()
     make_ts()
     make_all()
+    make_tensioned()

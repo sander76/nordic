@@ -1,13 +1,13 @@
 from instructor.translations import Translations as tr
 from instructor.actions.general import keypad_move_buttons
-from instructor.components import PvKeypad, Commands, Step, Row, Text, Image, \
-    Confirm
+from instructor.components import NordicCommands, Step, Row, Text, Image, \
+    Confirm, PvKeypadAlt, Commands
 from instructor.constants import RB_JOG_1, VB_JOG_1, RB_MOVE_UP, \
     DUETTE_JOG_1, TWIST_MOVE_UP, ID_TEST_BLINDS, PLEATED_JOG_1, VVB_JOG_1
 from server.nordic import Nd
 
-savepositionBottom = PvKeypad(30, ['okay'], 'okay',
-                              Commands(Nd.SAVE_POSITION_BOTTOM))
+# savepositionBottom = PvKeypad(30, ['okay'], 'okay',
+#                               NordicCommands(Nd.SAVE_POSITION_BOTTOM))
 
 
 def get_bottom_limit(
@@ -16,16 +16,25 @@ def get_bottom_limit(
         confirm_yes_goto=1,
         move_blind_message=tr.MOVE_BLIND_BOTTOM,
         save_position=tr.SAVE_BOTTOM):
-    return Step(title,
-                [
-                    Row(Text(30, move_blind_message.add_number(1)),
-                        Text(30, save_position.add_number(2)),
-                        Text(30, tr.WATCH_THE_BLIND_JOG.add_number(3))),
-                    Row(keypad_move_buttons,
-                        savepositionBottom,
-                        Image(30, jog_image))
-                ],
-                Confirm(confirm_image, confirm_text, yes=confirm_yes_goto))
+    return Step(
+        title,
+        [
+            Row(Text(30, move_blind_message.add_number(1)),
+                Text(30, save_position.add_number(2)),
+                Text(30, tr.WATCH_THE_BLIND_JOG.add_number(3))),
+            Row(keypad_move_buttons,
+                PvKeypadAlt(
+                    30,
+                    okay=Commands(
+                        nordic_commands=NordicCommands(
+                            Nd.SAVE_POSITION_BOTTOM),
+                        confirm_command=Confirm(confirm_image, confirm_text,
+                                                yes=confirm_yes_goto)
+                    )
+                ),
+                Image(30, jog_image))
+        ]
+    )
 
 
 set_bottom_limit = get_bottom_limit(RB_JOG_1)

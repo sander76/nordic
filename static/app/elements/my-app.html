@@ -98,7 +98,7 @@
                     </div>
                 </div>
             </app-drawer>
-                    <instruction-step id="instruction_step" data="[[currentstep]]" ></instruction-step>
+            <instruction-step id="instruction_step" data="[[currentstep]]"></instruction-step>
         </app-drawer-layout>
         <my-modal modaldata="[[modaldata]]" id="modl"></my-modal>
     </template>
@@ -130,7 +130,7 @@
                 //'_routePageChanged(routeData.page)',
                 '_routeProductChanged1(routeData.product)'
             ],
-            
+
             // listeners: {
             //     'openmodal': "_openModal"
             // },
@@ -140,7 +140,10 @@
                 //this.$.pages.items[this.selectedStep].deactivate();
                 this.$.modl.openmodal();
             },
-
+            openModal: function (modal_data) {
+                this.set("modaldata", modal_data);
+                this.$.modl.openmodal();
+            },
             gotoStep: function (offset) {
                 console.log("");
                 console.log("Going to page step: " + offset);
@@ -163,10 +166,10 @@
             gotoId: function (id) {
                 console.log("");
                 console.log("Going to page with id: " + id);
-                for (var i = 0; i < this.$.pages.items.length; i++) {
-                    if (this.$.pages.items[i].data.id === id) {
+                for (var i = 0; i < this.currentproductsteps.length; i++) {
+                    if (this.currentproductsteps[i].id === id) {
                         console.log('id found: ', id);
-                        this.$.pages.select(i);
+                        this.set_current_step(i);
                         break;
                     }
                 }
@@ -182,34 +185,15 @@
                 this.currentproductsteps = this.currentproduct.steps;
                 this.set_current_step(0);
             },
-            // _routePageChanged: function (page) {
-            //     if (this.oldpage !== page) {
-            //         this.page = page;
-            //         this.$.instruction.generateRequest();
-            //         this.oldpage = page;
-            //     }
-            // },
             _routeProductChanged1: function (newValue) {
                 this.$.instruction.generateRequest();
                 //this.set_current_step(this.routeData.product);
             },
-            // _routeProductChanged: function (product_idx) {
-            //     if (this.all_products !== undefined) {
-            //         var _product = parseInt(product_idx);
-            //         var _currentproduct = this.all_products[_product];
-            //         this.product = _product;
-            //         this.set("currentproduct", this.all_products[this.product]);
-            //         this.currentproductsteps = _currentproduct.steps;
-            //         this.set_current_step(0)
-            //         //this.set('selectedStep', 0);
 
-            //     }
-            // },
-
-            set_current_step: function(idx){
-                this.currentStepIdx=idx;
-                this.set("currentstep",{});
-                this.set("currentstep",this.currentproductsteps[idx]);
+            set_current_step: function (idx) {
+                this.currentStepIdx = idx;
+                this.set("currentstep", {});
+                this.set("currentstep", this.currentproductsteps[idx]);
             },
 
             send: function (commands) {
@@ -259,11 +243,11 @@
 
         document._handle_key_okay = function (okay_data, confirm) {
             return _handle_command(okay_data, confirm, "Okay");
-        }
+        };
 
         document._handle_key_x = function (cancel_data, confirm) {
             return _handle_command(cancel_data, confirm, 'X');
-        }
+        };
 
         var _handle_command = function (command_data, confirm, key) {
             var myfunc = function () {
@@ -283,7 +267,26 @@
                 }
             }
             return myfunc;
-        }
+        };
+
+        document.handle_command = function (command_data, key) {
+            var myfunc = function () {
+                if (command_data.nordic_commands) {
+                    app.send(command_data.nordic_commands.commands);
+                    console.log("nordic data present");
+                }
+                if (command_data.confirm_command) {
+                    app.openModal(command_data.confirm_command);
+                    console.log("modal data present");
+                }
+                if (command_data.navigation_command) {
+                    goto_page(command_data.navigation_command.goto);
+                    console.log("navigation command present");
+                }
+                console.log("Pressed " + key + " key.");
+            }
+            return myfunc;
+        };
 
         document._handle_key_s = function () {
             app.send(["stop"]);
@@ -308,7 +311,7 @@
             document.handle_key_d = no_func;
             document.handle_key_okay = no_func;
             document.handle_key_x = no_func;
-            document.handle_key_s = no_func;
+            document.handle_key_s = document._handle_key_s;
             document.handle_key_a = no_func;
             document.handle_key_w = no_func;
             document.handle_key_z = no_func;
@@ -350,7 +353,7 @@
         var goto_page = function (goto_value) {
             document.reset_keys()
             if (typeof (goto_value) === 'string') {
-                app.gotoId(e.detail);
+                app.gotoId(goto_value);
                 //this.gotoId(e.detail);
             } else {
                 app.gotoStep(goto_value);

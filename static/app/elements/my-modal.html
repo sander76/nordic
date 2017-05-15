@@ -59,27 +59,28 @@
             handleClose: function (e) {
                 document.reset_keys();
                 if (e.detail.confirmed) {
-                    this.fire("gotopage", this.modaldata.yes || 1);
+                    this.fire("gotopage", this.modaldata.yes.goto || 1);
                     console.log("Closing modal confirmed.");
                 } else {
-                    this.fire("gotopage", this.modaldata.no || 0);
+                    this.fire("gotopage", this.modaldata.no.goto || 0);
                     console.log("Closing modal dismissed.");
                 }
-            },
+            }
+            //,
 
-            closeModal: function (e) {
-                //console.log("Close modal confirmed");
-                this.$.modal.closingReason.confirmed = true;
-                this.$.modal.close();
+            // closeModal: function (e) {
+            //     //console.log("Close modal confirmed");
+            //     this.$.modal.closingReason.confirmed = true;
+            //     this.$.modal.close();
 
 
-            },
-            closeModalDismiss: function (e) {
-                //console.log("Close modal dismissed");
-                this.$.modal.closingReason.confirmed = false;
-                this.$.modal.close();
+            // },
+            // closeModalDismiss: function (e) {
+            //     //console.log("Close modal dismissed");
+            //     this.$.modal.closingReason.confirmed = false;
+            //     this.$.modal.close();
 
-            } 
+            // } 
         });
     </script>
 </dom-module>

@@ -6,7 +6,6 @@ Work in progress.
 """
 
 import json
-import pprint
 
 import os
 
@@ -29,7 +28,7 @@ AVAILABLE_TRANSLATIONS = [
 BASE_FOLDER = "i18n"
 
 
-class Translations():
+class Translations:
     HANGPRODUCT = TXT(
         "HANG PRODUCT.",  # English language.
         "PRODUCT OPHANGEN.",  # Dutch language.
@@ -114,7 +113,7 @@ class Translations():
 
     IS_VVB_LEFT_STACK = TXT("Is the motor a left stack?")
     IS_VVB_RIGHT_STACK = TXT("Is the motor a right stack?")
-    IS_VVB_CENTER_STACK = TXT("Is the motor a center stack?")
+    IS_VVB_SPLIT_STACK = TXT("Is the motor a split stack?")
 
     RIGHT_MOUNT = TXT(
         "MOTOR ON THE RIGHT",
@@ -261,6 +260,10 @@ class Translations():
         "De blind zal helemaal naar boven bewegen.",
         de="die Anlage wird ganz nach oben fahren",
         pl="Produkt zwija sie całkowicie")
+
+    START_OPEN_PROGRAMMING = TXT(
+        "The blind will move to the open position."
+    )
 
     RESET_BOTTOM = TXT(
         "Re-set the BOTTOM limit.",
@@ -415,6 +418,10 @@ class Translations():
         dk=None,
         pl="Produkt zwija sie do pożądanej pozycji górnej")
 
+    MOVE_BLIND_OPEN = TXT(
+        "Move the *BLIND* to the desired OPEN position"
+    )
+
     MOVE_BLIND_SLAT_OPEN = TXT(
         "Move the *BLIND* to the desired SLAT OPEN position.",
         "Stuur de *BLIND* naar de gewenste SLAT OPEN positie.",
@@ -448,11 +455,19 @@ class Translations():
         dk=None,
         pl="Sprawdź górną pozycję")
 
+    SAVE_OPEN = TXT(
+        "Save this as OPEN limit."
+    )
+
     SAVE_THIS_AS_TOP = TXT(
         "Save this as the TOP limit?",
         "Deze positie als BOVEN limiet instellen?",
         de="Diese Position als OBERE Endlage einstellen?",
         pl="Czy zatwierdzić pozycję górna?")
+
+    SAVE_THIS_AS_OPEN = TXT(
+        "Save this an the OPEN limit?"
+    )
 
     SAVE_SLAT = TXT(
         "Save this as SLAT OPEN position.",

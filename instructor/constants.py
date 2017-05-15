@@ -9,7 +9,7 @@ VVB_BUTTON_PUSH_HOLD = "/app/images/m25s_vvb_motor_button_push.png"
 VVB_BUTTON_RELEASE = "/app/images/m25s_vvb_motor_button_release.png"
 VVB_LEFT_STACK = "/app/images/vvb_left_stack.png"
 VVB_RIGHT_STACK = "/app/images/vvb_right_stack.png"
-VVB_CENTER_STACK = "/app/images/vvb_center_stack.png"
+VVB_SPLIT_STACK = "/app/images/vvb_split_stack.png"
 
 TWIST_JOG_1 = "/app/images/m25t_motor_jog1x.png"
 TWIST_JOG_2 = "/app/images/m25t_motor_jog2x.png"
@@ -27,9 +27,11 @@ RB_MOVE_UP = "/app/images/m25t_motor_top_limit_move_up_rollo.png"
 
 DUETTE_JOG_1 = "/app/images/m25s_duette_motor_jog1x.png"
 DUETTE_JOG_2 = "/app/images/m25s_duette_motor_jog2x.png"
-DUETTE_JOG_3 = "/app/images/m25s_duette_motor_jog2x.png"
+DUETTE_JOG_3 = "/app/images/m25s_duette_motor_jog3x.png"
 DUETTE_BUTTON_PUSH_HOLD = "/app/images/m25s_duette_motor_button_push.png"
 DUETTE_BUTTON_RELEASE = "/app/images/m25s_duette_motor_button_release.png"
+DUETTE_CLOSE = "/app/images/m25s_duette_motor_close.png"
+
 
 PLEATED_JOG_1 = "/app/images/m25s_duette_motor_jog1x.png"
 PLEATED_JOG_2 = "/app/images/m25s_duette_motor_jog2x.png"

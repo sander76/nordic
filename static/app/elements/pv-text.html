@@ -27,9 +27,9 @@
     <template>
 
         <div class="container layout horizontal" hidden$="[[hide]]">
-            <span class="bullet" id="bullet"></span>
+            <span class="bullet" id="bullet">[[data.content.bullet]]</span>
 
-            <marked-element id="markdown_element" markdown="">
+            <marked-element id="markdown_element" markdown="[[data.content.content]]">
                 <div class="markdown-html flex"></div>
             </marked-element>
         </div>
@@ -53,18 +53,15 @@
                 if (_new) {
                     if (this.data.type == 'text') {
                         this.hide = false;
-                        console.log("image active changed.");
-                        this.$.bullet.content = this.data.content.bullet;
-                        this.$.markdown_element.markdown = this.data.content.content;
+                        //console.log("image active changed.");
+                        //this.$.bullet.content = this.data.content.bullet;
+                        //this.$.markdown_element.markdown = this.data.content.content;
                     } else {
                         this.hide = true;
                     }
                 } else {
                     this.hide = true;
                 }
-
-
-
             }
         });
     </script>

@@ -1,0 +1,68 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/iron-a11y-keys/iron-a11y-keys.html">
+<link rel="import" href="icomoon-polymer/icomoon-iconset-svg.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../styles/app-theme.html" />
+<dom-module id="pv-key">
+    <template>
+        <style include="iron-flex iron-flex-alignment"></style>
+        <style include="custom-style"></style>
+        <style>
+            paper-icon-button.btn {
+                color: var(--icon-color);
+                --paper-icon-button-ink-color: var(--icon-background-color);
+                width: 100%;
+                height: auto;
+            }
+
+            .border {
+                width: 100%;
+                border-width: 2px;
+                border-radius: 10px;
+                border-color: var(--icon-color);
+                border-style: solid;
+                margin: var(--column-spacing);
+            }
+        </style>
+
+        <div class="border">
+            <paper-icon-button noink class="btn" id="btn" icon="icomoon:pv-open" on-tap="handleOpen"></paper-icon-button>
+        </div>
+
+    </template>
+    <script>
+        Polymer({
+            is: 'pv-key',
+            properties: {
+                data: {
+                    type: Object,
+                    value: {}
+                }
+            },
+
+            _dataChanged: function (_new, _old) {
+
+                if (_new) {
+                    if (this.data.type == "pv-key") {
+                        this.reset_buttons();
+                        this.hide = false;
+
+                        var confirm = false;
+                        
+                        document.handle_key_okay = document._handle_key_okay(
+                            this.data.okay, confirm);
+                        this.okay_key_handler = document.handle_key_okay;
+                        break;
+
+                    } else {
+                        this.hide = true;
+                    }
+                } else {
+                    this.hide = true;
+                }
+            }
+        });
+    </script>
+</dom-module>

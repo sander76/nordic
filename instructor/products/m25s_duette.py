@@ -1,5 +1,5 @@
 from instructor.actions.connect import connect_m25s_duette
-from instructor.actions.general import enter_program_mode, test_blinds, \
+from instructor.actions.general import test_blinds, \
     enter_program_mode_duette
 from instructor.actions.initialise import initialise_duette, \
     initialise_duette_tensioned, initialise_duette_tensioned_alt

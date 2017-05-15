@@ -35,12 +35,9 @@ class DelayedCommand:
         self.delay = delay
 
 
-
-
-
 class ToJson(json.JSONEncoder):
     def __init__(self, lang='en'):
-        json.JSONEncoder.__init__(self, sort_keys=True,ensure_ascii=False)
+        json.JSONEncoder.__init__(self, sort_keys=True, ensure_ascii=False)
         self.lang = lang
 
     def default(self, o):
@@ -77,7 +74,7 @@ class Step:
     title = None
     instructions = None
 
-    def __init__(self, title, instructions, confirm=None, nav_next=Next(),
+    def __init__(self, title, instructions, nav_next=Next(),
                  nav_previous=Previous(), nav_id=None):
         """
         :type instructions: list[Row]
@@ -87,35 +84,10 @@ class Step:
                 raise UserWarning("instruction is not of type Row.")
         self.title = title
         self.instructions = instructions
-        self.confirm = confirm
+
         self.next = nav_next
         self.previous = nav_previous
         self.id = nav_id
-
-
-'''
-instruction = {'type': 'dict', 'schema': {
-    'col1': col, 'col2': col, 'col3': col, 'col4': col}}
-
-'''
-
-'''
-confirm = {'img': {'type': 'string', 'required': True},
-           'text': {'type': 'string', 'required': True},
-           'yes': {'type': 'integer'},
-           'no': {'type': 'integer'}}
-'''
-
-
-class Confirm:
-    def __init__(self, img, text, yes_text=tr.YES, no_text=tr.NO, yes=1,
-                 no=0):
-        self.img = img
-        self.text = text
-        self.yes = yes
-        self.no = no
-        self.yes_text = yes_text
-        self.no_text = no_text
 
 
 class UiElement:
@@ -131,25 +103,89 @@ class NavigationCommand:
         self.goto = goto
 
 
-class Commands:
-    def __init__(self, first_command, *next_commands):
+class Confirm:
+    def __init__(self, img, text, yes_text=tr.YES, no_text=tr.NO,
+                 yes=NavigationCommand(1),
+                 no=NavigationCommand(0)):
+        self.img = img
+        self.text = text
+        self.yes = yes
+        self.no = no
+        self.yes_text = yes_text
+        self.no_text = no_text
+
+
+class NordicCommands:
+    def __init__(self, first_command: Nd, *next_commands):
         if not isinstance(first_command, Nd):
             raise UserWarning("Command is not correct.")
         self.commands = [first_command.name] + [cmd for cmd in
                                                 next_commands]
 
-# class OkayCommand(Commands):
-#     def __init__(self,first_command=None, goto=None, *next_commands):
-#         if first_command is not None:
-#             Commands.__init__(self,first_command,*next_commands)
-#             #ApiCommand.__init__(self, commands, delay)
-#         if goto is not None:
-#             self.goto = goto
+
+class Commands:
+    def __init__(self,
+                 nordic_commands=None,
+                 confirm_command=None,
+                 navigation_command=None):
+        if ((nordic_commands is None or isinstance(nordic_commands,
+                                                   NordicCommands))
+            and
+                (confirm_command is None or isinstance(confirm_command,
+                                                       Confirm))
+            and
+                (navigation_command is None or isinstance(navigation_command,
+                                                          NavigationCommand))):
+            # typing is ok. continue.
+
+            self.nordic_commands = nordic_commands
+            self.confirm_command = confirm_command
+            self.navigation_command = navigation_command
+        else:
+            raise Exception("command parameters are not correct.")
 
 
 class Spacer(UiElement):
     def __init__(self, width):
         UiElement.__init__(self, width)
+
+
+default_open = Commands(
+    NordicCommands(Nd.open)
+)
+default_close = Commands(
+    NordicCommands(Nd.close)
+)
+default_stop = Commands(
+    NordicCommands(Nd.stop)
+)
+default_tiltopen = Commands(
+    NordicCommands(Nd.tiltopen)
+)
+default_tiltclose = Commands(
+    NordicCommands(Nd.tiltclose)
+)
+
+
+class PvKeypadAlt(UiElement):
+    def __init__(self,
+                 width,
+                 open=None,
+                 close=None,
+                 stop=None,
+                 tiltup=None,
+                 tiltdown=None,
+                 cancel=None,
+                 okay=None):
+        UiElement.__init__(self, width)
+        self.type = 'pv-keypad-alt'
+        self.open = open
+        self.close = close
+        self.stop = stop
+        self.tiltup = tiltup
+        self.tiltdown = tiltdown
+        self.cancel = cancel
+        self.okay = okay
 
 
 class PvKeypad(UiElement):
@@ -227,7 +263,7 @@ class Image(UiElement):
 
 
 class Row:
-    allowed = [PvKeypad, Text, Image, Spacer]
+    allowed = [PvKeypadAlt, PvKeypad, Text, Image, Spacer]
 
     def __init__(self, col1, col2=None, col3=None, col4=None):
         self._check(col1)

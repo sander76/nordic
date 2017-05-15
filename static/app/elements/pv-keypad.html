@@ -106,8 +106,6 @@
                 data: {
                     type: Object,
                     value: {}
-                    //,
-                    //observer: "_dataChanged"
                 }
             },
             buttons_ids: [
@@ -142,7 +140,6 @@
 
 
             ready: function () {
-                //this.reset_buttons();
                 this.$.keypad.addEventListener("tap", this.tap_handler.bind(this), false);
             },
             tap_handler: function (event, e) {
@@ -171,57 +168,71 @@
                 }
                 console.log("test");
             },
+            activate_key: function (key) {
+                this.$[key].style.opacity = 0;
+            },
+            deactivate_key: function (key) {
+                this.$[key].style.opacity = 0.6;
+            },
             _dataChanged: function (_new, _old) {
-
                 if (_new) {
-                    if (this.data.type == "pv-keypad") {
+                    if (this.data.type == "pv-keypad-alt") {
                         this.reset_buttons();
                         this.hide = false;
-                        // Change opacity of the active button.
-                        for (var i = 0; i < this.data.active_buttons.length; i++) {
-                            var cls = this.$[this.data.active_buttons[i]];
-                            cls.style.opacity = 0;
-                        }
 
-                        for (var i = 0; i < this.data.active_buttons.length; i++) {
-                            switch (this.data.active_buttons[i]) {
+
+
+                        for (var [key, value] of Object.entries(this.data)) {
+                            switch (key) {
                                 case "tiltup":
-                                    document.handle_key_d = document._handle_key_d;
-                                    this.d_key_handler = document.handle_key_d;
+                                    if (value) {
+                                        this.activate_key(key);
+                                        document.handle_key_d = document.handle_command(value, key);
+                                        this.d_key_handler = document.handle_key_d;
+                                    }
                                     break;
                                 case "tiltdown":
-                                    document.handle_key_a = document._handle_key_a;
-                                    this.a_key_handler = document.handle_key_a;
+                                    if (value) {
+                                        this.activate_key(key);
+                                        document.handle_key_a = document.handle_command(value, key);
+                                        this.a_key_handler = document.handle_key_a;
+                                    }
                                     break;
                                 case "open":
-                                    document.handle_key_w = document._handle_key_w;
-                                    this.w_key_handler = document.handle_key_w;
+                                    if (value) {
+                                        this.activate_key(key);
+                                        document.handle_key_w = document.handle_command(value, key);
+                                        this.w_key_handler = document.handle_key_w;
+                                    }
                                     break;
                                 case "close":
-                                    document.handle_key_z = document._handle_key_z;
-                                    this.z_key_handler = document.handle_key_z;
+                                    if (value) {
+                                        this.activate_key(key);
+                                        document.handle_key_z = document.handle_command(value, key);
+                                        this.z_key_handler = document.handle_key_z;
+                                    }
                                     break;
                                 case "stop":
-                                    document.handle_key_s = document._handle_key_s;
-                                    this.s_key_handler = document.handle_key_s;
+                                    if (value) {
+                                        this.activate_key(key);
+                                        document.handle_key_s = document.handle_command(value, key);
+                                        this.s_key_handler = document.handle_key_s;
+                                    }
                                     break;
                                 case "okay":
-                                    var confirm = false;
-                                    if (this.data.confirm == "okay") {
-                                        confirm = true;
+                                    if (value) {
+                                        this.activate_key(key);
+                                        document.handle_key_okay = document.handle_command(value, key);
+                                        this.okay_key_handler = document.handle_key_okay;
                                     }
-                                    document.handle_key_okay = document._handle_key_okay(
-                                        this.data.okay, confirm);
-                                    this.okay_key_handler = document.handle_key_okay;
                                     break;
                                 case "cancel":
-                                    var confirm = false;
-                                    if (this.data.confirm == "cancel") {
-                                        confirm = true;
+                                    if (value) {
+                                        this.activate_key(key);
+                                        document.handle_key_x = document.handle_command(value, key);
+                                        this.cancel_key_handler = document.handle_key_x;
+
                                     }
-                                    document.handle_key_x = document._handle_key_x(
-                                        this.data.cancel, confirm);
-                                    this.cancel_key_handler = document.handle_key_x;
                                     break;
                             }
                         }
@@ -240,15 +251,7 @@
                     console.log("disabled this button: ", key);
                 };
             },
-            // _activeChanged: function (_new, _old) {
-            //     console.log("activating old keypad");
-            // },
-            // activate: function (_new, _old) {
-            //     if (_new) {
-            //         this._dataChanged(true);
-            //         console.log("activating keypad")
-            //     }
-            // },
+
         });
     </script>
 </dom-module>
