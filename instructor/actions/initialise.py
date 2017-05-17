@@ -30,27 +30,27 @@ def get_initialise(jog_image, product_command=Nd.M25T_ROLLER):
     )
 
 
-initialise_rb = get_initialise(RB_JOG_2)
-initialise_rb.instructions[1].col1.okay = NordicCommands(
-    Nd.RESET, DelayedCommand(Nd.M25T_ROLLER, PRODUCT_SET_DELAY))
+initialise_rb = get_initialise(RB_JOG_2,Nd.M25T_ROLLER)
+# initialise_rb.instructions[1].col1.okay = NordicCommands(
+#     Nd.RESET, DelayedCommand(Nd.M25T_ROLLER, PRODUCT_SET_DELAY))
 
-initialise_twist = get_initialise(TWIST_JOG_2)
-initialise_twist.instructions[1].col1.okay = NordicCommands(
-    Nd.RESET, DelayedCommand(Nd.TWIST, PRODUCT_SET_DELAY))
+initialise_twist = get_initialise(TWIST_JOG_2,Nd.TWIST)
+# initialise_twist.instructions[1].col1.okay = NordicCommands(
+#     Nd.RESET, DelayedCommand(Nd.TWIST, PRODUCT_SET_DELAY))
 
-initialise_vb_16 = get_initialise(VB_JOG_2)
-initialise_vb_16.instructions[1].col1.okay = NordicCommands(
-    Nd.RESET,
-    DelayedCommand(
-        Nd.M25S_VENETIAN_16MM,
-        PRODUCT_SET_DELAY))
+initialise_vb_16 = get_initialise(VB_JOG_2,Nd.M25S_VENETIAN_16MM)
+# initialise_vb_16.instructions[1].col1.okay = NordicCommands(
+#     Nd.RESET,
+#     DelayedCommand(
+#         Nd.M25S_VENETIAN_16MM,
+#         PRODUCT_SET_DELAY))
 
-initialise_vb_25 = get_initialise(VB_JOG_2)
-initialise_vb_25.instructions[1].col1.okay = NordicCommands(
-    Nd.RESET,
-    DelayedCommand(
-        Nd.M25S_VENETIAN_25MM,
-        PRODUCT_SET_DELAY))
+initialise_vb_25 = get_initialise(VB_JOG_2, Nd.M25S_VENETIAN_25MM)
+# initialise_vb_25.instructions[1].col1.okay = NordicCommands(
+#     Nd.RESET,
+#     DelayedCommand(
+#         Nd.M25S_VENETIAN_25MM,
+#         PRODUCT_SET_DELAY))
 
 initialise_duette = get_initialise(
     DUETTE_JOG_2, Nd.M25S_DUETTE_FREE)

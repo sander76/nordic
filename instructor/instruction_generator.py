@@ -17,7 +17,7 @@ from instructor.products.test_products import test1, test_blinds1
 from instructor.products.twist import twist_old, twist
 from instructor.translations import load_translations
 
-INSTRUCTION_VERSION = "1.7.3"
+INSTRUCTION_VERSION = "1.7.4"
 MAIN_PATH = "../static/app/instructions"
 
 
@@ -153,6 +153,11 @@ def make_tensioned():
     make_instruction("instructions-tensioned-en.json", tensioned, TXT.en)
 
 
+def make_leha():
+    products = [m25s_vvb]
+    make_instruction("instructions-leha-de.json", products, TXT.de)
+
+
 def make_instruction(file_name, products, lang):
     _path = os.path.join(MAIN_PATH, file_name)
     instruction = Instruction(INSTRUCTION_VERSION)
@@ -178,3 +183,4 @@ if __name__ == "__main__":
     make_ts()
     make_all()
     make_tensioned()
+    make_leha()
