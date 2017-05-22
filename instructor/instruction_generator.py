@@ -10,8 +10,7 @@ from instructor.products.m25s_pleated import m25s_pleated_free, \
 from instructor.products.m25s_vb import m25s_25mm_vb_free, \
     m25s_25mm_vb_free_alt, \
     m25s_16mm_vb_free_alt
-from instructor.products.m25s_vvb import m25s_vvb_right, m25s_vvb_left, \
-    m25s_vvb
+from instructor.products.m25s_vvb import m25s_vvb
 from instructor.products.roller import rollerblind1, rollerblind_old
 from instructor.products.test_products import test1, test_blinds1
 from instructor.products.twist import twist_old, twist
@@ -85,7 +84,7 @@ def make_test1():
 
 
 def make_germania2():
-    germania2_products = [rollerblind1, twist, m25s_vvb_right, m25s_vvb_left]
+    germania2_products = [rollerblind1, twist, m25s_vvb]
 
     make_instruction(
         "instructions-germania2-en.json", germania2_products, TXT.en)
@@ -104,7 +103,7 @@ def make_germania1():
 
 
 def make_poland():
-    poland_products = [rollerblind1, m25s_vvb_left, m25s_vvb_right]
+    poland_products = [rollerblind1, m25s_vvb, m25s_vvb]
 
     make_instruction("instructions-hdfab-pl.json", poland_products, TXT.pl)
     make_instruction("instructions-hdfab-en.json", poland_products, TXT.en)
@@ -138,8 +137,6 @@ def make_all():
         m25s_25mm_vb_free,
         m25s_25mm_vb_free_alt,
         m25s_16mm_vb_free_alt,
-        m25s_vvb_right,
-        m25s_vvb_left,
         m25s_vvb,
         rollerblind1,
         twist

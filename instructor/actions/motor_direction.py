@@ -181,11 +181,11 @@ vvb_back_left = get_direction(
     confirm_orientation_command=NordicCommands(Nd.ORIENT_VVB_LEFT),
     confirm_yes=NavigationCommand(2))
 
-vvb_above_left = get_direction(
-    VVB_JOG_1, tr.TITLE_ORIENT_VVB_UPRIGHT,
-    tr.ORIENT_VVB_UPRIGHT, NordicCommands(Nd.ORIENT_VVB_UPRIGHT_LEFT),
-    cancel_no=NavigationCommand(-1),
-    confirm_yes=NavigationCommand(1))
+# vvb_above_left = get_direction(
+#     VVB_JOG_1, tr.TITLE_ORIENT_VVB_UPRIGHT,
+#     tr.ORIENT_VVB_UPRIGHT, NordicCommands(Nd.ORIENT_VVB_UPRIGHT_LEFT),
+#     cancel_no=NavigationCommand(-1),
+#     confirm_yes=NavigationCommand(1))
 
 vvb_back_right = get_direction(
     VVB_JOG_1,

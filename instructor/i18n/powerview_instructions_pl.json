@@ -1,278 +1,89 @@
 {
-    "TITLE_SKIP_TOP": {
-        "ref_en": "SET *TOP* LIMIT?",
-        "pl": "Ustaw limit gorny"
-    },
-    "TITLE_BACKROLLER_RIGHT": {
-        "ref_en": "RIGHT BACKROLLER",
-        "pl": "PRAWA STRONA, ZWIJANIE NORMALNE"
-    },
-    "IS_RIGHT_FRONTROLLER": {
-        "ref_en": "Is the motor on the **right** and **frontroller** ?",
-        "pl": "Czy jest motor **prawa** strona i **zwijanie odwrtone**?"
-    },
-    "NO": {
-        "ref_en": "no",
-        "pl": "nie"
-    },
-    "MOVE_BLIND_BOTTOM": {
-        "ref_en": "Move the *BLIND* to the desired BOTTOM position.",
-        "pl": "Produkt rozwija sie do pożądanej pozycji dolnej"
-    },
-    "RESET_SLAT": {
-        "ref_en": "Re-set the SLAT position",
-        "pl": ""
-    },
-    "DID_MOTOR_MOVE_DOWN": {
-        "ref_en": "Did the blind move down?",
-        "pl": "Czy produkt sie rozwija ?"
-    },
-    "HANG_RB": {
-        "ref_en": "HANG THE ROLLERBLIND",
-        "pl": "ZAWIEŚ ROLETĘ"
-    },
-    "WATCH_THE_BLIND_JOG_TWO_TIMES": {
-        "ref_en": "Motor jogs two times.",
-        "pl": "Motor wykonuje 2x ruch góra/dół"
-    },
-    "RIGHT_MOUNT": {
-        "ref_en": "MOTOR ON THE RIGHT",
-        "pl": "MOTOR ZAMONTOWANY PRAWA STRONA"
-    },
-    "KEEP_PRESSING_AND_OKAY": {
-        "ref_en": "Keep pressing the *BLIND BUTTON* and press the OK button.",
-        "pl": "Trzymaj przycisk na motorze i jednocześnie naciśnij przycisk OK"
-    },
-    "TEST_BLINDS": {
-        "ref_en": "TEST BLINDS",
-        "pl": "PRODUKT TESTOWY"
-    },
-    "SAVE_BOTTOM": {
-        "ref_en": "Save this as BOTTOM limit.",
-        "pl": "Zapisz dolną pozycję"
-    },
-    "DID_THE_MOTOR_JOG_TWO_TIMES": {
-        "ref_en": "Did the motor jog two times?",
-        "pl": "Czy produkt wykonał 2 x  krótki ruch góra/dól?"
-    },
-    "YES": {
-        "ref_en": "yes",
-        "pl": "tak"
-    },
-    "MOVE_BLIND_SLAT_OPEN": {
-        "ref_en": "Move the *BLIND* to the desired SLAT OPEN position.",
-        "pl": ""
-    },
-    "IS_BLIND_AT_TOP": {
-        "ref_en": "IS THE BLIND AT THE TOP ?",
-        "pl": "CZY PRODUKT JEST W POZYCJI GÓRNEJ ?"
-    },
-    "IS_LEFT_FRONTROLLER": {
-        "ref_en": "Is the motor on the **left** and **frontroller** ?",
-        "pl": "Czy jest motor **lewa** strona i **zwijanie odwrotne**?"
-    },
-    "TITLE_VVB_SET_OPEN_LIMIT": {
-        "ref_en": "Set the open limit",
-        "pl": "Ustaw pozycję otwartą"
-    },
-    "MOVE_BLIND_TOP": {
-        "ref_en": "Move the *BLIND* to the desired TOP position.",
-        "pl": "Produkt zwija sie do pożądanej pozycji górnej"
-    },
-    "TITLE_ORIENT_VVB_UPRIGHT": {
-        "ref_en": "Is the motor mounted **above** ?",
-        "pl": "Czy motor jest zamontowany u **góry** ?"
-    },
-    "PROPER_PRODUCT_HANG": {
-        "ref_en": "Make sure *BOTTOM* bar is approximately 20cm down.",
-        "pl": "Upewnij sie, że listwa *DOLNA* jest ok 20cm od dołu"
-    },
-    "HANG_TWIST": {
-        "ref_en": "HANG THE TWIST BLIND",
-        "pl": "ZAWIEŚ ROLETĘ TWIST"
-    },
-    "ORIENT_VVB_BACK": {
-        "ref_en": "MOTOR ON THE BACK",
-        "pl": "MOTOR ZAMONTOWANY TYŁ"
-    },
-    "IS_RIGHT_BACKROLLER": {
-        "ref_en": "Is the motor on the **right** and **backroller** ?",
-        "pl": "Czy jest motor **prawa** strona i **zwijanie normalne**?"
-    },
-    "WATCH_THE_BLIND_JOG": {
-        "ref_en": "Watch the *BLIND* jog.",
-        "pl": "Spójrz czy produkt wykonuje ruch góra/dół"
-    },
-    "PRESS_HOLD_BLIND_BUTTON": {
-        "ref_en": "`Press` and `hold` the *BLIND BUTTON* .",
-        "pl": "Naciśnij i przytrzymaj przycisk na motorze"
-    },
-    "ORIENT_VVB_UPRIGHT": {
-        "ref_en": "MOTOR ABOVE",
-        "pl": "MOTOR ZAMONTOWANY GÓRA"
-    },
-    "SELECT_SKIP_TOP": {
-        "ref_en": "I don't want to set the TOP limit",
-        "pl": "Nie chcę ustawić górnego limitu"
-    },
-    "DID_THE_MOTOR_JOG": {
-        "ref_en": "Did the motor jog?",
-        "pl": "Czy produkt wykonał krótki ruch góra/dól?"
-    },
-    "IS_LEFT_BACKROLLER": {
-        "ref_en": "Is the motor on the **left** and **backroller** ?",
-        "pl": "Czy jest motor **lewa** strona i **zwijanie normalne**?"
-    },
-    "LIMITS_OK": {
-        "ref_en": "Limits are OK. Do a new blind.",
-        "pl": "Limity są poprawne. Przejdź do nowego produktu"
-    },
-    "TITLE_SKIP_SLAT": {
-        "ref_en": "SET SLAT POSITION?",
-        "pl": ""
-    },
-    "TITLE_VVB": {
-        "ref_en": "VVB title",
-        "pl": ""
-    },
-    "RESET_TOP": {
-        "ref_en": "Re-set the TOP limit.",
-        "pl": "Ustaw ponownie limit gorny"
-    },
-    "LEFT_MOUNT": {
-        "ref_en": "MOTOR ON THE LEFT",
-        "pl": "MOTOR ZAMONTOWANY LEWA STRONA"
-    },
-    "INITIALISE": {
-        "ref_en": "INIT.",
-        "pl": "START"
-    },
-    "TITLE_SET_BOTTOM_LIMIT": {
-        "ref_en": "SET BOTTOM LIMIT.",
-        "pl": "Ustaw limit dolny"
-    },
-    "SAVE_TOP": {
-        "ref_en": "Save this as TOP limit.",
-        "pl": "Sprawdź górną pozycję"
-    },
-    "TITLE_SET_TOP_LIMIT": {
-        "ref_en": "SET TOP LIMIT.",
-        "pl": "Ustaw limit gorny"
-    },
-    "BLIND_DIRECTION": {
-        "ref_en": "CHECK BLIND DIRECTION.",
-        "pl": "SPRAWDŹ KIERUNEK ZWIJANIA ROLETY"
-    },
-    "CONNECT": {
-        "ref_en": "CONNECT.",
-        "pl": "PODŁĄCZ"
-    },
-    "RELEASE_THE_BLIND_BUTTON": {
-        "ref_en": "Release the *BLIND BUTTON*",
-        "pl": "Puść przycisk na motorze"
-    },
-    "MAKE_CHOICE": {
-        "ref_en": "Make a choice:",
-        "pl": "Wybierz:"
-    },
-    "MOTOR_SHOULD_MOVE_DOWN": {
-        "ref_en": "Blind should move down/close.",
-        "pl": "Produkt powinien się rozwijać/zamykać"
-    },
-    "IS_LEFT_MOUNT": {
-        "ref_en": "Is the motor on the **left** ?",
-        "pl": "Czy motor jest po **lewej** stronie?"
-    },
-    "SWITCH_DIRECTION": {
-        "ref_en": "CHANGE BLIND DIRECTION.",
-        "pl": "ZMIEŃ KIERUNEK ZWIJANIA"
-    },
-    "TITLE_BACKROLLER_LEFT": {
-        "ref_en": "LEFT BACKROLLER",
-        "pl": "LEWA STRONA, ZWIJANIE NORMALNE"
-    },
-    "SAVE_SLAT": {
-        "ref_en": "Save this as SLAT OPEN position.",
-        "pl": ""
-    },
-    "TITLE_ORIENT_VVB_BACK": {
-        "ref_en": "Is the motor mounted on the **back** ?",
-        "pl": "Czy motor jest zamontowany z **tyłu** ?"
-    },
-    "TITLE_SKIP_BOTTOM": {
-        "ref_en": "SET *BOTTOM* LIMIT?",
-        "pl": "Ustaw limit dolny"
-    },
-    "SET_TWIST_SLAT_POSITION": {
-        "ref_en": "SET TWIST SLAT POSITION.",
-        "pl": ""
-    },
-    "DID_THE_MOTOR_MOVE_UP": {
-        "ref_en": "Did the blind move to the top?",
-        "pl": "Czy produkt sie zwija"
-    },
-    "SELECT_SKIP_BOTTOM": {
-        "ref_en": "I don't want to set the *BOTTOM* limit",
-        "pl": "Nie chcę ustawić dolnego limitu"
-    },
-    "IS_RIGHT_MOUNT": {
-        "ref_en": "Is the motor on the **right** ?",
-        "pl": "Czy motor jest po **prawej** stronie?"
-    },
-    "SELECT_SKIP_SLAT": {
-        "ref_en": "Don't re-set the *SLAT* position.",
-        "pl": ""
-    },
-    "HANGPRODUCT": {
-        "ref_en": "HANG PRODUCT.",
-        "pl": "ZAWIEŚ PRODUKT"
-    },
-    "SAVE_THIS_AS_TOP": {
-        "ref_en": "Save this as the TOP limit?",
-        "pl": "Czy zatwierdzić pozycję górna?"
-    },
-    "TITLE_FRONTROLLER_RIGHT": {
-        "ref_en": "RIGHT FRONTROLLER",
-        "pl": "PRAWA STRONA, ZWIJANIE ODWROTNE"
-    },
-    "START_TOP_PROGRAMMING": {
-        "ref_en": "The blind will move completely to the top.",
-        "pl": "Produkt zwija sie całkowicie"
-    },
-    "ENTER_PROGRAM_MODE": {
-        "ref_en": "ENTER PROGRAM MODE.",
-        "pl": "WEJDŹ W TRYB PROGRAMOWANIA"
-    },
-    "TEST_MOVE_BLINDS": {
-        "ref_en": "Check TOP and BOTTOM limits.",
-        "pl": ""
-    },
-    "TITLE_FRONTROLLER_LEFT": {
-        "ref_en": "LEFT FRONTROLLER",
-        "pl": "LEWA STRONA, ZWIJANIE ODWROTNE"
-    },
-    "PROPER_PRODUCT_HANG_CONFIRM": {
-        "ref_en": "Product fixed *OK*.",
-        "pl": "Produkt ustawiony *OK*."
-    },
-    "RESET_BOTTOM": {
-        "ref_en": "Re-set the BOTTOM limit.",
-        "pl": "Ustaw ponownie limit dolny"
-    },
-    "LIMITS_NOT_OK": {
-        "ref_en": "Limits are NOT OK. Re-set them",
-        "pl": "Limity są niepoprawne. Ustaw ponownie"
-    },
-    "PRESS_OKAY_BUTTON": {
-        "ref_en": "Press OK button",
-        "pl": "Naciśnij przycisk OK"
-    },
-    "TITLE_VVB_SET_CLOSE_LIMIT": {
-        "ref_en": "Set the close limit",
-        "pl": "Ustaw pozycję zamkniętą"
-    },
-    "WATCH_THE_BLIND_MOVE_UP": {
-        "ref_en": "Watch the *BLIND* move up.",
-        "pl": "Spójrz czy produkt sie zwija"
-    }
+    "MOVE_BLIND_BOTTOM": "Produkt rozwija sie do pożądanej pozycji dolnej",
+    "TEST_MOVE_BLINDS": "",
+    "TITLE_SKIP_OPEN": "",
+    "TITLE_VVB_SET_CLOSE_LIMIT": "Ustaw pozycję zamkniętą",
+    "SELECT_SKIP_BOTTOM": "Nie chcę ustawić dolnego limitu",
+    "TITLE_BACKROLLER_RIGHT": "PRAWA STRONA, ZWIJANIE NORMALNE",
+    "HANG_RB": "ZAWIEŚ ROLETĘ",
+    "MOVE_BLIND_OPEN": "",
+    "RESET_CLOSE": "",
+    "PRESS_OKAY_BUTTON": "Naciśnij przycisk OK",
+    "INITIALISE": "START",
+    "IS_VVB_SPLIT_STACK": "",
+    "YES": "tak",
+    "IS_LEFT_FRONTROLLER": "Czy jest motor **lewa** strona i **zwijanie odwrotne**?",
+    "RIGHT_MOUNT": "MOTOR ZAMONTOWANY PRAWA STRONA",
+    "TITLE_ORIENT_VVB_UPRIGHT": "Czy motor jest zamontowany u **góry** ?",
+    "IS_LEFT_MOUNT": "Czy motor jest po **lewej** stronie?",
+    "TITLE_ORIENT_VVB_BACK": "Czy motor jest zamontowany z **tyłu** ?",
+    "RELEASE_THE_BLIND_BUTTON": "Puść przycisk na motorze",
+    "IS_VVB_LEFT_STACK": "",
+    "TITLE_MOTOR_CHECK_CLOSE": "",
+    "IS_BLIND_OPENED": "",
+    "KEEP_PRESSING_AND_OKAY": "Trzymaj przycisk na motorze i jednocześnie naciśnij przycisk OK",
+    "IS_VVB_RIGHT_STACK": "",
+    "SAVE_BOTTOM": "Zapisz dolną pozycję",
+    "SELECT_SKIP_TOP": "Nie chcę ustawić górnego limitu",
+    "RESET_TOP": "Ustaw ponownie limit gorny",
+    "NO": "nie",
+    "RESET_BOTTOM": "Ustaw ponownie limit dolny",
+    "PROPER_PRODUCT_HANG": "Upewnij sie, że listwa *DOLNA* jest ok 20cm od dołu",
+    "CONNECT": "PODŁĄCZ",
+    "WATCH_THE_BLIND_JOG_THREE_TIMES": "",
+    "SAVE_THIS_AS_TOP": "Czy zatwierdzić pozycję górna?",
+    "SELECT_SKIP_OPEN": "",
+    "IS_LEFT_BACKROLLER": "Czy jest motor **lewa** strona i **zwijanie normalne**?",
+    "IS_RIGHT_MOUNT": "Czy motor jest po **prawej** stronie?",
+    "TITLE_SET_TOP_LIMIT": "Ustaw limit gorny",
+    "START_TOP_PROGRAMMING": "Produkt zwija sie całkowicie",
+    "SAVE_TOP": "Sprawdź górną pozycję",
+    "WATCH_THE_BLIND_JOG_TWO_TIMES": "Motor wykonuje 2x ruch góra/dół",
+    "HANGPRODUCT": "ZAWIEŚ PRODUKT",
+    "BLIND_DIRECTION": "SPRAWDŹ KIERUNEK ZWIJANIA ROLETY",
+    "TEST_BLINDS": "PRODUKT TESTOWY",
+    "TITLE_SKIP_SLAT": "",
+    "DID_THE_MOTOR_JOG_THREE_TIMES": "",
+    "SAVE_OPEN": "",
+    "SAVE_CLOSE": "",
+    "PRESS_HOLD_BLIND_BUTTON": "Naciśnij i przytrzymaj przycisk na motorze",
+    "TITLE_BACKROLLER_LEFT": "LEWA STRONA, ZWIJANIE NORMALNE",
+    "TITLE_SKIP_BOTTOM": "Ustaw limit dolny",
+    "DID_THE_MOTOR_MOVE_UP": "Czy produkt sie zwija",
+    "DID_THE_MOTOR_JOG": "Czy produkt wykonał krótki ruch góra/dól?",
+    "TITLE_FRONTROLLER_LEFT": "LEWA STRONA, ZWIJANIE ODWROTNE",
+    "START_OPEN_PROGRAMMING": "",
+    "WATCH_THE_BLIND_MOVE_UP": "Spójrz czy produkt sie zwija",
+    "TITLE_SKIP_TOP": "Ustaw limit gorny",
+    "IS_RIGHT_FRONTROLLER": "Czy jest motor **prawa** strona i **zwijanie odwrtone**?",
+    "TITLE_FRONTROLLER_RIGHT": "PRAWA STRONA, ZWIJANIE ODWROTNE",
+    "SELECT_SKIP_SLAT": "",
+    "SAVE_SLAT": "",
+    "MAKE_CHOICE": "Wybierz:",
+    "ORIENT_VVB_BACK": "MOTOR ZAMONTOWANY TYŁ",
+    "IS_BLIND_AT_TOP": "CZY PRODUKT JEST W POZYCJI GÓRNEJ ?",
+    "MOTOR_SHOULD_MOVE_DOWN": "Produkt powinien się rozwijać/zamykać",
+    "LIMITS_NOT_OK": "Limity są niepoprawne. Ustaw ponownie",
+    "HANG_TWIST": "ZAWIEŚ ROLETĘ TWIST",
+    "WATCH_THE_BLIND_JOG": "Spójrz czy produkt wykonuje ruch góra/dół",
+    "SAVE_THIS_AS_OPEN": "",
+    "SET_TWIST_SLAT_POSITION": "",
+    "DID_THE_MOTOR_JOG_TWO_TIMES": "Czy produkt wykonał 2 x  krótki ruch góra/dól?",
+    "TITLE_VVB": "",
+    "TITLE_VVB_SET_OPEN_LIMIT": "Ustaw pozycję otwartą",
+    "DID_BLIND_CLOSE": "",
+    "IS_RIGHT_BACKROLLER": "Czy jest motor **prawa** strona i **zwijanie normalne**?",
+    "MOVE_BLIND_SLAT_OPEN": "",
+    "RESET_SLAT": "",
+    "DID_MOTOR_MOVE_DOWN": "Czy produkt sie rozwija ?",
+    "LEFT_MOUNT": "MOTOR ZAMONTOWANY LEWA STRONA",
+    "MOVE_BLIND_TOP": "Produkt zwija sie do pożądanej pozycji górnej",
+    "TITLE_SKIP_CLOSE": "",
+    "ENTER_PROGRAM_MODE": "WEJDŹ W TRYB PROGRAMOWANIA",
+    "TITLE_SET_BOTTOM_LIMIT": "Ustaw limit dolny",
+    "LIMITS_OK": "Limity są poprawne. Przejdź do nowego produktu",
+    "SWITCH_DIRECTION": "ZMIEŃ KIERUNEK ZWIJANIA",
+    "RESET_OPEN": "",
+    "PROPER_PRODUCT_HANG_CONFIRM": "Produkt ustawiony *OK*.",
+    "MOVE_BLIND_CLOSE": ""
 }

@@ -26,6 +26,7 @@ AVAILABLE_TRANSLATIONS = [
 ]
 
 BASE_FOLDER = "i18n"
+FLAT_JSON_FORMAT = "powerview_instructions_{}.json"
 
 
 class Translations:
@@ -129,12 +130,12 @@ class Translations:
         pl="MOTOR ZAMONTOWANY TYŁ"
     )
 
-    ORIENT_VVB_UPRIGHT = TXT(
-        "MOTOR ABOVE",
-        "MOTOR BOVEN",
-        de=None,
-        pl="MOTOR ZAMONTOWANY GÓRA"
-    )
+    # ORIENT_VVB_UPRIGHT = TXT(
+    #     "MOTOR ABOVE",
+    #     "MOTOR BOVEN",
+    #     de=None,
+    #     pl="MOTOR ZAMONTOWANY GÓRA"
+    # )
 
     IS_LEFT_BACKROLLER = TXT(
         "Is the motor on the **left** and **backroller** ?",
@@ -603,7 +604,7 @@ def do_text(lang):
 
 
 def _get_translation_file_path(lang):
-    fname = "powerview_instructions_{}.json".format(lang)
+    fname = FLAT_JSON_FORMAT.format(lang)
     full_name = os.path.join(BASE_FOLDER, fname)
     return full_name
 
@@ -622,21 +623,71 @@ def load_translations():
         for key, value in _js.items():
             _txt = getattr(Translations, key)
             if isinstance(_txt, TXT):
-                setattr(_txt, lang, value[lang])
+                setattr(_txt, lang, value)
 
 
 def _open_current_translation(json_file):
     try:
-        with open(json_file, 'r') as _fl:
+        with open(json_file, 'r',encoding='utf-8') as _fl:
             _js = json.load(_fl)
             return _js
-    except (FileExistsError, FileNotFoundError) as e:
+    except (FileExistsError, FileNotFoundError, ValueError) as e:
         return {}
+
+
+def convert_to_json_flat():
+    """Depreciated method. Probably unneeded."""
+    for fl in os.listdir(BASE_FOLDER):
+        _fl, ext = os.path.splitext(fl)
+        if ext == '.json':
+            convert_to_flat(_fl, ext)
+
+
+def convert_to_flat(fl, ext):
+    """Depreciated method. Probably unneeded."""
+    _new_json = {}
+    lang = (fl.split('_'))[-1]
+    with open(os.path.join(BASE_FOLDER, fl + ext), 'r',
+              encoding="utf-8") as f:
+        _js = json.load(f)
+    for key, value in _js.items():
+        _trans = value.get(lang)
+        _new_json[key] = _trans
+    with open(os.path.join(
+            BASE_FOLDER, FLAT_JSON_FORMAT.format(lang)), 'w',
+            encoding='utf-8') as _fl:
+        json.dump(_new_json, _fl, ensure_ascii=False, indent=4)
+
+
+# def convert_to_csv():
+#     """Load the json files with tanslations.
+#     Convert them to csv files."""
+#     for fl in os.listdir(BASE_FOLDER):
+#         _fl, ext = os.path.splitext(fl)
+#         if ext == '.json':
+#             _csv = []
+#             lang = (_fl.split('_'))[-1]
+#             with open(os.path.join(BASE_FOLDER, fl), 'r',
+#                       encoding="utf-8") as f:
+#                 _js = json.load(f)
+#             for key, value in _js.items():
+#                 _trans = value.get(lang)
+#                 if ',' in _trans:
+#                     raise UserWarning(
+#                         "translation {} contains a comma. at {}".format(
+#                             fl, key
+#                         ))
+#                 _ref = value.get("ref_en")
+#                 _csv.append([key, _trans, '', _ref, ''])
+#             with open(os.path.join(BASE_FOLDER, _fl + ".csv"), 'w',
+#                       encoding='utf-8') as _fl:
+#                 for _row in _csv:
+#                     _fl.write(','.join(_row) + '\n')
 
 
 def export_translations():
     """
-    Loads the current json files with tranlations.
+    Loads the current json files with translations.
     It then checks the current Translation class for
     new entries and puts them in the above json file.
     """
@@ -646,24 +697,23 @@ def export_translations():
 
         # open the current file:
         _org_json = _open_current_translation(full_name)
-
+        _new_json = {}
         for key, value in Translations.__dict__.items():
-            if not key.startswith("_"):
-                if key not in _org_json:
-                    try:
-                        _val = getattr(value, lang)
-                    except AttributeError as e:
-                        print(e)
-                    else:
-                        _val = _val if _val else ""
-                        _org_json[key] = {"ref_en": value.en,
-                                          lang: _val}
+            if type(value) == TXT:
+                if lang == 'en':
+                    val = getattr(value, lang)
+                else:
+                    val = _org_json.get(key, '')
+                _new_json[key] = val
 
         with open(full_name, 'w', encoding="utf-8") as _fl:
-            json.dump(_org_json, _fl, ensure_ascii=False,
+            json.dump(_new_json, _fl, ensure_ascii=False,
                       indent=4)
 
 
 if __name__ == "__main__":
+
+    # convert_to_csv()
+    # convert_to_json_flat()
     export_translations()
     # load_translations()
