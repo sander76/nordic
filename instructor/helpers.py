@@ -20,6 +20,7 @@ class TXT:
     he = 'he'
     de = 'de'
     dk = 'dk'
+    cz = 'cz'
 
     def __init__(
             self, en: str, nl: str = None, il: str = None, pl=None, ru=None,
@@ -34,6 +35,7 @@ class TXT:
         self.he = he
         self.de = de
         self.dk = dk
+        self.cz = cz
         self.to_upper = to_upper
 
     def get_text(self, lang):
@@ -53,4 +55,3 @@ class TXT:
     def add_number(self, number):
         nt = NumberedText(self, number)
         return nt
-

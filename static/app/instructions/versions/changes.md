@@ -66,3 +66,9 @@
 ## Version 1.7.3
 
 - Adding TS
+
+## Version 1.7.4
+
+- Changed url routing for speeding op switching products.
+- Changed internal structure of keyhandling
+- Added more products.

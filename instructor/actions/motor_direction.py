@@ -193,11 +193,11 @@ vvb_back_right = get_direction(
     tr.ORIENT_VVB_BACK, NordicCommands(Nd.ORIENT_VVB_RIGHT),
     confirm_yes=NavigationCommand(2))
 
-vvb_above_right = get_direction(
-    VVB_JOG_1, tr.TITLE_ORIENT_VVB_UPRIGHT,
-    tr.ORIENT_VVB_UPRIGHT, NordicCommands(Nd.ORIENT_VVB_UPRIGHT_RIGHT),
-    cancel_no=NavigationCommand(-1),
-    confirm_yes=NavigationCommand(1))
+# vvb_above_right = get_direction(
+#     VVB_JOG_1, tr.TITLE_ORIENT_VVB_UPRIGHT,
+#     tr.ORIENT_VVB_UPRIGHT, NordicCommands(Nd.ORIENT_VVB_UPRIGHT_RIGHT),
+#     cancel_no=NavigationCommand(-1),
+#     confirm_yes=NavigationCommand(1))
 
 tensioned_duette_direction = Step(
     tr.BLIND_DIRECTION,

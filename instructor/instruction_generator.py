@@ -3,12 +3,11 @@ import os
 from instructor.components import ToJson, Instruction
 from instructor.helpers import TXT
 
-from instructor.products.m25s_duette import m25s_duette_free, \
-    m25s_duette_free_alt, m25s_duette_tensioned, m25s_duette_tensioned_alt
+from instructor.products.m25s_duette import m25s_duette_free_alt, \
+    m25s_duette_tensioned, m25s_duette_tensioned_alt
 from instructor.products.m25s_pleated import m25s_pleated_free, \
     m25s_pleated_tensioned
-from instructor.products.m25s_vb import m25s_25mm_vb_free, \
-    m25s_25mm_vb_free_alt, \
+from instructor.products.m25s_vb import m25s_25mm_vb_free_alt, \
     m25s_16mm_vb_free_alt
 from instructor.products.m25s_vvb import m25s_vvb
 from instructor.products.roller import rollerblind1, rollerblind_old
@@ -16,21 +15,23 @@ from instructor.products.test_products import test1, test_blinds1
 from instructor.products.twist import twist_old, twist
 from instructor.translations import load_translations
 
-INSTRUCTION_VERSION = "1.7.4"
+INSTRUCTION_VERSION = "1.7.5"
 MAIN_PATH = "../static/app/instructions"
 
 
 def make_luxaflex_nl():
-    _path = os.path.join(MAIN_PATH, 'instructions-luxaflex-nl.json')
-    instruction = Instruction(INSTRUCTION_VERSION)
-    instruction.products.append(rollerblind1)
-    instruction.products.append(rollerblind_old)
-    instruction.products.append(twist)
-    instruction.products.append(twist_old)
-
-    nl = ToJson(lang='nl').encode(instruction)
-    with open(_path, 'w') as fl:
-        fl.write(nl)
+    instructions = [rollerblind1,
+                    rollerblind_old,
+                    twist,
+                    twist_old,
+                    m25s_25mm_vb_free_alt,
+                    m25s_16mm_vb_free_alt,
+                    m25s_duette_free_alt,
+                    m25s_duette_tensioned_alt,
+                    m25s_pleated_free,
+                    m25s_pleated_tensioned
+                    ]
+    make_instruction('instructions-luxaflex-nl.json', instructions, TXT.nl)
 
 
 def make_luxaflex_uk():
@@ -128,13 +129,11 @@ def make_ts():
 
 def make_all():
     products = [
-        m25s_duette_free,
         m25s_duette_free_alt,
         m25s_duette_tensioned,
         m25s_duette_tensioned_alt,
         m25s_pleated_free,
         m25s_pleated_tensioned,
-        m25s_25mm_vb_free,
         m25s_25mm_vb_free_alt,
         m25s_16mm_vb_free_alt,
         m25s_vvb,

@@ -322,24 +322,11 @@ class Translations:
         dk=None,
         pl="Czy produkt wykonał 3 x  krótki ruch góra/dól?")
 
-    DID_MOTOR_MOVE_DOWN = TXT(
-        "Did the blind move down?",
-        "Is de blind naar beneden bewogen?",
-        il=None,
-        de="Ist die Anlage runtergefahren?",
-        dk=None,
-        pl="Czy produkt sie rozwija ?")
+    DID_MOTOR_MOVE_DOWN = TXT("Did the blind move down?")
 
-    DID_BLIND_CLOSE = TXT(
-        "Did the blind close?")
+    DID_BLIND_CLOSE = TXT("Did the blind close?")
 
-    PRESS_HOLD_BLIND_BUTTON = TXT(
-        "`Press` and `hold` the *BLIND BUTTON* .",
-        "`Druk` de *BLIND BUTTON*  in en `houd vast`.",
-        il=None,
-        de="Drücken und halten Sie die Motortaste",
-        dk=None,
-        pl="Naciśnij i przytrzymaj przycisk na motorze")
+    PRESS_HOLD_BLIND_BUTTON = TXT("`Press` and `hold` the *BLIND BUTTON* .")
 
     KEEP_PRESSING_AND_OKAY = TXT(
         "Keep pressing the *BLIND BUTTON* and press the OK button.",
@@ -494,18 +481,11 @@ class Translations:
         dk=None,
         pl="Limity są niepoprawne. Ustaw ponownie")
 
-    YES = TXT(
-        "yes",
-        "ja")
+    YES = TXT("yes")
 
-    NO = TXT(
-        "no",
-        "nee")
+    NO = TXT("no")
 
-    TITLE_VVB_SET_CLOSE_LIMIT = TXT(
-        "Set the close limit",
-        "Sluit-limiet instellen",
-        to_upper=True)
+    TITLE_VVB_SET_CLOSE_LIMIT = TXT("Set the close limit", to_upper=True)
 
     TITLE_VVB_SET_OPEN_LIMIT = TXT(
         "Set the open limit",
@@ -547,21 +527,14 @@ class Translations:
         to_upper=True)
 
     TITLE_BACKROLLER_LEFT = TXT(
-        "LEFT BACKROLLER", "LINKS BACKROLLER",
+        "LEFT BACKROLLER",
         to_upper=True)
 
-    TITLE_BACKROLLER_RIGHT = TXT(
-        "RIGHT BACKROLLER",
-        "RECHTS BACKROLLER",
-        to_upper=True)
+    TITLE_BACKROLLER_RIGHT = TXT("RIGHT BACKROLLER", to_upper=True)
 
-    TITLE_FRONTROLLER_LEFT = TXT(
-        "LEFT FRONTROLLER",
-        "LINKS FRONTROLLER",
-        to_upper=True)
+    TITLE_FRONTROLLER_LEFT = TXT("LEFT FRONTROLLER", to_upper=True)
 
-    TITLE_FRONTROLLER_RIGHT = TXT(
-        "RIGHT FRONTROLLER", "RECHTS FRONTROLLER", to_upper=True)
+    TITLE_FRONTROLLER_RIGHT = TXT("RIGHT FRONTROLLER", to_upper=True)
 
     TITLE_SET_BOTTOM_LIMIT = TXT(
         "SET BOTTOM LIMIT.",
@@ -583,24 +556,24 @@ class Translations:
         to_upper=True)
 
 
-def do_text(lang):
-    def wrapper(o):
-        if isinstance(o, TXT):
-            txt = o.get_plain_text(lang)
-            return {
-                "ref_en": o.get_plain_text('en'),
-                lang: txt}
-
-        elif o is Translations:
-            _dct = {key: value for key, value in vars(o).items() if
-                    not key.startswith('_')}
-
-            return _dct
-            # return dict(o.__dict__)
-        else:
-            return
-
-    return wrapper
+# def do_text(lang):
+#     def wrapper(o):
+#         if isinstance(o, TXT):
+#             txt = o.get_plain_text(lang)
+#             return {
+#                 "ref_en": o.get_plain_text('en'),
+#                 lang: txt}
+#
+#         elif o is Translations:
+#             _dct = {key: value for key, value in vars(o).items() if
+#                     not key.startswith('_')}
+#
+#             return _dct
+#             # return dict(o.__dict__)
+#         else:
+#             return
+#
+#     return wrapper
 
 
 def _get_translation_file_path(lang):
@@ -628,7 +601,7 @@ def load_translations():
 
 def _open_current_translation(json_file):
     try:
-        with open(json_file, 'r',encoding='utf-8') as _fl:
+        with open(json_file, 'r', encoding='utf-8') as _fl:
             _js = json.load(_fl)
             return _js
     except (FileExistsError, FileNotFoundError, ValueError) as e:
@@ -700,10 +673,13 @@ def export_translations():
         _new_json = {}
         for key, value in Translations.__dict__.items():
             if type(value) == TXT:
-                if lang == 'en':
-                    val = getattr(value, lang)
-                else:
-                    val = _org_json.get(key, '')
+                val = getattr(value, lang)
+
+                other_val = _org_json.get(key, '')
+                if val is None:
+                    val = other_val
+
+
                 _new_json[key] = val
 
         with open(full_name, 'w', encoding="utf-8") as _fl:
@@ -712,7 +688,6 @@ def export_translations():
 
 
 if __name__ == "__main__":
-
     # convert_to_csv()
     # convert_to_json_flat()
     export_translations()
