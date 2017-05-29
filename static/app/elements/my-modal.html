@@ -65,22 +65,18 @@
                     this.fire("gotopage", this.modaldata.no.goto || 0);
                     console.log("Closing modal dismissed.");
                 }
+            },
+            closeModal: function (e) {
+                //console.log("Close modal confirmed");
+                this.$.modal.closingReason.confirmed = true;
+                this.$.modal.close();
+            },
+            closeModalDismiss: function (e) {
+                //console.log("Close modal dismissed");
+                this.$.modal.closingReason.confirmed = false;
+                this.$.modal.close();
+
             }
-            //,
-
-            // closeModal: function (e) {
-            //     //console.log("Close modal confirmed");
-            //     this.$.modal.closingReason.confirmed = true;
-            //     this.$.modal.close();
-
-
-            // },
-            // closeModalDismiss: function (e) {
-            //     //console.log("Close modal dismissed");
-            //     this.$.modal.closingReason.confirmed = false;
-            //     this.$.modal.close();
-
-            // } 
         });
     </script>
 </dom-module>
