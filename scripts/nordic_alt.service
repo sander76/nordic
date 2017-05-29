@@ -5,7 +5,7 @@ After=network.target
 [Service]
 Type=simple
 User=ecmenc
-ExecStart=/home/ecmenc/nordic/scripts/server.sh
+ExecStart=/home/ecmenc/nordic/scripts/server_alt.sh
 
 [Install]
 WantedBy=multi-user.target
