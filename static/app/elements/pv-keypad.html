@@ -102,6 +102,9 @@
     <script>
         Polymer({
             is: 'pv-keypad',
+            listeners: {
+                'keypad.tap': 'tap_handler'
+            },
             properties: {
                 data: {
                     type: Object,
@@ -139,9 +142,9 @@
             },
 
 
-            ready: function () {
-                this.$.keypad.addEventListener("tap", this.tap_handler.bind(this), false);
-            },
+            // ready: function () {
+            //     this.$.keypad.addEventListener("tap", this.tap_handler.bind(this), false);
+            // },
             tap_handler: function (event, e) {
                 switch (event.target.id) {
                     case "cancel":
@@ -183,7 +186,7 @@
 
 
                         //for (var [key, value] of Object.entries(this.data)) {
-                        for (var key in this.data){
+                        for (var key in this.data) {
                             var value = this.data[key];
                             switch (key) {
                                 case "tiltup":
