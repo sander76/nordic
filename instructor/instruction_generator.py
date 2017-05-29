@@ -104,8 +104,7 @@ def make_germania1():
 
 
 def make_poland():
-    poland_products = [rollerblind1, m25s_vvb, m25s_vvb]
-
+    poland_products = [rollerblind1, m25s_vvb]
     make_instruction("instructions-hdfab-pl.json", poland_products, TXT.pl)
     make_instruction("instructions-hdfab-en.json", poland_products, TXT.en)
 
