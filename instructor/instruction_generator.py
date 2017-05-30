@@ -15,7 +15,7 @@ from instructor.products.test_products import test1, test_blinds1
 from instructor.products.twist import twist_old, twist
 from instructor.translations import load_translations
 
-INSTRUCTION_VERSION = "1.7.6"
+INSTRUCTION_VERSION = "1.7.7"
 MAIN_PATH = "../static/app/instructions"
 
 
