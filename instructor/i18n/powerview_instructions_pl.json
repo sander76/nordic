@@ -67,11 +67,11 @@
     "SAVE_SLAT": "Zatwierdź jako slat pozycja otwarata",
     "SELECT_SKIP_SLAT": "Nie resetuj slat pozycji",
     "SAVE_OPEN": "Zatwierdź jako pozycję otwartą",
-    "SELECT_SKIP_OPEN": "Nie chcę zatwierdzać pozycji otwartej",
+    "SELECT_SKIP_OPEN": "Nie chcę ustawić pozycji otwartej",
     "SAVE_THIS_AS_OPEN": "Zatwierdzić jako pozycję otwartą?",
     "TITLE_SKIP_CLOSE": "Ustawić pozycję zamkniętą?",
     "IS_VVB_RIGHT_STACK": "Czy parkowanie jest po prawej stronie?",
-    "RESET_OPEN": "Zresetuj pozycję otwartą",
+    "RESET_OPEN": "Ustaw ponownie pozycję otwartą",
     "MOVE_BLIND_CLOSE": "Zamykaj produkt do porządanej pozycji zamkniętej.",
     "IS_VVB_SPLIT_STACK": "Czy parkowanie jest lewo-prawo?",
     "SAVE_CLOSE": "Zatwierdź jako pozycję zamkniętą.",
@@ -85,5 +85,5 @@
     "DID_THE_MOTOR_JOG_THREE_TIMES": "Czy motor wykonał 3 x krótki ruch góra/dól?",
     "IS_BLIND_OPENED": "Czy produkt jest w pozycji otwartej?",
     "TITLE_VVB": "VVB tytuł",
-    "RESET_CLOSE": "Zresetuj pozycję zamkniętą"
+    "RESET_CLOSE": "Ustaw ponownie pozycję zamkniętą"
 }
