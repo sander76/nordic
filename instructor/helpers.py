@@ -40,7 +40,7 @@ class TXT:
 
     def get_text(self, lang):
         val = getattr(self, lang)
-        if val is None:
+        if val is None or not val.strip():
             val = getattr(self, TXT.en)
         if self.to_upper:
             val = val.upper()
