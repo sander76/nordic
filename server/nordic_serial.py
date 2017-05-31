@@ -5,7 +5,7 @@ All serial handling with the nordic dongle.
 
 import asyncio
 import time
-from threading import Thread
+from threading import Thread, Lock, Condition
 
 from aiohttp import web
 from serial import Serial
@@ -14,7 +14,6 @@ from server.constants import TRYDELAY, SLEEP_BETWEEN_COMMANDS
 from server.nordic import Nd
 
 from server.id_generator import get_id
-
 
 import logging
 
@@ -32,6 +31,52 @@ def byte_to_string_rep(byte_instance):
     return _string_rep
 
 
+class MockSerial:
+    def __init__(self):
+        self._is_open = True
+        self._port = None
+        self._return_string = "no_serial"
+        self._old_char_count = 0
+        self.cv = Condition()
+        self._incoming = False
+
+    @property
+    def is_open(self):
+        return self._is_open
+
+    @property
+    def port(self):
+        return self._port
+
+    @port.setter
+    def port(self, value):
+        self._port = value
+
+    def open(self):
+        self._is_open = True
+
+    def read(self, chars):
+        if chars is None:
+            return b''
+        self.cv.acquire()
+        while not self._incoming:
+            self.cv.wait()
+        data = self._incoming
+        self._incoming = False
+        self.cv.release()
+        return data
+
+    def inWaiting(self):
+        return None
+
+    def write(self, data):
+        self.cv.acquire()
+        self._incoming = data
+        self.cv.notify()
+        self.cv.release()
+        lgr.debug(data)
+
+
 class NordicSerial:
     def __init__(self, loop, serial_port, serial_speed,
                  try_delay=TRYDELAY, messengers=None):
@@ -39,9 +84,13 @@ class NordicSerial:
         self.network_id = byte_to_string_rep(
             self._network_id)  # string representation of the network id. in hex.
         self.id_change = b'\x00\x03I' + self._network_id
-        self.s = Serial()
-        self.s.port = serial_port
-        self.s.baudrate = serial_speed
+        self.s = None
+        if serial_port:
+            self.s = Serial()
+            self.s.port = serial_port
+            self.s.baudrate = serial_speed
+        else:
+            self.s = MockSerial()
         self.trydelay = try_delay  # Delay time between connection tries
         self.incoming = False  # Flag is set when data is to be expected.
         self.resetting = True  # Flag is set when serial port is being reset.
@@ -71,10 +120,6 @@ class NordicSerial:
         while True:
             if self.s.is_open:
                 if self.refresh_count > 10:
-                    pass
-                    # yield from self.send_connection_status()
-                    # yield from self.send_connection_status(True,
-                    #                                        self.network_id)
                     self.refresh_count = 1
                 else:
                     self.refresh_count += 1
@@ -135,7 +180,6 @@ class NordicSerial:
         self.s.close()
         yield from self.send_connection_status()
         yield from self._connect()
-
 
     @asyncio.coroutine
     def _write_to_nordic(self):

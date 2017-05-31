@@ -1,5 +1,6 @@
 from instructor.actions.connect import connect_m25s_vvb
-from instructor.actions.general import enter_program_mode_vvb, test_blinds
+from instructor.actions.general import enter_program_mode_vvb, test_blinds, \
+    enter_program_mode_vvb_id
 from instructor.actions.initialise import initialise_vvb_right, \
     initialise_vvb_left
 from instructor.actions.motor_direction import vvb_back_left, \
@@ -19,7 +20,7 @@ m25s_vvb = Product(
         vvb_left_stack,
         vvb_right_stack,
         vvb_split_stack,
-        enter_program_mode_vvb,
+        enter_program_mode_vvb_id,
         vvb_set_close_limit,
         vvb_set_open_limit_moveup,
         vvb_confirm_open_limit,

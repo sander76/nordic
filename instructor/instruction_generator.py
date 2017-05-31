@@ -8,7 +8,7 @@ from instructor.products.m25s_duette import m25s_duette_free_alt, \
 from instructor.products.m25s_pleated import m25s_pleated_free, \
     m25s_pleated_tensioned
 from instructor.products.m25s_vb import m25s_25mm_vb_free_alt, \
-    m25s_16mm_vb_free_alt
+    m25s_16mm_vb_free_alt, m25s_vb_free
 from instructor.products.m25s_vvb import m25s_vvb
 from instructor.products.roller import rollerblind1, rollerblind_old
 from instructor.products.test_products import test1, test_blinds1
@@ -17,6 +17,14 @@ from instructor.translations import load_translations
 
 INSTRUCTION_VERSION = "1.7.7"
 MAIN_PATH = "../static/app/instructions"
+
+VB = [m25s_25mm_vb_free_alt,
+      m25s_16mm_vb_free_alt,
+      m25s_vb_free]
+
+
+def make_vb_free():
+    make_instruction('instructions-vb-en.json', VB, TXT.en)
 
 
 def make_luxaflex_nl():
@@ -165,7 +173,7 @@ def make_instruction(file_name, products, lang):
 if __name__ == "__main__":
     # load translation files.
     load_translations()
-
+    make_vb_free()
     make_default()
     make_test()
     make_luxaflex_uk()

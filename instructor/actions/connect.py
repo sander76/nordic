@@ -11,8 +11,8 @@ from server.nordic import Nd
 
 connect_text = Row(Text(25, tr.PRESS_HOLD_BLIND_BUTTON.add_number(1)),
                    Text(25, tr.KEEP_PRESSING_AND_OKAY.add_number(2)),
-                   Text(25, tr.RELEASE_THE_BLIND_BUTTON.add_number(3)),
-                   Text(25, tr.WATCH_THE_BLIND_JOG.add_number(4)))
+                   Text(25, tr.WATCH_THE_BLIND_JOG.add_number(3)),
+                   Text(25, tr.RELEASE_THE_BLIND_BUTTON.add_number(4)))
 
 
 def get_connect(jog_image, button_push_hold_image, button_release_image):

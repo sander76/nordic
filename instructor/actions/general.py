@@ -50,9 +50,12 @@ enter_program_mode_duette = get_enter_program_mode(DUETTE_JOG_1)
 
 enter_program_mode_pleated = get_enter_program_mode(PLEATED_JOG_1)
 
-enter_program_mode_vvb = get_enter_program_mode(
+enter_program_mode_vvb = get_enter_program_mode(VVB_JOG_1)
+
+enter_program_mode_vvb_id = get_enter_program_mode(
     VVB_JOG_1,
-    nav_id="vvb_start_program")
+    nav_id="vvb_start_program"
+)
 
 test_blinds = Step(
     tr.TEST_BLINDS,

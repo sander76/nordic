@@ -6,7 +6,7 @@ from instructor.components import Row, Text, Step, Image, \
     PvKeypadAlt, Commands
 from instructor.constants import RB_JOG_1, DUETTE_JOG_1, RB_JOG_2, VB_JOG_1, \
     VVB_JOG_1, PLEATED_JOG_1, VVB_JOG_2, VVB_LEFT_STACK, VVB_SPLIT_STACK, \
-    VVB_RIGHT_STACK, DUETTE_CLOSE
+    VVB_RIGHT_STACK, DUETTE_CLOSE, VB_JOG_2
 from server.nordic import Nd
 
 
@@ -18,7 +18,9 @@ def get_direction(
         cancel_no=NavigationCommand(1),
         confirm_yes=NavigationCommand(4),
         orientation_image: str = None,
-        nav_id=None):
+        nav_id=None,
+        confirm_question=tr.DID_THE_MOTOR_JOG
+        ):
     if orientation_image is not None:
         orientation_image = Image(30, orientation_image)
     else:
@@ -38,7 +40,7 @@ def get_direction(
                         nordic_commands=confirm_orientation_command,
                         confirm_command=Confirm(
                             jog_image,
-                            tr.DID_THE_MOTOR_JOG,
+                            confirm_question,
                             yes=confirm_yes)
                     )),
                 PvKeypadAlt(
@@ -119,8 +121,8 @@ right_mount_vb = get_direction(
     orientation_question=tr.IS_RIGHT_MOUNT,
     confirm_orientation_command=NordicCommands(
         Nd.ORIENT_BACKROLLER_LEFT),
-    confirm_yes=NavigationCommand(2)
-
+    confirm_yes=NavigationCommand(2),
+    nav_id= "right_mount_vb"
 )
 
 left_mount_vb = get_direction(
@@ -129,10 +131,35 @@ left_mount_vb = get_direction(
     orientation_question=tr.IS_LEFT_MOUNT,
     confirm_orientation_command=NordicCommands(
         Nd.ORIENT_BACKROLLER_RIGHT),
-    cancel_no=NavigationCommand(-1),
+    cancel_no=NavigationCommand("right_mount_vb"),
     confirm_yes=NavigationCommand(1)
 
+)
 
+vb_16mm_type = get_direction(
+    VB_JOG_2,
+    title=tr.IS_VB_16MM,
+    orientation_question=tr.IS_VB_16MM,
+    confirm_orientation_command=NordicCommands(
+        Nd.RESET,
+        DelayedCommand(Nd.M25S_VENETIAN_16MM, PRODUCT_SET_DELAY)
+    ),
+    cancel_no=NavigationCommand(1),
+    confirm_yes=NavigationCommand("right_mount_vb"),
+    confirm_question=tr.DID_THE_MOTOR_JOG_TWO_TIMES,
+    nav_id="vb_16mm"
+)
+vb_25mm_type = get_direction(
+    VB_JOG_2,
+    title=tr.IS_VB_25MM,
+    orientation_question=tr.IS_VB_25MM,
+    confirm_orientation_command=NordicCommands(
+        Nd.RESET,
+        DelayedCommand(Nd.M25S_VENETIAN_25MM, PRODUCT_SET_DELAY)
+    ),
+    cancel_no=NavigationCommand("vb_16mm"),
+    confirm_yes=NavigationCommand("right_mount_vb"),
+    confirm_question=tr.DID_THE_MOTOR_JOG_TWO_TIMES
 )
 
 vvb_left_stack = get_direction(
@@ -146,6 +173,7 @@ vvb_left_stack = get_direction(
     cancel_no=NavigationCommand(1),
     confirm_yes=NavigationCommand("vvb_start_program"),
     orientation_image=VVB_LEFT_STACK,
+    confirm_question=tr.DID_THE_MOTOR_JOG_TWO_TIMES,
     nav_id="vvb_left_stack"
 )
 vvb_right_stack = get_direction(
@@ -158,7 +186,8 @@ vvb_right_stack = get_direction(
                        PRODUCT_SET_DELAY)),
     cancel_no=NavigationCommand(1),
     confirm_yes=NavigationCommand("vvb_start_program"),
-    orientation_image=VVB_RIGHT_STACK
+    orientation_image=VVB_RIGHT_STACK,
+    confirm_question=tr.DID_THE_MOTOR_JOG_TWO_TIMES
 )
 
 vvb_split_stack = get_direction(
@@ -171,7 +200,8 @@ vvb_split_stack = get_direction(
                        PRODUCT_SET_DELAY)),
     cancel_no=NavigationCommand("vvb_left_stack"),
     confirm_yes=NavigationCommand("vvb_start_program"),
-    orientation_image=VVB_SPLIT_STACK
+    orientation_image=VVB_SPLIT_STACK,
+    confirm_question=tr.DID_THE_MOTOR_JOG_TWO_TIMES
 )
 
 vvb_back_left = get_direction(

@@ -32,89 +32,51 @@ FLAT_JSON_FORMAT = "powerview_instructions_{}.json"
 class Translations:
     HANGPRODUCT = TXT(
         "HANG PRODUCT.",  # English language.
-        "PRODUCT OPHANGEN.",  # Dutch language.
-        il=None,  # Israeli language.
-        de="Produkt aufhängen",  # German language
-        dk=None,  # Danish language
-        pl="ZAWIEŚ PRODUKT",  # Polish language
         to_upper=True
     )
 
     HANG_TWIST = TXT(
         "HANG THE TWIST BLIND",  # English language.
-        "HANG DE TWIST BLIND OP",  # Dutch language.
-        il=None,
-        de="Hängen Sie das Doppelrollo auf",
-        dk=None,
-        pl="ZAWIEŚ ROLETĘ TWIST",
         to_upper=True)
 
     HANG_RB = TXT(
         "HANG THE ROLLERBLIND",
-        "HANG HET ROLGORDIJN OP",
-        il=None,
-        de="Hängen Sie das Rollo auf",
-        dk=None,
-        pl="ZAWIEŚ ROLETĘ",
         to_upper=True)
 
     CONNECT = TXT(
-        "CONNECT.",
-        "VERBINDEN.",
-        il=None,
-        de="VERBINDEN",
-        pl="PODŁĄCZ",
-        dk=None)
+        "CONNECT.")
 
     INITIALISE = TXT(
-        "INIT.",
-        "INITALISEREN.",
-        il=None,
-        de="Initialisieren",
-        pl="START",
-        dk=None)
+        "INIT.")
 
     ENTER_PROGRAM_MODE = TXT(
         "ENTER PROGRAM MODE.",
-        "PROGRAMMEER MODUS.",
-        il=None,
-        de="Programmiermodus",
-        dk=None,
-        pl="WEJDŹ W TRYB PROGRAMOWANIA",
         to_upper=True)
 
     BLIND_DIRECTION = TXT(
-        "CHECK BLIND DIRECTION.",
-        "CONTROLEER BLIND RICHTING.",
-        il=None,
-        de="Kontrollieren Sie die Laufrichtung",
-        pl="SPRAWDŹ KIERUNEK ZWIJANIA ROLETY",
-        dk=None)
+        "CHECK BLIND DIRECTION."
+    )
 
     LEFT_MOUNT = TXT(
-        "MOTOR ON THE LEFT",
-        "MOTOR LINKS",
-        pl="MOTOR ZAMONTOWANY LEWA STRONA",
-        de="Motor Links"
+        "MOTOR ON THE LEFT"
+
     )
 
     IS_LEFT_MOUNT = TXT(
-        "Is the motor on the **left** ?",
-        "Is de motor **links** gemonteerd ?",
-        de="Ist der Motor **links** montiert?",
-        pl="Czy motor jest po **lewej** stronie?"
+        "Is the motor on the **left** ?"
+
     )
 
     IS_RIGHT_MOUNT = TXT(
-        "Is the motor on the **right** ?",
-        "Is de motor **rechts** gemonteerd ?",
-        de="Ist der Motor **rechts** montiert?",
-        pl="Czy motor jest po **prawej** stronie?"
+        "Is the motor on the **right** ?"
     )
 
     IS_VVB_LEFT_STACK = TXT("Is the motor a left stack?")
     IS_VVB_RIGHT_STACK = TXT("Is the motor a right stack?")
     IS_VVB_SPLIT_STACK = TXT("Is the motor a split stack?")
+
+    IS_VB_16MM = TXT("Is the VB a 16mm?")
+    IS_VB_25MM = TXT("Is the VB a 25mm?")
 
     RIGHT_MOUNT = TXT(
         "MOTOR ON THE RIGHT",
@@ -555,25 +517,7 @@ class Translations:
         "Sluit richting",
         to_upper=True)
 
-
-# def do_text(lang):
-#     def wrapper(o):
-#         if isinstance(o, TXT):
-#             txt = o.get_plain_text(lang)
-#             return {
-#                 "ref_en": o.get_plain_text('en'),
-#                 lang: txt}
-#
-#         elif o is Translations:
-#             _dct = {key: value for key, value in vars(o).items() if
-#                     not key.startswith('_')}
-#
-#             return _dct
-#             # return dict(o.__dict__)
-#         else:
-#             return
-#
-#     return wrapper
+    PRODUCT_M25S_VB = TXT("M25s vb")
 
 
 def _get_translation_file_path(lang):
@@ -678,7 +622,6 @@ def export_translations():
                 other_val = _org_json.get(key, '')
                 if val is None:
                     val = other_val
-
 
                 _new_json[key] = val
 
