@@ -7,6 +7,7 @@
 <link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
@@ -16,7 +17,10 @@
 <link rel="import" href="my-modal.html">
 <link rel="import" href="instruction-step.html">
 <link rel="import" href="../bower_components/paper-toast/paper-toast.html">
-<link rel="import" href="serial-data.html" />
+<link rel="import" href="serial-data.html">
+<link rel="import" href="my-progress.html">
+<!--<link rel="import" href="my-tab.html">-->
+
 <dom-module id="my-app">
     <template>
         <style include="iron-flex"></style>
@@ -81,7 +85,7 @@
 
         <app-drawer-layout>
             <app-drawer>
-                <div class="layout flex vertical" style="height:100%;">
+                <div class="layout flex vertical" style="height:100%">
                     <div class="logo">
                         <img src="../images/logo/hunterdouglas.png">
                     </div>
@@ -98,6 +102,10 @@
                     </div>
                 </div>
             </app-drawer>
+            <app-header>
+                <my-progress currentstep="[[currentStepIdx]]" totalsteps="[[currentproductsteps.length]]"></my-progress>
+                <!--<my-tab currentstep="[[currentStepIdx]]" totalsteps="[[currentproductsteps.length]]"></my-tab>-->
+            </app-header>
             <instruction-step id="instruction_step" data="[[currentstep]]"></instruction-step>
         </app-drawer-layout>
         <my-modal modaldata="[[modaldata]]" id="modl"></my-modal>
@@ -183,6 +191,7 @@
                 this.definitions_version = response.response.version;
                 this.currentproduct = this.all_products[this.routeData.product];
                 this.currentproductsteps = this.currentproduct.steps;
+                // this.current_product_stepcount = this.currentproductsteps.length;
                 this.set_current_step(0);
             },
             _routeProductChanged1: function (newValue) {
