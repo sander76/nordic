@@ -1,0 +1,92 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-progress/paper-progress.html">
+
+<dom-module id="my-progress">
+    <style>
+        paper-progress {
+            width: 100%;
+            --paper-progress-transition-duration: 0.08s;
+            --paper-progress-transition-timing-function: ease;
+            --paper-progress-transition-transition-delay: 0s;
+        }
+
+        #stepcontainer div {
+            display: inline-block;
+        }
+
+        .steplabel {
+            text-align: right;
+            position: absolute;
+            top:0;
+        }
+
+        :host{
+            --paper-progress-height: var(--progress-bar-height);
+            height:var(--progress-bar-height);
+            font-size: 1em;
+        }
+    </style>
+    <template>
+
+        <paper-progress class="transiting" value="[[_currentstep(currentstep)]]" min="0" max="[[totalsteps]]"></paper-progress>
+        <div id="stepcontainer">
+            <template is="dom-repeat" items="[[steplist]]">
+                <div class="steplabel" style$="right: [[item.margin]] ;"><span>[[item.stepnr]]</span></div>
+            </template>
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: 'my-progress',
+            properties: {
+                currentstep: {
+                    type: Number,
+                    
+                    observer: '_currentstepChanged'
+                },
+                totalsteps: {
+                    type: Number
+                },
+                steplist: {
+                    type: Array,
+                    value: [],
+                    computed: '_totalstepsChanged(totalsteps)'
+                },
+                stepoffset: {
+                    type: Number,
+                    value: 1
+                }
+
+            },
+            _currentstepChanged: function (newvalue, oldvalue) {
+
+            },
+            _currentstep: function (currentstep) {
+                return currentstep + this.stepoffset;
+            },
+            ready: function () {
+                this.steplist = [{
+                    stepnr: 'test'
+                }];
+            },
+            _totalstepsChanged: function (newvalue) {
+                // if (newvalue) {
+                var lst = []
+                var increment = 100.0 / newvalue;
+                for (var i = 0; i < newvalue; i += 1) {
+                    lst.push({
+                        stepnr: i,
+                        margin: ((newvalue - (i + this.stepoffset)) * increment) + '%'
+                    });
+                }
+                //this.steplist=lst;
+                //this.set('steplist',lst);
+                return lst;
+                // }
+            }
+
+
+
+        });
+    </script>
+</dom-module>
