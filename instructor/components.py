@@ -1,5 +1,6 @@
 import json
 
+from instructor.constants import DEFAULT_DELAY
 from instructor.translations import Translations as tr
 # import instructor.translations as tr
 from instructor.helpers import TXT, NumberedText
@@ -28,7 +29,7 @@ class Previous(NextPrevious):
 
 
 class DelayedCommand:
-    def __init__(self, command, delay):
+    def __init__(self, command, delay=DEFAULT_DELAY):
         if not isinstance(command, Nd):
             raise UserWarning("Command is not correct")
         self.command = command.name

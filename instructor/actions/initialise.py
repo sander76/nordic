@@ -3,13 +3,13 @@ from instructor.translations import Translations as tr
 from instructor.components import Row, Text, Step, Image, Confirm, \
     DelayedCommand, NordicCommands, PvKeypadAlt, Commands
 from instructor.constants import RB_JOG_2, TWIST_JOG_2, VB_JOG_2, \
-    DUETTE_JOG_2, VVB_JOG_1, PLEATED_JOG_2, DUETTE_JOG_3
+    DUETTE_JOG_2, VVB_JOG_1, PLEATED_JOG_2, DUETTE_JOG_3, PRODUCT_SET_DELAY
 from server.nordic import Nd
 
 textrow = Row(Text(30, tr.PRESS_OKAY_BUTTON.add_number(1)),
               Text(30, tr.WATCH_THE_BLIND_JOG_TWO_TIMES.add_number(2)))
 
-PRODUCT_SET_DELAY = 6
+
 
 
 def get_initialise(jog_image, product_command=Nd.M25T_ROLLER):

@@ -1,3 +1,7 @@
+
+PRODUCT_SET_DELAY = 6 # command delay after motor reset
+DEFAULT_DELAY = 2 # normal command delay after motor reset.
+
 VB_JOG_1 = "/app/images/m25s_vb_motor_jog1x.png"
 VB_JOG_2 = "/app/images/m25s_vb_motor_jog2x.png"
 VB_BUTTON_PUSH_HOLD = "/app/images/m25s_vb_motor_button_push.png"

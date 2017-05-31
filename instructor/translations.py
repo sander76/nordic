@@ -269,12 +269,7 @@ class Translations:
         pl="Czy produkt sie zwija")
 
     DID_THE_MOTOR_JOG_TWO_TIMES = TXT(
-        "Did the motor jog two times?",
-        "Heeft de motor twee keer bewogen?",
-        il=None,
-        de="Hat sich der Motor zweimal kurz bewegt?",
-        dk=None,
-        pl="Czy produkt wykonał 2 x  krótki ruch góra/dól?")
+        "Did the motor jog two times?")
 
     DID_THE_MOTOR_JOG_THREE_TIMES = TXT(
         "Did the motor jog three times?",

@@ -169,7 +169,9 @@ vvb_left_stack = get_direction(
     confirm_orientation_command=NordicCommands(
         Nd.RESET,
         DelayedCommand(Nd.M25S_VVB_LEFT_STACK,
-                       PRODUCT_SET_DELAY)),
+                       PRODUCT_SET_DELAY),
+        DelayedCommand(Nd.ORIENT_VVB_LEFT)
+    ),
     cancel_no=NavigationCommand(1),
     confirm_yes=NavigationCommand("vvb_start_program"),
     orientation_image=VVB_LEFT_STACK,
@@ -183,7 +185,9 @@ vvb_right_stack = get_direction(
     confirm_orientation_command=NordicCommands(
         Nd.RESET,
         DelayedCommand(Nd.M25S_VVB_RIGHT_STACK,
-                       PRODUCT_SET_DELAY)),
+                       PRODUCT_SET_DELAY),
+        DelayedCommand(Nd.ORIENT_VVB_RIGHT)
+    ),
     cancel_no=NavigationCommand(1),
     confirm_yes=NavigationCommand("vvb_start_program"),
     orientation_image=VVB_RIGHT_STACK,
