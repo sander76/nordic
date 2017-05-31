@@ -7,7 +7,7 @@
 <link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
-<link rel="import" href="../bower_components/paper-progress/paper-progress.html">
+
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
@@ -17,7 +17,10 @@
 <link rel="import" href="my-modal.html">
 <link rel="import" href="instruction-step.html">
 <link rel="import" href="../bower_components/paper-toast/paper-toast.html">
-<link rel="import" href="serial-data.html" />
+<link rel="import" href="serial-data.html">
+<link rel="import" href="my-progress.html">
+<!--<link rel="import" href="my-tab.html">-->
+
 <dom-module id="my-app">
     <template>
         <style include="iron-flex"></style>
@@ -30,12 +33,7 @@
                 background-color: var(--primary-color);
                 color: #fff;
             }
-            paper-progress {
-                width:100%;
-                --paper-progress-transition-duration: 0.08s;
-  --paper-progress-transition-timing-function: ease;
-  --paper-progress-transition-transition-delay: 0s;
-            }
+
             .drawer-list {
                 margin: 0 20px;
             }
@@ -105,9 +103,9 @@
                 </div>
             </app-drawer>
             <app-header>
-                <!--<paper-progress value="[currentStepIdx]" min="0" max="[currentproductsteps.length]"></paper-progress>-->
-                <paper-progress class="transiting" value="[[currentStepIdx]]" min="0" max="[[currentproductsteps.length]]"></paper-progress>
-                </app-header>
+                <my-progress currentstep="[[currentStepIdx]]" totalsteps="[[currentproductsteps.length]]"></my-progress>
+                <!--<my-tab currentstep="[[currentStepIdx]]" totalsteps="[[currentproductsteps.length]]"></my-tab>-->
+            </app-header>
             <instruction-step id="instruction_step" data="[[currentstep]]"></instruction-step>
         </app-drawer-layout>
         <my-modal modaldata="[[modaldata]]" id="modl"></my-modal>
