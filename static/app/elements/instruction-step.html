@@ -89,14 +89,16 @@
                 </div>
                 <div class="horizontal layout justified">
                     <div>
-                        <paper-button noink class="instruction" raised on-tap="_prev" hidden="[[previous_hidden]]">
+                        <div on-tap="_prev">[[data.previous.caption]]</div>
+                        <!--<paper-button noink class="instruction" raised on-tap="_prev" hidden="[[previous_hidden]]">
                             [[data.previous.caption]]
-                        </paper-button>
+                        </paper-button>-->
                     </div>
                     <div>
-                        <paper-button noink class="instruction" raised on-tap="_next">
+                        <div on-tap="_next">[[data.next.caption]]</div>
+                        <!--<paper-button noink class="instruction" raised on-tap="_next">
                             [[data.next.caption]]
-                        </paper-button>
+                        </paper-button>-->
                     </div>
                 </div>
             </div>
