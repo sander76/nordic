@@ -15,7 +15,7 @@ from instructor.products.test_products import test1, test_blinds1
 from instructor.products.twist import twist_old, twist
 from instructor.translations import load_translations
 
-INSTRUCTION_VERSION = "1.7.7"
+INSTRUCTION_VERSION = "1.7.8"
 MAIN_PATH = "../static/app/instructions"
 
 VB = [m25s_25mm_vb_free_alt,
@@ -43,14 +43,13 @@ def make_luxaflex_nl():
 
 
 def make_luxaflex_uk():
-    _path = os.path.join(MAIN_PATH, 'instructions-luxaflex-en.json')
-    instruction = Instruction(INSTRUCTION_VERSION)
-    instruction.products.append(rollerblind1)
-    instruction.products.append(twist)
+    instructions = [
+        rollerblind1,
+        twist,
+        m25s_vb_free
+    ]
+    make_instruction('instructions-luxaflex-en.json',instructions,TXT.en)
 
-    en = ToJson(lang='en').encode(instruction)
-    with open(_path, 'w') as fl:
-        fl.write(en)
 
 
 def make_default():
@@ -177,6 +176,7 @@ if __name__ == "__main__":
     make_default()
     make_test()
     make_luxaflex_uk()
+
     make_luxaflex_nl()
     make_holis()
     make_test1()
