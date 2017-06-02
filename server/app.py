@@ -6,7 +6,7 @@ from server.nordic_serial import NordicSerial
 from server.webserver.routes import add_routes
 
 
-def get_app(serial_port, serial_speed,static_folder):
+def get_app(serial_port, serial_speed, static_folder, instructions_folder):
     app = web.Application()
 
     ws_messenger = WebSocketMessenger(app)
@@ -18,6 +18,6 @@ def get_app(serial_port, serial_speed,static_folder):
     app['serial'] = serial
     app['sockets'] = []
 
-    add_routes(app, serial,static_folder)
+    add_routes(app, serial, static_folder, instructions_folder)
 
     return app
