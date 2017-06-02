@@ -16,7 +16,7 @@ from instructor.products.twist import twist_old, twist
 from instructor.translations import load_translations
 
 INSTRUCTION_VERSION = "1.7.9"
-MAIN_PATH = "../static/app/instructions"
+MAIN_PATH = "../static/instructions/"
 
 VB = [m25s_25mm_vb_free_alt,
       m25s_16mm_vb_free_alt,
