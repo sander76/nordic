@@ -1,0 +1,186 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/iron-a11y-keys/iron-a11y-keys.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="ui-cell.html">
+<link rel="import" href="../bower_components/marked-element/marked-element.html">
+
+<dom-module id="instruction-step">
+    <style include="shared-styles"></style>
+    <style>
+        iron-icon.ok {
+            color: var(--icon-ok-color) !important;
+        }
+
+        iron-icon.cross {
+            color: var(--icon-cross-color) !important;
+        }
+
+         :host {
+            height: 100%;
+        }
+
+        #col1 {
+            min-width: 4em;
+        }
+
+
+
+        .rule {
+            margin: 5px;
+        }
+
+        h1 {
+            font-size: 22px;
+            margin: 16px 0;
+            color: #212121;
+        }
+
+        .markdown-html {
+            font-size: 1.4em;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+        }
+
+        #container {
+            min-height: 100vh;
+            margin-top: var(--container-margin-top);
+        }
+        .fakebutton{
+            padding:10px;
+            border: 1px solid darkgray;
+            min-width:60px;
+            text-align: center;
+            background: transparent;
+            cursor: pointer;
+        }
+    </style>
+    <style include="iron-flex iron-flex-alignment"></style>
+    <template>
+        <div class="vertical layout flex" id="container">
+            <div style="margin:10px;" class="flex vertical layout">
+                <marked-element markdown="[[data.title.content]]">
+                    <div class="markdown-html"></div>
+                </marked-element>
+                <div class="flex vertical layout" id="uicells">
+                    <!--<template is="dom-repeat" items="[[instructions]]">-->
+                    <div class="horizontal layout start rule">
+                        <ui-cell id="col1" data="[[row1.col1]]"></ui-cell>
+                        <ui-cell id="col2" data="[[row1.col2]]"></ui-cell>
+                        <ui-cell id="col3" data="[[row1.col3]]"></ui-cell>
+                        <ui-cell id="col4" data="[[row1.col4]]"></ui-cell>
+                    </div>
+                    <div class="horizontal layout start rule">
+                        <ui-cell data="[[row2.col1]]"></ui-cell>
+                        <ui-cell data="[[row2.col2]]"></ui-cell>
+                        <ui-cell data="[[row2.col3]]"></ui-cell>
+                        <ui-cell data="[[row2.col4]]"></ui-cell>
+                    </div>
+                    <div class="horizontal layout start rule">
+                        <ui-cell data="[[row3.col1]]"></ui-cell>
+                        <ui-cell data="[[row3.col2]]"></ui-cell>
+                        <ui-cell data="[[row3.col3]]"></ui-cell>
+                        <ui-cell data="[[row3.col4]]"></ui-cell>
+                    </div>
+                    <!--</template>-->
+
+                </div>
+                <div class="horizontal layout justified">
+                    <div>
+                        <div class="fakebutton" on-tap="_prev">[[data.previous.caption]]</div>
+                        <!--<paper-button noink class="instruction" raised on-tap="_prev" hidden="[[previous_hidden]]">
+                            [[data.previous.caption]]
+                        </paper-button>-->
+                    </div>
+                    <div>
+                        <div class="fakebutton" on-tap="_next">[[data.next.caption]]</div>
+                        <!--<paper-button noink class="instruction" raised on-tap="_next">
+                            [[data.next.caption]]
+                        </paper-button>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<footer>
+                
+            </footer>-->
+    </template>
+    <script>
+        Polymer({
+            is: 'instruction-step',
+            properties: {
+                data: {
+                    type: Object,
+                    observer: "dataChanged"
+                }
+                // ,
+                // active: {
+                //     type: Boolean
+                // }
+            },
+            dataChanged: function (_new, _old) {
+                var uicells = Polymer.dom(this.root).querySelectorAll("ui-cell");
+                this.instructions = this.data.instructions;
+                if (this.instructions) {
+                    this.row1 = this.data.instructions[0];
+                    this.row2 = this.data.instructions[1] || [{}, {}, {}, {}];
+                    this.row3 = this.data.instructions[2] || [{}, {}, {}, {}];
+                    for (var i = 0; i < uicells.length; i++) {
+                        uicells[i]._dataChanged();
+
+                    }
+                }
+
+            },
+            // getType: function (item, container) {
+            //     if (item.type == "text") {
+            //         var el = document.createElement('p');
+            //         el.innerText = item.content;
+            //         return el;
+
+            //     }
+            // },
+            // get_column: function (item, column) {
+            //     var col = item[column];
+            //     if (col) {
+            //         return col;
+            //     } else {
+            //         return {};
+            //     }
+            // },
+            _next: function (e) {
+                this.fire('gotopage', 1);
+                console.log("Next button clicked.");
+            },
+            _prev: function (e) {
+                this.fire('gotopage', -1);
+                console.log("Previous button clicked.");
+            },
+
+            // _selectedChanged: function () {
+            //     var active = this.curitem === this.selected;
+            //     if (active) {
+            //         document.reset_keys();
+            //     }
+            //     this.set("active", active);
+            // },
+            // deactivate: function () {
+            //     //this.set("active", false);
+
+
+            // },
+            activate: function () {
+                var keypads = Polymer.dom(this.root).querySelectorAll("ui-cell");
+                for (var i = 0; i < keypads.length; i++) {
+                    keypads[i].activate();
+                }
+            }
+
+
+        });
+    </script>
+</dom-module>

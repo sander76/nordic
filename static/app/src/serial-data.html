@@ -1,0 +1,105 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="serial-queue.html">
+<link rel="import" href="ws-element.html">
+
+<dom-module id="serial-data">
+    <style>
+        #toast {
+            width: 80vw;
+        }
+    </style>
+    <template>
+		<serial-queue id="queue"></serial-queue>
+        <iron-ajax auto="" id="statusrequest" url="/serialstatus/status" handle-as="json" on-response="parse_incoming"></iron-ajax>
+        
+		<div>PowerView dongle:
+			<span>[[nordic]]</span>
+		</div>
+		<div>Network id:
+			<span>[[networkid]]</span>
+		</div>
+		<ws-element id="incoming" protocol="echo-protocol"></ws-element>
+		<paper-toast id="toast" duration="0">
+			No connection with the blind. Trying to (re)connect.<br> This message should disappear in approx 15 seconds.. If not:
+			<ul>
+				<li>Hit F5 to refresh this screen.</li>
+				<li>Unplug and plug the dongle</li>
+			</ul>
+		</paper-toast>
+	</template>
+    <script>
+        Polymer({
+            is: 'serial-data',
+            properties: {
+                serialdata: {
+                    type: Array,
+                    value: []
+                },
+                //connected: {
+                //    type: String,
+                //    value: "Not connected"
+                //},
+                nordic: {
+                    type: String,
+                    value: "Unknown",
+                    notify: true
+                },
+                networkid: {
+                    type: String,
+                    value: "Unknown"
+                }
+                
+            },
+            parse_incoming(event){
+                var js = event.detail.response
+                this._parse_incoming(js)
+            },
+            _parse_incoming:function(msg){
+                    // 
+                    if (msg.to !== undefined) {
+                        this.$.queue.addToQueue(msg);
+                    }
+                    if (msg.from !== undefined) {
+                        this.$.queue.addToQueue(msg);
+                    }
+                    if (msg.nordic !== undefined) {
+                        if (msg.nordic) {
+                            //self.set('nordic', "connected");
+                            this.nordic = "connected";
+                            this.$.toast.close();
+                        } else {
+                            //self.set('nordic', "not connected");
+                            this.nordic = "not connected"
+                            this.$.toast.open();
+                        }
+                    }
+                    if (msg.networkid !== undefined) {
+                        this.set('networkid', msg.networkid);
+                    }
+                    // var nordic = msg.nordic || self.nordic; self.set('nordic',nordic);
+                },
+            ready: function() {
+                var self = this;
+                var url = "ws:" + location.host + "/ws";
+                this.$.incoming.connect(url);
+
+                this.$.incoming.addEventListener('onmessage', function(message) {
+                    var msg = JSON.parse(message.detail);
+                    self._parse_incoming(msg);
+                });
+                // this.$.incoming.addEventListener('onopen', function(message) {
+                //     console.log(message.detail);
+                //     //self.set('nordic', "Not connected");
+                //     self.nordic = "not connected";
+                //     self.$.toast.open();
+                // });
+                this.$.incoming.addEventListener('onclose', function(message) {
+                    //self.set('nordic', 'Unknown');
+                    self.nordic = "Unkown";
+                    self.$.toast.open();
+                });
+            }
+
+        });
+    </script>
+</dom-module>

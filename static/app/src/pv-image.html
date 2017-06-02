@@ -1,0 +1,57 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="pv-image">
+    <style>
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .container {
+            margin: 20px;
+            height: 100%;
+        }
+    </style>
+    <template>
+        <div class="container" hidden$="[[hide]]">
+            <img id="pvimg" class="instr_img" src="#">
+        </div>
+
+    </template>
+    <script>
+        Polymer({
+            is: 'pv-image',
+            properties: {
+                data: {
+                    type: Object,
+                    value: {}
+                    //,
+                    //observer: '_dataChanged'
+                },
+                hide: {
+                    type: Boolean
+                }
+
+            },
+            // refresh:function(){
+            //     this._dataChanged(true);
+            // },
+            _dataChanged: function (_new, _old) {
+                if (_new) {
+                    if (this.data.type == 'image') {
+                        this.hide = false;
+                        console.log("image active changed.");
+                        this.$.pvimg.src = this.data.src
+                    } else {
+                        this.hide = true;
+                    }
+                } else {
+                    this.hide = true;
+                }
+
+
+
+            }
+        });
+    </script>
+</dom-module>
