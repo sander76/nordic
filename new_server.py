@@ -2,7 +2,8 @@ import os
 from aiohttp import web
 
 from server.app import get_app
-from server.constants import SERIAL_SPEED, STATIC_FILES_FOLDER
+from server.constants import SERIAL_SPEED, STATIC_FILES_FOLDER, \
+    INSTRUCTIONS_FOLDER
 from server.mylogger.mylogger import setup_logging
 
 import argparse
@@ -24,7 +25,7 @@ if __name__ == "__main__":
 
     instructions_folder = args.instructionsfolder
     if not instructions_folder:
-        instructions_folder = os.path.join(STATIC_FILES_FOLDER, 'instructions')
+        instructions_folder = INSTRUCTIONS_FOLDER
 
     setup_logging("server/logging.json")
     lgr = logging.getLogger(__name__)
