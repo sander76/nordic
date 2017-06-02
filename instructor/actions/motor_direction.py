@@ -20,7 +20,7 @@ def get_direction(
         orientation_image: str = None,
         nav_id=None,
         confirm_question=tr.DID_THE_MOTOR_JOG
-        ):
+):
     if orientation_image is not None:
         orientation_image = Image(30, orientation_image)
     else:
@@ -122,7 +122,7 @@ right_mount_vb = get_direction(
     confirm_orientation_command=NordicCommands(
         Nd.ORIENT_BACKROLLER_LEFT),
     confirm_yes=NavigationCommand(2),
-    nav_id= "right_mount_vb"
+    nav_id="right_mount_vb"
 )
 
 left_mount_vb = get_direction(
@@ -186,7 +186,7 @@ vvb_right_stack = get_direction(
         Nd.RESET,
         DelayedCommand(Nd.M25S_VVB_RIGHT_STACK,
                        PRODUCT_SET_DELAY),
-        DelayedCommand(Nd.ORIENT_VVB_RIGHT)
+        DelayedCommand(Nd.ORIENT_VVB_LEFT)
     ),
     cancel_no=NavigationCommand(1),
     confirm_yes=NavigationCommand("vvb_start_program"),
@@ -201,7 +201,9 @@ vvb_split_stack = get_direction(
     confirm_orientation_command=NordicCommands(
         Nd.RESET,
         DelayedCommand(Nd.M25S_VVB_CENTER_STACK,
-                       PRODUCT_SET_DELAY)),
+                       PRODUCT_SET_DELAY),
+        DelayedCommand(Nd.ORIENT_VVB_LEFT)
+    ),
     cancel_no=NavigationCommand("vvb_left_stack"),
     confirm_yes=NavigationCommand("vvb_start_program"),
     orientation_image=VVB_SPLIT_STACK,

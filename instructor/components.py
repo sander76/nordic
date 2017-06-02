@@ -11,10 +11,15 @@ from server.nordic import Nd
 COMMANDS = server.nordic.__dict__
 
 
-class NextPrevious:
-    def __init__(self, button_text, goto, active):
-        self.caption = button_text
+class NavigationCommand:
+    def __init__(self, goto):
         self.goto = goto
+
+
+class NextPrevious(NavigationCommand):
+    def __init__(self, button_text, goto, active):
+        NavigationCommand.__init__(self, goto)
+        self.caption = button_text
         self.active = active
 
 
@@ -99,15 +104,10 @@ class UiElement:
             raise UserWarning("not an integer : {}".format(width))
 
 
-class NavigationCommand:
-    def __init__(self, goto):
-        self.goto = goto
-
-
 class Confirm:
     def __init__(self, img, text, yes_text=tr.YES, no_text=tr.NO,
-                 yes=NavigationCommand(1),
-                 no=NavigationCommand(0)):
+                 yes: NavigationCommand = NavigationCommand(1),
+                 no: NavigationCommand = NavigationCommand(0)):
         self.img = img
         self.text = text
         self.yes = yes

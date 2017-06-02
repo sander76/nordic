@@ -1,18 +1,21 @@
 from instructor.translations import Translations as tr
 from instructor.actions.general import keypad_move_buttons
 from instructor.components import NordicCommands, Step, Row, Text, Image, \
-    Confirm, PvKeypadAlt, Commands
+    Confirm, PvKeypadAlt, Commands, NavigationCommand
 from instructor.constants import RB_JOG_1, VB_JOG_1, RB_MOVE_UP, \
     DUETTE_JOG_1, TWIST_MOVE_UP, ID_TEST_BLINDS, PLEATED_JOG_1, VVB_JOG_1
 from server.nordic import Nd
+
 
 # savepositionBottom = PvKeypad(30, ['okay'], 'okay',
 #                               NordicCommands(Nd.SAVE_POSITION_BOTTOM))
 
 
 def get_bottom_limit(
-        jog_image=RB_JOG_1, confirm_image=RB_JOG_1,
-        confirm_text=tr.DID_THE_MOTOR_JOG, title=tr.TITLE_SET_BOTTOM_LIMIT,
+        jog_image=RB_JOG_1,
+        confirm_image=RB_JOG_1,
+        confirm_text=tr.DID_THE_MOTOR_JOG,
+        title=tr.TITLE_SET_BOTTOM_LIMIT,
         confirm_yes_goto=1,
         move_blind_message=tr.MOVE_BLIND_BOTTOM,
         save_position=tr.SAVE_BOTTOM):
@@ -29,7 +32,8 @@ def get_bottom_limit(
                         nordic_commands=NordicCommands(
                             Nd.SAVE_POSITION_BOTTOM),
                         confirm_command=Confirm(confirm_image, confirm_text,
-                                                yes=confirm_yes_goto)
+                                                yes=NavigationCommand(
+                                                    confirm_yes_goto))
                     )
                 ),
                 Image(30, jog_image))

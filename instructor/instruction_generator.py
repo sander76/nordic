@@ -15,7 +15,7 @@ from instructor.products.test_products import test1, test_blinds1
 from instructor.products.twist import twist_old, twist
 from instructor.translations import load_translations
 
-INSTRUCTION_VERSION = "1.7.8"
+INSTRUCTION_VERSION = "1.7.9"
 MAIN_PATH = "../static/app/instructions"
 
 VB = [m25s_25mm_vb_free_alt,
