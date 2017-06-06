@@ -1,6 +1,5 @@
-
-PRODUCT_SET_DELAY = 6 # command delay after motor reset
-DEFAULT_DELAY = 2 # normal command delay after motor reset.
+PRODUCT_SET_DELAY = 6  # command delay after motor reset
+DEFAULT_DELAY = 2  # normal command delay after motor reset.
 
 VB_JOG_1 = "/app/images/m25s_vb_motor_jog1x.png"
 VB_JOG_2 = "/app/images/m25s_vb_motor_jog2x.png"
@@ -36,16 +35,13 @@ DUETTE_BUTTON_PUSH_HOLD = "/app/images/m25s_duette_motor_button_push.png"
 DUETTE_BUTTON_RELEASE = "/app/images/m25s_duette_motor_button_release.png"
 DUETTE_CLOSE = "/app/images/m25s_duette_motor_close.png"
 
-
 PLEATED_JOG_1 = "/app/images/m25s_duette_motor_jog1x.png"
 PLEATED_JOG_2 = "/app/images/m25s_duette_motor_jog2x.png"
 PLEATED_BUTTON_PUSH_HOLD = "/app/images/m25s_duette_motor_button_push.png"
 PLEATED_BUTTON_RELEASE = "/app/images/m25s_duette_motor_button_release.png"
 
-
 ID_START = "start"
 ID_TEST_BLINDS = "testblinds"
 ID_HOIST = "hoist"
-
-
-
+ID_CHOOSE_PRODUCT = "choose_product"
+ID_CHOOSE_SAME="choose_same"
