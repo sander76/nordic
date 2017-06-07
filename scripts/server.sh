@@ -1,7 +1,7 @@
 #!/bin/bash
 
 HOME=/home/pi
-VENVDIR=$HOME/venvs/nordic
+VENVDIR=$HOME/venv/nordic
 BINDIR=$HOME/nordic
 
 . $VENVDIR/bin/activate
