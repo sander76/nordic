@@ -1,14 +1,14 @@
 # import instructor.translations as tr
-from instructor.translations import Translations as tr
+from instructor.translations import Translations as Tr
 from instructor.components import Step, Row, Text, \
     NavigationCommand, Image, Previous, PvKeypadAlt, Commands
 from instructor.constants import ID_HOIST
 
-textrow = Row(Text(40, tr.PROPER_PRODUCT_HANG.add_number(1)),
-              Text(30, tr.PROPER_PRODUCT_HANG_CONFIRM.add_number(2)))
+textrow = Row(Text(40, Tr.PROPER_PRODUCT_HANG.add_number(1)),
+              Text(30, Tr.PROPER_PRODUCT_HANG_CONFIRM.add_number(2)))
 
 hang_twist = Step(
-    tr.HANG_TWIST,
+    Tr.HANG_TWIST,
     [
         textrow,
         Row(
@@ -22,7 +22,7 @@ hang_twist = Step(
     nav_id=ID_HOIST)
 
 hang_rollo = Step(
-    tr.HANG_RB,
+    Tr.HANG_RB,
     [
         textrow,
         Row(Image(40, "/app/images/m25t_20cm.png"),

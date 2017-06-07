@@ -1,7 +1,7 @@
 import json
 
 from instructor.constants import DEFAULT_DELAY
-from instructor.translations import Translations as tr
+from instructor.translations import Translations as Tr
 # import instructor.translations as tr
 from instructor.helpers import TXT, NumberedText
 # from server.nordic import COMMANDS
@@ -105,7 +105,7 @@ class UiElement:
 
 
 class Confirm:
-    def __init__(self, img, text, yes_text=tr.YES, no_text=tr.NO,
+    def __init__(self, img, text, yes_text=Tr.YES, no_text=Tr.NO,
                  yes: NavigationCommand = NavigationCommand(1),
                  no: NavigationCommand = NavigationCommand(0)):
         self.img = img

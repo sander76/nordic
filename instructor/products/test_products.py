@@ -3,7 +3,7 @@ from instructor.components import Product, Step, Row, \
     default_tiltclose, \
     default_stop, Commands, Confirm, NavigationCommand, NordicCommands
 from instructor.constants import RB_JOG_1, RB_JOG_2
-from instructor.translations import Translations as tr
+from instructor.translations import Translations as Tr
 from server.nordic import Nd
 
 keypad_move_buttons_alt = PvKeypadAlt(
@@ -43,12 +43,12 @@ test_blinds1 = Product(
     "tester",
     [
         Step(
-            tr.TEST_BLINDS,
+            Tr.TEST_BLINDS,
             [
                 Row(keypad_move_buttons_alt)
             ]),
         Step(
-            tr.BLIND_DIRECTION,
+            Tr.BLIND_DIRECTION,
             [
                 Row(keypad_move_buttons_alt1)
             ])

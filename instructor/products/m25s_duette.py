@@ -13,29 +13,8 @@ from instructor.actions.set_top_limit import duette_set_top_limit, \
 from instructor.actions.skip_step import skiptop, skipbottom_end
 from instructor.components import Product
 
-# Probably obsolete
-# m25s_duette_free = Product(
-#     "M25S Duette Free",
-#     [
-#         connect_m25s_duette,
-#         initialise_duette,
-#         right_mount_duette,
-#         left_mount_duette,
-#         enter_program_mode_duette,
-#         duette_set_bottom_limit,
-#         enter_program_mode_duette,
-#         duette_set_top_limit,
-#         test_blinds,
-#         skiptop,
-#         enter_program_mode_duette,
-#         duette_set_top_limit,
-#         skipbottom_end,
-#         enter_program_mode_duette,
-#         duette_re_set_bottom_limit
-#     ])
-
 # preferred method.
-m25s_duette_free_alt = Product(
+m25s_duette_free = Product(
     "M25S Duette",
     [
         connect_m25s_duette,

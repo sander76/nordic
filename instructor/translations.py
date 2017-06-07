@@ -174,12 +174,7 @@ class Translations:
         pl="Produkt ustawiony *OK*.")
 
     MAKE_CHOICE = TXT(
-        "Make a choice:",
-        "Maak een keuze:",
-        il=None,
-        de="auswählen",
-        dk=None,
-        pl="Wybierz:")
+        "Make a choice:")
 
     SELECT_SKIP_TOP = TXT(
         "I don't want to set the TOP limit",
@@ -190,6 +185,7 @@ class Translations:
         pl="Nie chcę ustawić górnego limitu")
 
     SELECT_SKIP_OPEN = TXT("I don't want to set the OPEN limit.")
+    SELECT_SKIP_CLOSE = TXT("I don't want to set the CLOSE limit.")
 
     SELECT_SKIP_BOTTOM = TXT(
         "I don't want to set the *BOTTOM* limit",
@@ -245,39 +241,19 @@ class Translations:
         pl=None)
 
     TEST_BLINDS = TXT(
-        "TEST BLINDS",
-        "TEST BLINDS",
-        il=None,
-        de="Anlagentest",
-        dk=None,
-        pl="PRODUKT TESTOWY")
+        "TEST BLINDS")
 
     DID_THE_MOTOR_JOG = TXT(
-        "Did the motor jog?",
-        "Heeft de motor kort bewogen?",
-        il=None,
-        de="hat sich der Motor kurz bewegt?",
-        dk=None,
-        pl="Czy produkt wykonał krótki ruch góra/dól?")
+        "Did the motor jog?")
 
     DID_THE_MOTOR_MOVE_UP = TXT(
-        "Did the blind move to the top?",
-        "Is de blind naar boven bewogen?",
-        il=None,
-        de="Ist die Anlage hochgefahren?",
-        dk=None,
-        pl="Czy produkt sie zwija")
+        "Did the blind move to the top?")
 
     DID_THE_MOTOR_JOG_TWO_TIMES = TXT(
         "Did the motor jog two times?")
 
     DID_THE_MOTOR_JOG_THREE_TIMES = TXT(
-        "Did the motor jog three times?",
-        "Heeft de motor drie keer bewogen?",
-        il=None,
-        de="Hat sich der Motor dreimal kurz bewegt?",
-        dk=None,
-        pl="Czy produkt wykonał 3 x  krótki ruch góra/dól?")
+        "Did the motor jog three times?")
 
     DID_MOTOR_MOVE_DOWN = TXT("Did the blind move down?")
 
@@ -286,28 +262,13 @@ class Translations:
     PRESS_HOLD_BLIND_BUTTON = TXT("`Press` and `hold` the *BLIND BUTTON* .")
 
     KEEP_PRESSING_AND_OKAY = TXT(
-        "Keep pressing the *BLIND BUTTON* and press the OK button.",
-        "Blijf de *BLIND BUTTON* indrukken en druk op de OK knop.",
-        il=None,
-        de="Motortaste gedrückt halten und die OK Taste drücken",
-        dk=None,
-        pl="Trzymaj przycisk na motorze i jednocześnie naciśnij przycisk OK")
+        "Keep pressing the *BLIND BUTTON* and press the OK button.")
 
     RELEASE_THE_BLIND_BUTTON = TXT(
-        "Release the *BLIND BUTTON*",
-        "Laat de *BLIND BUTTON* los.",
-        il=None,
-        de="Motortaste loslassen",
-        dk=None,
-        pl="Puść przycisk na motorze")
+        "Release the *BLIND BUTTON*")
 
     PRESS_OKAY_BUTTON = TXT(
-        "Press OK button",
-        "Druk op de OK knop",
-        il=None,
-        de="OK Taste drücken",
-        dk=None,
-        pl="Naciśnij przycisk OK")
+        "Press OK button")
 
     WATCH_THE_BLIND_JOG = TXT(
         "Watch the *BLIND* jog.",
@@ -376,11 +337,10 @@ class Translations:
         pl=None)
 
     TEST_MOVE_BLINDS = TXT(
-        "Check TOP and BOTTOM limits.",
-        "Controleer BOVEN en ONDER limiet.",
-        il=None,
-        de="Kontrollieren Sie obere und untere Endlage",
-        dk="Sprawdź limit górny i dolny")
+        "Check TOP and BOTTOM limits.")
+
+    TEST_CHECK_BLINDS_OPEN_CLOSE = TXT(
+        'Check OPEN and CLOSE limits.')
 
     SAVE_BOTTOM = TXT(
         "Save this as BOTTOM limit.",
@@ -512,7 +472,16 @@ class Translations:
         "Sluit richting",
         to_upper=True)
 
-    PRODUCT_M25S_VB = TXT("M25s vb")
+    ANOTHER_PRODUCT = TXT('Choose another product.')
+
+    PRODUCT_PV_M25S_VB = TXT("Venetian blind")
+    PRODUCT_PV_M25S_VVB = TXT('Vertical Venetian blind')
+    PRODUCT_PV_ROLLERBLIND = TXT('Rollerblind')
+    PRODUCT_PV_TWIST = TXT("Twist")
+    PRODUCT_PV_M25S_DUETTE = TXT('Duette freehanging')
+    PRODUCT_PV_M25S_DUETTE_TENSIONED = TXT("Duette tensioned")
+    PRODUCT_PV_M25S_PLEATED = TXT('Pleated freehanging')
+    PRODUCT_PV_M25S_PLEATED_TENSIONED = TXT('Pleated tensioned')
 
 
 def _get_translation_file_path(lang):

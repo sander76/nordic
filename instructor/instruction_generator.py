@@ -3,14 +3,15 @@ import os
 from instructor.components import ToJson, Instruction
 from instructor.helpers import TXT
 
-from instructor.products.m25s_duette import m25s_duette_free_alt, \
+from instructor.products.m25s_duette import m25s_duette_free, \
     m25s_duette_tensioned, m25s_duette_tensioned_alt
 from instructor.products.m25s_pleated import m25s_pleated_free, \
     m25s_pleated_tensioned
 from instructor.products.m25s_vb import m25s_25mm_vb_free_alt, \
     m25s_16mm_vb_free_alt, m25s_vb_free
-from instructor.products.m25s_vvb import m25s_vvb
-from instructor.products.roller import rollerblind1, rollerblind_old
+from instructor.products.m25s_vvb import m25s_vvb, m25s_vvb_with_product_nav
+from instructor.products.roller import rollerblind1, rollerblind_old, \
+    rollerblind1_with_product_nav
 from instructor.products.test_products import test1, test_blinds1
 from instructor.products.twist import twist_old, twist
 from instructor.translations import load_translations
@@ -34,7 +35,7 @@ def make_luxaflex_nl():
                     twist_old,
                     m25s_25mm_vb_free_alt,
                     m25s_16mm_vb_free_alt,
-                    m25s_duette_free_alt,
+                    m25s_duette_free,
                     m25s_duette_tensioned_alt,
                     m25s_pleated_free,
                     m25s_pleated_tensioned
@@ -48,8 +49,7 @@ def make_luxaflex_uk():
         twist,
         m25s_vb_free
     ]
-    make_instruction('instructions-luxaflex-en.json',instructions,TXT.en)
-
+    make_instruction('instructions-luxaflex-en.json', instructions, TXT.en)
 
 
 def make_default():
@@ -61,7 +61,6 @@ def make_default():
     en = ToJson(lang='en').encode(instruction)
     with open(_path, 'w') as fl:
         fl.write(en)
-
 
 
 def make_holis():
@@ -92,7 +91,7 @@ def make_germania2():
 
 
 def make_germania1():
-    germania1_products = [m25s_duette_free_alt, m25s_pleated_free,
+    germania1_products = [m25s_duette_free, m25s_pleated_free,
                           m25s_16mm_vb_free_alt, m25s_25mm_vb_free_alt]
     make_instruction(
         "instructions-germania1-en.json", germania1_products, TXT.en)
@@ -108,13 +107,13 @@ def make_poland():
 
 
 def make_test():
-    test_products = [test_blinds1]
+    test_products = [rollerblind1_with_product_nav, m25s_vvb_with_product_nav]
     make_instruction("instructions-tester-en.json", test_products, TXT.en)
 
 
 def make_ts():
     ts_products = [
-        m25s_duette_free_alt,
+        m25s_duette_free,
         m25s_duette_tensioned,
         m25s_pleated_free,
         m25s_pleated_tensioned,
@@ -126,7 +125,7 @@ def make_ts():
 
 def make_all():
     products = [
-        m25s_duette_free_alt,
+        m25s_duette_free,
         m25s_duette_tensioned,
         m25s_duette_tensioned_alt,
         m25s_pleated_free,

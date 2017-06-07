@@ -1,4 +1,4 @@
-from instructor.translations import Translations as tr
+from instructor.translations import Translations as Tr
 from instructor.actions.general import keypad_move_buttons
 from instructor.components import NordicCommands, Step, Row, Text, \
     Image, Confirm, DelayedCommand, Spacer, NavigationCommand, PvKeypadAlt, \
@@ -19,20 +19,20 @@ from server.nordic import Nd
 
 def get_top_limit(
         jog_image,
-        title=tr.TITLE_SET_TOP_LIMIT):
+        title=Tr.TITLE_SET_TOP_LIMIT):
     return Step(
         title,
         [
-            Row(Text(30, tr.MOVE_BLIND_TOP.add_number(1)),
-                Text(30, tr.SAVE_TOP.add_number(2)),
-                Text(30, tr.WATCH_THE_BLIND_JOG.add_number(3))),
+            Row(Text(30, Tr.MOVE_BLIND_TOP.add_number(1)),
+                Text(30, Tr.SAVE_TOP.add_number(2)),
+                Text(30, Tr.WATCH_THE_BLIND_JOG.add_number(3))),
             Row(keypad_move_buttons,
                 PvKeypadAlt(
                     30,
                     okay=Commands(
                         nordic_commands=NordicCommands(Nd.SAVE_POSITION_TOP),
                         confirm_command=Confirm(jog_image,
-                                                tr.DID_THE_MOTOR_JOG)
+                                                Tr.DID_THE_MOTOR_JOG)
                     )
                 ),
                 Image(30, jog_image))
@@ -41,9 +41,9 @@ def get_top_limit(
 
 
 def get_top_limit_alternative(
-        title=tr.TITLE_SET_TOP_LIMIT,
-        confirm_message=tr.IS_BLIND_AT_TOP,
-        introtext=tr.START_TOP_PROGRAMMING):
+        title=Tr.TITLE_SET_TOP_LIMIT,
+        confirm_message=Tr.IS_BLIND_AT_TOP,
+        introtext=Tr.START_TOP_PROGRAMMING):
     return Step(
         title,
         [
@@ -63,8 +63,8 @@ def get_top_limit_alternative(
 
 def get_confirm_top_limit(
         jog_image,
-        title=tr.TITLE_SET_TOP_LIMIT,
-        intro_text=tr.SAVE_THIS_AS_TOP):
+        title=Tr.TITLE_SET_TOP_LIMIT,
+        intro_text=Tr.SAVE_THIS_AS_TOP):
     return Step(
         title,
         [
@@ -75,7 +75,7 @@ def get_confirm_top_limit(
                     okay=Commands(
                         nordic_commands=NordicCommands(Nd.SAVE_POSITION_TOP),
                         confirm_command=Confirm(jog_image,
-                                                tr.DID_THE_MOTOR_JOG,
+                                                Tr.DID_THE_MOTOR_JOG,
                                                 yes=NavigationCommand(2)
                                                 )
                     )
@@ -110,28 +110,28 @@ pleated_confirm_top_limit = get_confirm_top_limit(PLEATED_JOG_1)
 pleated_set_top_limit = get_top_limit(PLEATED_JOG_1)
 
 vvb_set_open_limit_moveup = get_top_limit_alternative(
-    title=tr.TITLE_VVB_SET_OPEN_LIMIT,
-    confirm_message=tr.IS_BLIND_OPENED,
-    introtext=tr.START_OPEN_PROGRAMMING)
+    title=Tr.TITLE_VVB_SET_OPEN_LIMIT,
+    confirm_message=Tr.IS_BLIND_OPENED,
+    introtext=Tr.START_OPEN_PROGRAMMING)
 
 vvb_confirm_open_limit = get_confirm_top_limit(
     VVB_JOG_1,
-    title=tr.TITLE_VVB_SET_OPEN_LIMIT,
-    intro_text=tr.SAVE_THIS_AS_OPEN)
+    title=Tr.TITLE_VVB_SET_OPEN_LIMIT,
+    intro_text=Tr.SAVE_THIS_AS_OPEN)
 
 vvb_set_open_limit = Step(
-    tr.TITLE_VVB_SET_OPEN_LIMIT,
+    Tr.TITLE_VVB_SET_OPEN_LIMIT,
     [
-        Row(Text(30, tr.MOVE_BLIND_OPEN.add_number(1)),
-            Text(30, tr.SAVE_OPEN.add_number(2)),
-            Text(30, tr.WATCH_THE_BLIND_JOG.add_number(3))),
+        Row(Text(30, Tr.MOVE_BLIND_OPEN.add_number(1)),
+            Text(30, Tr.SAVE_OPEN.add_number(2)),
+            Text(30, Tr.WATCH_THE_BLIND_JOG.add_number(3))),
         Row(keypad_move_buttons,
             PvKeypadAlt(
                 30,
                 okay=Commands(
                     nordic_commands=NordicCommands(Nd.SAVE_POSITION_TOP),
                     confirm_command=Confirm(VVB_JOG_1,
-                                            tr.DID_THE_MOTOR_JOG)
+                                            Tr.DID_THE_MOTOR_JOG)
                 )
             ),
             Image(30, VVB_JOG_1))

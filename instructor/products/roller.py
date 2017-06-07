@@ -1,9 +1,11 @@
 from instructor.actions.connect import connect_rb
-from instructor.actions.general import enter_program_mode, test_blinds
+from instructor.actions.general import enter_program_mode, test_blinds, \
+ test_blinds_alt
 from instructor.actions.initialise import initialise_rb
 from instructor.actions.motor_direction import left_backroller, \
     right_backroller, \
     left_frontroller, right_frontroller, blind_direction, switch_direction
+from instructor.actions.same_product import same_rb
 from instructor.actions.set_bottom_limit import re_set_bottom_limit, \
     set_bottom_limit
 from instructor.actions.set_top_limit import set_top_limit_roller
@@ -29,6 +31,28 @@ rollerblind1 = Product(
      skipbottom_end,
      enter_program_mode,
      re_set_bottom_limit
+     ])
+
+rollerblind1_with_product_nav = Product(
+    "Roller blind",
+    [connect_rb,
+     initialise_rb,
+     left_backroller,
+     right_backroller,
+     left_frontroller,
+     right_frontroller,
+     enter_program_mode,
+     set_bottom_limit,
+     enter_program_mode,
+     set_top_limit_roller,
+     test_blinds_alt,
+     skiptop,
+     enter_program_mode,
+     set_top_limit_roller,
+     skipbottom_end,
+     enter_program_mode,
+     re_set_bottom_limit,
+     same_rb
      ])
 
 rollerblind_old = Product(

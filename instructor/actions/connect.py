@@ -1,4 +1,4 @@
-from instructor.translations import Translations as tr
+from instructor.translations import Translations as Tr
 from instructor.components import Row, Text, Step, Image, Confirm, \
     DelayedCommand, NordicCommands, PvKeypadAlt, Commands
 from instructor.constants import TWIST_JOG_1, TWIST_BUTTON_PUSH_HOLD, \
@@ -9,14 +9,14 @@ from instructor.constants import TWIST_JOG_1, TWIST_BUTTON_PUSH_HOLD, \
     PLEATED_BUTTON_PUSH_HOLD, PLEATED_BUTTON_RELEASE
 from server.nordic import Nd
 
-connect_text = Row(Text(25, tr.PRESS_HOLD_BLIND_BUTTON.add_number(1)),
-                   Text(25, tr.KEEP_PRESSING_AND_OKAY.add_number(2)),
-                   Text(25, tr.WATCH_THE_BLIND_JOG.add_number(3)),
-                   Text(25, tr.RELEASE_THE_BLIND_BUTTON.add_number(4)))
+connect_text = Row(Text(25, Tr.PRESS_HOLD_BLIND_BUTTON.add_number(1)),
+                   Text(25, Tr.KEEP_PRESSING_AND_OKAY.add_number(2)),
+                   Text(25, Tr.WATCH_THE_BLIND_JOG.add_number(3)),
+                   Text(25, Tr.RELEASE_THE_BLIND_BUTTON.add_number(4)))
 
 
 def get_connect(jog_image, button_push_hold_image, button_release_image):
-    return Step(tr.CONNECT,
+    return Step(Tr.CONNECT,
                 [connect_text,
                  Row(Image(25, button_push_hold_image),
                      PvKeypadAlt(
@@ -27,7 +27,7 @@ def get_connect(jog_image, button_push_hold_image, button_release_image):
                                                                 Nd.GROUP_ADD,
                                                                 1)),
                              confirm_command=Confirm(jog_image,
-                                                     tr.DID_THE_MOTOR_JOG)
+                                                     Tr.DID_THE_MOTOR_JOG)
                          )
                      ),
                      Image(25, jog_image),

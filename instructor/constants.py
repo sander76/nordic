@@ -44,4 +44,5 @@ ID_START = "start"
 ID_TEST_BLINDS = "testblinds"
 ID_HOIST = "hoist"
 ID_CHOOSE_PRODUCT = "choose_product"
-ID_CHOOSE_SAME="choose_same"
+ID_CHOOSE_SAME = "choose_same"
+

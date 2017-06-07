@@ -1,4 +1,4 @@
-from instructor.translations import Translations as tr
+from instructor.translations import Translations as Tr
 from instructor.actions.connect import connect_twist
 from instructor.actions.general import keypad_move_buttons, \
     enter_program_mode, test_blinds, skipslat
@@ -19,7 +19,7 @@ from server.nordic import Nd
 
 '''Instruction to quickly make a rb a twist. Not user friendly !'''
 connect_make_twist = Step(
-    tr.CONNECT,
+    Tr.CONNECT,
     [
         Row(Text(100,
                  "Connect your blind using normal procedure")),
@@ -33,7 +33,7 @@ connect_make_twist = Step(
                     DelayedCommand(Nd.TWIST, 5)),
                 confirm_command=Confirm(
                     TWIST_JOG_1,
-                    tr.DID_THE_MOTOR_JOG,
+                    Tr.DID_THE_MOTOR_JOG,
                     yes=NavigationCommand(0)))))
     ]
 )
@@ -45,17 +45,17 @@ connect_make_twist = Step(
 Setting the Twist slat open position
 """
 set_twist_position = Step(
-    tr.SET_TWIST_SLAT_POSITION,
+    Tr.SET_TWIST_SLAT_POSITION,
     [
-        Row(Text(30, tr.MOVE_BLIND_SLAT_OPEN),
-            Text(30, tr.SAVE_SLAT),
-            Text(30, tr.WATCH_THE_BLIND_JOG)),
+        Row(Text(30, Tr.MOVE_BLIND_SLAT_OPEN),
+            Text(30, Tr.SAVE_SLAT),
+            Text(30, Tr.WATCH_THE_BLIND_JOG)),
         Row(keypad_move_buttons,
             PvKeypadAlt(
                 30,
                 okay=Commands(
                     nordic_commands=NordicCommands(Nd.SAVE_SLAT_OPEN),
-                    confirm_command=Confirm(TWIST_JOG_1, tr.DID_THE_MOTOR_JOG)
+                    confirm_command=Confirm(TWIST_JOG_1, Tr.DID_THE_MOTOR_JOG)
                 )
             ),
             Image(30,
@@ -64,18 +64,18 @@ set_twist_position = Step(
 )
 
 re_set_twist_slat_open = Step(
-    tr.SET_TWIST_SLAT_POSITION,
+    Tr.SET_TWIST_SLAT_POSITION,
     [
-        Row(Text(30, tr.MOVE_BLIND_SLAT_OPEN),
-            Text(30, tr.SAVE_SLAT),
-            Text(30, tr.WATCH_THE_BLIND_JOG)),
+        Row(Text(30, Tr.MOVE_BLIND_SLAT_OPEN),
+            Text(30, Tr.SAVE_SLAT),
+            Text(30, Tr.WATCH_THE_BLIND_JOG)),
         Row(keypad_move_buttons,
             PvKeypadAlt(
                 30,
                 okay=Commands(
                     nordic_commands=NordicCommands(Nd.SAVE_SLAT_OPEN),
                     confirm_command=Confirm(TWIST_JOG_1,
-                                            tr.DID_THE_MOTOR_JOG,
+                                            Tr.DID_THE_MOTOR_JOG,
                                             yes=ID_TEST_BLINDS)
                 )
             ),
