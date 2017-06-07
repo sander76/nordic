@@ -1,16 +1,18 @@
 from instructor.actions.connect import connect_m25s_vvb
 from instructor.actions.general import enter_program_mode_vvb, test_blinds, \
-    enter_program_mode_vvb_id
+    enter_program_mode_vvb_id, test_blinds_alt, test_blinds_open_close, \
+    test_blinds_open_close_product_choice
 from instructor.actions.initialise import initialise_vvb_right, \
     initialise_vvb_left
 from instructor.actions.motor_direction import vvb_back_left, \
     vvb_left_stack, vvb_right_stack, \
     vvb_split_stack
+from instructor.actions.same_product import same_vvb
 from instructor.actions.set_bottom_limit import vvb_set_close_limit, \
     vvb_re_set_close_limit
 from instructor.actions.set_top_limit import vvb_set_open_limit_moveup, \
     vvb_confirm_open_limit, vvb_set_open_limit
-from instructor.actions.skip_step import skipbottom_end, skipopen
+from instructor.actions.skip_step import skipbottom_end, skipopen, skipclose
 from instructor.components import Product
 
 m25s_vvb = Product(
@@ -25,13 +27,36 @@ m25s_vvb = Product(
         vvb_set_open_limit_moveup,
         vvb_confirm_open_limit,
         vvb_set_open_limit,
-        test_blinds,
+        test_blinds_open_close,
         skipopen,
         enter_program_mode_vvb,
         vvb_set_open_limit,
-        skipbottom_end,
+        skipclose,
         enter_program_mode_vvb,
         vvb_re_set_close_limit
+    ]
+)
+
+m25s_vvb_with_product_nav = Product(
+    "M25S VVB",
+    [
+        connect_m25s_vvb,
+        vvb_left_stack,
+        vvb_right_stack,
+        vvb_split_stack,
+        enter_program_mode_vvb_id,
+        vvb_set_close_limit,
+        vvb_set_open_limit_moveup,
+        vvb_confirm_open_limit,
+        vvb_set_open_limit,
+        test_blinds_open_close_product_choice,
+        skipopen,
+        enter_program_mode_vvb,
+        vvb_set_open_limit,
+        skipclose,
+        enter_program_mode_vvb,
+        vvb_re_set_close_limit,
+        same_vvb
     ]
 )
 

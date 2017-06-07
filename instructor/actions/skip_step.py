@@ -77,3 +77,20 @@ skipopen = Step(
                 30,
                 cancel=Commands(navigation_command=NavigationCommand(3))))
     ])
+
+# skipping this step returns to ID_TEST_BLINDS
+skipclose = Step(
+    tr.TITLE_SKIP_CLOSE,
+    [
+        Row(Text(30, tr.MAKE_CHOICE),
+            Text(30, tr.RESET_CLOSE),
+            Text(30, tr.SELECT_SKIP_CLOSE)),
+        Row(Spacer(30),
+            PvKeypadAlt(
+                30,
+                okay=Commands(navigation_command=NavigationCommand(goto=1))),
+            PvKeypadAlt(
+                30,
+                cancel=Commands(
+                    navigation_command=NavigationCommand(ID_TEST_BLINDS))))
+    ])

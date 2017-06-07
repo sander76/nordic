@@ -17,9 +17,9 @@
             color: var(--icon-cross-color) !important;
         }
 
-         :host {
+         /*:host {
             height: 100%;
-        }
+        }*/
 
         #col1 {
             min-width: 4em;
@@ -47,8 +47,9 @@
         }
 
         #container {
-            min-height: 100vh;
-            margin-top: var(--container-margin-top);
+            height:100%;
+            /*min-height: 100vh;
+            margin-top: var(--container-margin-top);*/
         }
         .fakebutton{
             padding:10px;
@@ -62,7 +63,7 @@
     <style include="iron-flex iron-flex-alignment"></style>
     <template>
         <div class="vertical layout flex" id="container">
-            <div style="margin:10px;" class="flex vertical layout">
+            <!--<div style="margin:10px;" class="flex vertical layout">-->
                 <marked-element markdown="[[data.title.content]]">
                     <div class="markdown-html"></div>
                 </marked-element>
@@ -103,7 +104,7 @@
                         </paper-button>-->
                     </div>
                 </div>
-            </div>
+            <!--</div>-->
         </div>
         <!--<footer>
                 
