@@ -31,10 +31,12 @@ def make_vb_free():
 def make_kadan_1():
     instructions = [m25s_vb_free,
                     m25s_duette_free,
+                    m25s_duette_tensioned_alt,
                     m25s_duette_tensioned,
                     m25s_pleated_free,
                     m25s_pleated_tensioned]
     make_instruction('instructions-kadan1-en.json', instructions, TXT.en)
+    make_instruction('instructions-kadan1-cz.json', instructions, TXT.cz)
 
 
 def make_luxaflex_nl():
