@@ -1,3 +1,5 @@
 call git pull
-call c:\virtualenvs\nordic\scripts\activate.bat
+:: assuming the virtualenv is located one folder higher
+call ..\nordic-venv\scripts\activate.bat
+
 python new_server.py
