@@ -16,7 +16,7 @@ echo "Finished. You can now close this window."
 
 echo "Shutting down browser"
 sudo pkill --oldest chrome
-echo "Restarting browser"
-chromium-browser --start-fullscreen &
+# echo "Restarting browser"
+# chromium-browser --start-fullscreen &
 
 $SHELL
