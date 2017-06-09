@@ -30,6 +30,9 @@ FLAT_JSON_FORMAT = "powerview_instructions_{}.json"
 
 
 class Translations:
+    NEXT = TXT("Next",to_upper=True)
+    PREVIOUS = TXT("Previous", to_upper=True)
+
     HANGPRODUCT = TXT(
         "HANG PRODUCT.",  # English language.
         to_upper=True
@@ -279,42 +282,21 @@ class Translations:
         pl="Spójrz czy produkt wykonuje ruch góra/dół")
 
     WATCH_THE_BLIND_MOVE_UP = TXT(
-        "Watch the *BLIND* move up.",
-        "Zie de *BLIND* naar boven bewegen.",
-        il=None,
-        de="Gucken Sie, ob die Anlage hochfährt",
-        dk=None,
-        pl="Spójrz czy produkt sie zwija")
+        "Watch the *BLIND* move up.")
 
     WATCH_THE_BLIND_JOG_TWO_TIMES = TXT(
-        "Motor jogs two times.",
-        "Motor beweegt twee keer.",
-        il=None,
-        de="Motor bewegt sich zweimal kurz",
-        dk=None,
-        pl="Motor wykonuje 2x ruch góra/dół")
+        "Motor jogs two times.")
 
     WATCH_THE_BLIND_JOG_THREE_TIMES = TXT(
         "Motor jogs three times.")
 
     MOTOR_SHOULD_MOVE_DOWN = TXT(
-        "Blind should move down/close.",
-        "Blind moet naar beneden bewegen/sluiten.",
-        il=None,
-        de="Anlage sollte herunterfahren/schließen",
-        dk=None,
-        pl="Produkt powinien się rozwijać/zamykać"
-    )
+        "Blind should move down/close.")
 
     MOVE_BLIND_CLOSE = TXT("Move the *BLIND* to the desired CLOSE position")
 
     MOVE_BLIND_BOTTOM = TXT(
-        "Move the *BLIND* to the desired BOTTOM position.",
-        "Stuur de *BLIND* naar de gewenste ONDER positie.",
-        il=None,
-        de="Bewegen Sie die Anlage auf die gewünschte untere Endlage",
-        dk=None,
-        pl="Produkt rozwija sie do pożądanej pozycji dolnej")
+        "Move the *BLIND* to the desired BOTTOM position.")
 
     MOVE_BLIND_TOP = TXT(
         "Move the *BLIND* to the desired TOP position.",
