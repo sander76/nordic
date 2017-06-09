@@ -16,7 +16,7 @@ from instructor.products.test_products import test1, test_blinds1
 from instructor.products.twist import twist_old, twist
 from instructor.translations import load_translations
 
-INSTRUCTION_VERSION = "1.7.10"
+INSTRUCTION_VERSION = "1.7.11"
 MAIN_PATH = "../static/instructions/"
 
 VB = [m25s_25mm_vb_free_alt,
@@ -29,7 +29,11 @@ def make_vb_free():
 
 
 def make_kadan_1():
-    instructions = [m25s_vb_free]
+    instructions = [m25s_vb_free,
+                    m25s_duette_free,
+                    m25s_duette_tensioned,
+                    m25s_pleated_free,
+                    m25s_pleated_tensioned]
     make_instruction('instructions-kadan1-en.json', instructions, TXT.en)
 
 
