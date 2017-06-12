@@ -110,6 +110,9 @@ class Confirm:
                  no: NavigationCommand = NavigationCommand(0)):
         self.img = img
         self.text = text
+        if (not isinstance(yes, NavigationCommand) or
+                not isinstance(no, NavigationCommand)):
+            raise Exception("Confirm yes and/or no not correct type")
         self.yes = yes
         self.no = no
         self.yes_text = yes_text

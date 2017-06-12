@@ -46,7 +46,7 @@ set_bottom_limit = get_bottom_limit(RB_JOG_1)
 # but confirm dialog navigates to different page when ok.
 re_set_bottom_limit = get_bottom_limit(RB_MOVE_UP)
 re_set_bottom_limit.confirm = Confirm(RB_MOVE_UP, Tr.DID_THE_MOTOR_MOVE_UP,
-                                      yes=ID_TEST_BLINDS)
+                                      yes=NavigationCommand(ID_TEST_BLINDS))
 
 # Same as normal setting the bottom limits,
 # but confirm dialog navigates to different page when ok.
@@ -59,7 +59,7 @@ set_bottom_limit_vb = get_bottom_limit(VB_JOG_1)
 # but confirm dialog navigates to different page when ok.
 re_set_bottom_limit_vb = get_bottom_limit(VB_JOG_1)
 re_set_bottom_limit_vb.confirm = Confirm(VB_JOG_1, Tr.DID_THE_MOTOR_JOG,
-                                         yes=ID_TEST_BLINDS)
+                                         yes=NavigationCommand(ID_TEST_BLINDS))
 
 # Duette and Pleated
 duette_set_bottom_limit = get_bottom_limit(DUETTE_JOG_1)

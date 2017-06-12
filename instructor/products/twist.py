@@ -75,9 +75,10 @@ re_set_twist_slat_open = Step(
                 30,
                 okay=Commands(
                     nordic_commands=NordicCommands(Nd.SAVE_SLAT_OPEN),
-                    confirm_command=Confirm(TWIST_JOG_1,
-                                            Tr.DID_THE_MOTOR_JOG,
-                                            yes=ID_TEST_BLINDS)
+                    confirm_command=Confirm(
+                        TWIST_JOG_1,
+                        Tr.DID_THE_MOTOR_JOG,
+                        yes=NavigationCommand(ID_TEST_BLINDS))
                 )
             ),
             Image(30, TWIST_JOG_1))
