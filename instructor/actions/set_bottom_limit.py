@@ -54,7 +54,9 @@ re_set_bottom_limit_twist = get_bottom_limit(TWIST_MOVE_UP)
 re_set_bottom_limit_twist.confirm = Confirm(TWIST_MOVE_UP,
                                             Tr.DID_THE_MOTOR_MOVE_UP)
 
-set_bottom_limit_vb = get_bottom_limit(VB_JOG_1)
+set_bottom_limit_vb = get_bottom_limit(
+    VB_JOG_1,
+    confirm_image=VB_JOG_1)
 # Same as normal setting the bottom limits,
 # but confirm dialog navigates to different page when ok.
 re_set_bottom_limit_vb = get_bottom_limit(VB_JOG_1)
@@ -62,7 +64,9 @@ re_set_bottom_limit_vb.confirm = Confirm(VB_JOG_1, Tr.DID_THE_MOTOR_JOG,
                                          yes=ID_TEST_BLINDS)
 
 # Duette and Pleated
-duette_set_bottom_limit = get_bottom_limit(DUETTE_JOG_1)
+duette_set_bottom_limit = get_bottom_limit(
+    DUETTE_JOG_1,
+    confirm_image=DUETTE_JOG_1)
 duette_re_set_bottom_limit = get_bottom_limit(
     DUETTE_JOG_1, DUETTE_JOG_1, Tr.DID_THE_MOTOR_JOG,
     confirm_yes_goto=ID_TEST_BLINDS)

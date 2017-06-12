@@ -1,4 +1,3 @@
-
 from instructor.actions.connect import connect_m25s_vb
 from instructor.actions.general import enter_program_mode_vb, test_blinds
 from instructor.actions.initialise import initialise_vb_16, initialise_vb_25
