@@ -24,12 +24,12 @@ class NextPrevious(NavigationCommand):
 
 
 class Next(NextPrevious):
-    def __init__(self, button_text="next", goto=1, active=True):
+    def __init__(self, button_text=Tr.NEXT, goto=1, active=True):
         NextPrevious.__init__(self, button_text, goto, active)
 
 
 class Previous(NextPrevious):
-    def __init__(self, button_text="previous", goto=-1, active=True):
+    def __init__(self, button_text=Tr.PREVIOUS, goto=-1, active=True):
         NextPrevious.__init__(self, button_text, goto, active)
 
 
@@ -72,7 +72,7 @@ product = {'type': 'dict',
 
 class Product:
     def __init__(self, title, steps):
-        self.title = title,
+        self.title = title
         self.steps = steps
 
 

@@ -32,8 +32,8 @@ def get_connect(jog_image, button_push_hold_image, button_release_image):
                      ),
                      Image(25, jog_image),
                      Image(25, button_release_image))
-                 ],
-                nav_id=ID_START)
+                 ]
+                )
 
 
 connect_rb = get_connect(

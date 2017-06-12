@@ -102,6 +102,7 @@ confirm_top_limit_vb = get_confirm_top_limit(VB_JOG_1)
 
 
 duette_set_top_limit_moveup = get_top_limit_alternative()
+duette_tensioned_set_top_limit_moveup = get_top_limit_alternative()
 duette_confirm_top_limit = get_confirm_top_limit(DUETTE_JOG_1)
 duette_set_top_limit = get_top_limit(DUETTE_JOG_1)
 

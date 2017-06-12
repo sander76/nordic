@@ -1,3 +1,5 @@
+from instructor.actions.confirm_product import confirm_pleated_tensioned, \
+    confirm_pleated
 from instructor.actions.connect import connect_m25s_pleated
 from instructor.actions.general import enter_program_mode_pleated, test_blinds
 from instructor.actions.initialise import initialise_pleated, \
@@ -11,42 +13,48 @@ from instructor.actions.set_top_limit import pleated_set_top_limit_moveup, \
 from instructor.actions.skip_step import skiptop, skipbottom_end
 from instructor.components import Product
 
+from instructor.translations import Translations as Tr
+
 m25s_pleated_free = Product(
-    "M25S Pleated",
-    [connect_m25s_pleated,
-     initialise_pleated,
-     right_mount_pleated,
-     left_mount_pleated,
-     enter_program_mode_pleated,
-     pleated_set_bottom_limit,
-     pleated_set_top_limit_moveup,
-     pleated_confirm_top_limit,
-     pleated_set_top_limit,
-     test_blinds,
-     skiptop,
-     enter_program_mode_pleated,
-     pleated_set_top_limit,
-     skipbottom_end,
-     enter_program_mode_pleated,
-     pleated_re_set_bottom_limit
-     ])
+    Tr.PRODUCT_PV_M25S_PLEATED,
+    [
+        confirm_pleated,
+        connect_m25s_pleated,
+        initialise_pleated,
+        right_mount_pleated,
+        left_mount_pleated,
+        enter_program_mode_pleated,
+        pleated_set_bottom_limit,
+        pleated_set_top_limit_moveup,
+        pleated_confirm_top_limit,
+        pleated_set_top_limit,
+        test_blinds,
+        skiptop,
+        enter_program_mode_pleated,
+        pleated_set_top_limit,
+        skipbottom_end,
+        enter_program_mode_pleated,
+        pleated_re_set_bottom_limit
+    ])
 
 m25s_pleated_tensioned = Product(
-    "M25S Pleated Tensioned",
-    [connect_m25s_pleated,
-     initialise_pleated_tensioned,
-     right_mount_pleated,
-     left_mount_pleated,
-     enter_program_mode_pleated,
-     pleated_set_bottom_limit,
-     pleated_set_top_limit_moveup,
-     pleated_confirm_top_limit,
-     pleated_set_top_limit,
-     test_blinds,
-     skiptop,
-     enter_program_mode_pleated,
-     pleated_set_top_limit,
-     skipbottom_end,
-     enter_program_mode_pleated,
-     pleated_re_set_bottom_limit
-     ])
+    Tr.PRODUCT_PV_M25S_PLEATED_TENSIONED,
+    [
+        confirm_pleated_tensioned,
+        connect_m25s_pleated,
+        initialise_pleated_tensioned,
+        right_mount_pleated,
+        left_mount_pleated,
+        enter_program_mode_pleated,
+        pleated_set_bottom_limit,
+        pleated_set_top_limit_moveup,
+        pleated_confirm_top_limit,
+        pleated_set_top_limit,
+        test_blinds,
+        skiptop,
+        enter_program_mode_pleated,
+        pleated_set_top_limit,
+        skipbottom_end,
+        enter_program_mode_pleated,
+        pleated_re_set_bottom_limit
+    ])

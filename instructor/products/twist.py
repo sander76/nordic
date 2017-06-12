@@ -1,3 +1,4 @@
+from instructor.actions.confirm_product import confirm_twist
 from instructor.translations import Translations as Tr
 from instructor.actions.connect import connect_twist
 from instructor.actions.general import keypad_move_buttons, \
@@ -84,8 +85,9 @@ re_set_twist_slat_open = Step(
 )
 
 twist = Product(
-    "Twist",
+    Tr.PRODUCT_PV_TWIST,
     [
+        confirm_twist,
         connect_twist,
         initialise_twist,
         left_backroller,
@@ -109,8 +111,9 @@ twist = Product(
     ])
 
 twist_old = Product(
-    "Twist OLD",
+    {"content": "Twist OLD"},
     [
+        confirm_twist,
         connect_twist,
         initialise_twist,
         enter_program_mode,

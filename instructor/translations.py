@@ -30,8 +30,12 @@ FLAT_JSON_FORMAT = "powerview_instructions_{}.json"
 
 
 class Translations:
-    NEXT = TXT("Next",to_upper=True)
+    NEXT = TXT("Next", to_upper=True)
     PREVIOUS = TXT("Previous", to_upper=True)
+
+    CORRECT_PRODUCT = TXT("Did you select correct product?", to_upper=True)
+
+    MENU_SELECT = TXT("Select")
 
     HANGPRODUCT = TXT(
         "HANG PRODUCT.",  # English language.
@@ -89,11 +93,7 @@ class Translations:
     )
 
     ORIENT_VVB_BACK = TXT(
-        "MOTOR ON THE BACK",
-        "MOTOR ACHTER",
-        de=None,
-        pl="MOTOR ZAMONTOWANY TYŁ"
-    )
+        "MOTOR ON THE BACK")
 
     # ORIENT_VVB_UPRIGHT = TXT(
     #     "MOTOR ABOVE",
@@ -103,51 +103,22 @@ class Translations:
     # )
 
     IS_LEFT_BACKROLLER = TXT(
-        "Is the motor on the **left** and **backroller** ?",
-        "Is de motor **links** gemonteerd en **backroller** ?",
-        il=None,
-        de="Ist der Motor **links** montiert hinten abrollend?",
-        dk=None,
-        pl="Czy jest motor **lewa** strona i **zwijanie normalne**?")
+        "Is the motor on the **left** and **backroller** ?")
 
     IS_RIGHT_BACKROLLER = TXT(
-        "Is the motor on the **right** and **backroller** ?",
-        "Is de motor **rechts** gemonteerd en **backroller** ?",
-        il=None,
-        de="Ist der Motor **rechts** montiert und hinten abrollend?",
-        dk=None,
-        pl="Czy jest motor **prawa** strona i **zwijanie normalne**?")
+        "Is the motor on the **right** and **backroller** ?")
 
     IS_LEFT_FRONTROLLER = TXT(
-        "Is the motor on the **left** and **frontroller** ?",
-        "Is de motor **links** gemonteerd en **contrarollend** ?",
-        il=None,
-        de="Ist der Motor links montiert und vorne abrollend?",
-        dk=None,
-        pl="Czy jest motor **lewa** strona i **zwijanie odwrotne**?")
+        "Is the motor on the **left** and **frontroller** ?")
 
     IS_RIGHT_FRONTROLLER = TXT(
-        "Is the motor on the **right** and **frontroller** ?",
-        "Is de motor **rechts** gemonteerd en **contrarollend** ?",
-        il=None,
-        de="Ist der Motor rechts montiert und vorne abrollend?",
-        dk=None,
-        pl="Czy jest motor **prawa** strona i **zwijanie odwrtone**?")
+        "Is the motor on the **right** and **frontroller** ?")
 
     SWITCH_DIRECTION = TXT(
-        "CHANGE BLIND DIRECTION.",
-        "WISSEL BLIND RICHTING.",
-        il=None,
-        de="Laufrichtung ändern",
-        dk=None,
-        pl="ZMIEŃ KIERUNEK ZWIJANIA"
-    )
+        "CHANGE BLIND DIRECTION.")
 
     IS_BLIND_AT_TOP = TXT(
-        "IS THE BLIND AT THE TOP ?",
-        "IS DE BLIND HELEMAAL BOVEN ?",
-        de="ist die Anlage hochgefahren?",
-        pl="CZY PRODUKT JEST W POZYCJI GÓRNEJ ?")
+        "IS THE BLIND AT THE TOP ?")
 
     IS_BLIND_OPENED = TXT(
         "Is the blind at open position ?",
@@ -169,42 +140,22 @@ class Translations:
         pl="Upewnij sie, że listwa *DOLNA* jest ok 20cm od dołu")
 
     PROPER_PRODUCT_HANG_CONFIRM = TXT(
-        "Product fixed *OK*.",
-        "Product is correct opgehangen.",
-        il=None,
-        de="Produkt is korrekt montiert",
-        dk=None,
-        pl="Produkt ustawiony *OK*.")
+        "Product fixed *OK*.")
 
     MAKE_CHOICE = TXT(
         "Make a choice:")
 
     SELECT_SKIP_TOP = TXT(
-        "I don't want to set the TOP limit",
-        "BOVENLIMIET niet opnieuw instellen",
-        il=None,
-        de="OBERE Endlage nicht einstellen",
-        dk=None,
-        pl="Nie chcę ustawić górnego limitu")
+        "I don't want to set the TOP limit")
 
     SELECT_SKIP_OPEN = TXT("I don't want to set the OPEN limit.")
     SELECT_SKIP_CLOSE = TXT("I don't want to set the CLOSE limit.")
 
     SELECT_SKIP_BOTTOM = TXT(
-        "I don't want to set the *BOTTOM* limit",
-        "*ONDERLIMIET* niet opnieuw instellen",
-        il=None,
-        de="untere Endlage nicht einstellen",
-        dk=None,
-        pl="Nie chcę ustawić dolnego limitu")
+        "I don't want to set the *BOTTOM* limit")
 
     SELECT_SKIP_SLAT = TXT(
-        "Don't re-set the *SLAT* position.",
-        "*SLAT OPEN* positie niet opnieuw instellen.",
-        il=None,
-        de="Lamellenposition nicht erneut festlegen",
-        dk=None,
-        pl=None)
+        "Don't re-set the *SLAT* position.")
 
     RESET_TOP = TXT(
         "Re-set the TOP limit.",
@@ -460,10 +411,10 @@ class Translations:
     PRODUCT_PV_M25S_VVB = TXT('Vertical Venetian blind')
     PRODUCT_PV_ROLLERBLIND = TXT('Rollerblind')
     PRODUCT_PV_TWIST = TXT("Twist")
-    PRODUCT_PV_M25S_DUETTE = TXT('Duette freehanging')
-    PRODUCT_PV_M25S_DUETTE_TENSIONED = TXT("Duette tensioned")
-    PRODUCT_PV_M25S_PLEATED = TXT('Pleated freehanging')
-    PRODUCT_PV_M25S_PLEATED_TENSIONED = TXT('Pleated tensioned')
+    PRODUCT_PV_M25S_DUETTE = TXT('Duette FREEHANGING')
+    PRODUCT_PV_M25S_DUETTE_TENSIONED = TXT("Duette TENSIONED")
+    PRODUCT_PV_M25S_PLEATED = TXT('Pleated FREEHANGING')
+    PRODUCT_PV_M25S_PLEATED_TENSIONED = TXT('Pleated TENSIONED')
 
 
 def _get_translation_file_path(lang):
@@ -479,14 +430,15 @@ def load_translations():
      initiated.
     """
     for lang in AVAILABLE_TRANSLATIONS:
-        full_name = _get_translation_file_path(lang)
+        if not lang == 'en':
+            full_name = _get_translation_file_path(lang)
 
-        with open(full_name, 'r', encoding='utf-8')as _fl:
-            _js = json.load(_fl)
-        for key, value in _js.items():
-            _txt = getattr(Translations, key)
-            if isinstance(_txt, TXT):
-                setattr(_txt, lang, value)
+            with open(full_name, 'r', encoding='utf-8')as _fl:
+                _js = json.load(_fl)
+            for key, value in _js.items():
+                _txt = getattr(Translations, key)
+                if isinstance(_txt, TXT):
+                    setattr(_txt, lang, value)
 
 
 def _open_current_translation(json_file):
