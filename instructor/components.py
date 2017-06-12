@@ -24,12 +24,12 @@ class NextPrevious(NavigationCommand):
 
 
 class Next(NextPrevious):
-    def __init__(self, button_text="next", goto=1, active=True):
+    def __init__(self, button_text=Tr.NEXT, goto=1, active=True):
         NextPrevious.__init__(self, button_text, goto, active)
 
 
 class Previous(NextPrevious):
-    def __init__(self, button_text="previous", goto=-1, active=True):
+    def __init__(self, button_text=Tr.PREVIOUS, goto=-1, active=True):
         NextPrevious.__init__(self, button_text, goto, active)
 
 
@@ -72,7 +72,7 @@ product = {'type': 'dict',
 
 class Product:
     def __init__(self, title, steps):
-        self.title = title,
+        self.title = title
         self.steps = steps
 
 
@@ -110,6 +110,9 @@ class Confirm:
                  no: NavigationCommand = NavigationCommand(0)):
         self.img = img
         self.text = text
+        if (not isinstance(yes, NavigationCommand) or
+                not isinstance(no, NavigationCommand)):
+            raise Exception("Confirm yes and/or no not correct type")
         self.yes = yes
         self.no = no
         self.yes_text = yes_text

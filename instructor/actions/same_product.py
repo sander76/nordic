@@ -7,7 +7,7 @@ from instructor.constants import ID_CHOOSE_PRODUCT, ID_CHOOSE_SAME, ID_START
 
 def get_same_product(product_title):
     return Step(
-        Tr.CONNECT,
+        Tr.CORRECT_PRODUCT,
         [Row(
             Text(30, Tr.MAKE_CHOICE),
             Text(30, product_title),

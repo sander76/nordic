@@ -4,14 +4,12 @@ from instructor.components import ToJson, Instruction
 from instructor.helpers import TXT
 
 from instructor.products.m25s_duette import m25s_duette_free, \
-    m25s_duette_tensioned, m25s_duette_tensioned_alt
+    m25s_duette_tensioned
 from instructor.products.m25s_pleated import m25s_pleated_free, \
     m25s_pleated_tensioned
-from instructor.products.m25s_vb import m25s_25mm_vb_free_alt, \
-    m25s_16mm_vb_free_alt, m25s_vb_free
-from instructor.products.m25s_vvb import m25s_vvb, m25s_vvb_with_product_nav
-from instructor.products.roller import rollerblind1, rollerblind_old, \
-    rollerblind1_with_product_nav
+from instructor.products.m25s_vb import m25s_vb_free
+from instructor.products.m25s_vvb import m25s_vvb
+from instructor.products.roller import rollerblind1, rollerblind_old
 from instructor.products.test_products import test1, test_blinds1
 from instructor.products.twist import twist_old, twist
 from instructor.translations import load_translations
@@ -19,19 +17,16 @@ from instructor.translations import load_translations
 INSTRUCTION_VERSION = "1.7.11"
 MAIN_PATH = "../static/instructions/"
 
-VB = [m25s_25mm_vb_free_alt,
-      m25s_16mm_vb_free_alt,
-      m25s_vb_free]
+
 
 
 def make_vb_free():
-    make_instruction('instructions-vb-en.json', VB, TXT.en)
+    make_instruction('instructions-vb-en.json', [m25s_vb_free], TXT.en)
 
 
 def make_kadan_1():
     instructions = [m25s_vb_free,
                     m25s_duette_free,
-                    m25s_duette_tensioned_alt,
                     m25s_duette_tensioned,
                     m25s_pleated_free,
                     m25s_pleated_tensioned]
@@ -44,10 +39,8 @@ def make_luxaflex_nl():
                     rollerblind_old,
                     twist,
                     twist_old,
-                    m25s_25mm_vb_free_alt,
-                    m25s_16mm_vb_free_alt,
                     m25s_duette_free,
-                    m25s_duette_tensioned_alt,
+                    m25s_duette_tensioned,
                     m25s_pleated_free,
                     m25s_pleated_tensioned
                     ]
@@ -102,8 +95,7 @@ def make_germania2():
 
 
 def make_germania1():
-    germania1_products = [m25s_duette_free, m25s_pleated_free,
-                          m25s_16mm_vb_free_alt, m25s_25mm_vb_free_alt]
+    germania1_products = [m25s_duette_free, m25s_pleated_free,m25s_vb_free]
     make_instruction(
         "instructions-germania1-en.json", germania1_products, TXT.en)
     make_instruction(
@@ -117,9 +109,9 @@ def make_poland():
     make_instruction("instructions-hdfab-en.json", poland_products, TXT.en)
 
 
-def make_test():
-    test_products = [rollerblind1_with_product_nav, m25s_vvb_with_product_nav]
-    make_instruction("instructions-tester-en.json", test_products, TXT.en)
+# def make_test():
+#     test_products = [rollerblind1_with_product_nav]
+#     make_instruction("instructions-tester-en.json", test_products, TXT.en)
 
 
 def make_ts():
@@ -127,9 +119,7 @@ def make_ts():
         m25s_duette_free,
         m25s_duette_tensioned,
         m25s_pleated_free,
-        m25s_pleated_tensioned,
-        m25s_16mm_vb_free_alt,
-        m25s_25mm_vb_free_alt]
+        m25s_pleated_tensioned]
 
     make_instruction("instructions-ts-en.json", ts_products, TXT.en)
 
@@ -138,11 +128,8 @@ def make_all():
     products = [
         m25s_duette_free,
         m25s_duette_tensioned,
-        m25s_duette_tensioned_alt,
         m25s_pleated_free,
         m25s_pleated_tensioned,
-        m25s_25mm_vb_free_alt,
-        m25s_16mm_vb_free_alt,
         m25s_vvb,
         rollerblind1,
         twist
@@ -151,8 +138,7 @@ def make_all():
 
 
 def make_tensioned():
-    tensioned = [m25s_duette_tensioned,
-                 m25s_duette_tensioned_alt]
+    tensioned = [m25s_duette_tensioned]
     make_instruction("instructions-tensioned-en.json", tensioned, TXT.en)
 
 
@@ -175,9 +161,7 @@ if __name__ == "__main__":
     load_translations()
     make_vb_free()
     make_default()
-    make_test()
     make_luxaflex_uk()
-
     make_luxaflex_nl()
     make_holis()
     make_test1()

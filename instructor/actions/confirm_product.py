@@ -7,7 +7,7 @@ from instructor.constants import ID_CHOOSE_PRODUCT, ID_CHOOSE_SAME, ID_START
 
 def get_confirm_product(product_title):
     return Step(
-        Tr.CONNECT,
+        Tr.CORRECT_PRODUCT,
         [Row(
             Text(30, Tr.MAKE_CHOICE),
             Text(30, product_title),
@@ -29,7 +29,7 @@ def get_confirm_product(product_title):
                 )
             )
         ],
-        nav_id=ID_CHOOSE_SAME)
+        nav_id=ID_START)
 
 
 confirm_rb = get_confirm_product(Tr.PRODUCT_PV_ROLLERBLIND)
@@ -37,4 +37,6 @@ confirm_twist = get_confirm_product(Tr.PRODUCT_PV_TWIST)
 confirm_vb = get_confirm_product(Tr.PRODUCT_PV_M25S_VB)
 confirm_duette = get_confirm_product(Tr.PRODUCT_PV_M25S_DUETTE)
 confirm_duette_tensioned = get_confirm_product(Tr.PRODUCT_PV_M25S_DUETTE_TENSIONED)
+confirm_pleated = get_confirm_product(Tr.PRODUCT_PV_M25S_PLEATED)
+confirm_pleated_tensioned = get_confirm_product(Tr.PRODUCT_PV_M25S_PLEATED_TENSIONED)
 confirm_vvb = get_confirm_product(Tr.PRODUCT_PV_M25S_VVB)

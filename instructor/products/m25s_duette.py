@@ -1,4 +1,6 @@
-from instructor.actions.confirm_product import confirm_duette
+from instructor.translations import Translations as Tr
+from instructor.actions.confirm_product import confirm_duette, \
+    confirm_duette_tensioned
 from instructor.actions.connect import connect_m25s_duette
 from instructor.actions.general import test_blinds, \
     enter_program_mode_duette
@@ -10,14 +12,16 @@ from instructor.actions.motor_direction import right_mount_duette, \
 from instructor.actions.set_bottom_limit import duette_set_bottom_limit, \
     duette_re_set_bottom_limit
 from instructor.actions.set_top_limit import duette_set_top_limit, \
-    duette_set_top_limit_moveup, duette_confirm_top_limit
+    duette_set_top_limit_moveup, duette_confirm_top_limit, \
+    duette_tensioned_set_top_limit_moveup
 from instructor.actions.skip_step import skiptop, skipbottom_end
 from instructor.components import Product
 
 # preferred method.
 m25s_duette_free = Product(
-    "M25S Duette",
+    Tr.PRODUCT_PV_M25S_DUETTE_TENSIONED,
     [
+        confirm_duette,
         connect_m25s_duette,
         initialise_duette,
         right_mount_duette,
@@ -37,65 +41,21 @@ m25s_duette_free = Product(
         duette_re_set_bottom_limit
     ])
 
-m25s_duette_tensioned_alt = Product(
-    "M25S Duette tensioned alt",
-    [
-
-        connect_m25s_duette,
-        initialise_duette_tensioned_alt,
-        enter_program_mode_duette,
-        tensioned_duette_direction,
-        tensioned_duette_switch_direction,
-        enter_program_mode_duette,
-        duette_set_bottom_limit,
-        enter_program_mode_duette,
-        duette_set_top_limit_moveup,
-        duette_confirm_top_limit,
-        duette_set_top_limit,
-        test_blinds,
-        skiptop,
-        enter_program_mode_duette,
-        duette_set_top_limit,
-        skipbottom_end,
-        enter_program_mode_duette,
-        duette_re_set_bottom_limit
-    ]
-)
-
 m25s_duette_tensioned = Product(
-    "M25S Duette tensioned",
+    Tr.PRODUCT_PV_M25S_DUETTE_TENSIONED,
     [
-        connect_m25s_duette,
-        initialise_duette_tensioned,
-        right_mount_duette,
-        left_mount_duette,
-        enter_program_mode_duette,
-        duette_set_bottom_limit,
-        enter_program_mode_duette,
-        duette_set_top_limit_moveup,
-        duette_confirm_top_limit,
-        duette_set_top_limit,
-        test_blinds,
-        skiptop,
-        enter_program_mode_duette,
-        duette_set_top_limit,
-        skipbottom_end,
-        enter_program_mode_duette,
-        duette_re_set_bottom_limit
-    ])
-
-m25s_duette_tensioned_alt = Product(
-    "M25S Duette tensioned alt",
-    [
+        confirm_duette_tensioned,
         connect_m25s_duette,
         initialise_duette_tensioned_alt,
         enter_program_mode_duette,
         tensioned_duette_direction,
         tensioned_duette_switch_direction,
         enter_program_mode_duette,
+
+
         duette_set_bottom_limit,
         enter_program_mode_duette,
-        duette_set_top_limit_moveup,
+        duette_tensioned_set_top_limit_moveup,
         duette_confirm_top_limit,
         duette_set_top_limit,
         test_blinds,
@@ -107,3 +67,52 @@ m25s_duette_tensioned_alt = Product(
         duette_re_set_bottom_limit
     ]
 )
+
+
+# m25s_duette_tensioned = Product(
+#     Tr.PRODUCT_PV_M25S_DUETTE_TENSIONED,
+#     [
+#         confirm_duette_tensioned,
+#         connect_m25s_duette,
+#         initialise_duette_tensioned_alt,
+#         enter_program_mode_duette,
+#         tensioned_duette_direction,
+#         tensioned_duette_switch_direction,
+#         enter_program_mode_duette,
+#         duette_set_bottom_limit,
+#         enter_program_mode_duette,
+#         duette_set_top_limit_moveup,
+#         duette_confirm_top_limit,
+#         duette_set_top_limit,
+#         test_blinds,
+#         skiptop,
+#         enter_program_mode_duette,
+#         duette_set_top_limit,
+#         skipbottom_end,
+#         enter_program_mode_duette,
+#         duette_re_set_bottom_limit
+#     ]
+# )
+
+# m25s_duette_tensioned = Product(
+#     "M25S Duette tensioned",
+#     [
+#         connect_m25s_duette,
+#         initialise_duette_tensioned,
+#         right_mount_duette,
+#         left_mount_duette,
+#         enter_program_mode_duette,
+#         duette_set_bottom_limit,
+#         enter_program_mode_duette,
+#         duette_set_top_limit_moveup,
+#         duette_confirm_top_limit,
+#         duette_set_top_limit,
+#         test_blinds,
+#         skiptop,
+#         enter_program_mode_duette,
+#         duette_set_top_limit,
+#         skipbottom_end,
+#         enter_program_mode_duette,
+#         duette_re_set_bottom_limit
+#     ])
+#
