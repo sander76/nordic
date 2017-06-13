@@ -229,12 +229,6 @@ vvb_back_right = get_direction(
     Tr.ORIENT_VVB_BACK, NordicCommands(Nd.ORIENT_VVB_RIGHT),
     confirm_yes=NavigationCommand(2))
 
-# vvb_above_right = get_direction(
-#     VVB_JOG_1, tr.TITLE_ORIENT_VVB_UPRIGHT,
-#     tr.ORIENT_VVB_UPRIGHT, NordicCommands(Nd.ORIENT_VVB_UPRIGHT_RIGHT),
-#     cancel_no=NavigationCommand(-1),
-#     confirm_yes=NavigationCommand(1))
-
 tensioned_duette_direction = Step(
     Tr.BLIND_DIRECTION,
     [
@@ -251,7 +245,7 @@ tensioned_duette_direction = Step(
                     DelayedCommand(Nd.stop, 0.4)),
                 confirm_command=Confirm(
                     DUETTE_CLOSE,
-                    Tr.DID_BLIND_CLOSE,
+                    Tr.DID_BLIND_MOVE_CLOSE_DIRECTION,
                     yes=NavigationCommand(2),
                     no=NavigationCommand(1))))
             ,

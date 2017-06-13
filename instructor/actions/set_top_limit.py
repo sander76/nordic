@@ -53,7 +53,7 @@ def get_top_limit_alternative(
                     30,
                     okay=Commands(
                         nordic_commands=NordicCommands(
-                            Nd.STARTPROGRAM, DelayedCommand(Nd.open, 3)),
+                            Nd.open),
                         confirm_command=Confirm(None, confirm_message)
                     )
                 )
@@ -102,9 +102,13 @@ confirm_top_limit_vb = get_confirm_top_limit(VB_JOG_1)
 
 
 duette_set_top_limit_moveup = get_top_limit_alternative()
+
 duette_tensioned_set_top_limit_moveup = get_top_limit_alternative()
+
 duette_confirm_top_limit = get_confirm_top_limit(DUETTE_JOG_1)
 duette_set_top_limit = get_top_limit(DUETTE_JOG_1)
+
+
 
 pleated_set_top_limit_moveup = get_top_limit_alternative()
 pleated_confirm_top_limit = get_confirm_top_limit(PLEATED_JOG_1)

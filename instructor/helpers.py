@@ -10,6 +10,8 @@ class NumberedText:
         # return val
         return txt
 
+    def string_def(self):
+        return self.get_text('en').get('content')
 
 class TXT:
     en = 'en'
@@ -55,3 +57,6 @@ class TXT:
     def add_number(self, number):
         nt = NumberedText(self, number)
         return nt
+
+    def string_def(self):
+        return self.get_text('en').get('content')

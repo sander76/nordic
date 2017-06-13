@@ -140,6 +140,7 @@ class Translations:
         "I don't want to set the TOP limit")
 
     SELECT_SKIP_OPEN = TXT("I don't want to set the OPEN limit.")
+
     SELECT_SKIP_CLOSE = TXT("I don't want to set the CLOSE limit.")
 
     SELECT_SKIP_BOTTOM = TXT(
@@ -185,6 +186,9 @@ class Translations:
     DID_MOTOR_MOVE_DOWN = TXT("Did the blind move down?")
 
     DID_BLIND_CLOSE = TXT("Did the blind close?")
+
+    DID_BLIND_MOVE_CLOSE_DIRECTION = TXT(
+        "Did the blind move towards close direction?")
 
     PRESS_HOLD_BLIND_BUTTON = TXT("`Press` and `hold` the *BLIND BUTTON* .")
 
@@ -234,60 +238,32 @@ class Translations:
         'Check OPEN and CLOSE limits.')
 
     SAVE_BOTTOM = TXT(
-        "Save this as BOTTOM limit.",
-        "Stel in als ONDER positie.",
-        il=None,
-        de="Speichern als untere Endlage",
-        dk=None,
-        pl="Zapisz dolną pozycję")
-
-    SAVE_CLOSE = TXT("Save this as CLOSE position.")
+        "Save this as BOTTOM limit.")
 
     SAVE_TOP = TXT(
-        "Save this as TOP limit.",
-        "Stel in als BOVEN positie.",
-        il=None,
-        de="Speichern als OBERE Endlage",
-        dk=None,
-        pl="Sprawdź górną pozycję")
+        "Save this as TOP limit.")
 
     SAVE_OPEN = TXT(
         "Save this as OPEN limit."
     )
 
+    SAVE_CLOSE = TXT("Save this as CLOSE position.")
+
     SAVE_THIS_AS_TOP = TXT(
-        "Save this as the TOP limit?",
-        "Deze positie als BOVEN limiet instellen?",
-        de="Diese Position als OBERE Endlage einstellen?",
-        pl="Czy zatwierdzić pozycję górna?")
+        "Save this as the TOP limit?")
 
     SAVE_THIS_AS_OPEN = TXT(
         "Save this an the OPEN limit?"
     )
 
     SAVE_SLAT = TXT(
-        "Save this as SLAT OPEN position.",
-        "Stel in als SLAT OPEN positie.",
-        il=None,
-        de="Diese Lamellenposition als OFFEN sichern",
-        dk=None,
-        pl=None)
+        "Save this as SLAT OPEN position.")
 
     LIMITS_OK = TXT(
-        "Limits are OK. Do a new blind.",
-        "Limieten zijn OK. Nieuwe *BLIND* inprogrammeren.",
-        il=None,
-        de="Endlagen sind OK. Neue Anlage programmieren",
-        dk=None,
-        pl="Limity są poprawne. Przejdź do nowego produktu")
+        "Limits are OK. Do a new blind.")
 
     LIMITS_NOT_OK = TXT(
-        "Limits are NOT OK. Re-set them",
-        "Limieten zijn NIET OK. Opnieuw instellen.",
-        il=None,
-        de="Endlagen sind NICHT OK. Erneut einstellen",
-        dk=None,
-        pl="Limity są niepoprawne. Ustaw ponownie")
+        "Limits are NOT OK. Re-set them")
 
     YES = TXT("yes")
 
@@ -303,7 +279,6 @@ class Translations:
 
     TITLE_SKIP_OPEN = TXT(
         "Set the open limit ?",
-        "Open limit instellen ?",
         to_upper=True
     )
 
@@ -311,27 +286,22 @@ class Translations:
 
     TITLE_SKIP_TOP = TXT(
         "SET *TOP* LIMIT?",
-        "STEL *BOVENLIMIET* IN?",
         to_upper=True)
 
     TITLE_SKIP_BOTTOM = TXT(
         "SET *BOTTOM* LIMIT?",
-        "STEL *ONDERLIMIET* IN?",
         to_upper=True)
 
     TITLE_SKIP_SLAT = TXT(
         "SET SLAT POSITION?",
-        "STEL SLAT POSITIE IN?",
         to_upper=True)
 
     TITLE_ORIENT_VVB_BACK = TXT(
         "Is the motor mounted on the **back** ?",
-        "Is the motor **achter** gemonteerd ?",
         to_upper=True)
 
     TITLE_ORIENT_VVB_UPRIGHT = TXT(
         "Is the motor mounted **above** ?",
-        "Is de motor **boven** gemonteerd ?",
         to_upper=True)
 
     TITLE_BACKROLLER_LEFT = TXT(
@@ -351,16 +321,13 @@ class Translations:
 
     TITLE_SET_TOP_LIMIT = TXT(
         "SET TOP LIMIT.",
-        "STEL BOVENLIMIET IN.",
         to_upper=True)
 
     TITLE_VVB = TXT(
-        "VVB title",
-        "VVB titel")
+        "VVB title")
 
     TITLE_MOTOR_CHECK_CLOSE = TXT(
         "CHECK CLOSE DIRECTION",
-        "Sluit richting",
         to_upper=True)
 
     ANOTHER_PRODUCT = TXT('Choose another product.')
@@ -383,7 +350,8 @@ def _get_translation_file_path(lang):
 
 def load_translations():
     """
-    Loads all available json translation files and populates the Translations
+    Loads all available json translation (no english)
+     files and populates the Translations
      class. This function is called before creation of instructions is
      initiated.
     """
@@ -430,32 +398,6 @@ def convert_to_flat(fl, ext):
             BASE_FOLDER, FLAT_JSON_FORMAT.format(lang)), 'w',
             encoding='utf-8') as _fl:
         json.dump(_new_json, _fl, ensure_ascii=False, indent=4)
-
-
-# def convert_to_csv():
-#     """Load the json files with tanslations.
-#     Convert them to csv files."""
-#     for fl in os.listdir(BASE_FOLDER):
-#         _fl, ext = os.path.splitext(fl)
-#         if ext == '.json':
-#             _csv = []
-#             lang = (_fl.split('_'))[-1]
-#             with open(os.path.join(BASE_FOLDER, fl), 'r',
-#                       encoding="utf-8") as f:
-#                 _js = json.load(f)
-#             for key, value in _js.items():
-#                 _trans = value.get(lang)
-#                 if ',' in _trans:
-#                     raise UserWarning(
-#                         "translation {} contains a comma. at {}".format(
-#                             fl, key
-#                         ))
-#                 _ref = value.get("ref_en")
-#                 _csv.append([key, _trans, '', _ref, ''])
-#             with open(os.path.join(BASE_FOLDER, _fl + ".csv"), 'w',
-#                       encoding='utf-8') as _fl:
-#                 for _row in _csv:
-#                     _fl.write(','.join(_row) + '\n')
 
 
 def export_translations():

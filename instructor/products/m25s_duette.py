@@ -19,7 +19,7 @@ from instructor.components import Product
 
 # preferred method.
 m25s_duette_free = Product(
-    Tr.PRODUCT_PV_M25S_DUETTE_TENSIONED,
+    Tr.PRODUCT_PV_M25S_DUETTE,
     [
         confirm_duette,
         connect_m25s_duette,
@@ -51,13 +51,11 @@ m25s_duette_tensioned = Product(
         tensioned_duette_direction,
         tensioned_duette_switch_direction,
         enter_program_mode_duette,
-
-
-        duette_set_bottom_limit,
-        enter_program_mode_duette,
         duette_tensioned_set_top_limit_moveup,
         duette_confirm_top_limit,
         duette_set_top_limit,
+        enter_program_mode_duette,
+        duette_set_bottom_limit,
         test_blinds,
         skiptop,
         enter_program_mode_duette,
