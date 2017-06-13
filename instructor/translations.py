@@ -125,19 +125,10 @@ class Translations:
         to_upper=True)
 
     SET_TWIST_SLAT_POSITION = TXT(
-        "SET TWIST SLAT POSITION.",
-        "STEL TWIST SLAT POSITIE IN.",
-        il=None,
-        de="einstellen der Lamellenposition des Doppelrollos",
-        dk=None,
-        pl=None)
+        "SET TWIST SLAT POSITION.")
 
     PROPER_PRODUCT_HANG = TXT(
-        "Make sure *BOTTOM* bar is approximately 20cm down.",
-        "Zorg dat de *ONDERLAT* ongeveer 20cm gezakt is.", il=None,
-        de="sicherstellen, dass die Unterschiene ungefähr 20cm unten ist",
-        dk=None,
-        pl="Upewnij sie, że listwa *DOLNA* jest ok 20cm od dołu")
+        "Make sure *BOTTOM* bar is approximately 20cm down.")
 
     PROPER_PRODUCT_HANG_CONFIRM = TXT(
         "Product fixed *OK*.")
@@ -158,41 +149,23 @@ class Translations:
         "Don't re-set the *SLAT* position.")
 
     RESET_TOP = TXT(
-        "Re-set the TOP limit.",
-        "BOVENLIMIET opnieuw instellen.",
-        il=None,
-        de="OBERE Endlage erneut festlegen",
-        dk=None,
-        pl="Ustaw ponownie limit gorny")
+        "Re-set the TOP limit.")
 
     RESET_OPEN = TXT("Re-set the OPEN limit.")
     RESET_CLOSE = TXT("Re-set the CLOSE limit.")
 
     START_TOP_PROGRAMMING = TXT(
-        "The blind will move completely to the top.",
-        "De blind zal helemaal naar boven bewegen.",
-        de="die Anlage wird ganz nach oben fahren",
-        pl="Produkt zwija sie całkowicie")
+        "The blind will move completely to the top.")
 
     START_OPEN_PROGRAMMING = TXT(
         "The blind will move to the open position."
     )
 
     RESET_BOTTOM = TXT(
-        "Re-set the BOTTOM limit.",
-        "ONDERLIMIET opnieuw instellen.",
-        il=None,
-        de="Untere Endlage erneut festlegen",
-        dk=None,
-        pl="Ustaw ponownie limit dolny")
+        "Re-set the BOTTOM limit.")
 
     RESET_SLAT = TXT(
-        "Re-set the SLAT position",
-        "SLAT positie opnieuw instellen.",
-        il=None,
-        de="Lamellenposition erneut festlegen",
-        dk=None,
-        pl=None)
+        "Re-set the SLAT position")
 
     TEST_BLINDS = TXT(
         "TEST BLINDS")
@@ -225,12 +198,7 @@ class Translations:
         "Press OK button")
 
     WATCH_THE_BLIND_JOG = TXT(
-        "Watch the *BLIND* jog.",
-        "Zie de *BLIND* bewegen.",
-        il=None,
-        de="Gucken Sie, ob die Anlage sich bewegt",
-        dk=None,
-        pl="Spójrz czy produkt wykonuje ruch góra/dół")
+        "Watch the *BLIND* jog.")
 
     WATCH_THE_BLIND_MOVE_UP = TXT(
         "Watch the *BLIND* move up.")
@@ -250,24 +218,14 @@ class Translations:
         "Move the *BLIND* to the desired BOTTOM position.")
 
     MOVE_BLIND_TOP = TXT(
-        "Move the *BLIND* to the desired TOP position.",
-        "Stuur de *BLIND* naar de gewenste BOVEN positie.",
-        il=None,
-        de="Bewegen Sie die Anlage in die gewünschte obere Endlage",
-        dk=None,
-        pl="Produkt zwija sie do pożądanej pozycji górnej")
+        "Move the *BLIND* to the desired TOP position.")
 
     MOVE_BLIND_OPEN = TXT(
         "Move the *BLIND* to the desired OPEN position"
     )
 
     MOVE_BLIND_SLAT_OPEN = TXT(
-        "Move the *BLIND* to the desired SLAT OPEN position.",
-        "Stuur de *BLIND* naar de gewenste SLAT OPEN positie.",
-        il=None,
-        de="Bewegen Sie die Lamellen in die gewünschte Position",
-        dk=None,
-        pl=None)
+        "Move the *BLIND* to the desired SLAT OPEN position.")
 
     TEST_MOVE_BLINDS = TXT(
         "Check TOP and BOTTOM limits.")

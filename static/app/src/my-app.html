@@ -12,17 +12,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
 <link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
-<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/app-route/app-route.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
-<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+
 <link rel="import" href="../bower_components/paper-toast/paper-toast.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../bower_components/font-roboto-local/roboto.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="serial-data.html">
 <link rel="import" href="my-progress.html">
 <link rel="import" href="my-icons.html">
@@ -35,18 +37,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        :host {
         --app-primary-color: #4285f4;
         --app-secondary-color: black;
-
+        --app-drawer-width: 40%;
         display: block;
       }
-
-      app-header {
+      /*app-header {
         color: #fff;
         background-color: var(--app-primary-color);
-      }
-
-      app-header paper-icon-button {
+      }*/
+      /*app-header paper-icon-button {
         --paper-icon-button-ink-color: white;
-      }
+      }*/
 
       .drawer-list {
         margin: 0 20px;
@@ -75,14 +75,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-top: 10px;
         margin-bottom: 10px;
         width: 70%;
+        max-width: 250px;
       }
 
       .detailedinfo {
         font-size: 0.6em;
         margin: 4px;
       }
+
       .iron-selected {
         background: #eeeeee;
+      }
+
+      #title {
+        font-size: 2em;
+        font-weight: bold;
+        margin-left: 2em;
+      }
+
+      #toolbar {
+        height: 100vh;
+      }
+
+
+      #menu {
+        background-color: #e0e0e0;
+        /*color: #fff;*/
+        width: 100%;
+      }
+
+      #instrs {
+        overflow-y: auto;
       }
     </style>
 
@@ -91,37 +114,54 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <iron-ajax id="instruction" url="/instructions/instructions-[[routeData.page]].json" handle-as="json" on-response="getInstructions" on-error="handleError"></iron-ajax>
     <iron-ajax id="sendCommand" url="/nordic" method="POST" content-type="application/json"></iron-ajax>
 
-    <app-drawer-layout>
-      <!-- Drawer content -->
-      <app-drawer id="drawer">
-        <div class="layout vertical" style="height:100%">
-          <div class="logo">
-            <img src="../images/logo/hunterdouglas.png">
-          </div>
-          <div class="flex" id="instrs">
-            <iron-selector selected="[[routeData.product]]" class="drawer-list" role="navigation">
-              <template is="dom-repeat" items="[[all_products]]">
-                <a href="#instructions/[[routeData.page]]/[[index]]">[[item.title]]</a>
-              </template>
-            </iron-selector>
-          </div>
-
-          <div class="detailedinfo">
-            <serial-data></serial-data>
-            <div> instruction version: <span>[[definitions_version]]</span> </div>
-          </div>
+    <!--<app-drawer-layout>-->
+    <!-- Drawer content -->
+    <div id="toolbar" class="layout vertical">
+      <div id="menu" class="layout horizontal justified">
+        <paper-button noink="" on-tap="toggleDrawer" style="height:100%;" class="self-start">
+          <iron-icon icon="menu"></iron-icon>Select product</paper-button>
+        <div id="title" class="flex">[[currentproduct.title.content]]</div>
+        <div class="detailedinfo">
+          <serial-data></serial-data>
         </div>
-      </app-drawer>
+      </div>
 
-      <!-- Main content -->
+      <my-progress bottom-item="" currentstep="[[currentStepIdx]]" totalsteps="[[currentproductsteps.length]]">
+      </my-progress>
+      <instruction-step id="instruction_step" class="flex" data="[[currentstep]]"></instruction-step>
+    </div>
 
-      <app-header>
-        <my-progress currentstep="[[currentStepIdx]]" totalsteps="[[currentproductsteps.length]]">
-        </my-progress>
-      </app-header>
 
-      <instruction-step id="instruction_step" data="[[currentstep]]"></instruction-step>
-    </app-drawer-layout>
+
+    <app-drawer id="drawer">
+      <div class="layout vertical" style="height:100%">
+        <div class="logo">
+          <img src="../images/logo/hunterdouglas.png">
+        </div>
+        <div class="flex" id="instrs">
+          <iron-selector selected="[[routeData.product]]" class="drawer-list" role="navigation">
+            <template is="dom-repeat" items="[[all_products]]">
+              <a on-tap="toggleDrawer" href="#instructions/[[routeData.page]]/[[index]]">[[item.title.content]]</a>
+            </template>
+          </iron-selector>
+        </div>
+
+        <div class="detailedinfo">
+          <!--<serial-data></serial-data>-->
+          <div> instruction version: <span>[[definitions_version]]</span> </div>
+        </div>
+      </div>
+    </app-drawer>
+
+    <!-- Main content -->
+
+    <!--<app-header>
+      <my-progress currentstep="[[currentStepIdx]]" totalsteps="[[currentproductsteps.length]]">
+      </my-progress>
+    </app-header>-->
+
+
+    <!--</app-drawer-layout>-->
     <my-modal modaldata="[[modaldata]]" id="modl"></my-modal>
   </template>
 
@@ -152,6 +192,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.set("modaldata", modal_data);
         this.$.modl.openmodal();
       },
+      toggleDrawer: function () {
+        this.$.drawer.toggle();
+      },
       gotoStep: function (offset) {
         console.log("");
         console.log("Going to page step: " + offset);
@@ -174,11 +217,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       gotoId: function (id) {
         console.log("");
         console.log("Going to page with id: " + id);
-        for (var i = 0; i < this.currentproductsteps.length; i++) {
-          if (this.currentproductsteps[i].id === id) {
-            console.log('id found: ', id);
-            this.set_current_step(i);
-            break;
+        if (id == "choose_product") {
+          this.toggleDrawer();
+        } else {
+          for (var i = 0; i < this.currentproductsteps.length; i++) {
+            if (this.currentproductsteps[i].id === id) {
+              console.log('id found: ', id);
+              this.set_current_step(i);
+              break;
+            }
           }
         }
       },
@@ -196,7 +243,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _routeProductChanged1: function (newValue) {
         this.$.instruction.generateRequest();
         var _as = this.$.instrs.querySelectorAll("a")
-        for (var i=0;i<_as.length;i+=1){
+        for (var i = 0; i < _as.length; i += 1) {
           _as[i].blur();
         }
         //document.body.focus();

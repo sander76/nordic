@@ -63,13 +63,6 @@ class Instruction:
         return json
 
 
-'''
-product = {'type': 'dict',
-           'schema': {'title': {'type': 'string', 'required': True},
-                      'steps': {'type': 'list', 'schema': step}}}
-'''
-
-
 class Product:
     def __init__(self, title, steps):
         self.title = title

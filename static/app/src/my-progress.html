@@ -1,9 +1,9 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/paper-progress/paper-progress.html">
-<link rel="import" href="shared-styles.html">
+
 
 <dom-module id="my-progress">
-    <style include="shared-styles">
+    <style>
         paper-progress {
             width: 100%;
             --paper-progress-transition-duration: 0.08s;
@@ -18,22 +18,25 @@
         .steplabel {
             text-align: right;
             position: absolute;
-            top:0;
+            top: 0;
         }
 
-        :host{
-            --paper-progress-height: var(--progress-bar-height);
-            height:var(--progress-bar-height);
+         :host {
+            --paper-progress-height: 25px;
+            height: 25px;
             font-size: 1em;
+            width:100%;
+            
         }
     </style>
     <template>
-
-        <paper-progress class="transiting" value="[[_currentstep(currentstep)]]" min="0" max="[[totalsteps]]"></paper-progress>
-        <div id="stepcontainer">
-            <template is="dom-repeat" items="[[steplist]]">
-                <div class="steplabel" style$="right: [[item.margin]] ;"><span>[[item.stepnr]]</span></div>
-            </template>
+        <div style="position:relative">
+            <paper-progress class="transiting" value="[[_currentstep(currentstep)]]" min="0" max="[[totalsteps]]"></paper-progress>
+            <div id="stepcontainer">
+                <template is="dom-repeat" items="[[steplist]]">
+                    <div class="steplabel" style$="right: [[item.margin]] ;"><span>[[item.stepnr]]</span></div>
+                </template>
+            </div>
         </div>
     </template>
     <script>
@@ -42,7 +45,7 @@
             properties: {
                 currentstep: {
                     type: Number,
-                    
+
                     observer: '_currentstepChanged'
                 },
                 totalsteps: {
@@ -77,7 +80,8 @@
                 for (var i = 0; i < newvalue; i += 1) {
                     lst.push({
                         stepnr: i,
-                        margin: ((newvalue - (i + this.stepoffset)) * increment) + '%'
+                        margin: ((newvalue - (i + this.stepoffset)) *
+                            increment) + '%'
                     });
                 }
                 //this.steplist=lst;

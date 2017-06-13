@@ -17,9 +17,9 @@
             color: var(--icon-cross-color) !important;
         }
 
-         :host {
+         /*:host {
             height: 100%;
-        }
+        }*/
 
         #col1 {
             min-width: 4em;
@@ -47,8 +47,9 @@
         }
 
         #container {
-            min-height: 100vh;
-            margin-top: var(--container-margin-top);
+            height:100%;
+            /*min-height: 100vh;
+            margin-top: var(--container-margin-top);*/
         }
         .fakebutton{
             padding:10px;
@@ -62,7 +63,7 @@
     <style include="iron-flex iron-flex-alignment"></style>
     <template>
         <div class="vertical layout flex" id="container">
-            <div style="margin:10px;" class="flex vertical layout">
+            <!--<div style="margin:10px;" class="flex vertical layout">-->
                 <marked-element markdown="[[data.title.content]]">
                     <div class="markdown-html"></div>
                 </marked-element>
@@ -91,19 +92,19 @@
                 </div>
                 <div class="horizontal layout justified">
                     <div>
-                        <div class="fakebutton" on-tap="_prev">[[data.previous.caption]]</div>
+                        <div class="fakebutton" on-tap="_prev">[[data.previous.caption.content]]</div>
                         <!--<paper-button noink class="instruction" raised on-tap="_prev" hidden="[[previous_hidden]]">
                             [[data.previous.caption]]
                         </paper-button>-->
                     </div>
                     <div>
-                        <div class="fakebutton" on-tap="_next">[[data.next.caption]]</div>
+                        <div class="fakebutton" on-tap="_next">[[data.next.caption.content]]</div>
                         <!--<paper-button noink class="instruction" raised on-tap="_next">
                             [[data.next.caption]]
                         </paper-button>-->
                     </div>
                 </div>
-            </div>
+            <!--</div>-->
         </div>
         <!--<footer>
                 
