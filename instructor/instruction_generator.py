@@ -29,7 +29,8 @@ def make_kadan_1():
                     m25s_duette_free,
                     m25s_duette_tensioned,
                     m25s_pleated_free,
-                    m25s_pleated_tensioned]
+                    m25s_pleated_tensioned,
+                    rollerblind1]
     make_instruction('instructions-kadan1-en.json', instructions, TXT.en)
     make_instruction('instructions-kadan1-cz.json', instructions, TXT.cz)
 
