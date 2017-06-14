@@ -15,7 +15,7 @@ sudo systemctl restart nordic
 echo "Finished. You can now close this window."
 
 echo "Shutting down browser"
-sudo pkill --oldest chrome
+sudo pkill --oldest chromium
 # echo "Restarting browser"
 # chromium-browser --start-fullscreen &
 

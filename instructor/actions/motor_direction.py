@@ -200,7 +200,7 @@ vvb_split_stack = get_direction(
     orientation_question=Tr.IS_VVB_SPLIT_STACK,
     confirm_orientation_command=NordicCommands(
         Nd.RESET,
-        DelayedCommand(Nd.M25S_VVB_CENTER_STACK,
+        DelayedCommand(Nd.M25S_VVB_SPLIT_STACK,
                        PRODUCT_SET_DELAY),
         DelayedCommand(Nd.ORIENT_VVB_LEFT)
     ),
