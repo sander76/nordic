@@ -48,7 +48,12 @@ def get_top_limit_alternative(
         title,
         [
             Row(
-                Text(30, introtext),
+                Spacer(30),
+                Text(30, Tr.PRESS_OKAY_BUTTON.add_number(1)),
+                Text(30, introtext.add_number(2))
+            ),
+            Row(
+                Spacer(30),
                 PvKeypadAlt(
                     30,
                     okay=Commands(
@@ -56,7 +61,8 @@ def get_top_limit_alternative(
                             Nd.open),
                         confirm_command=Confirm(None, confirm_message)
                     )
-                )
+                ),
+                Spacer(30)
             )
         ])
 
@@ -108,9 +114,8 @@ duette_tensioned_set_top_limit_moveup = get_top_limit_alternative()
 duette_confirm_top_limit = get_confirm_top_limit(DUETTE_JOG_1)
 duette_set_top_limit = get_top_limit(DUETTE_JOG_1)
 
-
-
 pleated_set_top_limit_moveup = get_top_limit_alternative()
+
 pleated_confirm_top_limit = get_confirm_top_limit(PLEATED_JOG_1)
 pleated_set_top_limit = get_top_limit(PLEATED_JOG_1)
 
