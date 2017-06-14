@@ -26,6 +26,7 @@ m25s_pleated_free = Product(
         left_mount_pleated,
         enter_program_mode_pleated,
         pleated_set_bottom_limit,
+        enter_program_mode_pleated,
         pleated_set_top_limit_moveup,
         pleated_confirm_top_limit,
         pleated_set_top_limit,
