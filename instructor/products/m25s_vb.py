@@ -7,7 +7,7 @@ from instructor.actions.motor_direction import right_mount_vb, left_mount_vb, \
 from instructor.actions.set_bottom_limit import set_bottom_limit_vb, \
     re_set_bottom_limit_vb
 from instructor.actions.set_top_limit import set_top_limit_vb, \
-    set_top_limit_alternative_vb, confirm_top_limit_vb
+    set_top_limit_vb_moveup, confirm_top_limit_vb
 from instructor.actions.skip_step import skiptop, skipbottom_end
 from instructor.components import Product
 
@@ -24,7 +24,8 @@ m25s_vb_free = Product(
         left_mount_vb,
         enter_program_mode_vb,
         set_bottom_limit_vb,
-        set_top_limit_alternative_vb,
+        enter_program_mode_vb,
+        set_top_limit_vb_moveup,
         confirm_top_limit_vb,
         set_top_limit_vb,
         test_blinds,

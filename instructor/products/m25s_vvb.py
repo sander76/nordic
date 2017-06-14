@@ -25,6 +25,7 @@ m25s_vvb = Product(
         vvb_split_stack,
         enter_program_mode_vvb_id,
         vvb_set_close_limit,
+        enter_program_mode_vvb,
         vvb_set_open_limit_moveup,
         vvb_confirm_open_limit,
         vvb_set_open_limit,

@@ -100,7 +100,7 @@ set_top_limit_roller = get_top_limit(RB_JOG_1)
 # ****** VB
 set_top_limit_vb = get_top_limit(VB_JOG_1)
 
-set_top_limit_alternative_vb = get_top_limit_alternative()
+set_top_limit_vb_moveup = get_top_limit_alternative()
 
 confirm_top_limit_vb = get_confirm_top_limit(VB_JOG_1)
 
