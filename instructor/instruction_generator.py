@@ -124,6 +124,7 @@ def make_all():
         m25s_pleated_free,
         m25s_pleated_tensioned,
         m25s_vvb,
+        m25s_vb_free,
         rollerblind1,
         twist
     ]
