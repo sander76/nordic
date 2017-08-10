@@ -15,7 +15,7 @@ from instructor.components import Product
 
 from instructor.translations import Translations as Tr
 
-m25s_vvb = Product(
+m25s_vvb_obsolete = Product(
     Tr.PRODUCT_PV_M25S_VVB,
     [
         confirm_vvb,
@@ -29,6 +29,30 @@ m25s_vvb = Product(
         vvb_set_open_limit_moveup,
         vvb_confirm_open_limit,
         vvb_set_open_limit,
+        test_blinds_open_close,
+        skipopen,
+        enter_program_mode_vvb,
+        vvb_set_open_limit,
+        skipclose,
+        enter_program_mode_vvb,
+        vvb_re_set_close_limit
+    ]
+)
+
+m25s_vvb = Product(
+    Tr.PRODUCT_PV_M25S_VVB,
+    [
+        confirm_vvb,
+        connect_m25s_vvb,
+        vvb_left_stack,
+        vvb_right_stack,
+        vvb_split_stack,
+        enter_program_mode_vvb_id,
+        vvb_set_open_limit_moveup,
+        vvb_confirm_open_limit,
+        vvb_set_open_limit,
+        enter_program_mode_vvb,
+        vvb_set_close_limit,
         test_blinds_open_close,
         skipopen,
         enter_program_mode_vvb,

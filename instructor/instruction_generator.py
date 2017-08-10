@@ -14,7 +14,7 @@ from instructor.products.roller import rollerblind1, rollerblind_old
 from instructor.products.twist import twist_old, twist
 from instructor.translations import load_translations
 
-INSTRUCTION_VERSION = "1.7.12"
+INSTRUCTION_VERSION = "1.7.13"
 MAIN_PATH = "../static/instructions/"
 
 

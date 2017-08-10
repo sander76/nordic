@@ -9,6 +9,16 @@ from server.mylogger.mylogger import setup_logging
 import argparse
 import logging.handlers
 
+PRINT_LENGTH=80
+
+def print_instructions():
+    print("*"*PRINT_LENGTH)
+    print("Server running")
+    print("Open your CHROME browser and navigate to:")
+    print("")
+    print("localhost:8080/app/index.html#instructions/all-en/0")
+    print("*"*PRINT_LENGTH)
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--serialport")
@@ -34,7 +44,10 @@ if __name__ == "__main__":
     app = get_app(
         SERIAL_PORT, SERIAL_SPEED, static_files_folder, instructions_folder)
 
+    print_instructions()
+
     try:
         web.run_app(app, port=WEB_PORT)
     except Exception as e:
         lgr.exception("Some error has occurred.")
+

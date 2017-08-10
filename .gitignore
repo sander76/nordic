@@ -6,3 +6,5 @@ network_id.json
 /custom_instructions/*.json
 static/app/bower_components/prism/examples/
 .vscode
+venv
+env
