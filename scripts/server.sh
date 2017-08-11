@@ -7,7 +7,7 @@ if [ $# -eq 0 ];
         echo "no argument supplied"
     else
         echo "argument supplied"
-        HOME=$1
+        HM=$1
 fi
 
 
