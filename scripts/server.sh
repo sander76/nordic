@@ -1,19 +1,18 @@
 #!/bin/bash
 
-HOME=/home/pi
+HM=/home/pi
 
 if [ $# -eq 0 ];
     then
         echo "no argument supplied"
     else
         echo "argument supplied"
-        echo "$1"
-        HOME= "$1"
+        HOME=$1
 fi
 
 
-VENVDIR=$HOME/venv/nordic
-BINDIR=$HOME/nordic
+VENVDIR=$HM/venv/nordic
+BINDIR=$HM/nordic
 
 . $VENVDIR/bin/activate
 cd $BINDIR
