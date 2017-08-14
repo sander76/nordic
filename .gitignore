@@ -8,3 +8,4 @@ static/app/bower_components/prism/examples/
 .vscode
 venv
 env
+startup.bat
