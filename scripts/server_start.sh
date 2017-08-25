@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HOME=/home/pi
+HOME=/
 
 if [ $# -eq 0 ];
     then

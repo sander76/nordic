@@ -5,3 +5,6 @@
 
 1.7.13
 - changed vvb direction.
+
+1.7.14
+- added vb to luxaflex nl.

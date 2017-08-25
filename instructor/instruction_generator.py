@@ -14,7 +14,7 @@ from instructor.products.roller import rollerblind1, rollerblind_old
 from instructor.products.twist import twist_old, twist
 from instructor.translations import load_translations
 
-INSTRUCTION_VERSION = "1.7.13"
+INSTRUCTION_VERSION = "1.7.14"
 MAIN_PATH = "../static/instructions/"
 
 
@@ -43,7 +43,8 @@ def make_luxaflex_nl():
                     m25s_duette_free,
                     m25s_duette_tensioned,
                     m25s_pleated_free,
-                    m25s_pleated_tensioned
+                    m25s_pleated_tensioned,
+                    m25s_vb_free,
                     ]
     make_instruction('instructions-luxaflex-nl.json', instructions, TXT.nl)
 
