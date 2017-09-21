@@ -8,7 +8,7 @@ git checkout release
 git pull
 
 echo "Clearing browser cache"
-sudo rm -rf ~/.cache/chromium/Default
+rm -rf ~/.cache/chromium/Default
 
 echo "Restarting Nordic server"
 sudo systemctl restart nordic
