@@ -8,3 +8,7 @@
 
 1.7.14
 - added vb to luxaflex nl.
+
+1.7.15
+
+- Added tensioned products to germania. 

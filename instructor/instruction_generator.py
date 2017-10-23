@@ -10,14 +10,11 @@ from instructor.products.m25s_pleated import m25s_pleated_free, \
 from instructor.products.m25s_vb import m25s_vb_free
 from instructor.products.m25s_vvb import m25s_vvb
 from instructor.products.roller import rollerblind1, rollerblind_old
-# from instructor.products.test_products import test1, test_blinds1
 from instructor.products.twist import twist_old, twist
 from instructor.translations import load_translations
 
-INSTRUCTION_VERSION = "1.7.14"
+INSTRUCTION_VERSION = "1.7.15"
 MAIN_PATH = "../static/instructions/"
-
-
 
 
 def make_vb_free():
@@ -78,7 +75,6 @@ def make_holis():
         fl.write(holis)
 
 
-
 def make_germania2():
     germania2_products = [rollerblind1, twist, m25s_vvb]
 
@@ -89,7 +85,12 @@ def make_germania2():
 
 
 def make_germania1():
-    germania1_products = [m25s_duette_free, m25s_pleated_free,m25s_vb_free]
+    germania1_products = [
+        m25s_duette_free,
+        m25s_pleated_free,
+        m25s_vb_free,
+        m25s_duette_tensioned,
+        m25s_pleated_tensioned]
     make_instruction(
         "instructions-germania1-en.json", germania1_products, TXT.en)
     make_instruction(
@@ -159,7 +160,7 @@ if __name__ == "__main__":
     make_luxaflex_uk()
     make_luxaflex_nl()
     make_holis()
-    #make_test1()
+    # make_test1()
     make_germania1()
     make_germania2()
     make_poland()
