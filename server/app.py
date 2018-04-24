@@ -1,3 +1,4 @@
+import asyncio
 from aiohttp import web
 
 from server.messenger import Messengers
@@ -7,7 +8,7 @@ from server.webserver.routes import add_routes
 
 
 def get_app(serial_port, serial_speed, static_folder, instructions_folder):
-    app = web.Application()
+    app = web.Application(loop=asyncio.get_event_loop())
 
     ws_messenger = WebSocketMessenger(app)
     messengers = Messengers(app)
@@ -15,6 +16,7 @@ def get_app(serial_port, serial_speed, static_folder, instructions_folder):
 
     serial = NordicSerial(
         app.loop, serial_port, serial_speed, messengers=messengers)
+
     app['serial'] = serial
     app['sockets'] = []
 

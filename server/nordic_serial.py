@@ -82,7 +82,7 @@ class NordicSerial:
                  try_delay=TRYDELAY, messengers=None):
         self._network_id = get_id()
         self.network_id = byte_to_string_rep(
-            self._network_id)  # string representation of the network id. in hex.
+            self._network_id)
         self.id_change = b'\x00\x03I' + self._network_id
         self.s = None
         if serial_port:

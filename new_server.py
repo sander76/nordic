@@ -2,11 +2,12 @@ import argparse
 import logging.handlers
 
 from aiohttp import web
+from serial.tools.list_ports import comports
+
 from server.app import get_app
 from server.constants import SERIAL_SPEED, STATIC_FILES_FOLDER, \
     INSTRUCTIONS_FOLDER
 from server.mylogger.mylogger import setup_logging
-from serial.tools.list_ports import comports
 
 PRINT_LENGTH = 80
 
@@ -18,7 +19,6 @@ dongles = [
     {ATTR_VID: 1027, ATTR_PID: 24597, ATTR_NAME: 'Bremerhave dongle'},
     {ATTR_VID: 4966, ATTR_PID: 4117, ATTR_NAME: 'Nordic dongle'}
 ]
-#old_dongle = {ATTR_VID: 4966, ATTR_PID: 4117, ATTR_NAME: 'Nordic dongle'}
 
 setup_logging("server/logging.json")
 lgr = logging.getLogger(__name__)
@@ -34,7 +34,7 @@ def get_serial_port():
                 return i
     print("*" * PRINT_LENGTH)
     print("Unable to discover the correct serial port.")
-    print("Please contact support.")
+    print("Is it plugged in? If so please contact support.")
     print("Stopping the program.")
     print("*" * PRINT_LENGTH)
     return False
@@ -53,6 +53,7 @@ def start_app(serial_port,
               serial_speed=SERIAL_SPEED,
               static_files_folder=STATIC_FILES_FOLDER,
               instructions_folder=INSTRUCTIONS_FOLDER):
+    print_instructions()
     app = get_app(serial_port, serial_speed, static_files_folder,
                   instructions_folder)
     try:
@@ -65,10 +66,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--serialport")
     parser.add_argument("--port", type=int)
-    parser.add_argument("--staticfolder")
-    parser.add_argument("--instructionsfolder")
+    parser.add_argument("--staticfolder", default=STATIC_FILES_FOLDER)
+    parser.add_argument("--instructionsfolder", default=INSTRUCTIONS_FOLDER)
     parser.add_argument("--serial_discover", dest='autodiscover',
                         action='store_true')
+
     parser.set_defaults(autodiscover=False)
     args = parser.parse_args()
 
@@ -78,6 +80,7 @@ if __name__ == "__main__":
         if _serial:
             SERIAL_PORT = _serial.device
         else:
+            input("Enter to exit")
             exit()
     else:
         SERIAL_PORT = args.serialport
@@ -85,25 +88,9 @@ if __name__ == "__main__":
     WEB_PORT = args.port
 
     static_files_folder = args.staticfolder
-    if not static_files_folder:
-        static_files_folder = STATIC_FILES_FOLDER
-
     instructions_folder = args.instructionsfolder
-    if not instructions_folder:
-        instructions_folder = INSTRUCTIONS_FOLDER
+
+
 
     start_app(SERIAL_PORT, SERIAL_SPEED, static_files_folder,
               instructions_folder)
-    # setup_logging("server/logging.json")
-    # lgr = logging.getLogger(__name__)
-    # lgr.info("***** start logging ******")
-
-    # app = get_app(
-    #     SERIAL_PORT, SERIAL_SPEED, static_files_folder, instructions_folder)
-    #
-    # print_instructions()
-    #
-    # try:
-    #     web.run_app(app, port=WEB_PORT)
-    # except Exception as e:
-    #     lgr.exception("Some error has occurred.")

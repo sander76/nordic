@@ -2,8 +2,8 @@ import asyncio
 import json
 import logging
 
-from aiohttp.web import WebSocketResponse, MsgType
 from aiohttp import web
+from aiohttp.web import WebSocketResponse, MsgType
 
 lgr = logging.getLogger(__name__)
 
@@ -38,6 +38,7 @@ def websocket_handler(request):
             break
     request.app["sockets"].remove(resp)
     return resp
+
 
 @asyncio.coroutine
 def get_connection_status(request):
