@@ -13,6 +13,7 @@ class NumberedText:
     def string_def(self):
         return self.get_text('en').get('content')
 
+
 class TXT:
     en = 'en'
     nl = 'nl'

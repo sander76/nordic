@@ -372,7 +372,7 @@ def _open_current_translation(json_file):
         with open(json_file, 'r', encoding='utf-8') as _fl:
             _js = json.load(_fl)
             return _js
-    except (FileExistsError, FileNotFoundError, ValueError) as e:
+    except (FileExistsError, FileNotFoundError, ValueError):
         return {}
 
 

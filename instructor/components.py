@@ -1,11 +1,11 @@
 import json
 
-from instructor.constants import DEFAULT_DELAY
-from instructor.translations import Translations as Tr
-# import instructor.translations as tr
-from instructor.helpers import TXT, NumberedText
 # from server.nordic import COMMANDS
 import server.nordic
+from instructor.constants import DEFAULT_DELAY
+# import instructor.translations as tr
+from instructor.helpers import TXT, NumberedText
+from instructor.translations import Translations as Tr
 from server.nordic import Nd
 
 COMMANDS = server.nordic.__dict__
@@ -158,16 +158,19 @@ class Confirm(Component):
         self.no_text = no_text
 
     def string_rep(self, indent='|'):
-        _arr = ['+'+"CONFIRM"]
-        indent='| '
-        _arr.append(PROPERTY_FORMAT.format(indent+'img', self.img))
-        _arr.append(PROPERTY_FORMAT.format(indent+'text', self.text.string_def()))
-        _arr.append(PROPERTY_FORMAT.format(indent+'yes_text', self.yes_text.string_def()))
-        _arr.append(PROPERTY_FORMAT.format(indent+'no_text', self.no_text.string_def()))
+        _arr = ['+' + "CONFIRM"]
+        indent = '| '
+        _arr.append(PROPERTY_FORMAT.format(indent + 'img', self.img))
+        _arr.append(
+            PROPERTY_FORMAT.format(indent + 'text', self.text.string_def()))
+        _arr.append(PROPERTY_FORMAT.format(indent + 'yes_text',
+                                           self.yes_text.string_def()))
+        _arr.append(PROPERTY_FORMAT.format(indent + 'no_text',
+                                           self.no_text.string_def()))
         _arr.append(indent + "yes nav")
-        _arr.extend(self.yes.string_rep(indent=indent+' '))
+        _arr.extend(self.yes.string_rep(indent=indent + ' '))
         _arr.append(indent + "no nav")
-        _arr.extend(self.no.string_rep(indent=indent+' '))
+        _arr.extend(self.no.string_rep(indent=indent + ' '))
         return _arr
 
 
@@ -200,10 +203,10 @@ class Commands(Component):
                  navigation_command=None):
         if ((nordic_commands is None or isinstance(nordic_commands,
                                                    NordicCommands))
-            and
+                and
                 (confirm_command is None or isinstance(confirm_command,
                                                        Confirm))
-            and
+                and
                 (navigation_command is None or isinstance(navigation_command,
                                                           NavigationCommand))):
             # typing is ok. continue.

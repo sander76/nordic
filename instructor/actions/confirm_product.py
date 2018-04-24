@@ -36,7 +36,9 @@ confirm_rb = get_confirm_product(Tr.PRODUCT_PV_ROLLERBLIND)
 confirm_twist = get_confirm_product(Tr.PRODUCT_PV_TWIST)
 confirm_vb = get_confirm_product(Tr.PRODUCT_PV_M25S_VB)
 confirm_duette = get_confirm_product(Tr.PRODUCT_PV_M25S_DUETTE)
-confirm_duette_tensioned = get_confirm_product(Tr.PRODUCT_PV_M25S_DUETTE_TENSIONED)
+confirm_duette_tensioned = get_confirm_product(
+    Tr.PRODUCT_PV_M25S_DUETTE_TENSIONED)
 confirm_pleated = get_confirm_product(Tr.PRODUCT_PV_M25S_PLEATED)
-confirm_pleated_tensioned = get_confirm_product(Tr.PRODUCT_PV_M25S_PLEATED_TENSIONED)
+confirm_pleated_tensioned = get_confirm_product(
+    Tr.PRODUCT_PV_M25S_PLEATED_TENSIONED)
 confirm_vvb = get_confirm_product(Tr.PRODUCT_PV_M25S_VVB)
