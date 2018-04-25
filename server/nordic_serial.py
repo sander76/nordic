@@ -1,7 +1,4 @@
-"""
-All serial handling with the nordic dongle.
-
-"""
+"""All serial handling with the nordic dongle."""
 
 import asyncio
 import logging
@@ -138,8 +135,8 @@ class NordicSerial:
             yield from self.send_connection_status()
             self.resetting = False
             LOGGER.info("Connected to serial port {}".format(self.s.port))
-        except SerialException:
-            LOGGER.error("serial port opening problem.")
+        except SerialException as err:
+            LOGGER.error(err)
             self.connect_attempts += 1
             yield from self.send_connection_status()
 
