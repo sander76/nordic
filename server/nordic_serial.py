@@ -177,6 +177,7 @@ class NordicSerial:
 
     @asyncio.coroutine
     def reset_serial(self):
+        LOGGER.debug("resetting serial")
         self.resetting = True
 
 
@@ -198,6 +199,7 @@ class NordicSerial:
         try:
             while 1:
                 # check the message queue for messages.
+                LOGGER.debug("waiting for incoming user commands")
                 upstring = yield from self.send_queue.get()
                 self.incoming = False
                 # sent = False
@@ -207,6 +209,7 @@ class NordicSerial:
                     # time.sleep(0.05)
                     # self.s.dtr = True
                     # time.sleep(0.5)
+                    LOGGER.debug("command received")
                     self.s.write(upstring)
                     sent = True
                 except SerialException:
@@ -221,19 +224,23 @@ class NordicSerial:
 
     @asyncio.coroutine
     def _incoming_check(self):
+        LOGGER.debug("Checking for dongle response.")
         tries = 0
         while tries < 6:
             if self.incoming:
+                LOGGER.debug("Dongle response received.")
                 self.incoming = False
                 return
             yield from asyncio.sleep(0.5)
             tries += 1
         # No incoming data detected. Resetting connection.
+        LOGGER.debug("No dongle response received.")
         self.resetting = True
         yield from self.reset_serial()
 
     @asyncio.coroutine
     def send_nordic(self, request):
+        LOGGER.debug("Request received from User interface")
         rq = yield from request.json()
         commands = rq['commands']
         # incoming is a list of commands. First command has simpler structure

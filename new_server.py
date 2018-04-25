@@ -7,7 +7,6 @@ from serial.tools.list_ports import comports
 from server.app import get_app
 from server.constants import SERIAL_SPEED, STATIC_FILES_FOLDER, \
     INSTRUCTIONS_FOLDER
-from server.mylogger.mylogger import setup_logging
 
 PRINT_LENGTH = 80
 
@@ -20,7 +19,6 @@ dongles = [
     {ATTR_VID: 4966, ATTR_PID: 4117, ATTR_NAME: 'Nordic dongle'}
 ]
 
-setup_logging("server/logging.json")
 lgr = logging.getLogger(__name__)
 lgr.info("***** start logging ******")
 
@@ -70,9 +68,13 @@ if __name__ == "__main__":
     parser.add_argument("--instructionsfolder", default=INSTRUCTIONS_FOLDER)
     parser.add_argument("--serial_discover", dest='autodiscover',
                         action='store_true')
-
+    parser.add_argument("--loglevel", default=logging.INFO, type=int)
     parser.set_defaults(autodiscover=False)
     args = parser.parse_args()
+
+    logging.basicConfig(level=args.loglevel)
+
+    # setup_logging("server/logging.json", default_level=args.loglevel)
 
     SERIAL_PORT = None
     if args.autodiscover:
