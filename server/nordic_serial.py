@@ -106,6 +106,7 @@ class NordicSerial:
 
     @asyncio.coroutine
     def send_connection_status(self):
+        LOGGER.debug("Sending message status.")
         yield from self.messengers.send_message(
             self.get_connection_status()
         )
@@ -136,7 +137,7 @@ class NordicSerial:
             self.resetting = False
             LOGGER.info("Connected to serial port {}".format(self.s.port))
         except SerialException as err:
-            LOGGER.error(err)
+            LOGGER.exception(err)
             self.connect_attempts += 1
             yield from self.send_connection_status()
 
@@ -179,7 +180,9 @@ class NordicSerial:
         LOGGER.debug("resetting serial")
         self.resetting = True
 
+        LOGGER.debug("closing serial connection")
         self.s.close()
+
         yield from self.send_connection_status()
         # self.s.dtr = False
         # time.sleep(0.05)
