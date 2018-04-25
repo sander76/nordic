@@ -90,7 +90,8 @@ if __name__ == "__main__":
     static_files_folder = args.staticfolder
     instructions_folder = args.instructionsfolder
 
-
-
-    start_app(SERIAL_PORT, SERIAL_SPEED, static_files_folder,
-              instructions_folder)
+    try:
+        start_app(SERIAL_PORT, SERIAL_SPEED, static_files_folder,
+                  instructions_folder)
+    except KeyboardInterrupt:
+        pass
