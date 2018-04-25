@@ -154,8 +154,10 @@ class NordicSerial:
                 # run coroutine in main loop with the captured serial data.
                 self.loop.call_soon_threadsafe(self.set_incoming_serial,
                                                data)
-            except SerialException:
-                LOGGER.error("error reading from serial port. Resetting it")
+            except SerialException as err:
+
+                LOGGER.info("error reading from serial port. Resetting it")
+                LOGGER.error(err)
 
                 if not self.resetting:
                     self.resetting = True
