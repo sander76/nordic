@@ -178,9 +178,16 @@ class NordicSerial:
     @asyncio.coroutine
     def reset_serial(self):
         self.resetting = True
-        self.s.close()
+
+
+
+        #self.s.close()
         yield from self.send_connection_status()
-        yield from self._connect()
+        self.s.dtr = False
+        time.sleep(0.05)
+        self.s.dtr = True
+        time.sleep(0.05)
+        #yield from self._connect()
 
     @asyncio.coroutine
     def _write_to_nordic(self):
