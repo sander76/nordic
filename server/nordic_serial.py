@@ -180,15 +180,13 @@ class NordicSerial:
         LOGGER.debug("resetting serial")
         self.resetting = True
 
-
-
-        #self.s.close()
+        self.s.close()
         yield from self.send_connection_status()
-        self.s.dtr = False
-        time.sleep(0.05)
-        self.s.dtr = True
-        time.sleep(0.05)
-        #yield from self._connect()
+        # self.s.dtr = False
+        # time.sleep(0.05)
+        # self.s.dtr = True
+        # time.sleep(0.05)
+        yield from self._connect()
 
     @asyncio.coroutine
     def _write_to_nordic(self):
