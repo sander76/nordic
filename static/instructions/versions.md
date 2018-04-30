@@ -11,4 +11,8 @@
 
 1.7.15
 
-- Added tensioned products to germania. 
+- Added tensioned products to germania.
+
+1.7.16
+
+- Added roller blinds to holis config.

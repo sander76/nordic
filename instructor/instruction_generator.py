@@ -13,7 +13,7 @@ from instructor.products.roller import rollerblind1, rollerblind_old
 from instructor.products.twist import twist_old, twist
 from instructor.translations import load_translations
 
-INSTRUCTION_VERSION = "1.7.15"
+INSTRUCTION_VERSION = "1.7.16"
 MAIN_PATH = "../static/instructions/"
 
 
@@ -70,6 +70,7 @@ def make_holis():
     _path = os.path.join(MAIN_PATH, 'instructions-holis-en.json')
     instruction = Instruction(INSTRUCTION_VERSION)
     instruction.products.append(twist)
+    instruction.products.append(rollerblind1)
     holis = ToJson(lang='en').encode(instruction)
     with open(_path, 'w') as fl:
         fl.write(holis)
