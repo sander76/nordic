@@ -16,3 +16,8 @@
 1.7.16
 
 - Added roller blinds to holis config.
+
+1.7.17
+
+- Added some German translations
+- Added MHZ

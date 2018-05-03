@@ -2,7 +2,6 @@ import os
 
 from instructor.components import ToJson, Instruction
 from instructor.helpers import TXT
-
 from instructor.products.m25s_duette import m25s_duette_free, \
     m25s_duette_tensioned
 from instructor.products.m25s_pleated import m25s_pleated_free, \
@@ -13,7 +12,7 @@ from instructor.products.roller import rollerblind1, rollerblind_old
 from instructor.products.twist import twist_old, twist
 from instructor.translations import load_translations
 
-INSTRUCTION_VERSION = "1.7.16"
+INSTRUCTION_VERSION = "1.7.17"
 MAIN_PATH = "../static/instructions/"
 
 
@@ -44,6 +43,13 @@ def make_luxaflex_nl():
                     m25s_vb_free,
                     ]
     make_instruction('instructions-luxaflex-nl.json', instructions, TXT.nl)
+
+
+def make_mhz_de():
+    instructions = [
+        m25s_vvb
+    ]
+    make_instruction('instructions-mhz1-de.json', instructions, TXT.de)
 
 
 def make_luxaflex_uk():
@@ -170,3 +176,4 @@ if __name__ == "__main__":
     make_tensioned()
     make_leha()
     make_kadan_1()
+    make_mhz_de()
