@@ -138,6 +138,10 @@ def make_all():
         twist
     ]
     make_instruction("instructions-all-en.json", products, TXT.en)
+    make_instruction('instructions-all-cz.json', products, TXT.cz)
+    make_instruction('instructions-all-de.json', products, TXT.de)
+    make_instruction('instructions-all-nl.json', products, TXT.nl)
+    make_instruction('instructions-all-pl.json', products, TXT.pl)
 
 
 def make_tensioned():

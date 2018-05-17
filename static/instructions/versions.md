@@ -21,3 +21,7 @@
 
 - Added some German translations
 - Added MHZ
+
+1.7.18
+
+- Added "all" instructions to several languages.
