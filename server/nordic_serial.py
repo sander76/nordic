@@ -104,7 +104,6 @@ class NordicSerial:
             return True
 
     def get_connection_status(self):
-
         return {"nordic": self.serial_connected, "networkid": self.network_id}
 
     @asyncio.coroutine
@@ -133,9 +132,9 @@ class NordicSerial:
             yield from self.send_queue.put(self.id_change)
             yield from self.send_connection_status()
             self.resetting = False
+            self.connect_attempts = 1
             LOGGER.info("Connected to serial port {}".format(self.s.port))
         except SerialException as err:
-
             LOGGER.error(err)
             self.connect_attempts += 1
             yield from self.send_connection_status()
@@ -164,10 +163,12 @@ class NordicSerial:
                     #     self.resetting = True
 
                     self.loop.call_soon_threadsafe(self.threaded_reset_serial)
+                    time.sleep(1)
                     # while self.resetting:
                     #     time.sleep(1)
                 except Exception as err:
                     LOGGER.error(err)
+                    time.sleep(1)
             else:
                 time.sleep(1)
 
@@ -181,13 +182,14 @@ class NordicSerial:
     @asyncio.coroutine
     def reset_serial(self):
         if not self.resetting:
-            LOGGER.debug("resetting serial")
+            LOGGER.info("resetting serial")
             self.resetting = True
 
             LOGGER.debug("closing serial connection")
             try:
                 self.s.close()
             except Exception as err:
+                LOGGER.info("Closing of serial port failed.")
                 LOGGER.error(err)
             self.s = None
 
