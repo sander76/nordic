@@ -15,7 +15,7 @@ ATTR_PID = 'pid'
 ATTR_NAME = 'name'
 
 dongles = [
-    {ATTR_VID: 1027, ATTR_PID: 24597, ATTR_NAME: 'Bremerhave dongle'},
+    {ATTR_VID: 1027, ATTR_PID: 24597, ATTR_NAME: 'Bremerhaven dongle'},
     {ATTR_VID: 4966, ATTR_PID: 4117, ATTR_NAME: 'Nordic dongle'}
 ]
 
@@ -75,6 +75,8 @@ if __name__ == "__main__":
     logging.basicConfig(level=args.loglevel)
 
     # setup_logging("server/logging.json", default_level=args.loglevel)
+    # todo: systemd logs to file. Disable this.
+    # todo: check and fix logging.
 
     SERIAL_PORT = None
     if args.autodiscover:
