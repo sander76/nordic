@@ -204,30 +204,27 @@ class NordicSerial:
         It checks a queue for data to be sent to the nordic chip.
         Also starts an incoming check to see whether a response is coming in.
         If not the nordic connection will be reset."""
-        try:
-            while 1:
+        while True:
+            try:
                 # check the message queue for messages.
                 LOGGER.debug("waiting for incoming user commands")
                 upstring = yield from self.send_queue.get()
                 self.incoming = False
-                # sent = False
-                # while not sent:
-                try:
-                    # self.s.dtr = False
-                    # time.sleep(0.05)
-                    # self.s.dtr = True
-                    # time.sleep(0.5)
-                    LOGGER.debug("command received")
-                    self.s.write(upstring)
-                except SerialException as err:
-                    LOGGER.error(err)
-                    # yield from self.reset_serial()
-                    # yield from asyncio.sleep(1)
+                if self.serial_connected:
+                    try:
+                        self.s.write(upstring)
+                    except SerialException as err:
+                        LOGGER.error(err)
+                        yield from self.reset_serial()
+                    else:
+                        yield from self.messengers.send_outgoing_data(
+                            upstring)
+                        yield from self._incoming_check()
                 else:
-                    yield from self.messengers.send_outgoing_data(upstring)
-                    yield from self._incoming_check()
-        except Exception as err:
-            LOGGER.error(err)
+                    LOGGER.error("Writing failed. Port is closed.")
+            except Exception as err:
+                LOGGER.exception(err)
+                yield from asyncio.sleep(1)
 
     @asyncio.coroutine
     def _incoming_check(self):
