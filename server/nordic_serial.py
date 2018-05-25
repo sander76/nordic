@@ -2,8 +2,7 @@
 
 import asyncio
 import logging
-import time
-from threading import Thread, Condition
+from threading import Condition
 
 from aiohttp import web
 from serial import Serial
@@ -85,23 +84,24 @@ class NordicSerial:
         self.port = serial_port
         self.serial_speed = serial_speed
         self.trydelay = try_delay  # Delay time between connection tries
-        self.incoming = False  # Flag is set when data is to be expected.
-        self.resetting = True  # Flag is set when serial port is being reset.
         self.connect_attempts = 1
-        self.t = Thread(target=self.get_byte)
-        self.t.start()
         self.loop = loop  # The main event loop.
         self.loop.create_task(self.connect())
         self.loop.create_task(self._write_to_nordic())
         self.messengers = messengers
         self.send_queue = asyncio.Queue(loop=loop)
+        self.need_reset = False
 
     @property
     def serial_connected(self):
-        if self.s is None or not self.s.is_open:
+        try:
+            if self.s is None or self.s.in_waiting or not self.s.is_open:
+                return False
+            else:
+                return True
+        except Exception as err:
+            LOGGER.error('checking for open. %s', err)
             return False
-        else:
-            return True
 
     def get_connection_status(self):
         return {"nordic": self.serial_connected, "networkid": self.network_id}
@@ -117,6 +117,15 @@ class NordicSerial:
     def connect(self):
         """Continuously trying to connect to the serial port in a loop."""
         while True:
+            if self.need_reset:
+                LOGGER.info("Resetting serial.")
+                try:
+                    self.s.close()
+                except (TypeError, Exception) as err:
+                    LOGGER.error(err)
+                self.s = None
+                self.need_reset = False
+                yield from asyncio.sleep(1)
             if not self.serial_connected:
                 yield from self._connect()
             yield from asyncio.sleep(self.trydelay)
@@ -128,77 +137,32 @@ class NordicSerial:
         try:
             LOGGER.info("Connecting to serial port {}. Attempt: {}".format(
                 self.serial_speed, self.connect_attempts))
-            self.s = Serial(self.port, baudrate=self.serial_speed)
+            self.s = Serial(self.port, baudrate=self.serial_speed, timeout=0)
             yield from self.send_queue.put(self.id_change)
             yield from self.send_connection_status()
-            self.resetting = False
             self.connect_attempts = 1
             LOGGER.info("Connected to serial port {}".format(self.s.port))
-        except SerialException as err:
-            LOGGER.error(err)
+        except (SerialException, FileNotFoundError, Exception) as err:
+            self.need_reset = True
+            LOGGER.error('Problem connecting. %s', err)
             self.connect_attempts += 1
             yield from self.send_connection_status()
 
-    def get_byte(self):
-        """Method to be run inside a separate thread continuously checking
-        incoming data. When incoming data is captured it is sent
-        back to the main event loop."""
-        LOGGER.info("start looking for incoming data.")
-        while True:
-            if self.serial_connected:
-                try:
-                    data = self.s.read(1)
-                    time.sleep(0.1)
-                    tst = self.s.read(self.s.inWaiting())
-                    data += tst
-                    # run coroutine in main loop with the captured serial data.
-                    self.loop.call_soon_threadsafe(self.set_incoming_serial,
-                                                   data)
-                except SerialException as err:
-
-                    LOGGER.info("error reading from serial port. Resetting it")
-                    LOGGER.error(err)
-
-                    # if not self.resetting:
-                    #     self.resetting = True
-
-                    self.loop.call_soon_threadsafe(self.threaded_reset_serial)
-                    time.sleep(1)
-                    # while self.resetting:
-                    #     time.sleep(1)
-                except Exception as err:
-                    LOGGER.error(err)
-                    time.sleep(1)
-            else:
-                time.sleep(1)
-
-    def threaded_reset_serial(self):
-        self.loop.create_task(self.reset_serial())
-
-    def set_incoming_serial(self, data):
-        self.incoming = True
-        self.loop.create_task(self.messengers.send_incoming_data(data))
-
     @asyncio.coroutine
-    def reset_serial(self):
-        if not self.resetting:
-            LOGGER.info("resetting serial")
-            self.resetting = True
-
-            LOGGER.debug("closing serial connection")
-            try:
-                self.s.close()
-            except Exception as err:
-                LOGGER.info("Closing of serial port failed.")
-                LOGGER.error(err)
-            self.s = None
-
-            yield from self.send_connection_status()
-            # self.s.dtr = False
-            # time.sleep(0.05)
-            # self.s.dtr = True
-            # time.sleep(0.05)
-            # yield from self._connect()
+    def _write(self, data):
+        _val = None
+        tries = 20
+        self.s.write(data)
+        yield from self.messengers.send_outgoing_data(data)
+        while tries > 0:
+            _val = self.s.read()
+            if _val:
+                yield from asyncio.sleep(0.1)
+                _val += self.s.read(self.s.in_waiting)
+                break
+            yield from asyncio.sleep(0.1)
+            tries -= 1
+        return _val
 
     @asyncio.coroutine
     def _write_to_nordic(self):
@@ -207,40 +171,19 @@ class NordicSerial:
         Also starts an incoming check to see whether a response is coming in.
         If not the nordic connection will be reset."""
         while True:
-            try:
-                # check the message queue for messages.
-                LOGGER.debug("waiting for incoming user commands")
-                upstring = yield from self.send_queue.get()
-                self.incoming = False
-                if self.serial_connected:
-                    try:
-                        self.s.write(upstring)
-                    except SerialException as err:
-                        LOGGER.error(err)
-                        yield from self.reset_serial()
+            # check the message queue for messages.
+            LOGGER.debug("waiting for incoming user commands")
+            upstring = yield from self.send_queue.get()
+            if self.serial_connected and not self.need_reset:
+                try:
+                    _val = yield from self._write(upstring)
+                    if _val:
+                        yield from self.messengers.send_incoming_data(_val)
                     else:
-                        yield from self.messengers.send_outgoing_data(
-                            upstring)
-                        yield from self._incoming_check()
-                else:
-                    LOGGER.error("Writing failed. Port is closed.")
-            except Exception as err:
-                LOGGER.exception(err)
-                yield from asyncio.sleep(1)
-
-    @asyncio.coroutine
-    def _incoming_check(self):
-        LOGGER.debug("Checking for dongle response.")
-        tries = 0
-        while tries < 6:
-            if self.incoming:
-                LOGGER.debug("Dongle response received.")
-                self.incoming = False
-                return
-            yield from asyncio.sleep(0.5)
-            tries += 1
-        LOGGER.debug("No dongle response received.")
-        yield from self.reset_serial()
+                        self.need_reset = True
+                except Exception as err:
+                    LOGGER.error(err)
+                    self.need_reset = True
 
     @asyncio.coroutine
     def send_nordic(self, request):
