@@ -2,7 +2,6 @@
 
 import asyncio
 import logging
-from threading import Condition
 
 from aiohttp import web
 from serial import Serial
@@ -24,52 +23,6 @@ def byte_to_string_rep(byte_instance):
             string_rep.append(hex(bt))
     _string_rep = ''.join(string_rep)
     return _string_rep
-
-
-class MockSerial:
-    def __init__(self):
-        self._is_open = True
-        self._port = None
-        self._return_string = "no_serial"
-        self._old_char_count = 0
-        self.cv = Condition()
-        self._incoming = False
-
-    @property
-    def is_open(self):
-        return self._is_open
-
-    @property
-    def port(self):
-        return self._port
-
-    @port.setter
-    def port(self, value):
-        self._port = value
-
-    def open(self):
-        self._is_open = True
-
-    def read(self, chars):
-        if chars is None:
-            return b''
-        self.cv.acquire()
-        while not self._incoming:
-            self.cv.wait()
-        data = self._incoming
-        self._incoming = False
-        self.cv.release()
-        return data
-
-    def inWaiting(self):
-        return None
-
-    def write(self, data):
-        self.cv.acquire()
-        self._incoming = data
-        self.cv.notify()
-        self.cv.release()
-        LOGGER.debug(data)
 
 
 class NordicSerial:
@@ -118,24 +71,25 @@ class NordicSerial:
         while True:
             if self.need_reset:
                 LOGGER.info("Resetting serial.")
-                try:
-                    self.s.close()
-                except (TypeError, Exception) as err:
-                    LOGGER.error(err)
+                if self.s:
+                    try:
+                        self.s.close()
+                    except (Exception) as err:
+                        LOGGER.exception(err)
                 self.s = None
                 self.need_reset = False
                 yield from asyncio.sleep(1)
             if not self.serial_connected:
                 yield from self._connect()
-            yield from asyncio.sleep(self.trydelay)
+            yield from asyncio.sleep(min(self.connect_attempts, 10))
 
     @asyncio.coroutine
     def _connect(self):
         """Connects to the serial port and prepares the nordic
         for sending commands to the blinds."""
         try:
-            LOGGER.info("Connecting to serial port {}. Attempt: {}".format(
-                self.serial_speed, self.connect_attempts))
+            LOGGER.debug("Connecting to serial port %s. Attempt: %s",
+                self.serial_speed, self.connect_attempts)
             self.s = Serial(self.port, baudrate=self.serial_speed, timeout=0)
             yield from self.send_queue.put(self.id_change)
             yield from self.send_connection_status()
@@ -153,14 +107,15 @@ class NordicSerial:
         tries = self._read_try_count
         self.s.write(data)
         yield from self.messengers.send_outgoing_data(data)
+        yield from asyncio.sleep(0.3)
         while tries > 0:
-            yield from asyncio.sleep(self._read_loop)
+
             _val = self.s.read()
             if _val:
                 yield from asyncio.sleep(self._read_loop)
                 _val += self.s.read(self.s.in_waiting)
                 break
-
+            yield from asyncio.sleep(self._read_loop)
             tries -= 1
         return _val
 
@@ -178,15 +133,13 @@ class NordicSerial:
                 try:
                     _val = yield from self._write(upstring)
                     if _val:
-                        LOGGER.info("incoming %s", _val)
+                        LOGGER.debug("incoming %s", _val)
                         yield from self.messengers.send_incoming_data(_val)
                     else:
-                        LOGGER.info("No response received. Resetting.")
+                        LOGGER.error("No response received. Resetting.")
                         self.need_reset = True
                 except Exception as err:
-                    LOGGER.info(
-                        "Unexpected error occured during sending. Resetting.")
-                    LOGGER.error(err)
+                    LOGGER.exception(err)
                     self.need_reset = True
 
     @asyncio.coroutine
