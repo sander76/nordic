@@ -92,16 +92,15 @@ class NordicSerial:
         self.send_queue = asyncio.Queue(loop=loop)
         self.need_reset = False
 
+        self._read_try_count = 10
+        self._read_loop = 0.2
+
     @property
     def serial_connected(self):
-        try:
-            if self.s is None or self.s.in_waiting or not self.s.is_open:
-                return False
-            else:
-                return True
-        except Exception as err:
-            LOGGER.error('checking for open. %s', err)
+        if self.s is None or not self.s.is_open:
             return False
+        else:
+            return True
 
     def get_connection_status(self):
         return {"nordic": self.serial_connected, "networkid": self.network_id}
@@ -151,16 +150,17 @@ class NordicSerial:
     @asyncio.coroutine
     def _write(self, data):
         _val = None
-        tries = 20
+        tries = self._read_try_count
         self.s.write(data)
         yield from self.messengers.send_outgoing_data(data)
         while tries > 0:
+            yield from asyncio.sleep(self._read_loop)
             _val = self.s.read()
             if _val:
-                yield from asyncio.sleep(0.1)
+                yield from asyncio.sleep(self._read_loop)
                 _val += self.s.read(self.s.in_waiting)
                 break
-            yield from asyncio.sleep(0.1)
+
             tries -= 1
         return _val
 
@@ -178,10 +178,14 @@ class NordicSerial:
                 try:
                     _val = yield from self._write(upstring)
                     if _val:
+                        LOGGER.info("incoming %s", _val)
                         yield from self.messengers.send_incoming_data(_val)
                     else:
+                        LOGGER.info("No response received. Resetting.")
                         self.need_reset = True
                 except Exception as err:
+                    LOGGER.info(
+                        "Unexpected error occured during sending. Resetting.")
                     LOGGER.error(err)
                     self.need_reset = True
 

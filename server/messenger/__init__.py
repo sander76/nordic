@@ -15,7 +15,8 @@ class BaseMessenger:
 
 class Messengers:
     def __init__(self, app):
-        self.messengers = [BaseMessenger(app)]
+        #self.messengers = [BaseMessenger(app)]
+        self.messengers = []
         self._messages = asyncio.Queue(loop=app.loop)
         app.loop.create_task(self._check_queue())
 
