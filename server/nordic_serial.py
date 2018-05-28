@@ -95,6 +95,7 @@ class NordicSerial:
             LOGGER.debug("Connecting to serial port %s. Attempt: %s",
                          self.serial_speed, self.connect_attempts)
             self.s = Serial(self.port, baudrate=self.serial_speed, timeout=0)
+            yield from asyncio.sleep(2)
             yield from self.send_queue.put(self.id_change)
             yield from self.send_connection_status()
             self.connect_attempts = 1
