@@ -47,6 +47,7 @@ class NordicSerial:
 
         self._read_try_count = 10
         self._read_loop = 0.2
+        self._waiting_for_input = False
 
     @property
     def serial_connected(self):
@@ -69,8 +70,11 @@ class NordicSerial:
     def connect(self):
         """Continuously trying to connect to the serial port in a loop."""
         while True:
+            if self.serial_connected:
+                yield from self._watch()
             if self.need_reset:
                 LOGGER.info("Resetting serial.")
+                self._waiting_for_input = False
                 if self.s:
                     try:
                         self.s.close()
@@ -89,7 +93,7 @@ class NordicSerial:
         for sending commands to the blinds."""
         try:
             LOGGER.debug("Connecting to serial port %s. Attempt: %s",
-                self.serial_speed, self.connect_attempts)
+                         self.serial_speed, self.connect_attempts)
             self.s = Serial(self.port, baudrate=self.serial_speed, timeout=0)
             yield from self.send_queue.put(self.id_change)
             yield from self.send_connection_status()
@@ -102,10 +106,20 @@ class NordicSerial:
             yield from self.send_connection_status()
 
     @asyncio.coroutine
+    def _watch(self):
+        try:
+            if not self._waiting_for_input:
+                _val = self.s.read()
+        except Exception as err:
+            LOGGER.error("Watchdog failed: %s", err)
+            self.need_reset = True
+
+    @asyncio.coroutine
     def _write(self, data):
         _val = None
         tries = self._read_try_count
         self.s.write(data)
+        self._waiting_for_input = True
         yield from self.messengers.send_outgoing_data(data)
         yield from asyncio.sleep(0.3)
         while tries > 0:
@@ -117,6 +131,7 @@ class NordicSerial:
                 break
             yield from asyncio.sleep(self._read_loop)
             tries -= 1
+        self._waiting_for_input = False
         return _val
 
     @asyncio.coroutine
