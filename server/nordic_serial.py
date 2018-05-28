@@ -106,16 +106,12 @@ class NordicSerial:
 
         if self.s:
             try:
-                _val = self.s.read(self.s.in_waiting)
-            except Exception as err:
-                LOGGER.error("Error flusing %s", err)
-            try:
                 self.s.close()
             except (Exception) as err:
-                LOGGER.error("closing error: %s", err)
+                LOGGER.error("Closing error: %s", err)
         # self.s = None
         self.state = State.disconnected
-        yield from asyncio.sleep(1)
+        yield from asyncio.sleep(2)
 
     @asyncio.coroutine
     def _connect(self):
