@@ -100,7 +100,7 @@ class NordicSerial:
                         LOGGER.error("closing error: %s", err)
                 self.s = None
                 self.state = State.disconnected
-                yield from asyncio.sleep(5)
+                yield from asyncio.sleep(1)
             if self.state == State.disconnected:
                 yield from self._connect()
                 yield from self.send_connection_status()
@@ -115,12 +115,9 @@ class NordicSerial:
 
             LOGGER.debug("Connecting to serial port %s. Attempt: %s",
                          self.serial_speed, self.connect_attempts)
-            try:
-                self.s = Serial(self.port, baudrate=self.serial_speed,
-                                timeout=0)
-            except Exception as err:
-                LOGGER.error("Problem instantiation: %s", err)
-            yield from asyncio.sleep(5)
+            self.s = Serial(self.port, baudrate=self.serial_speed,
+                            timeout=0)
+            yield from asyncio.sleep(1)
             _val = yield from self._write(self.id_change)
             if _val:
                 yield from self.messengers.send_incoming_data(_val)
@@ -132,7 +129,6 @@ class NordicSerial:
             self.state = State.connected
             LOGGER.info("Connected to serial port {}".format(self.s.port))
         except (SerialException, FileNotFoundError, Exception) as err:
-            # self.need_reset = True
             self.state = State.need_reset
             LOGGER.error('Problem connecting. %s', err)
             self.connect_attempts += 1
