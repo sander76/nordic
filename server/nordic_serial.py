@@ -99,7 +99,7 @@ class NordicSerial:
                         LOGGER.error("closing error: %s", err)
                 self.s = None
                 self.state = State.disconnected
-                yield from asyncio.sleep(1)
+                yield from asyncio.sleep(5)
             if self.state == State.disconnected:
                 yield from self._connect()
                 yield from self.send_connection_status()
