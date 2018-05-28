@@ -91,22 +91,31 @@ class NordicSerial:
             if self.state == State.connected:
                 yield from self._watch()
             if self.state == State.need_reset:
-                yield from self.send_connection_status()
-                LOGGER.info("Resetting serial.")
-                self._waiting_for_input = False
-                if self.s:
-                    try:
-                        self.s.close()
-                    except (Exception) as err:
-                        LOGGER.error("closing error: %s", err)
-                # self.s = None
-                self.state = State.disconnected
-                yield from asyncio.sleep(1)
+                yield from self._reset()
             if self.state == State.disconnected:
                 yield from self._connect()
                 yield from self.send_connection_status()
             # yield from asyncio.sleep(min(self.connect_attempts, 10))
             yield from asyncio.sleep(1)
+
+    @asyncio.coroutine
+    def _reset(self):
+        yield from self.send_connection_status()
+        LOGGER.info("Resetting serial.")
+        self._waiting_for_input = False
+
+        if self.s:
+            try:
+                _val = self.s.read(self.s.in_waiting)
+            except Exception as err:
+                LOGGER.error("Error flusing %s", err)
+            try:
+                self.s.close()
+            except (Exception) as err:
+                LOGGER.error("closing error: %s", err)
+        # self.s = None
+        self.state = State.disconnected
+        yield from asyncio.sleep(1)
 
     @asyncio.coroutine
     def _connect(self):
