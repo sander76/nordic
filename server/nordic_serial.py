@@ -99,7 +99,7 @@ class NordicSerial:
                         self.s.close()
                     except (Exception) as err:
                         LOGGER.error("closing error: %s", err)
-                self.s = None
+                # self.s = None
                 self.state = State.disconnected
                 yield from asyncio.sleep(1)
             if self.state == State.disconnected:
@@ -116,8 +116,11 @@ class NordicSerial:
 
             LOGGER.debug("Connecting to serial port %s. Attempt: %s",
                          self.serial_speed, self.connect_attempts)
-            self.s = Serial(self.port, baudrate=self.serial_speed,
-                            timeout=0)
+            if self.s is None:
+                self.s = Serial(self.port, baudrate=self.serial_speed,
+                                timeout=0)
+            else:
+                self.s.open()
             yield from asyncio.sleep(1)
             _val = yield from self._write(self.id_change)
             LOGGER.info("Incoming on connect: %s", _val)
