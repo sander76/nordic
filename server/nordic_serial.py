@@ -119,6 +119,7 @@ class NordicSerial:
                             timeout=0)
             yield from asyncio.sleep(1)
             _val = yield from self._write(self.id_change)
+            LOGGER.info("Incoming on connect: %s", _val)
             if _val:
                 yield from self.messengers.send_incoming_data(_val)
             else:
