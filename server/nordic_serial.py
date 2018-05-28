@@ -78,12 +78,18 @@ class NordicSerial:
 
                 if self.s:
 
-                    self.s.reset_input_buffer()
-                    self.s.reset_output_buffer()
+                    try:
+                        self.s.reset_input_buffer()
+                    except Exception as err:
+                        LOGGER.error("reset input buffer error: %s", err)
+                    try:
+                        self.s.reset_output_buffer()
+                    except Exception as err:
+                        LOGGER.error("reset output buffer error: %s", err)
                     try:
                         self.s.close()
                     except (Exception) as err:
-                        LOGGER.exception(err)
+                        LOGGER.error("closing error: %s", err)
                 self.s = None
                 self.need_reset = False
                 yield from asyncio.sleep(1)
