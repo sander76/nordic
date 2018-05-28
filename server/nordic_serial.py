@@ -75,15 +75,7 @@ class NordicSerial:
             if self.need_reset:
                 LOGGER.info("Resetting serial.")
                 self._waiting_for_input = False
-
                 if self.s:
-
-                    try:
-                        self.s.dtr=False
-                        yield from asyncio.sleep(0.1)
-                        self.s.dtr=True
-                    except Exception as err:
-                        LOGGER.error("reset input buffer error: %s", err)
                     try:
                         self.s.close()
                     except (Exception) as err:
@@ -117,7 +109,10 @@ class NordicSerial:
     def _watch(self):
         try:
             if not self._waiting_for_input:
-                _val = self.s.read()
+                _val = self.s.in_waiting
+                #res = yield from self._write(b'1')
+                #_val = self.s.read()
+                # print(_val)
         except Exception as err:
             LOGGER.error("Watchdog failed: %s", err)
             self.need_reset = True
@@ -126,8 +121,9 @@ class NordicSerial:
     def _write(self, data):
         _val = None
         tries = self._read_try_count
-        self.s.write(data)
         self._waiting_for_input = True
+        self.s.write(data)
+
         yield from self.messengers.send_outgoing_data(data)
         yield from asyncio.sleep(0.3)
         while tries > 0:
