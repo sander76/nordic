@@ -75,7 +75,11 @@ class NordicSerial:
             if self.need_reset:
                 LOGGER.info("Resetting serial.")
                 self._waiting_for_input = False
+
                 if self.s:
+
+                    self.s.reset_input_buffer()
+                    self.s.reset_output_buffer()
                     try:
                         self.s.close()
                     except (Exception) as err:
