@@ -53,8 +53,8 @@ class NordicSerial:
         self.loop.create_task(self._write_to_nordic())
         self.messengers = messengers
         self.send_queue = asyncio.Queue(loop=loop)
-        #self.need_reset = False
-        #self.connecting = False
+        # self.need_reset = False
+        # self.connecting = False
 
         self._read_try_count = 10
         self._read_loop = 0.2
@@ -90,6 +90,7 @@ class NordicSerial:
             if self.state == State.connected:
                 yield from self._watch()
             if self.state == State.need_reset:
+                yield from self.send_connection_status()
                 LOGGER.info("Resetting serial.")
                 self._waiting_for_input = False
                 if self.s:
@@ -114,15 +115,18 @@ class NordicSerial:
 
             LOGGER.debug("Connecting to serial port %s. Attempt: %s",
                          self.serial_speed, self.connect_attempts)
-            self.s = Serial(self.port, baudrate=self.serial_speed, timeout=0)
-
+            try:
+                self.s = Serial(self.port, baudrate=self.serial_speed,
+                                timeout=0)
+            except Exception as err:
+                LOGGER.error("Problem instantiation: %s", err)
+            yield from asyncio.sleep(5)
             _val = yield from self._write(self.id_change)
             if _val:
                 yield from self.messengers.send_incoming_data(_val)
             else:
                 self.state = State.need_reset
                 return
-
 
             self.connect_attempts = 1
             self.state = State.connected
@@ -186,8 +190,8 @@ class NordicSerial:
                         yield from self.messengers.send_incoming_data(_val)
                     else:
                         LOGGER.error("No response received. Resetting.")
-                        self.state=State.need_reset
-                        #self.need_reset = True
+                        self.state = State.need_reset
+                        # self.need_reset = True
                 except Exception as err:
                     LOGGER.exception(err)
                     self.state = State.need_reset
