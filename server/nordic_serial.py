@@ -42,6 +42,7 @@ class NordicSerial:
         self.network_id = byte_to_string_rep(
             self._network_id)
         self.id_change = b'\x00\x03I' + self._network_id
+        self.id_change_response = b'\x03I' + self._network_id
         self.s = None
 
         self.port = serial_port
@@ -120,9 +121,10 @@ class NordicSerial:
             yield from asyncio.sleep(1)
             _val = yield from self._write(self.id_change)
             LOGGER.info("Incoming on connect: %s", _val)
-            if _val:
+            if _val and self.id_change_response in _val:
                 yield from self.messengers.send_incoming_data(_val)
             else:
+
                 self.state = State.need_reset
                 return
 
