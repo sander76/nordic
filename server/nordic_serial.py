@@ -54,21 +54,12 @@ class NordicSerial:
         self.loop.create_task(self._write_to_nordic())
         self.messengers = messengers
         self.send_queue = asyncio.Queue(loop=loop)
-        # self.need_reset = False
-        # self.connecting = False
 
         self._read_try_count = 10
         self._read_loop = 0.2
         self._waiting_for_input = False
 
         self.state = State.disconnected
-
-    # @property
-    # def serial_connected(self):
-    #     if self.s is None or self.connecting or not self.s.is_open:
-    #         return False
-    #     else:
-    #         return True
 
     def get_connection_status(self):
         if self.state == State.connected:
@@ -87,6 +78,8 @@ class NordicSerial:
     @asyncio.coroutine
     def connect(self):
         """Continuously trying to connect to the serial port in a loop."""
+        LOGGER.info("Starting connection loop.")
+
         while True:
             if self.state == State.connected:
                 yield from self._watch()
@@ -94,8 +87,7 @@ class NordicSerial:
                 yield from self._reset()
             if self.state == State.disconnected:
                 yield from self._connect()
-                yield from self.send_connection_status()
-            # yield from asyncio.sleep(min(self.connect_attempts, 10))
+
             yield from asyncio.sleep(1)
 
     @asyncio.coroutine
@@ -109,7 +101,6 @@ class NordicSerial:
                 self.s.close()
             except (Exception) as err:
                 LOGGER.error("Closing error: %s", err)
-        # self.s = None
         self.state = State.disconnected
         yield from asyncio.sleep(2)
 
@@ -126,16 +117,19 @@ class NordicSerial:
                                 timeout=0)
             else:
                 self.s.open()
+
             yield from asyncio.sleep(1)
+
             _val = yield from self._write(self.id_change)
-            LOGGER.info("Incoming on connect: %s", _val)
+            LOGGER.debug("Incoming on connect: %s", _val)
+
             if _val and self.id_change_response in _val:
                 yield from self.messengers.send_incoming_data(_val)
             else:
-
                 self.state = State.need_reset
                 return
 
+            # Connecting succeeded.
             self.connect_attempts = 1
             self.state = State.connected
             LOGGER.info("Connected to serial port {}".format(self.s.port))
@@ -143,6 +137,7 @@ class NordicSerial:
             self.state = State.need_reset
             LOGGER.error('Problem connecting. %s', err)
             self.connect_attempts += 1
+        finally:
             yield from self.send_connection_status()
 
     @asyncio.coroutine

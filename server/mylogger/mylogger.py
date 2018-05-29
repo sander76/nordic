@@ -1,6 +1,9 @@
 import json
-import os
 import logging.config
+import os
+from pathlib import Path
+
+LOGGER = logging.getLogger(__name__)
 
 
 def setup_logging(default_path='logging.json', default_level=logging.INFO,
@@ -20,3 +23,13 @@ def setup_logging(default_path='logging.json', default_level=logging.INFO,
         logging.config.dictConfig(config)
     else:
         logging.basicConfig(level=default_level)
+
+
+def load_logging_config(default_path='logging.json'):
+    path = Path(default_path)
+    try:
+        with open(str(path)) as fl:
+            config = json.load(fl)
+        logging.config.dictConfig(config)
+    except Exception as err:
+        LOGGER.error("Failed to load log config: %s", err)

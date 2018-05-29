@@ -7,6 +7,7 @@ from serial.tools.list_ports import comports
 from server.app import get_app
 from server.constants import SERIAL_SPEED, STATIC_FILES_FOLDER, \
     INSTRUCTIONS_FOLDER
+from server.mylogger.mylogger import setup_logging, load_logging_config
 
 PRINT_LENGTH = 80
 
@@ -68,13 +69,15 @@ if __name__ == "__main__":
     parser.add_argument("--instructionsfolder", default=INSTRUCTIONS_FOLDER)
     parser.add_argument("--serial_discover", dest='autodiscover',
                         action='store_true')
-    parser.add_argument("--loglevel", default=logging.INFO, type=int)
+    parser.add_argument("--debug", dest='debug', action='store_true')
     parser.set_defaults(autodiscover=False)
     args = parser.parse_args()
 
-    logging.basicConfig(level=args.loglevel)
-
-    # setup_logging("server/logging.json", default_level=args.loglevel)
+    if args.debug:
+        logging.basicConfig(level=logging.DEBUG)
+    else:
+        load_logging_config('server/mylogger/logging.json')
+        #setup_logging("server/logging.json", default_level=args.loglevel)
     # todo: systemd logs to file. Disable this.
     # todo: check and fix logging.
 
