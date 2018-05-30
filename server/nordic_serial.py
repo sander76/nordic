@@ -154,6 +154,13 @@ class NordicSerial:
         _val = None
         tries = self._read_try_count
         self._waiting_for_input = True
+        #self.s.close()
+        #yield from asyncio.sleep(1)
+        #self.s.open()
+        #yield from asyncio.sleep(0.5)
+        # self.s.close()
+        # yield from asyncio.sleep(1)
+        # self.s.open()
         try:
             self.s.write(data)
         except Exception as err:
@@ -162,7 +169,7 @@ class NordicSerial:
             return False
         yield from self.messengers.send_outgoing_data(data)
 
-        yield from asyncio.sleep(0.2)
+        yield from asyncio.sleep(0.1)
         while tries > 0:
             _val = self.s.read()
             if _val:
@@ -171,6 +178,7 @@ class NordicSerial:
                 break
             yield from asyncio.sleep(self._read_loop)
             tries -= 1
+        yield from asyncio.sleep(0.4)
         self._waiting_for_input = False
         return _val
 

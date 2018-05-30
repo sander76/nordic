@@ -77,10 +77,6 @@ if __name__ == "__main__":
         logging.basicConfig(level=logging.DEBUG)
     else:
         load_logging_config('server/mylogger/logging.json')
-        #setup_logging("server/logging.json", default_level=args.loglevel)
-    # todo: systemd logs to file. Disable this.
-    # todo: check and fix logging.
-
     SERIAL_PORT = None
     if args.autodiscover:
         _serial = get_serial_port()
