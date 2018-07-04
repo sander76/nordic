@@ -22,11 +22,13 @@
                 //}
             },
             addToQueue: function(data) {
-                console.log(data.to || data.from);
+                //console.log(data.to || data.from);
                 if (data.to !== undefined) {
+                    console.log("to nordic: "+data.to);
                     this.outgoing = data.to;
                     this.incoming = '';
                 } else {
+                    console.log("fr nordic: "+data.from);
                     this.incoming = data.from;
                 }
                 //

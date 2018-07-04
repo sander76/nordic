@@ -6,7 +6,6 @@ Work in progress.
 """
 
 import json
-
 import os
 
 from instructor.helpers import TXT
@@ -52,6 +51,10 @@ class Translations:
 
     CONNECT = TXT(
         "CONNECT.")
+
+    DISCONNECT = TXT("DISCONNECT.")
+
+    OK_TO_DISCONNECT = TXT("Select to clear the shade from the dongle.")
 
     INITIALISE = TXT(
         "INIT.")

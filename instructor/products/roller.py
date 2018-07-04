@@ -1,7 +1,6 @@
 from instructor.actions.confirm_product import confirm_rb
 from instructor.actions.connect import connect_rb
-from instructor.actions.general import enter_program_mode, test_blinds, \
-    test_blinds_alt
+from instructor.actions.general import enter_program_mode, test_blinds
 from instructor.actions.initialise import initialise_rb
 from instructor.actions.motor_direction import left_backroller, \
     right_backroller, \

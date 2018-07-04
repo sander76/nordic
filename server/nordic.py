@@ -22,6 +22,10 @@ class Nd(Enum):
     SAVE_SLAT_OPEN = b'\x00\x04#LTO'
     REVERSE = b'\x00\x02#x'  # old
 
+    TO_HUB_ID = b'\x00\x01z'
+    NETWORK_RESET = b'\x00\x04@r?\x00'
+    SET_DONGLE_ID = b'set_id'
+
     SAVE_VENETIAN_SLAT = b'\x00\x04#LPR'
 
     # motor types.

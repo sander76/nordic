@@ -8,6 +8,9 @@ from instructor.helpers import TXT, NumberedText
 from instructor.translations import Translations as Tr
 from server.nordic import Nd
 
+import logging
+LOGGER=logging.getLogger(__name__)
+
 COMMANDS = server.nordic.__dict__
 COMMAND_FORMAT = "{:<10}{}"
 CONFIRM_FORMAT = "{:<10}{}"
@@ -72,11 +75,15 @@ class ToJson(json.JSONEncoder):
         self.lang = lang
 
     def default(self, o):
+
         if isinstance(o, TXT) or isinstance(o, NumberedText):
             return o.get_text(self.lang)
             # return getattr(o, self.lang)
         else:
-            return o.__dict__
+            try:
+                return o.__dict__
+            except AttributeError as err:
+                LOGGER.error(err)
 
 
 class Instruction(Component):

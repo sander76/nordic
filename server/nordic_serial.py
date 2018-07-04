@@ -41,8 +41,8 @@ class NordicSerial:
         self._network_id = get_id()
         self.network_id = byte_to_string_rep(
             self._network_id)
-        self.id_change = b'\x00\x03I' + self._network_id
-        self.id_change_response = b'\x03I' + self._network_id
+        self.id_change = b'\x00\x03i' + self._network_id
+        self.id_change_response = b'\x03i' + self._network_id
         self.s = None
 
         self.port = serial_port
@@ -109,7 +109,7 @@ class NordicSerial:
         """Connects to the serial port and prepares the nordic
         for sending commands to the blinds."""
         try:
-
+            self.state = State.connecting
             LOGGER.debug("Connecting to serial port %s. Attempt: %s",
                          self.serial_speed, self.connect_attempts)
             if self.s is None:
@@ -120,14 +120,17 @@ class NordicSerial:
 
             yield from asyncio.sleep(1)
 
-            _val = yield from self._write(self.id_change)
-            LOGGER.debug("Incoming on connect: %s", _val)
-
-            if _val and self.id_change_response in _val:
-                yield from self.messengers.send_incoming_data(_val)
-            else:
-                self.state = State.need_reset
+            yield from self.send_dongle_id()
+            if self.state == State.need_reset:
                 return
+            # _val = yield from self._write(self.id_change)
+            # LOGGER.debug("Incoming on connect: %s", _val)
+            #
+            # if _val and self.id_change_response in _val:
+            #     yield from self.messengers.send_incoming_data(_val)
+            # else:
+            #     self.state = State.need_reset
+            #     return
 
             # Connecting succeeded.
             self.connect_attempts = 1
@@ -139,6 +142,16 @@ class NordicSerial:
             self.connect_attempts += 1
         finally:
             yield from self.send_connection_status()
+
+    @asyncio.coroutine
+    def send_dongle_id(self):
+        _val = yield from self._write(self.id_change)
+        LOGGER.debug("Incoming on connect: %s", _val)
+
+        if _val and self.id_change_response in _val:
+            yield from self.messengers.send_incoming_data(_val)
+        else:
+            self.state = State.need_reset
 
     @asyncio.coroutine
     def _watch(self):
@@ -154,13 +167,7 @@ class NordicSerial:
         _val = None
         tries = self._read_try_count
         self._waiting_for_input = True
-        #self.s.close()
-        #yield from asyncio.sleep(1)
-        #self.s.open()
-        #yield from asyncio.sleep(0.5)
-        # self.s.close()
-        # yield from asyncio.sleep(1)
-        # self.s.open()
+
         try:
             self.s.write(data)
         except Exception as err:
@@ -222,8 +229,10 @@ class NordicSerial:
                 first = False
             else:
                 upstring = Nd[cmd['command']].value
-                # get the delay value or use default SLEEP_BETWEEN_COMMANDS
                 delay = cmd.get('delay', SLEEP_BETWEEN_COMMANDS)
                 yield from asyncio.sleep(delay)
-            yield from self.send_queue.put(upstring)
+            if upstring == Nd.SET_DONGLE_ID.value:
+                yield from self.send_dongle_id()
+            else:
+                yield from self.send_queue.put(upstring)
         return web.Response(body=b"okay")
