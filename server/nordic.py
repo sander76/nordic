@@ -10,7 +10,7 @@ class Nd(Enum):
     tiltclose = b'\x00\x03RL\x00'
     stop = b'\x00\x03RS\x00'
 
-    JOG = b'\x00\x03cj.1'
+    JOG = b'\x00\x03cj\x01'
     CONNECT = b'\x00\x01N\x00\x01A'
     NETWORKADD = b'\x00\x01N'
     GROUP_ADD = b'\x00\x01A'
@@ -23,7 +23,7 @@ class Nd(Enum):
     REVERSE = b'\x00\x02#x'  # old
 
     TO_HUB_ID = b'\x00\x01z'
-    NETWORK_RESET = b'\x00\x04@r?\x00'
+    NETWORK_RESET = b'\x00\x04@r?\x01'
     SET_DONGLE_ID = b'set_id'
 
     SAVE_VENETIAN_SLAT = b'\x00\x04#LPR'
