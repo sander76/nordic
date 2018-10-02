@@ -2,13 +2,18 @@ import os
 
 from instructor.components import ToJson, Instruction
 from instructor.helpers import TXT
-from instructor.products.m25s_duette import m25s_duette_free, \
-    m25s_duette_tensioned
-from instructor.products.m25s_pleated import m25s_pleated_free, \
-    m25s_pleated_tensioned
+from instructor.products.m25s_duette import (
+    m25s_duette_free,
+    m25s_duette_tensioned,
+)
+from instructor.products.m25s_pleated import (
+    m25s_pleated_free,
+    m25s_pleated_tensioned,
+)
 from instructor.products.m25s_vb import m25s_vb_free
 from instructor.products.m25s_vvb import m25s_vvb
 from instructor.products.roller import rollerblind1, rollerblind_old
+from instructor.products.test_products import test_roller
 from instructor.products.twist import twist_old, twist
 from instructor.translations import load_translations
 
@@ -17,68 +22,65 @@ MAIN_PATH = "../static/instructions/"
 
 
 def make_vb_free():
-    make_instruction('instructions-vb-en.json', [m25s_vb_free], TXT.en)
+    make_instruction("instructions-vb-en.json", [m25s_vb_free], TXT.en)
 
 
 def make_kadan_1():
-    instructions = [m25s_vb_free,
-                    m25s_duette_free,
-                    m25s_duette_tensioned,
-                    m25s_pleated_free,
-                    m25s_pleated_tensioned,
-                    rollerblind1]
-    make_instruction('instructions-kadan1-en.json', instructions, TXT.en)
-    make_instruction('instructions-kadan1-cz.json', instructions, TXT.cz)
+    instructions = [
+        m25s_vb_free,
+        m25s_duette_free,
+        m25s_duette_tensioned,
+        m25s_pleated_free,
+        m25s_pleated_tensioned,
+        rollerblind1,
+    ]
+    make_instruction("instructions-kadan1-en.json", instructions, TXT.en)
+    make_instruction("instructions-kadan1-cz.json", instructions, TXT.cz)
 
 
 def make_luxaflex_nl():
-    instructions = [rollerblind1,
-                    rollerblind_old,
-                    twist,
-                    twist_old,
-                    m25s_duette_free,
-                    m25s_duette_tensioned,
-                    m25s_pleated_free,
-                    m25s_pleated_tensioned,
-                    m25s_vb_free,
-                    ]
-    make_instruction('instructions-luxaflex-nl.json', instructions, TXT.nl)
+    instructions = [
+        rollerblind1,
+        rollerblind_old,
+        twist,
+        twist_old,
+        m25s_duette_free,
+        m25s_duette_tensioned,
+        m25s_pleated_free,
+        m25s_pleated_tensioned,
+        m25s_vb_free,
+    ]
+    make_instruction("instructions-luxaflex-nl.json", instructions, TXT.nl)
 
 
 def make_mhz_de():
-    instructions = [
-        m25s_vvb
-    ]
-    make_instruction('instructions-mhz1-de.json', instructions, TXT.de)
+    instructions = [m25s_vvb]
+    make_instruction("instructions-mhz1-de.json", instructions, TXT.de)
 
 
 def make_luxaflex_uk():
-    instructions = [
-        rollerblind1,
-        twist,
-        m25s_vb_free
-    ]
-    make_instruction('instructions-luxaflex-en.json', instructions, TXT.en)
+    instructions = [rollerblind1, twist, m25s_vb_free]
+    make_instruction("instructions-luxaflex-en.json", instructions, TXT.en)
 
 
 def make_default():
-    _path = os.path.join(MAIN_PATH, 'instructions-en.json')
+    _path = os.path.join(MAIN_PATH, "instructions-en.json")
     instruction = Instruction(INSTRUCTION_VERSION)
     instruction.products.append(rollerblind1)
     instruction.products.append(twist)
 
-    en = ToJson(lang='en').encode(instruction)
-    with open(_path, 'w') as fl:
+    en = ToJson(lang="en").encode(instruction)
+    with open(_path, "w") as fl:
         fl.write(en)
 
 
 def make_holis():
-    _path = os.path.join(MAIN_PATH, 'instructions-holis-en.json')
+    _path = os.path.join(MAIN_PATH, "instructions-holis-en.json")
     instruction = Instruction(INSTRUCTION_VERSION)
     instruction.products.append(twist)
     instruction.products.append(rollerblind1)
-    holis = ToJson(lang='en').encode(instruction)
-    with open(_path, 'w') as fl:
+    holis = ToJson(lang="en").encode(instruction)
+    with open(_path, "w") as fl:
         fl.write(holis)
 
 
@@ -86,9 +88,11 @@ def make_germania2():
     germania2_products = [rollerblind1, twist, m25s_vvb]
 
     make_instruction(
-        "instructions-germania2-en.json", germania2_products, TXT.en)
+        "instructions-germania2-en.json", germania2_products, TXT.en
+    )
     make_instruction(
-        "instructions-germania2-de.json", germania2_products, TXT.de)
+        "instructions-germania2-de.json", germania2_products, TXT.de
+    )
 
 
 def make_germania1():
@@ -97,9 +101,11 @@ def make_germania1():
         m25s_pleated_free,
         m25s_vb_free,
         m25s_duette_tensioned,
-        m25s_pleated_tensioned]
+        m25s_pleated_tensioned,
+    ]
     make_instruction(
-        "instructions-germania1-en.json", germania1_products, TXT.en)
+        "instructions-germania1-en.json", germania1_products, TXT.en
+    )
     make_instruction(
         "instructions-germania1-de.json", germania1_products, TXT.de
     )
@@ -111,9 +117,9 @@ def make_poland():
     make_instruction("instructions-hdfab-en.json", poland_products, TXT.en)
 
 
-# def make_test():
-#     test_products = [rollerblind1_with_product_nav]
-#     make_instruction("instructions-tester-en.json", test_products, TXT.en)
+def make_test():
+    test_products = [test_roller]
+    make_instruction("instructions-tester-en.json", test_products, TXT.en)
 
 
 def make_ts():
@@ -121,7 +127,8 @@ def make_ts():
         m25s_duette_free,
         m25s_duette_tensioned,
         m25s_pleated_free,
-        m25s_pleated_tensioned]
+        m25s_pleated_tensioned,
+    ]
 
     make_instruction("instructions-ts-en.json", ts_products, TXT.en)
 
@@ -135,13 +142,13 @@ def make_all():
         m25s_vvb,
         m25s_vb_free,
         rollerblind1,
-        twist
+        twist,
     ]
     make_instruction("instructions-all-en.json", products, TXT.en)
-    make_instruction('instructions-all-cz.json', products, TXT.cz)
-    make_instruction('instructions-all-de.json', products, TXT.de)
-    make_instruction('instructions-all-nl.json', products, TXT.nl)
-    make_instruction('instructions-all-pl.json', products, TXT.pl)
+    make_instruction("instructions-all-cz.json", products, TXT.cz)
+    make_instruction("instructions-all-de.json", products, TXT.de)
+    make_instruction("instructions-all-nl.json", products, TXT.nl)
+    make_instruction("instructions-all-pl.json", products, TXT.pl)
 
 
 def make_tensioned():
@@ -159,7 +166,7 @@ def make_instruction(file_name, products, lang):
     instruction = Instruction(INSTRUCTION_VERSION)
     instruction.products = products
     _products = ToJson(lang=lang).encode(instruction)
-    with open(_path, 'w', encoding='utf-8') as fl:
+    with open(_path, "w", encoding="utf-8") as fl:
         fl.write(_products)
 
 
@@ -171,7 +178,7 @@ if __name__ == "__main__":
     make_luxaflex_uk()
     make_luxaflex_nl()
     make_holis()
-    # make_test1()
+    make_test()
     make_germania1()
     make_germania2()
     make_poland()

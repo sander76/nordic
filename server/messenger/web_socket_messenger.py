@@ -11,5 +11,5 @@ class WebSocketMessenger(BaseMessenger):
 
     @asyncio.coroutine
     def send_socket_message(self, message):
-        for ws in self.app['sockets']:
+        for ws in self.app["sockets"]:
             yield from ws.send_str(json.dumps(message))
