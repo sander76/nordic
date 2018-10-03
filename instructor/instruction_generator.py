@@ -17,7 +17,7 @@ from instructor.products.test_products import test_roller
 from instructor.products.twist import twist_old, twist
 from instructor.translations import load_translations
 
-INSTRUCTION_VERSION = "1.7.17"
+INSTRUCTION_VERSION = "1.7.18"
 MAIN_PATH = "../static/instructions/"
 
 
@@ -75,13 +75,17 @@ def make_default():
 
 
 def make_holis():
-    _path = os.path.join(MAIN_PATH, "instructions-holis-en.json")
-    instruction = Instruction(INSTRUCTION_VERSION)
-    instruction.products.append(twist)
-    instruction.products.append(rollerblind1)
-    holis = ToJson(lang="en").encode(instruction)
-    with open(_path, "w") as fl:
-        fl.write(holis)
+    instructions = [twist, rollerblind1, m25s_vb_free]
+
+    make_instruction("instructions-holis-en.json", instructions, TXT.en)
+    #
+    # _path = os.path.join(MAIN_PATH, "instructions-holis-en.json")
+    # instruction = Instruction(INSTRUCTION_VERSION)
+    # instruction.products.append(twist)
+    # instruction.products.append(rollerblind1)
+    # holis = ToJson(lang="en").encode(instruction)
+    # with open(_path, "w") as fl:
+    #     fl.write(holis)
 
 
 def make_germania2():
