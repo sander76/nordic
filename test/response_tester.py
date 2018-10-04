@@ -1,19 +1,18 @@
+import argparse
 import asyncio
 import logging
-
 from asyncio import coroutine
-from unittest.mock import Mock, MagicMock
-
-from server.nordic import Nd
-from server.messenger import Messengers
+from unittest.mock import MagicMock
 
 from server.constants import SERIAL_SPEED
 from server.id_generator import get_id
-
+from server.nordic import Nd
 
 LOGGER = logging.getLogger(__name__)
-#from server.simple_serial import NordicSerial
-from server.nordic_serial import NordicSerial
+
+
+# from server.simple_serial import NordicSerial
+# from server.nordic_serial import NordicSerial
 
 
 class Req:
@@ -47,7 +46,7 @@ def keys():
 
 
 @asyncio.coroutine
-def looper(loop, serial_port):
+def looper(connector, loop, serial_port):
     sleeps = (0.1, 1, 3, 0.4, 0.2, 0.01)
     sleep_id = 0
 
@@ -60,11 +59,11 @@ def looper(loop, serial_port):
 
     loops = 1
     # messengers = Messengers(loop)
-    serial = NordicSerial(
+    serial = connector(
         loop, serial_port, SERIAL_SPEED, network_id, messengers=MagicMock()
     )
 
-    #serial.connect()
+    # serial.connect()
 
     while loops < 150:
         LOGGER.debug("loop %s", loops)
@@ -76,16 +75,29 @@ def looper(loop, serial_port):
             yield from asyncio.sleep(slp)
 
 
-if __name__ == "__main__":
-    serial_port = "COM15"
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+)
 
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    )
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("comport", help="nordic dongle")
+    parser.add_argument("--simple", dest="simple", action="store_true")
+    args = parser.parse_args()
+
+    if args.simple:
+        LOGGER.info("Using simple connector")
+        from server.simple_serial import NordicSerial
+    else:
+        LOGGER.info("Using old connector")
+        from server.nordic_serial import NordicSerial
+
+    serial_port = args.comport
+
     network_id = get_id()
     loop = asyncio.get_event_loop()
 
     # loop.create_task(looper(serial))
-    loop.run_until_complete(looper(loop, serial_port))
+    loop.run_until_complete(looper(NordicSerial, loop, serial_port))
     # loop.run_forever()

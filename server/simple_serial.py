@@ -75,7 +75,6 @@ class NordicSerial:
 
         self.state = State.disconnected
 
-
     def disconnect(self):
         # todo: Close port first.
         if self.s is not None:
@@ -89,6 +88,7 @@ class NordicSerial:
         while True:
             LOGGER.info("Checking connection")
             if self.s is None or self.s.closed:
+                LOGGER.info("Trying to connect")
                 yield from self.connect()
             yield from asyncio.sleep(5)
 
@@ -136,12 +136,11 @@ class NordicSerial:
 
     @asyncio.coroutine
     def _write(self, data):
-
         _val = None
         try:
             LOGGER.debug("outgoing: %s", data)
             self.s.write(data)
-        except (SerialException,AttributeError) as err:
+        except (SerialException, AttributeError) as err:
             LOGGER.error("Problem writing to serial. %s", err)
             raise NordicWriteProblem()
         yield from self.messengers.send_outgoing_data(data)
