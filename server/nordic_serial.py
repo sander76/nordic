@@ -21,7 +21,7 @@ def byte_to_string_rep(byte_instance):
             string_rep.append(chr(bt))
         else:
             string_rep.append(hex(bt))
-    _string_rep = ''.join(string_rep)
+    _string_rep = "".join(string_rep)
     return _string_rep
 
 
@@ -34,16 +34,22 @@ class State(Enum):
     connecting = 3
     disconnected = 4
     waiting_for_input = 5
+    watching = 6
 
 
 class NordicSerial:
-    def __init__(self, loop, serial_port, serial_speed,
-                 try_delay=TRYDELAY, messengers=None):
+    def __init__(
+        self,
+        loop,
+        serial_port,
+        serial_speed,
+        try_delay=TRYDELAY,
+        messengers=None,
+    ):
         self._network_id = get_id()
-        self.network_id = byte_to_string_rep(
-            self._network_id)
-        self.id_change = b'\x00\x03i' + self._network_id
-        self.id_change_response = b'\x03i' + self._network_id
+        self.network_id = byte_to_string_rep(self._network_id)
+        self.id_change = b"\x00\x03i" + self._network_id
+        self.id_change_response = b"\x03i" + self._network_id
         self.s = None
 
         self.port = serial_port
@@ -71,9 +77,7 @@ class NordicSerial:
     @asyncio.coroutine
     def send_connection_status(self):
         LOGGER.debug("Sending message status.")
-        yield from self.messengers.send_message(
-            self.get_connection_status()
-        )
+        yield from self.messengers.send_message(self.get_connection_status())
 
     @asyncio.coroutine
     def connect(self):
@@ -82,7 +86,8 @@ class NordicSerial:
 
         while True:
             if self.state == State.connected:
-                yield from self._watch()
+                pass
+                #yield from self._watch()
             if self.state == State.need_reset:
                 yield from self._reset()
             if self.state == State.disconnected:
@@ -105,7 +110,8 @@ class NordicSerial:
                 self.s.close()
             except (Exception) as err:
                 LOGGER.error("Closing error: %s", err)
-
+            finally:
+                self.s = None
         yield from asyncio.sleep(2)
 
     @asyncio.coroutine
@@ -114,13 +120,12 @@ class NordicSerial:
         for sending commands to the blinds."""
         try:
             self.state = State.connecting
-            LOGGER.debug("Connecting to serial port %s. Attempt: %s",
-                         self.serial_speed, self.connect_attempts)
-            if self.s is None:
-                self.s = Serial(self.port, baudrate=self.serial_speed,
-                                timeout=0)
-            else:
-                self.s.open()
+            LOGGER.debug(
+                "Connecting to serial port %s. Attempt: %s",
+                self.serial_speed,
+                self.connect_attempts,
+            )
+            self.s = Serial(self.port, baudrate=self.serial_speed, timeout=0)
 
             yield from asyncio.sleep(1)
 
@@ -134,7 +139,7 @@ class NordicSerial:
             LOGGER.info("Connected to serial port {}".format(self.s.port))
         except (SerialException, FileNotFoundError, Exception) as err:
             self.state = State.need_reset
-            LOGGER.error('Problem connecting. %s', err)
+            LOGGER.error("Problem connecting. %s", err)
             self.connect_attempts += 1
         finally:
             yield from self.send_connection_status()
@@ -153,7 +158,10 @@ class NordicSerial:
     def _watch(self):
         try:
             if self.state == State.connected:
+                LOGGER.debug("watching")
+                self.state = State.watching
                 self.s.read()
+                self.state = State.connected
         except Exception as err:
             LOGGER.error("Watchdog failed: %s", err)
             self.state = State.need_reset
@@ -164,6 +172,7 @@ class NordicSerial:
         tries = self._read_try_count
         self.state = State.waiting_for_input
         try:
+            LOGGER.debug("outgoing: %s", data)
             self.s.write(data)
         except Exception as err:
             LOGGER.error("Problem writing to serial. %s", err)
@@ -171,7 +180,6 @@ class NordicSerial:
             return False
         yield from self.messengers.send_outgoing_data(data)
 
-        yield from asyncio.sleep(0.1)
         while tries > 0:
             _val = self.s.read()
             if _val:
@@ -180,7 +188,7 @@ class NordicSerial:
                 break
             yield from asyncio.sleep(self._read_loop)
             tries -= 1
-        yield from asyncio.sleep(0.4)
+        #yield from asyncio.sleep(0.4)
         self.state = State.connected
         return _val
 
@@ -192,8 +200,17 @@ class NordicSerial:
         If not the nordic connection will be reset."""
         while True:
             # check the message queue for messages.
-            LOGGER.debug("waiting for incoming user commands")
+            # LOGGER.debug("waiting for incoming user commands")
             upstring = yield from self.send_queue.get()
+            if self.state == State.watching:
+                LOGGER.debug("Watching state. Cannot write.")
+                for i in range(20):
+                    yield from asyncio.sleep(0.05)
+                    if self.state == State.connected:
+                        LOGGER.debug(
+                            "Watching state finished in %s seconds", i * 0.05
+                        )
+                        break
             if self.state == State.connected:
                 try:
                     _val = yield from self._write(upstring)
@@ -201,7 +218,9 @@ class NordicSerial:
                         LOGGER.debug("incoming %s", _val)
                         yield from self.messengers.send_incoming_data(_val)
                     else:
-                        LOGGER.error("No response received. Resetting.")
+                        LOGGER.error(
+                            "No response received. Resetting. %s", upstring
+                        )
                         self.state = State.need_reset
                         # self.need_reset = True
                 except Exception as err:
@@ -210,9 +229,9 @@ class NordicSerial:
 
     @asyncio.coroutine
     def send_nordic(self, request):
-        LOGGER.debug("Request received from User interface")
+        # LOGGER.debug("Request received from User interface")
         rq = yield from request.json()
-        commands = rq['commands']
+        commands = rq["commands"]
         # incoming is a list of commands. First command has simpler structure
         # and parsing is simpler so this bool keeps track whether to do the
         # first parsing or the other parsing.
@@ -222,8 +241,8 @@ class NordicSerial:
                 upstring = Nd[cmd].value
                 first = False
             else:
-                upstring = Nd[cmd['command']].value
-                delay = cmd.get('delay', SLEEP_BETWEEN_COMMANDS)
+                upstring = Nd[cmd["command"]].value
+                delay = cmd.get("delay", SLEEP_BETWEEN_COMMANDS)
                 yield from asyncio.sleep(delay)
             if upstring == Nd.SET_DONGLE_ID.value:
                 yield from self.send_dongle_id()
