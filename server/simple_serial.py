@@ -72,6 +72,7 @@ class NordicSerial:
         self.loop.create_task(self.connector())
         self._read_try_count = 10
         self._read_delay = 0.1
+        self.tries=0
 
         self.state = State.disconnected
 
@@ -86,10 +87,11 @@ class NordicSerial:
     @asyncio.coroutine
     def connector(self):
         while True:
-            LOGGER.info("Checking connection")
+            LOGGER.debug("Checking connection")
             if self.s is None or self.s.closed:
                 LOGGER.info("Trying to connect")
                 yield from self.connect()
+            
             yield from asyncio.sleep(5)
 
     @asyncio.coroutine
@@ -99,28 +101,26 @@ class NordicSerial:
 
         yield from self.send_connection_status()
 
+        
+        LOGGER.debug(
+            "Connecting to serial port %s. Attempt: %s",
+            self.serial_speed,
+            self.connect_attempts,
+        )
         try:
-            LOGGER.debug(
-                "Connecting to serial port %s. Attempt: %s",
-                self.serial_speed,
-                self.connect_attempts,
-            )
             self.s = Serial(self.port, baudrate=self.serial_speed, timeout=0)
-
-            yield from asyncio.sleep(1)
-            LOGGER.info("Changing dongle id.")
-            self.s.write(self.id_change)
-
-            # Connecting succeeded.
-            self.connect_attempts = 1
-            self.state = State.connected
-            LOGGER.info("Connected to serial port {}".format(self.s.port))
-        except (SerialException, FileNotFoundError, Exception) as err:
-            self.state = State.need_reset
-            LOGGER.error("Problem connecting. %s", err)
-            self.connect_attempts += 1
-        finally:
+        except SerialException:
             yield from self.send_connection_status()
+            LOGGER.error("Problem connecting")
+            return
+        
+        yield from asyncio.sleep(1)
+        LOGGER.info("Changing dongle id.")
+        self.s.write(self.id_change)
+
+        LOGGER.info("Connected to serial port %s",self.s.port)
+
+        yield from self.send_connection_status()
 
     def get_connection_status(self):
         if self.s is None or self.s.closed:
@@ -160,20 +160,21 @@ class NordicSerial:
 
     @asyncio.coroutine
     def write(self, data):
-        tries = 0
-
+        
         try:
             yield from self._write(data)
         except NordicConnectionProblem:
-            LOGGER.info("Connection try %s", tries)
-            if tries > 2:
-                yield from asyncio.sleep(tries * 1)
+            LOGGER.info("Connection try %s", self.tries)
+            if self.tries > 2:
+                yield from asyncio.sleep(self.tries * 1)
                 self.disconnect()
                 yield from self.connect()
-                yield from self._write(data)
+                yield from self.write(data)
             else:
-                yield from self.messengers.send
-            tries += 1
+                yield from self.send_connection_status()
+            self.tries += 1
+        else:
+            self.tries=0
 
     @asyncio.coroutine
     def send_nordic(self, request):
@@ -192,11 +193,6 @@ class NordicSerial:
                 upstring = Nd[cmd["command"]].value
                 delay = cmd.get("delay", SLEEP_BETWEEN_COMMANDS)
                 yield from asyncio.sleep(delay)
-            try:
-                yield from self._write(upstring)
-            except NordicConnectionProblem:
-                # todo: loop and throttle this.
-                yield from self.connect()
-                yield from self.write(upstring)
-
+            yield from self.write(upstring)
+            
         return web.Response(body=b"okay")

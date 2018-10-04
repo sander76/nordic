@@ -3,7 +3,8 @@ from aiohttp import web
 
 from server.messenger import Messengers
 from server.messenger.web_socket_messenger import WebSocketMessenger
-from server.nordic_serial import NordicSerial
+from server.simple_serial import NordicSerial
+# from server.nordic_serial import NordicSerial
 from server.webserver.routes import add_routes
 
 
