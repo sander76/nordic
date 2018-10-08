@@ -2,7 +2,6 @@
 
 import asyncio
 import logging
-import time
 
 from aiohttp import web
 from serial import Serial
@@ -49,7 +48,12 @@ class State(Enum):
 
 class NordicSerial:
     def __init__(
-        self, loop, serial_port, serial_speed, try_delay=TRYDELAY, messengers=None
+            self,
+            loop,
+            serial_port,
+            serial_speed,
+            try_delay=TRYDELAY,
+            messengers=None,
     ):
         self._network_id = get_id()
         self.network_id = byte_to_string_rep(self._network_id)
@@ -59,7 +63,7 @@ class NordicSerial:
         self.messengers = messengers
         self.port = serial_port
         self.serial_speed = serial_speed
-        self.loop = loop  # The main event loop.
+        self.loop = loop
         self.loop.create_task(self.connector())
         self._read_try_count = 10
         self._read_delay = 0.1
@@ -89,7 +93,6 @@ class NordicSerial:
                     yield from self.connect()
 
             yield from asyncio.sleep(5)
-            
 
     @asyncio.coroutine
     def connect(self):
@@ -99,7 +102,9 @@ class NordicSerial:
         yield from self.send_connection_status()
 
         LOGGER.debug(
-            "Connecting to serial port %s. Attempt: %s", self.serial_speed, self.tries
+            "Connecting to serial port %s. Attempt: %s",
+            self.serial_speed,
+            self.tries,
         )
         try:
             self.s = Serial(self.port, baudrate=self.serial_speed, timeout=0)
@@ -127,7 +132,7 @@ class NordicSerial:
     @asyncio.coroutine
     def send_connection_status(self):
         status = self.get_connection_status()
-        LOGGER.debug("Sending connection status. %s",status)
+        LOGGER.debug("Sending connection status. %s", status)
         yield from self.messengers.send_message(status)
 
     @asyncio.coroutine
@@ -160,20 +165,20 @@ class NordicSerial:
         self.state = State.writing
         try:
             yield from self._write(data)
-            
+
         except NordicConnectionProblem:
             self.disconnect()
-                
+
             self.tries += 1
             LOGGER.info("Write retry %s", self.tries)
             if self.tries < 2:
-                yield from asyncio.sleep((self.tries-1) * 1)
+                yield from asyncio.sleep((self.tries - 1) * 1)
                 yield from self.connect()
                 yield from self.write(data)
             else:
                 LOGGER.debug("unable to send command.")
-                self.tries=0
-                self.state=State.idle
+                self.tries = 0
+                self.state = State.idle
                 yield from self.send_connection_status()
         else:
             self.state = State.idle
