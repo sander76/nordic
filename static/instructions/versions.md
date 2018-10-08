@@ -1,5 +1,7 @@
 # instruction versions.
 
+
+
 1.7.12
 - improved tensioned instructions duette/pleated.
 
@@ -25,3 +27,7 @@
 1.7.18
 
 - Added "all" instructions to several languages.
+
+1.7.19
+
+- Added dongle id reset after progam has finished.

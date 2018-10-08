@@ -4,7 +4,6 @@ from instructor.actions.general import (
     enter_program_mode_vvb,
     enter_program_mode_vvb_id,
     test_blinds_open_close,
-    test_blinds_open_close_product_choice,
     test_blinds_disconnect)
 from instructor.actions.motor_direction import (
     vvb_left_stack,

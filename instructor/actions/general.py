@@ -92,7 +92,14 @@ test_blinds = Step(
             keypad_move_buttons,
             PvKeypadAlt(
                 30,
-                okay=Commands(navigation_command=NavigationCommand(ID_START)),
+                okay=Commands(
+                    nordic_commands=NordicCommands(
+                        Nd.TO_HUB_ID,
+                        DelayedCommand(Nd.NETWORK_RESET, 0.5),
+                        DelayedCommand(Nd.SET_DONGLE_ID, 0.5),
+                    ),
+                    navigation_command=NavigationCommand(ID_START),
+                ),
             ),
             PvKeypadAlt(
                 30, cancel=Commands(navigation_command=NavigationCommand(1))
@@ -114,7 +121,14 @@ test_blinds_open_close = Step(
             keypad_move_buttons,
             PvKeypadAlt(
                 30,
-                okay=Commands(navigation_command=NavigationCommand(ID_START)),
+                okay=Commands(
+                    nordic_commands=NordicCommands(
+                        Nd.TO_HUB_ID,
+                        DelayedCommand(Nd.NETWORK_RESET, 0.5),
+                        DelayedCommand(Nd.SET_DONGLE_ID, 0.5),
+                    ),
+                    navigation_command=NavigationCommand(ID_START),
+                ),
             ),
             PvKeypadAlt(
                 30, cancel=Commands(navigation_command=NavigationCommand(1))
@@ -153,29 +167,29 @@ test_blinds_disconnect = Step(
     nav_id=ID_TEST_BLINDS,
 )
 
-test_blinds_open_close_product_choice = Step(
-    Tr.TEST_BLINDS,
-    [
-        Row(
-            Text(30, Tr.TEST_CHECK_BLINDS_OPEN_CLOSE),
-            Text(30, Tr.LIMITS_OK),
-            Text(30, Tr.LIMITS_NOT_OK),
-        ),
-        Row(
-            keypad_move_buttons,
-            PvKeypadAlt(
-                30,
-                okay=Commands(
-                    navigation_command=NavigationCommand(ID_CHOOSE_SAME)
-                ),
-            ),
-            PvKeypadAlt(
-                30, cancel=Commands(navigation_command=NavigationCommand(1))
-            ),
-        ),
-    ],
-    nav_id=ID_TEST_BLINDS,
-)
+# test_blinds_open_close_product_choice = Step(
+#     Tr.TEST_BLINDS,
+#     [
+#         Row(
+#             Text(30, Tr.TEST_CHECK_BLINDS_OPEN_CLOSE),
+#             Text(30, Tr.LIMITS_OK),
+#             Text(30, Tr.LIMITS_NOT_OK),
+#         ),
+#         Row(
+#             keypad_move_buttons,
+#             PvKeypadAlt(
+#                 30,
+#                 okay=Commands(
+#                     navigation_command=NavigationCommand(ID_CHOOSE_SAME)
+#                 ),
+#             ),
+#             PvKeypadAlt(
+#                 30, cancel=Commands(navigation_command=NavigationCommand(1))
+#             ),
+#         ),
+#     ],
+#     nav_id=ID_TEST_BLINDS,
+# )
 
 
 skipslat = Step(
