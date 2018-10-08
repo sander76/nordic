@@ -202,6 +202,9 @@ class NordicSerial:
                 upstring = Nd[cmd["command"]].value
                 delay = cmd.get("delay", SLEEP_BETWEEN_COMMANDS)
                 yield from asyncio.sleep(delay)
-            yield from self.write(upstring)
+            if upstring == Nd.SET_DONGLE_ID.value:
+                yield from self.s.write(self.id_change)
+            else:
+                yield from self.write(upstring)
 
         return web.Response(body=b"okay")
