@@ -2,10 +2,18 @@
 
 #this will update the PowerView programmer from github
 
-echo "Checking online for new releases"
+
 cd ~/nordic
+echo "Removing network id."
+rm network_id.json
+echo "Checking online for new releases"
 git checkout release
 git pull
+
+echo "updating dependencies"
+. ~/venv/nordic/bin/activate
+pip install -r requirements.txt
+deactivate
 
 echo "Clearing browser cache"
 rm -rf ~/.cache/chromium/Default

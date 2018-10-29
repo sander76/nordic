@@ -47,6 +47,7 @@ class NordicSerial:
         messengers=None,
     ):
         self._network_id = get_id()
+        LOGGER.info("network id: {}".format(self._network_id))
         self.network_id = byte_to_string_rep(self._network_id)
         self.id_change = b"\x00\x03i" + self._network_id
         self.id_change_response = b"\x03i" + self._network_id

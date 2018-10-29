@@ -10,7 +10,6 @@ from instructor.actions.motor_direction import (
     blind_direction,
     switch_direction,
 )
-from instructor.actions.same_product import same_rb
 from instructor.actions.set_bottom_limit import (
     re_set_bottom_limit,
     set_bottom_limit,

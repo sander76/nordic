@@ -1,7 +1,8 @@
 # from json.decoder import JSONDecodeError
+import logging
 
 ID_FILE = 'network_id.json'
-
+LOGGER= logging.getLogger(__name__)
 
 def get_id():
     int_id = 0000
@@ -28,6 +29,7 @@ def _try_load_id():
     with open(ID_FILE, 'r') as fl:
         js = json.load(fl)
         _id = js["network_id_int"]
+        LOGGER.debug("dongle network id: {}".format(_id))
         return _id
 
 

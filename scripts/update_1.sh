@@ -1,6 +1,5 @@
 #!/bin/bash
 
-#improved script.
 #this will update the PowerView programmer from github
 
 echo "Checking online for new releases"

@@ -10,14 +10,14 @@ from instructor.products.m25s_pleated import (
     m25s_pleated_free,
     m25s_pleated_tensioned,
 )
-from instructor.products.m25s_vb import m25s_vb_free
+from instructor.products.m25s_vb import m25s_vb_free, m25s_vb_35
 from instructor.products.m25s_vvb import m25s_vvb
 from instructor.products.roller import rollerblind1, rollerblind_old
 from instructor.products.test_products import test_roller
 from instructor.products.twist import twist_old, twist
 from instructor.translations import load_translations
 
-INSTRUCTION_VERSION = "1.7.18"
+INSTRUCTION_VERSION = "1.7.19"
 MAIN_PATH = "../static/instructions/"
 
 
@@ -56,6 +56,8 @@ def make_luxaflex_nl():
 def make_mhz_de():
     instructions = [m25s_vvb]
     make_instruction("instructions-mhz1-de.json", instructions, TXT.de)
+    instructions = [m25s_vb_35]
+    make_instruction("instructions-mhz2-de.json", instructions, TXT.de)
 
 
 def make_luxaflex_uk():
@@ -78,14 +80,6 @@ def make_holis():
     instructions = [twist, rollerblind1, m25s_vb_free]
 
     make_instruction("instructions-holis-en.json", instructions, TXT.en)
-    #
-    # _path = os.path.join(MAIN_PATH, "instructions-holis-en.json")
-    # instruction = Instruction(INSTRUCTION_VERSION)
-    # instruction.products.append(twist)
-    # instruction.products.append(rollerblind1)
-    # holis = ToJson(lang="en").encode(instruction)
-    # with open(_path, "w") as fl:
-    #     fl.write(holis)
 
 
 def make_germania2():

@@ -3,14 +3,13 @@ from instructor.actions.connect import connect_m25s_vvb
 from instructor.actions.general import (
     enter_program_mode_vvb,
     enter_program_mode_vvb_id,
-    test_blinds_open_close,
-    test_blinds_disconnect)
+    test_blinds_disconnect,
+)
 from instructor.actions.motor_direction import (
     vvb_left_stack,
     vvb_right_stack,
     vvb_split_stack,
 )
-from instructor.actions.same_product import same_vvb
 from instructor.actions.set_bottom_limit import (
     vvb_set_close_limit,
     vvb_re_set_close_limit,
