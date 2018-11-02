@@ -61,9 +61,9 @@ initialise_twist = get_initialise(TWIST_JOG_2, Nd.TWIST)
 # initialise_twist.instructions[1].col1.okay = NordicCommands(
 #     Nd.RESET, DelayedCommand(Nd.TWIST, PRODUCT_SET_DELAY))
 
-initialise_vb_16 = get_initialise(VB_JOG_2, Nd.M25S_VENETIAN_16MM)
-
-initialise_vb_25 = get_initialise(VB_JOG_2, Nd.M25S_VENETIAN_25MM)
+# initialise_vb_16 = get_initialise(VB_JOG_2, Nd.M25S_VENETIAN_16MM)
+#
+# initialise_vb_25 = get_initialise(VB_JOG_2, Nd.M25S_VENETIAN_25MM)
 
 initialise_duette = get_initialise(DUETTE_JOG_2, Nd.M25S_DUETTE_FREE)
 

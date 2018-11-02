@@ -138,7 +138,7 @@ right_mount_vb = get_direction(
     title=Tr.IS_RIGHT_MOUNT,
     orientation_question=Tr.IS_RIGHT_MOUNT,
     confirm_orientation_command=NordicCommands(Nd.ORIENT_M25S_DUETTE_RIGHT),
-    confirm_yes=NavigationCommand(2),
+    confirm_yes=NavigationCommand("start_programming"),
     nav_id="right_mount_vb",
 )
 
@@ -148,7 +148,7 @@ left_mount_vb = get_direction(
     orientation_question=Tr.IS_LEFT_MOUNT,
     confirm_orientation_command=NordicCommands(Nd.ORIENT_M25S_DUETTE_LEFT),
     cancel_no=NavigationCommand("right_mount_vb"),
-    confirm_yes=NavigationCommand(1),
+    confirm_yes=NavigationCommand("start_programming"),
 )
 
 
@@ -157,8 +157,8 @@ right_mount_vb35 = get_direction(
     title=Tr.IS_RIGHT_MOUNT,
     orientation_question=Tr.IS_RIGHT_MOUNT,
     confirm_orientation_command=NordicCommands(Nd.ORIENT_M25S_DUETTE_LEFT),
-    confirm_yes=NavigationCommand(2),
-    nav_id="right_mount_vb",
+    confirm_yes=NavigationCommand("start_programming"),
+    nav_id="right_mount_vb_35",
 )
 
 left_mount_vb35 = get_direction(
@@ -166,8 +166,8 @@ left_mount_vb35 = get_direction(
     title=Tr.IS_LEFT_MOUNT,
     orientation_question=Tr.IS_LEFT_MOUNT,
     confirm_orientation_command=NordicCommands(Nd.ORIENT_M25S_DUETTE_RIGHT),
-    cancel_no=NavigationCommand("right_mount_vb"),
-    confirm_yes=NavigationCommand(1),
+    cancel_no=NavigationCommand("right_mount_vb_35"),
+    confirm_yes=NavigationCommand("start_programming"),
 )
 
 
@@ -190,10 +190,23 @@ vb_25mm_type = get_direction(
     confirm_orientation_command=NordicCommands(
         Nd.RESET, DelayedCommand(Nd.M25S_VENETIAN_25MM, PRODUCT_SET_DELAY)
     ),
-    cancel_no=NavigationCommand("vb_16mm"),
+    cancel_no=NavigationCommand(1),
     confirm_yes=NavigationCommand("right_mount_vb"),
     confirm_question=Tr.DID_THE_MOTOR_JOG_TWO_TIMES,
 )
+
+vb_35mm_type = get_direction(
+    VB_JOG_2,
+    title=Tr.IS_VB_35MM,
+    orientation_question=Tr.IS_VB_35MM,
+    confirm_orientation_command=NordicCommands(
+        Nd.RESET, DelayedCommand(Nd.M25S_VENETIAN_35MM, PRODUCT_SET_DELAY)
+    ),
+    cancel_no=NavigationCommand("vb_16mm"),
+    confirm_yes=NavigationCommand("right_mount_vb_35"),
+    confirm_question=Tr.DID_THE_MOTOR_JOG_TWO_TIMES,
+)
+
 
 vvb_left_stack = get_direction(
     VVB_JOG_2,

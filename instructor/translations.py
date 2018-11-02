@@ -87,6 +87,7 @@ class Translations:
 
     IS_VB_16MM = TXT("Is the VB a 16mm?")
     IS_VB_25MM = TXT("Is the VB a 25mm?")
+    IS_VB_35MM = TXT("Is the VB a 35mm?")
 
     RIGHT_MOUNT = TXT(
         "MOTOR ON THE RIGHT",

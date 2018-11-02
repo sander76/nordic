@@ -70,6 +70,10 @@ enter_program_mode = get_enter_program_mode(RB_JOG_1)
 
 enter_program_mode_vb = get_enter_program_mode(VB_JOG_1)
 
+enter_program_mode_vb_first_time = get_enter_program_mode(
+    VB_JOG_1, nav_id="start_programming"
+)
+
 enter_program_mode_duette = get_enter_program_mode(DUETTE_JOG_1)
 
 enter_program_mode_pleated = get_enter_program_mode(PLEATED_JOG_1)
