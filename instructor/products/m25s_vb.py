@@ -62,7 +62,7 @@ m25s_vb_35_only = Product(
         initialise_vb35,
         right_mount_vb35,
         left_mount_vb35,
-        enter_program_mode_vb,
+        enter_program_mode_vb_first_time,
         set_bottom_limit_vb,
         enter_program_mode_vb,
         set_top_limit_vb_moveup,
