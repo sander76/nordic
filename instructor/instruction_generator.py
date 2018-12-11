@@ -59,6 +59,11 @@ def make_mhz_de():
     instructions = [m25s_vb_35_only, m25s_vb_free]
     make_instruction("instructions-mhz2-de.json", instructions, TXT.de)
     make_instruction("instructions-mhz3-de.json", [rollerblind1], TXT.de)
+    make_instruction(
+        "instructions-mhz4-de.json",
+        [m25s_duette_free, m25s_pleated_free],
+        TXT.de,
+    )
 
 
 def make_luxaflex_uk():
