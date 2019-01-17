@@ -65,8 +65,8 @@ class NordicSerial:
         self.port = serial_port
         self.serial_speed = serial_speed
         self.loop = loop
-        #self.loop.create_task(self.connector())
-        self._read_try_count = 20
+        # self.loop.create_task(self.connector())
+        self._read_try_count = 10
         self._read_delay = 0.1
         self.tries = 0
 
@@ -186,8 +186,8 @@ class NordicSerial:
                 self.state = State.idle
                 yield from self.send_connection_status()
         else:
-            self.state = State.idle
-            LOGGER.debug("changing state to %s", self.state)
+            #self.state = State.idle
+            #LOGGER.debug("changing state to %s", self.state)
             self.tries = 0
 
     @asyncio.coroutine
