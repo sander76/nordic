@@ -2,8 +2,9 @@ import argparse
 import asyncio
 import logging
 from asyncio import coroutine
+from time import sleep
 from unittest.mock import MagicMock
-
+from serial import Serial
 from server.constants import SERIAL_SPEED
 from server.id_generator import get_id
 from server.nordic import Nd
@@ -30,8 +31,8 @@ class Req:
 #     return json.dumps(comm)
 
 
-def keys():
-    _keys = [
+
+keys = [
         Nd.open,
         Nd.close,
         Nd.stop,
@@ -41,43 +42,43 @@ def keys():
         Nd.STARTPROGRAM,
         Nd.SAVE_POSITION_BOTTOM,
     ]
-    for _key in _keys:
-        yield Req(_key.name)
 
-
-@asyncio.coroutine
-def looper(connector, loop, serial_port):
+def get_sleep():
     sleeps = (0.01, 0.001, 0.1, 0.04, 0.2, 0.0001)
-    sleep_id = 0
 
-    def get_sleep():
-        nonlocal sleep_id
-        sleep_id += 1
-        if sleep_id == len(sleeps):
-            sleep_id = 0
-        return sleeps[sleep_id]
+    while True:
+        for sleep in sleeps:
+            yield sleep
+
+def looper(serial_port):
+    sleeper = iter(get_sleep())
 
     loops = 1
-    # messengers = Messengers(loop)
-    serial = connector(
-        loop, serial_port, SERIAL_SPEED, network_id, messengers=MagicMock()
-    )
 
-    # serial.connect()
+    ser = Serial(serial_port,SERIAL_SPEED)
 
     while loops < 150:
+        LOGGER.info("loop %s",loops)
 
-        LOGGER.info("loop %s", loops)
-        loops += 1
-        for key in keys():
-            yield from serial.send_nordic(key)
-            slp = get_sleep()
-            LOGGER.debug("Sleeping %s", slp)
-            yield from asyncio.sleep(slp)
+        loops+=1
+        for key in keys:
+            LOGGER.debug("writing: %s",key)
+            ser.write(key.value)
+            sleep(0.1)
+
+            resp = ser.read(1)
+            sleep(0.1)
+
+            resp += ser.read(ser.in_waiting)
+            LOGGER.debug("response: %s",resp)
+
+            wait = next(sleeper)
+            LOGGER.debug("sleeping %s",wait)
+            sleep(next(sleeper))
 
 
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.DEBUG,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
 )
 
@@ -88,18 +89,8 @@ if __name__ == "__main__":
     parser.add_argument("--simple", dest="simple", action="store_true")
     args = parser.parse_args()
 
-    if args.simple:
-        LOGGER.info("Using simple connector")
-        from server.simple_serial import NordicSerial
-    else:
-        LOGGER.info("Using old connector")
-        from server.nordic_serial import NordicSerial
-
     serial_port = args.comport
-
-    network_id = get_id()
-    loop = asyncio.get_event_loop()
-
-    # loop.create_task(looper(serial))
-    loop.run_until_complete(looper(NordicSerial, loop, serial_port))
-    # loop.run_forever()
+    try:
+        looper(serial_port)
+    except KeyboardInterrupt:
+        print("finishing")

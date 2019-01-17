@@ -149,6 +149,7 @@ class NordicSerial:
         yield from self.messengers.send_outgoing_data(data)
 
         for i in range(self._read_try_count):
+            # LOGGER.info("read try count %s",i)
             _val = self.s.read()
             if _val:
                 yield from asyncio.sleep(self._read_delay)
@@ -158,7 +159,7 @@ class NordicSerial:
         if _val is None:
             LOGGER.error("Problem reading from serial")
             raise NordicReadProblem()
-
+        LOGGER.debug("response: %s",_val)
         yield from self.messengers.send_incoming_data(_val)
 
     @asyncio.coroutine
@@ -171,13 +172,13 @@ class NordicSerial:
             self.disconnect()
 
             self.tries += 1
-            LOGGER.info("Write retry %s", self.tries)
+            LOGGER.warning("Write retry %s", self.tries)
             if self.tries < 2:
                 yield from asyncio.sleep((self.tries - 1) * 1)
                 yield from self.connect()
                 yield from self.write(data)
             else:
-                LOGGER.debug("unable to send command.")
+                LOGGER.error("unable to send command.")
                 self.tries = 0
                 self.state = State.idle
                 yield from self.send_connection_status()
