@@ -9,8 +9,8 @@ from server.id_generator import get_id
 from server.nordic import Nd
 
 LOGGER = logging.getLogger(__name__)
-from server.simple_serial import NordicSerial
-
+#from server.simple_serial import NordicSerial
+from server.threaded_serial import NordicSerial
 # from server.simple_serial import NordicSerial
 # from server.nordic_serial import NordicSerial
 
@@ -46,7 +46,8 @@ def keys():
 
 def all_keys():
     for en in Nd:
-        yield Req(en.name)
+        if not en.name == Nd.SET_DONGLE_ID.name:
+            yield Req(en.name)
 
 @asyncio.coroutine
 def looper(connector:NordicSerial):
@@ -61,13 +62,13 @@ def looper(connector:NordicSerial):
         return sleeps[sleep_id]
 
     loops = 20
-
+    yield from connector.connect()
     for loop in range(loops):
 
         LOGGER.info("loop %s", loop)
-        connector.disconnect()
-        yield from asyncio.sleep(1)
-        yield from connector.connect()
+        # connector.disconnect()
+        # yield from asyncio.sleep(1)
+
         for key in all_keys():
             yield from serial.send_nordic(key)
             slp = get_sleep()
