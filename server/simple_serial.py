@@ -48,12 +48,12 @@ class State(Enum):
 
 class NordicSerial:
     def __init__(
-            self,
-            loop,
-            serial_port,
-            serial_speed,
-            try_delay=TRYDELAY,
-            messengers=None,
+        self,
+        loop,
+        serial_port,
+        serial_speed,
+        try_delay=TRYDELAY,
+        messengers=None,
     ):
         self._network_id = get_id()
         LOGGER.info("network id: {}".format(self._network_id))
@@ -65,8 +65,8 @@ class NordicSerial:
         self.port = serial_port
         self.serial_speed = serial_speed
         self.loop = loop
-        self.loop.create_task(self.connector())
-        self._read_try_count = 10
+        #self.loop.create_task(self.connector())
+        self._read_try_count = 20
         self._read_delay = 0.1
         self.tries = 0
 
@@ -138,7 +138,7 @@ class NordicSerial:
 
     @asyncio.coroutine
     def _write(self, data):
-        _val = None
+        _val = b""
         try:
             LOGGER.debug("outgoing: %s", data)
             self.s.write(data)
@@ -150,16 +150,19 @@ class NordicSerial:
 
         for i in range(self._read_try_count):
             # LOGGER.info("read try count %s",i)
+            #yield from asyncio.sleep(self._read_delay)
             _val = self.s.read()
-            if _val:
+            LOGGER.debug(_val)
+            if not _val == b"":
                 yield from asyncio.sleep(self._read_delay)
                 _val += self.s.read(self.s.in_waiting)
+                LOGGER.debug(_val)
                 break
             yield from asyncio.sleep(self._read_delay)
-        if _val is None:
+        if _val == b"":
             LOGGER.error("Problem reading from serial")
-            raise NordicReadProblem()
-        LOGGER.debug("response: %s",_val)
+            #raise NordicReadProblem()
+        LOGGER.debug("response: %s", _val)
         yield from self.messengers.send_incoming_data(_val)
 
     @asyncio.coroutine
@@ -205,7 +208,10 @@ class NordicSerial:
                 delay = cmd.get("delay", SLEEP_BETWEEN_COMMANDS)
                 yield from asyncio.sleep(delay)
             if upstring == Nd.SET_DONGLE_ID.value:
-                yield from self.s.write(self.id_change)
+                try:
+                    self.s.write(self.id_change)
+                except TypeError as err:
+                    LOGGER.error(err)
             else:
                 yield from self.write(upstring)
 

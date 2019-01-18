@@ -61,20 +61,21 @@ def looper(serial_port):
         LOGGER.info("loop %s",loops)
 
         loops+=1
-        for key in keys:
-            LOGGER.debug("writing: %s",key)
-            ser.write(key.value)
-            sleep(0.1)
+        for key in Nd:
+            if not key.name == Nd.SET_DONGLE_ID.name:
+                LOGGER.debug("writing: %s",key)
+                ser.write(key.value)
+                sleep(0.1)
+                LOGGER.debug("reading")
+                resp = ser.read(1)
+                sleep(0.1)
 
-            resp = ser.read(1)
-            sleep(0.1)
+                resp += ser.read(ser.in_waiting)
+                LOGGER.debug("response: %s",resp)
 
-            resp += ser.read(ser.in_waiting)
-            LOGGER.debug("response: %s",resp)
-
-            wait = next(sleeper)
-            LOGGER.debug("sleeping %s",wait)
-            sleep(next(sleeper))
+                wait = next(sleeper)
+                LOGGER.debug("sleeping %s",wait)
+                sleep(next(sleeper))
 
 
 logging.basicConfig(

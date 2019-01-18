@@ -9,7 +9,7 @@ from server.id_generator import get_id
 from server.nordic import Nd
 
 LOGGER = logging.getLogger(__name__)
-
+from server.simple_serial import NordicSerial
 
 # from server.simple_serial import NordicSerial
 # from server.nordic_serial import NordicSerial
@@ -44,9 +44,12 @@ def keys():
     for _key in _keys:
         yield Req(_key.name)
 
+def all_keys():
+    for en in Nd:
+        yield Req(en.name)
 
 @asyncio.coroutine
-def looper(connector, loop, serial_port):
+def looper(connector:NordicSerial):
     sleeps = (0.01, 0.001, 0.1, 0.04, 0.2, 0.0001)
     sleep_id = 0
 
@@ -57,19 +60,15 @@ def looper(connector, loop, serial_port):
             sleep_id = 0
         return sleeps[sleep_id]
 
-    loops = 1
-    # messengers = Messengers(loop)
-    serial = connector(
-        loop, serial_port, SERIAL_SPEED, network_id, messengers=MagicMock()
-    )
+    loops = 20
 
-    # serial.connect()
+    for loop in range(loops):
 
-    while loops < 150:
-
-        LOGGER.info("loop %s", loops)
-        loops += 1
-        for key in keys():
+        LOGGER.info("loop %s", loop)
+        connector.disconnect()
+        yield from asyncio.sleep(1)
+        yield from connector.connect()
+        for key in all_keys():
             yield from serial.send_nordic(key)
             slp = get_sleep()
             LOGGER.debug("Sleeping %s", slp)
@@ -77,7 +76,7 @@ def looper(connector, loop, serial_port):
 
 
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.DEBUG,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
 )
 
@@ -85,21 +84,16 @@ logging.basicConfig(
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("comport", help="nordic dongle")
-    parser.add_argument("--simple", dest="simple", action="store_true")
     args = parser.parse_args()
 
-    if args.simple:
-        LOGGER.info("Using simple connector")
-        from server.simple_serial import NordicSerial
-    else:
-        LOGGER.info("Using old connector")
-        from server.nordic_serial import NordicSerial
+    LOGGER.info("Using simple connector")
+
 
     serial_port = args.comport
 
     network_id = get_id()
     loop = asyncio.get_event_loop()
-
+    serial = NordicSerial(loop,serial_port,SERIAL_SPEED,messengers=MagicMock())
     # loop.create_task(looper(serial))
-    loop.run_until_complete(looper(NordicSerial, loop, serial_port))
+    loop.run_until_complete(looper(serial))
     # loop.run_forever()

@@ -7,14 +7,16 @@ from server.nordic import Nd
 
 
 commands = [
-    [Nd.open.name],
-    [Nd.close.name],
-    [Nd.stop.name],
-    [Nd.CONNECT.name],
-    [Nd.STARTPROGRAM.name],
-    [Nd.SAVE_POSITION_TOP.name],
-    [Nd.STARTPROGRAM.name],
-    [Nd.SAVE_POSITION_BOTTOM.name],
+    Nd.open,
+    Nd.close,
+    Nd.stop,
+    Nd.CONNECT,
+    Nd.STARTPROGRAM,
+    Nd.SAVE_POSITION_TOP,
+    Nd.STARTPROGRAM,
+    Nd.SAVE_POSITION_BOTTOM,
+    Nd.ORIENT_VVB_UPRIGHT_LEFT,
+    Nd.ORIENT_VVB_UPRIGHT_RIGHT,
 ]
 
 
@@ -38,15 +40,23 @@ async def w_socket(session):
 
 
 async def sender(session):
-    loop = 50
+    loop = 10
     for i in range(loop):
-        for command in commands:
-            async with session.post(
-                "http://localhost:8080/nordic", json={"commands": command}
-            ) as resp:
-                txt = await resp.text()
-                print(txt)
-            await asyncio.sleep(next(delays))
+        for command in Nd:
+            if (
+                not command.name == Nd.NETWORKADD.name
+                and not command.name == Nd.CONNECT.name
+                and not command.name == Nd.SET_DONGLE_ID.name
+            ):
+                cmd = [command.name]
+
+                print(command.name)
+                async with session.post(
+                    "http://localhost:8080/nordic", json={"commands": cmd}
+                ) as resp:
+                    txt = await resp.text()
+                    print(txt)
+                await asyncio.sleep(next(delays))
 
 
 async def looper(loop):
