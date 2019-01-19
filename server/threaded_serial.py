@@ -110,7 +110,7 @@ class NordicSerial:
             self.tries,
         )
         try:
-            self.s = Serial(self.port, baudrate=self.serial_speed)
+            self.s = Serial(self.port, baudrate=self.serial_speed,timeout=2)
         except SerialException:
             yield from self.send_connection_status()
             LOGGER.error("Problem connecting")
@@ -140,27 +140,31 @@ class NordicSerial:
 
     def _write(self, data):
         _val = b""
-        try:
-            LOGGER.debug("outgoing: %s", data)
-            self.s.write(data)
-        except (SerialException, AttributeError) as err:
-            LOGGER.error("Problem writing to serial. %s", err)
-
+        # try:
+        #     # LOGGER.debug("outgoing: %s", data)
+        #     self.s.write(data)
+        # except (SerialException, AttributeError) as err:
+        #     LOGGER.error("Problem writing to serial. %s", err)
+        # LOGGER.debug("reading data")
         _val = self.s.read(1)
         # LOGGER.debug(_val)
-        time.sleep(0.5)
+        time.sleep(0.3)
 
         _val += self.s.read(self.s.in_waiting)
         LOGGER.debug("incoming: %s", _val)
         if _val == b"":
             pass
+        time.sleep(0.1)
         return _val
 
     @asyncio.coroutine
     def write(self, data):
         # if self.executor is None:
         #    self.executor = ThreadPoolExecutor(max_workers=1)
-
+        try:
+            self.s.write(data)
+        except (SerialException,AttributeError) as err:
+            LOGGER.error("Problem writing to serial. %s",err)
         yield from self.messengers.send_outgoing_data(data)
 
         with ThreadPoolExecutor(max_workers=1) as executor:

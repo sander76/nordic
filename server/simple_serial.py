@@ -65,8 +65,13 @@ class NordicSerial:
         self.port = serial_port
         self.serial_speed = serial_speed
         self.loop = loop
+<<<<<<< HEAD
         # self.loop.create_task(self.connector())
         self._read_try_count = 10
+=======
+        #self.loop.create_task(self.connector())
+        self._read_try_count = 20
+>>>>>>> simple_serial_changes
         self._read_delay = 0.1
         self.tries = 0
 
