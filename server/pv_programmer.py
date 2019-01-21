@@ -4,12 +4,12 @@ import argparse
 import logging.handlers
 
 from aiohttp import web
+from serial.tools.list_ports import comports
 
 from server.app import get_app
 from server.constants import SERIAL_SPEED, STATIC_FILES_FOLDER, \
     INSTRUCTIONS_FOLDER
 from server.mylogger.mylogger import setup_logging
-from serial.tools.list_ports import comports
 
 PRINT_LENGTH = 80
 

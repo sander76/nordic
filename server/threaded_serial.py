@@ -1,17 +1,17 @@
 """All serial handling with the nordic dongle."""
 
 import asyncio
-import functools
 import logging
 import time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from sys import platform
+
 from aiohttp import web
 from serial import Serial
 from serial.serialutil import SerialException
 
-from server.constants import TRYDELAY, SLEEP_BETWEEN_COMMANDS
+from server.constants import SLEEP_BETWEEN_COMMANDS
 from server.id_generator import get_id
 from server.nordic import Nd
 
@@ -72,7 +72,7 @@ class NordicSerial:
 
     @asyncio.coroutine
     def disconnect(self):
-        LOGGER.debug("Disconnecting from serial")
+        LOGGER.debug("Disconnecting from serial.")
 
         self.state = State.disconnected
         yield from self.send_connection_status()

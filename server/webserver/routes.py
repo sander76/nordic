@@ -1,5 +1,5 @@
 
-from server.webserver.views import instruction_handler, websocket_handler, \
+from server.webserver.views import websocket_handler, \
     get_connection_status
 
 

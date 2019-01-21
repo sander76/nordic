@@ -1,13 +1,15 @@
 import asyncio
+
 from aiohttp import web
 
 from server.messenger import Messengers
 from server.messenger.web_socket_messenger import WebSocketMessenger
-#from server.simple_serial import NordicSerial
-
 # from server.nordic_serial import NordicSerial
 from server.threaded_serial import NordicSerial
 from server.webserver.routes import add_routes
+
+
+# from server.simple_serial import NordicSerial
 
 
 def get_app(serial_port, serial_speed, static_folder, instructions_folder):
