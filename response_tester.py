@@ -70,7 +70,10 @@ def looper(connector:NordicSerial):
         # yield from asyncio.sleep(1)
 
         for key in all_keys():
-            yield from serial.send_nordic(key)
+            try:
+                yield from serial.send_nordic(key)
+            except Exception as err:
+                pass
             slp = get_sleep()
             # LOGGER.debug("Sleeping %s", slp)
             yield from asyncio.sleep(slp)

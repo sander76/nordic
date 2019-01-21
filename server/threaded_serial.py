@@ -45,19 +45,12 @@ from enum import Enum
 
 class State(Enum):
     disconnected = 0
-    idle = 1
-    writing = 2
+    connecting = 3
+    connected = 4
 
 
 class NordicSerial:
-    def __init__(
-        self,
-        loop,
-        serial_port,
-        serial_speed,
-        try_delay=TRYDELAY,
-        messengers=None,
-    ):
+    def __init__(self, loop, serial_port, serial_speed, messengers=None):
         self._network_id = get_id()
         LOGGER.info("network id: {}".format(self._network_id))
         self.network_id = byte_to_string_rep(self._network_id)
@@ -72,10 +65,12 @@ class NordicSerial:
         self._read_delay = 0.1
         self.tries = 0
         self.executor = None
-        self.state = State.idle
+        self.state = State.disconnected
+        self.connector = self.loop.create_task(self.connector())
 
     def disconnect(self):
         LOGGER.debug("Disconnecting from serial")
+        self.state = State.disconnected
         if self.s is not None:
             try:
                 self.s.close()
@@ -85,23 +80,28 @@ class NordicSerial:
 
     @asyncio.coroutine
     def connector(self):
-        """Check connection state in a loop"""
-        while True:
-            if self.state == State.idle:
-                LOGGER.debug("Checking connection")
-                if self.s is not None:
-                    LOGGER.debug(self.s.closed)
-                if self.s is None or self.s.closed:
-                    LOGGER.info("Trying to connect")
+        try:
+
+            """Check connection state in a loop"""
+            while True:
+                LOGGER.debug("Checking connection.")
+                if self.state == State.disconnected:
+                    LOGGER.debug("Connecting.")
                     yield from self.connect()
 
-            yield from asyncio.sleep(5)
+                yield from asyncio.sleep(5)
+        except Exception as err:
+            LOGGER.error(err)
+
+    def change_dongle_id(self):
+        if self.state in (State.connected, State.connecting):
+            self.s.write(self.id_change)
 
     @asyncio.coroutine
     def connect(self):
         """Connects to the serial port and prepares the nordic
         for sending commands to the blinds."""
-
+        self.state = State.connecting
         yield from self.send_connection_status()
 
         LOGGER.debug(
@@ -110,8 +110,9 @@ class NordicSerial:
             self.tries,
         )
         try:
-            self.s = Serial(self.port, baudrate=self.serial_speed,timeout=2)
+            self.s = Serial(self.port, baudrate=self.serial_speed, timeout=1)
         except SerialException:
+            self.state = State.disconnected
             yield from self.send_connection_status()
             LOGGER.error("Problem connecting")
             return
@@ -120,6 +121,7 @@ class NordicSerial:
         LOGGER.info("Changing dongle id.")
         self.s.write(self.id_change)
 
+        self.state = State.connected
         LOGGER.info("Connected to serial port %s", self.s.port)
 
         yield from self.send_connection_status()
@@ -138,41 +140,43 @@ class NordicSerial:
         LOGGER.debug("Sending connection status. %s", status)
         yield from self.messengers.send_message(status)
 
-    def _write(self, data):
-        _val = b""
-        # try:
-        #     # LOGGER.debug("outgoing: %s", data)
-        #     self.s.write(data)
-        # except (SerialException, AttributeError) as err:
-        #     LOGGER.error("Problem writing to serial. %s", err)
-        # LOGGER.debug("reading data")
-        _val = self.s.read(1)
-        # LOGGER.debug(_val)
-        time.sleep(0.3)
+    def _read(self, data):
+        try:
+            # this method takes place in a separate thread.
+            _val = b""
 
-        _val += self.s.read(self.s.in_waiting)
-        LOGGER.debug("incoming: %s", _val)
-        if _val == b"":
-            pass
-        time.sleep(0.1)
-        return _val
+            _val = self.s.read(1)
+            if _val == b"":
+                LOGGER.warning("No response recieved from serial.")
+                return _val
+
+            time.sleep(0.3)
+            _val += self.s.read(self.s.in_waiting)
+
+            LOGGER.debug("incoming: %s", _val)
+
+            return _val
+        except Exception as err:
+            LOGGER.error(err)
 
     @asyncio.coroutine
     def write(self, data):
-        # if self.executor is None:
-        #    self.executor = ThreadPoolExecutor(max_workers=1)
         try:
+            LOGGER.debug("outgoing %s", data)
             self.s.write(data)
-        except (SerialException,AttributeError) as err:
-            LOGGER.error("Problem writing to serial. %s",err)
-        yield from self.messengers.send_outgoing_data(data)
-
-        with ThreadPoolExecutor(max_workers=1) as executor:
-            _value = yield from self.loop.run_in_executor(
-                executor, (functools.partial(self._write, data))
+            yield from self.messengers.send_outgoing_data(data)
+        except (SerialException, AttributeError, Exception) as err:
+            LOGGER.error("Problem writing to serial. %s", err)
+            self.disconnect()
+            raise NordicWriteProblem(
+                "Problem writing to serial. {}".format(err)
             )
+        else:
 
-        # _value = yield from self.loop.run_in_executor(self.executor, functools.partial(self._write,data))
+            with ThreadPoolExecutor(max_workers=1) as executor:
+                _value = yield from self.loop.run_in_executor(
+                    executor, (functools.partial(self._read, data))
+                )
 
         yield from self.messengers.send_incoming_data(_value)
 
@@ -195,10 +199,16 @@ class NordicSerial:
                 yield from asyncio.sleep(delay)
             if upstring == Nd.SET_DONGLE_ID.value:
                 try:
-                    self.s.write(self.id_change)
+                    self.change_dongle_id()
                 except TypeError as err:
                     LOGGER.error(err)
             else:
-                yield from self.write(upstring)
+                try:
+                    yield from self.write(upstring)
+                except NordicWriteProblem as err:
+                    LOGGER.error(err)
+
+                    # todo: return a proper error response.
+                    return
 
         return web.Response(body=b"okay")
