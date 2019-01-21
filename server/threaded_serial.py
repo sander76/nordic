@@ -81,7 +81,6 @@ class NordicSerial:
     @asyncio.coroutine
     def connector(self):
         try:
-
             """Check connection state in a loop"""
             while True:
                 LOGGER.debug("Checking connection.")
