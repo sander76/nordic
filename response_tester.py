@@ -61,7 +61,7 @@ def looper(connector:NordicSerial):
             sleep_id = 0
         return sleeps[sleep_id]
 
-    loops = 50
+    loops = 1
     yield from connector.connect()
     for loop in range(loops):
 
@@ -77,6 +77,8 @@ def looper(connector:NordicSerial):
             slp = get_sleep()
             # LOGGER.debug("Sleeping %s", slp)
             yield from asyncio.sleep(slp)
+    LOGGER.debug("finished. Waiting.")
+    yield from asyncio.sleep(10)
 
 
 logging.basicConfig(

@@ -5,7 +5,8 @@ import functools
 import logging
 import time
 from concurrent.futures import ThreadPoolExecutor
-
+from pathlib import Path
+from sys import platform
 from aiohttp import web
 from serial import Serial
 from serial.serialutil import SerialException
@@ -67,6 +68,7 @@ class NordicSerial:
         self.executor = None
         self.state = State.disconnected
         self.connector = self.loop.create_task(self.connector())
+        self.dongle_checker = self.loop.create_task(self.dongle_checker())
 
     def disconnect(self):
         LOGGER.debug("Disconnecting from serial")
@@ -77,6 +79,20 @@ class NordicSerial:
             except Exception as err:
                 LOGGER.error(err)
         self.s = None
+
+    @asyncio.coroutine
+    def dongle_checker(self):
+        if platform == "linux":
+            LOGGER.debug("Adding dongle checker.")
+            # schedule serial port checker
+            pth = Path(self.port)
+            try:
+                while True:
+                    if not pth.exists():
+                        self.state = State.disconnected
+                    yield from asyncio.sleep(2)
+            except Exception as err:
+                LOGGER.error(err)
 
     @asyncio.coroutine
     def connector(self):
@@ -139,7 +155,7 @@ class NordicSerial:
         LOGGER.debug("Sending connection status. %s", status)
         yield from self.messengers.send_message(status)
 
-    def _read(self, data):
+    def _read(self):
         try:
             # this method takes place in a separate thread.
             _val = b""
@@ -174,7 +190,7 @@ class NordicSerial:
 
             with ThreadPoolExecutor(max_workers=1) as executor:
                 _value = yield from self.loop.run_in_executor(
-                    executor, (functools.partial(self._read, data))
+                    executor, self._read
                 )
 
         yield from self.messengers.send_incoming_data(_value)
