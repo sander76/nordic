@@ -21,6 +21,8 @@ from instructor.actions.set_top_limit import (
     confirm_top_limit_vb,
 )
 from instructor.actions.skip_step import skiptop, skipbottom_end
+from instructor.actions.slat_adjust import start_slat_redefine, redefine_slat, \
+    enable_slat_redefine
 from instructor.components import Product
 from instructor.helpers import TXT
 
@@ -53,6 +55,34 @@ m25s_vb_free = Product(
         re_set_bottom_limit_vb,
     ],
 )
+m25s_vb_free_slat_adjust = Product(
+    TXT("Venetian 35 slat adjust"),
+    [
+        confirm_vb,
+        connect_m25s_vb,
+        initialise_vb35,
+        right_mount_vb35,
+        left_mount_vb35,
+        enter_program_mode_vb_first_time,
+        set_bottom_limit_vb,
+        enter_program_mode_vb,
+        set_top_limit_vb_moveup,
+        confirm_top_limit_vb,
+        set_top_limit_vb,
+        start_slat_redefine(),
+        enable_slat_redefine(),
+        redefine_slat(),
+        test_blinds,
+        skiptop,
+        enter_program_mode_vb,
+        set_top_limit_vb,
+        skipbottom_end,
+        enter_program_mode_vb,
+        re_set_bottom_limit_vb,
+    ],
+)
+
+
 
 m25s_vb_35_only = Product(
     TXT("Venetian 35 only"),

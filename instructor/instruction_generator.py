@@ -10,7 +10,11 @@ from instructor.products.m25s_pleated import (
     m25s_pleated_free,
     m25s_pleated_tensioned,
 )
-from instructor.products.m25s_vb import m25s_vb_free, m25s_vb_35_only
+from instructor.products.m25s_vb import (
+    m25s_vb_free,
+    m25s_vb_35_only,
+    m25s_vb_free_slat_adjust,
+)
 from instructor.products.m25s_vvb import m25s_vvb
 from instructor.products.roller import rollerblind1, rollerblind_old
 from instructor.products.test_products import test_roller
@@ -56,9 +60,13 @@ def make_luxaflex_nl():
 def make_mhz_de():
     instructions = [m25s_vvb]
     make_instruction("instructions-mhz1-de.json", instructions, TXT.de)
-    instructions = [m25s_vb_35_only, m25s_vb_free]
+
+    instructions = [m25s_vb_35_only, m25s_vb_free, m25s_vb_free_slat_adjust]
+
     make_instruction("instructions-mhz2-de.json", instructions, TXT.de)
+
     make_instruction("instructions-mhz3-de.json", [rollerblind1], TXT.de)
+
     make_instruction(
         "instructions-mhz4-de.json",
         [m25s_duette_free, m25s_pleated_free],

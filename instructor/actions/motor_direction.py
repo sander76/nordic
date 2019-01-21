@@ -207,6 +207,17 @@ vb_35mm_type = get_direction(
     confirm_question=Tr.DID_THE_MOTOR_JOG_TWO_TIMES,
 )
 
+vb_35mm_type_alt=get_direction(
+    VB_JOG_2,
+    title=Tr.IS_VB_35MM,
+    orientation_question=Tr.IS_VB_35MM,
+    confirm_orientation_command=NordicCommands(
+        Nd.RESET, DelayedCommand(Nd.M25S_VENETIAN_25MM, PRODUCT_SET_DELAY)
+    ),
+    cancel_no=NavigationCommand("vb_16mm"),
+    confirm_yes=NavigationCommand("right_mount_vb_35"),
+    confirm_question=Tr.DID_THE_MOTOR_JOG_TWO_TIMES,
+)
 
 vvb_left_stack = get_direction(
     VVB_JOG_2,

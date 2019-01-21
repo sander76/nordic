@@ -17,7 +17,7 @@ class Nd(Enum):
     STARTPROGRAM = b"\x00\x04#LPE"
     SAVE_POSITION_TOP = b"\x00\x04#LPO"
     SAVE_POSITION_BOTTOM = b"\x00\x04#LPC"
-    ENABLE_SLAT = b"\x00\x04#LPr"
+
     SAVE_SLAT_OPEN = b"\x00\x04#LTO"
     REVERSE = b"\x00\x02#x"  # old
 
@@ -27,6 +27,7 @@ class Nd(Enum):
 
     SET_DONGLE_ID = b"set_id"
 
+    ENABLE_SLAT = b"\x00\x04#LPr"
     SAVE_VENETIAN_SLAT = b"\x00\x04#LPR"
 
     # motor types.
@@ -57,5 +58,3 @@ class Nd(Enum):
 
     ORIENT_M25S_DUETTE_LEFT = b"\x00\x03#dR"
     ORIENT_M25S_DUETTE_RIGHT = b"\x00\x03#dL"
-
-
