@@ -70,9 +70,12 @@ class NordicSerial:
         self.connector = self.loop.create_task(self.connector())
         self.dongle_checker = self.loop.create_task(self.dongle_checker())
 
+    @asyncio.coroutine
     def disconnect(self):
         LOGGER.debug("Disconnecting from serial")
+
         self.state = State.disconnected
+        yield from self.send_connection_status()
         if self.s is not None:
             try:
                 self.s.close()
@@ -88,8 +91,11 @@ class NordicSerial:
             pth = Path(self.port)
             try:
                 while True:
+                    LOGGER.debug("checking dongle.")
                     if not pth.exists():
-                        self.state = State.disconnected
+                        LOGGER.debug("dongle not present")
+                        yield from self.disconnect()
+
                     yield from asyncio.sleep(2)
             except Exception as err:
                 LOGGER.error(err)
@@ -182,7 +188,7 @@ class NordicSerial:
             yield from self.messengers.send_outgoing_data(data)
         except (SerialException, AttributeError, Exception) as err:
             LOGGER.error("Problem writing to serial. %s", err)
-            self.disconnect()
+            yield from self.disconnect()
             raise NordicWriteProblem(
                 "Problem writing to serial. {}".format(err)
             )
