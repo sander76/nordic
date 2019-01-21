@@ -73,15 +73,15 @@ class NordicSerial:
     @asyncio.coroutine
     def disconnect(self):
         LOGGER.debug("Disconnecting from serial.")
-
-        self.state = State.disconnected
-        yield from self.send_connection_status()
-        if self.s is not None:
-            try:
-                self.s.close()
-            except Exception as err:
-                LOGGER.error(err)
-        self.s = None
+        if not self.state == State.disconnected:
+            self.state = State.disconnected
+            yield from self.send_connection_status()
+            if self.s is not None:
+                try:
+                    self.s.close()
+                except Exception as err:
+                    LOGGER.error(err)
+            self.s = None
 
     @asyncio.coroutine
     def dongle_checker(self):
@@ -149,7 +149,7 @@ class NordicSerial:
 
     def get_connection_status(self):
 
-        if self.s is None or self.s.closed:
+        if self.s is None or self.s.closed or self.state == State.disconnected:
             _connected = False
         else:
             _connected = True
