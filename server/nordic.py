@@ -58,3 +58,5 @@ class Nd(Enum):
 
     ORIENT_M25S_DUETTE_LEFT = b"\x00\x03#dR"
     ORIENT_M25S_DUETTE_RIGHT = b"\x00\x03#dL"
+
+    CLEAR_SHADE_TYPE = b"\x00\x02\#X"

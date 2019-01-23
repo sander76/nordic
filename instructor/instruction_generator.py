@@ -2,6 +2,7 @@ import os
 
 from instructor.components import ToJson, Instruction
 from instructor.helpers import TXT
+from instructor.products.advanced import advanced
 from instructor.products.m25s_duette import (
     m25s_duette_free,
     m25s_duette_tensioned,
@@ -172,6 +173,10 @@ def make_leha():
     products = [m25s_vvb, rollerblind1, twist]
     make_instruction("instructions-leha-de.json", products, TXT.de)
 
+def make_advanced():
+    products = [advanced]
+    make_instruction("instructions-_advanced.json",products,TXT.en)
+
 
 def make_instruction(file_name, products, lang):
     _path = os.path.join(MAIN_PATH, file_name)
@@ -200,3 +205,4 @@ if __name__ == "__main__":
     make_leha()
     make_kadan_1()
     make_mhz_de()
+    make_advanced()

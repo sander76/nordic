@@ -26,6 +26,7 @@ from instructor.constants import (
     VVB_JOG_1,
     ID_CHOOSE_SAME,
 )
+from instructor.helpers import TXT
 from instructor.translations import Translations as Tr
 from server.nordic import Nd
 
@@ -238,3 +239,15 @@ clearshade = Step(
     ],
 )
 
+clear_product_type = Step(
+    TXT("Clear product type."),
+    [
+        Row(
+            Text(30,"This will clear the shade identity."),
+            PvKeypadAlt(
+                30,
+                okay=Commands(nordic_commands=NordicCommands(Nd.CLEAR_SHADE_TYPE))
+            )
+        )
+    ]
+)
