@@ -14,7 +14,8 @@ from instructor.products.m25s_pleated import (
 from instructor.products.m25s_vb import (
     m25s_vb_free,
     m25s_vb_35_only,
-    m25s_vb_free_slat_adjust,
+    m35s_vb_free_slat_adjust,
+    m35s_vb_free_slat_adjust_bottom_first,
 )
 from instructor.products.m25s_vvb import m25s_vvb
 from instructor.products.roller import rollerblind1, rollerblind_old
@@ -62,7 +63,12 @@ def make_mhz_de():
     instructions = [m25s_vvb]
     make_instruction("instructions-mhz1-de.json", instructions, TXT.de)
 
-    instructions = [m25s_vb_35_only, m25s_vb_free, m25s_vb_free_slat_adjust]
+    instructions = [
+        m25s_vb_35_only,
+        m25s_vb_free,
+        m35s_vb_free_slat_adjust,
+        m35s_vb_free_slat_adjust_bottom_first,
+    ]
 
     make_instruction("instructions-mhz2-de.json", instructions, TXT.de)
 
@@ -173,9 +179,10 @@ def make_leha():
     products = [m25s_vvb, rollerblind1, twist]
     make_instruction("instructions-leha-de.json", products, TXT.de)
 
+
 def make_advanced():
     products = [advanced]
-    make_instruction("instructions-_advanced.json",products,TXT.en)
+    make_instruction("instructions-_advanced.json", products, TXT.en)
 
 
 def make_instruction(file_name, products, lang):

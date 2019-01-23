@@ -55,7 +55,7 @@ m25s_vb_free = Product(
         re_set_bottom_limit_vb,
     ],
 )
-m25s_vb_free_slat_adjust = Product(
+m35s_vb_free_slat_adjust = Product(
     TXT("Venetian 35 slat adjust"),
     [
         confirm_vb,
@@ -82,7 +82,33 @@ m25s_vb_free_slat_adjust = Product(
     ],
 )
 
+m35s_vb_free_slat_adjust_bottom_first = Product(
+    TXT("Venetian 35 slat adjust bottom first"),
+    [
+        confirm_vb,
+        connect_m25s_vb,
+        initialise_vb35,
+        right_mount_vb35,
+        left_mount_vb35,
+        enter_program_mode_vb_first_time,
+        set_bottom_limit_vb,
+        enable_slat_redefine(),
+        redefine_slat(),
+        enter_program_mode_vb,
+        set_top_limit_vb_moveup,
+        confirm_top_limit_vb,
+        set_top_limit_vb,
+        #start_slat_redefine(),
 
+        test_blinds,
+        skiptop,
+        enter_program_mode_vb,
+        set_top_limit_vb,
+        skipbottom_end,
+        enter_program_mode_vb,
+        re_set_bottom_limit_vb,
+    ],
+)
 
 m25s_vb_35_only = Product(
     TXT("Venetian 35 only"),

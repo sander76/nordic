@@ -82,7 +82,8 @@ def redefine_slat():
                 PvKeypadAlt(
                     30,
                     okay=Commands(
-                        nordic_commands=NordicCommands(Nd.SAVE_VENETIAN_SLAT)
+                        nordic_commands=NordicCommands(Nd.SAVE_VENETIAN_SLAT),
+                        navigation_command=NavigationCommand(1)
                     )
                 ),
             ),
