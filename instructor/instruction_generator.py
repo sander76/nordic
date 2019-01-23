@@ -15,8 +15,7 @@ from instructor.products.m25s_vb import (
     m25s_vb_free,
     m25s_vb_35_only,
     m35s_vb_free_slat_adjust,
-    m35s_vb_free_slat_adjust_bottom_first,
-)
+    m35s_vb_free_slat_adjust_top_first)
 from instructor.products.m25s_vvb import m25s_vvb
 from instructor.products.roller import rollerblind1, rollerblind_old
 from instructor.products.test_products import test_roller
@@ -67,7 +66,7 @@ def make_mhz_de():
         m25s_vb_35_only,
         m25s_vb_free,
         m35s_vb_free_slat_adjust,
-        m35s_vb_free_slat_adjust_bottom_first,
+        m35s_vb_free_slat_adjust_top_first,
     ]
 
     make_instruction("instructions-mhz2-de.json", instructions, TXT.de)
