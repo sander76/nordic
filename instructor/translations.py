@@ -271,6 +271,10 @@ class Translations:
     ANOTHER_PRODUCT = TXT("Choose another product.")
 
     PRODUCT_PV_M25S_VB = TXT("Venetian blind")
+    PRODUCT_PV_M25S_VB16 = TXT("Venetian blind 16mm.")
+    PRODUCT_PV_M25S_VB25 = TXT("Venetian blind 25mm.")
+    PRODUCT_PV_M25S_VB35 = TXT("Venetian blind 35mm.")
+
     PRODUCT_PV_M25S_VVB = TXT("Vertical Venetian blind")
     PRODUCT_PV_ROLLERBLIND = TXT("Rollerblind")
     PRODUCT_PV_TWIST = TXT("Twist")
@@ -367,7 +371,4 @@ def export_translations():
 
 
 if __name__ == "__main__":
-    # convert_to_csv()
-    # convert_to_json_flat()
     export_translations()
-    # load_translations()
