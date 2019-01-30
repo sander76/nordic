@@ -66,9 +66,9 @@ def make_mhz_de():
     instructions = [
         #m25s_vb_35_only,
         #m25s_vb_free,
-        mhz_m35s_vb_free_slat_adjust,
         mhz_m16s_vb_free,
         mhz_m25s_vb_free,
+        mhz_m35s_vb_free_slat_adjust,
         #mhz_m35s_vb_free_slat_adjust_top_first
     ]
 

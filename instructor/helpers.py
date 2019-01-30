@@ -47,16 +47,20 @@ class TXT:
         self.de = de
         self.dk = dk
         self.cz = cz
-        self.to_upper = to_upper
+        self._to_upper = to_upper
 
     def get_text(self, lang):
         val = getattr(self, lang)
         if val is None or not val.strip():
             val = getattr(self, TXT.en)
-        if self.to_upper:
+        if self._to_upper:
             val = val.upper()
 
         return {"content": val}
+
+    def to_upper(self):
+        self._to_upper=True
+        return self
 
     def get_plain_text(self, lang):
         val = getattr(self, lang, "")

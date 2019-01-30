@@ -1,4 +1,5 @@
-from instructor.actions.confirm_product import confirm_vb
+from instructor.actions.confirm_product import confirm_vb, confirm_vb16, \
+    confirm_vb25, confirm_vb35
 from instructor.actions.connect import connect_m25s_vb
 from instructor.actions.general import (
     enter_program_mode_vb,
@@ -69,7 +70,7 @@ m25s_vb_free = Product(
 mhz_m35s_vb_free_slat_adjust = Product(
     Tr.PRODUCT_PV_M25S_VB35,
     [
-        confirm_vb,
+        confirm_vb35,
         connect_m25s_vb,
         initialise_vb35,
         right_mount_vb35,
@@ -96,7 +97,7 @@ mhz_m35s_vb_free_slat_adjust = Product(
 mhz_m35s_vb_free_slat_adjust_top_first = Product(
     Tr.PRODUCT_PV_M25S_VB35,
     [
-        confirm_vb,
+        confirm_vb35,
         connect_m25s_vb,
         initialise_vb25,
         right_mount_vb35,
@@ -123,7 +124,7 @@ mhz_m35s_vb_free_slat_adjust_top_first = Product(
 mhz_m16s_vb_free = Product(
     Tr.PRODUCT_PV_M25S_VB16,
     [
-        confirm_vb,
+        confirm_vb16,
         connect_m25s_vb,
         initialise_vb16,
         right_mount_vb,
@@ -147,7 +148,7 @@ mhz_m16s_vb_free = Product(
 mhz_m25s_vb_free = Product(
     Tr.PRODUCT_PV_M25S_VB25,
     [
-        confirm_vb,
+        confirm_vb25,
         connect_m25s_vb,
         initialise_vb25,
         right_mount_vb,
