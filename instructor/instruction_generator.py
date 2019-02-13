@@ -23,7 +23,7 @@ from instructor.products.test_products import test_roller
 from instructor.products.twist import twist_old, twist
 from instructor.translations import load_translations
 
-INSTRUCTION_VERSION = "1.7.20"
+INSTRUCTION_VERSION = "1.7.21"
 MAIN_PATH = "../static/instructions/"
 
 

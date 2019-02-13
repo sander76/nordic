@@ -190,7 +190,7 @@ vb_25mm_type = get_direction(
     confirm_orientation_command=NordicCommands(
         Nd.RESET, DelayedCommand(Nd.M25S_VENETIAN_25MM, PRODUCT_SET_DELAY)
     ),
-    cancel_no=NavigationCommand(1),
+    cancel_no=NavigationCommand("vb_16mm"),
     confirm_yes=NavigationCommand("right_mount_vb"),
     confirm_question=Tr.DID_THE_MOTOR_JOG_TWO_TIMES,
 )
