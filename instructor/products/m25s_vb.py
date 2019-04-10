@@ -18,8 +18,7 @@ from instructor.actions.motor_direction import (
     vb_25mm_type,
     right_mount_vb35,
     left_mount_vb35,
-    vb_35mm_type,
-)
+    mhz_right_mount_vb, mhz_left_mount_vb)
 from instructor.actions.set_bottom_limit import (
     set_bottom_limit_vb,
     re_set_bottom_limit_vb,
@@ -127,8 +126,8 @@ mhz_m16s_vb_free = Product(
         confirm_vb16,
         connect_m25s_vb,
         initialise_vb16,
-        right_mount_vb,
-        left_mount_vb,
+        mhz_right_mount_vb,
+        mhz_left_mount_vb,
         enter_program_mode_vb_first_time,
         set_bottom_limit_vb,
         enter_program_mode_vb,
@@ -151,8 +150,8 @@ mhz_m25s_vb_free = Product(
         confirm_vb25,
         connect_m25s_vb,
         initialise_vb25,
-        right_mount_vb,
-        left_mount_vb,
+        mhz_right_mount_vb,
+        mhz_left_mount_vb,
         enter_program_mode_vb_first_time,
         set_bottom_limit_vb,
         enter_program_mode_vb,

@@ -142,6 +142,17 @@ right_mount_vb = get_direction(
     nav_id="right_mount_vb",
 )
 
+# mounting direction is reversed. so left should be right and vice versa.
+mhz_right_mount_vb = get_direction(
+    VB_JOG_1,
+    title=Tr.IS_RIGHT_MOUNT,
+    orientation_question=Tr.IS_RIGHT_MOUNT,
+    confirm_orientation_command=NordicCommands(Nd.ORIENT_M25S_DUETTE_LEFT),
+    confirm_yes=NavigationCommand("start_programming"),
+    nav_id="right_mount_vb",
+)
+
+
 left_mount_vb = get_direction(
     VB_JOG_1,
     title=Tr.IS_LEFT_MOUNT,
@@ -151,6 +162,15 @@ left_mount_vb = get_direction(
     confirm_yes=NavigationCommand("start_programming"),
 )
 
+# mounting direction is reversed. so left should be right and vice versa.
+mhz_left_mount_vb = get_direction(
+    VB_JOG_1,
+    title=Tr.IS_LEFT_MOUNT,
+    orientation_question=Tr.IS_LEFT_MOUNT,
+    confirm_orientation_command=NordicCommands(Nd.ORIENT_M25S_DUETTE_RIGHT),
+    cancel_no=NavigationCommand("right_mount_vb"),
+    confirm_yes=NavigationCommand("start_programming"),
+)
 
 right_mount_vb35 = get_direction(
     VB_JOG_1,
