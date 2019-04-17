@@ -23,7 +23,7 @@ from instructor.products.test_products import test_roller
 from instructor.products.twist import twist_old, twist
 from instructor.translations import load_translations
 
-INSTRUCTION_VERSION = "1.7.22"
+INSTRUCTION_VERSION = "1.7.23"
 MAIN_PATH = "../static/instructions/"
 
 
@@ -64,18 +64,13 @@ def make_mhz_de():
     make_instruction("instructions-mhz1-de.json", instructions, TXT.de)
 
     instructions = [
-        #m25s_vb_35_only,
-        #m25s_vb_free,
         mhz_m16s_vb_free,
         mhz_m25s_vb_free,
         mhz_m35s_vb_free_slat_adjust,
-        #mhz_m35s_vb_free_slat_adjust_top_first
     ]
 
     make_instruction("instructions-mhz2-de.json", instructions, TXT.de)
-
     make_instruction("instructions-mhz3-de.json", [rollerblind1], TXT.de)
-
     make_instruction(
         "instructions-mhz4-de.json",
         [m25s_duette_free, m25s_pleated_free],

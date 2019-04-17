@@ -61,6 +61,7 @@ def get_confirm_product_alt(product_title, jumbo):
                 ),
             ),
         ],
+        nav_id=ID_START,
     )
 
 
