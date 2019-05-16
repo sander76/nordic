@@ -72,6 +72,7 @@ confirm_vb = get_confirm_product(Tr.PRODUCT_PV_M25S_VB)
 confirm_vb16 = get_confirm_product_alt(Tr.PRODUCT_PV_M25S_VB16, "16mm.")
 confirm_vb25 = get_confirm_product_alt(Tr.PRODUCT_PV_M25S_VB25, "25mm.")
 confirm_vb35 = get_confirm_product_alt(Tr.PRODUCT_PV_M25S_VB35, "35mm.")
+confirm_mhz_vb = get_confirm_product_alt(Tr.PRODUCT_PV_M25S_VB, "")
 
 confirm_duette = get_confirm_product(Tr.PRODUCT_PV_M25S_DUETTE)
 confirm_duette_tensioned = get_confirm_product(

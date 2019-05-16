@@ -1,5 +1,5 @@
 from instructor.actions.confirm_product import confirm_vb, confirm_vb16, \
-    confirm_vb25, confirm_vb35
+    confirm_vb25, confirm_vb35, confirm_mhz_vb
 from instructor.actions.connect import connect_m25s_vb
 from instructor.actions.general import (
     enter_program_mode_vb,
@@ -92,6 +92,36 @@ mhz_m35s_vb_free_slat_adjust = Product(
         re_set_bottom_limit_vb,
     ],
 )
+
+mhz_all_vb_free_slat_adjust = Product(
+    Tr.PRODUCT_PV_M25S_VB,
+    [
+        confirm_mhz_vb,
+        connect_m25s_vb,
+        initialise_vb35,
+        #right_mount_vb35,
+        mhz_right_mount_vb,
+        #left_mount_vb35,
+        mhz_left_mount_vb,
+        enter_program_mode_vb_first_time,
+        set_bottom_limit_vb,
+        enter_program_mode_vb,
+        set_top_limit_vb_moveup,
+        confirm_top_limit_vb,
+        set_top_limit_vb,
+        start_slat_redefine(),
+        enable_slat_redefine(),
+        redefine_slat(),
+        test_blinds,
+        skiptop,
+        enter_program_mode_vb,
+        set_top_limit_vb,
+        skipbottom_end,
+        enter_program_mode_vb,
+        re_set_bottom_limit_vb,
+    ],
+)
+
 
 mhz_m35s_vb_free_slat_adjust_top_first = Product(
     Tr.PRODUCT_PV_M25S_VB35,

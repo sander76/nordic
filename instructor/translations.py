@@ -271,6 +271,7 @@ class Translations:
     ANOTHER_PRODUCT = TXT("Choose another product.")
 
     PRODUCT_PV_M25S_VB = TXT("Venetian blind")
+
     PRODUCT_PV_M25S_VB16 = TXT("Venetian blind 16mm.")
     PRODUCT_PV_M25S_VB25 = TXT("Venetian blind 25mm.")
     PRODUCT_PV_M25S_VB35 = TXT("Venetian blind 35mm.")
