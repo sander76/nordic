@@ -97,8 +97,6 @@ class Translations:
 
     SWITCH_DIRECTION = TXT("CHANGE BLIND DIRECTION.")
 
-    IS_BLIND_AT_TOP = TXT("IS THE BLIND AT THE TOP ?")
-
     IS_BLIND_CLOSED = TXT("IS THE BLIND CLOSED ?")
 
     IS_BLIND_OPENED = TXT("Is the blind at open position ?", to_upper=True)
@@ -136,7 +134,7 @@ class Translations:
     RESET_OPEN = TXT("Re-set the OPEN limit.")
     RESET_CLOSE = TXT("Re-set the CLOSE limit.")
 
-    START_TOP_PROGRAMMING = TXT("The blind will move completely to the top.")
+    # START_TOP_PROGRAMMING = TXT("The blind will move completely to the top.")
 
     START_OPEN_PROGRAMMING = TXT("The blind will move to the open position.")
 
@@ -183,8 +181,6 @@ class Translations:
     WATCH_THE_BLIND_JOG_THREE_TIMES = TXT("Motor jogs three times.")
 
     MOTOR_SHOULD_MOVE_DOWN = TXT("Blind should move down/close.")
-
-    MOVE_BLIND_CLOSE = TXT("Move the *BLIND* to the desired CLOSE position")
 
     MOVE_BLIND_BOTTOM = TXT("Move the *BLIND* to the desired BOTTOM position.")
 
@@ -256,11 +252,11 @@ class Translations:
 
     TITLE_FRONTROLLER_RIGHT = TXT("RIGHT FRONTROLLER", to_upper=True)
 
-    TITLE_SET_BOTTOM_LIMIT = TXT(
-        "SET BOTTOM LIMIT.", "STEL ONDERLIMIET IN.", to_upper=True
+    TITLE_SET_CLOSE_LIMIT = TXT(
+        "SET CLOSE LIMIT.", "STEL ONDERLIMIET IN.", to_upper=True
     )
 
-    TITLE_SET_TOP_LIMIT = TXT("SET TOP LIMIT.", to_upper=True)
+    TITLE_SET_OPEN_LIMIT = TXT("SET OPEN LIMIT.", to_upper=True)
 
     TITLE_VVB = TXT("VVB title")
 

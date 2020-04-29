@@ -103,7 +103,7 @@ right_mount_duette = get_direction(
     DUETTE_JOG_1,
     title=Tr.IS_RIGHT_MOUNT,
     orientation_question=Tr.IS_RIGHT_MOUNT,
-    confirm_orientation_command=NordicCommands(Nd.ORIENT_M25S_DUETTE_RIGHT),
+    confirm_orientation_command=NordicCommands(Nd.ORIENT_M25S_DUETTE_RIGHT), # L command
     confirm_yes=NavigationCommand(2),
 )
 
@@ -111,7 +111,7 @@ right_mount_pleated = get_direction(
     PLEATED_JOG_1,
     Tr.IS_RIGHT_MOUNT,
     Tr.IS_RIGHT_MOUNT,
-    NordicCommands(Nd.ORIENT_M25S_DUETTE_RIGHT),
+    NordicCommands(Nd.ORIENT_M25S_DUETTE_RIGHT), # L command
     confirm_yes=NavigationCommand(2),
 )
 
@@ -119,7 +119,7 @@ left_mount_pleated = get_direction(
     PLEATED_JOG_1,
     title=Tr.IS_LEFT_MOUNT,
     orientation_question=Tr.IS_LEFT_MOUNT,
-    confirm_orientation_command=NordicCommands(Nd.ORIENT_M25S_DUETTE_LEFT),
+    confirm_orientation_command=NordicCommands(Nd.ORIENT_M25S_DUETTE_LEFT), # R command
     cancel_no=NavigationCommand(-1),
     confirm_yes=NavigationCommand(1),
 )
@@ -128,7 +128,7 @@ left_mount_duette = get_direction(
     DUETTE_JOG_1,
     title=Tr.IS_LEFT_MOUNT,
     orientation_question=Tr.IS_LEFT_MOUNT,
-    confirm_orientation_command=NordicCommands(Nd.ORIENT_M25S_DUETTE_LEFT),
+    confirm_orientation_command=NordicCommands(Nd.ORIENT_M25S_DUETTE_LEFT), # R command
     cancel_no=NavigationCommand(-1),
     confirm_yes=NavigationCommand(1),
 )
@@ -137,7 +137,7 @@ right_mount_vb = get_direction(
     VB_JOG_1,
     title=Tr.IS_RIGHT_MOUNT,
     orientation_question=Tr.IS_RIGHT_MOUNT,
-    confirm_orientation_command=NordicCommands(Nd.ORIENT_M25S_DUETTE_RIGHT),
+    confirm_orientation_command=NordicCommands(Nd.ORIENT_M25S_DUETTE_RIGHT), # R command
     confirm_yes=NavigationCommand("start_programming"),
     nav_id="right_mount_vb",
 )

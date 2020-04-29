@@ -14,7 +14,7 @@ from instructor.actions.set_bottom_limit import (
     vvb_set_close_limit,
     vvb_re_set_close_limit,
 )
-from instructor.actions.set_top_limit import (
+from instructor.actions.set_open_limit import (
     vvb_set_open_limit_moveup,
     vvb_confirm_open_limit,
     vvb_set_open_limit,

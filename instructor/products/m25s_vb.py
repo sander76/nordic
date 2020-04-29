@@ -23,7 +23,7 @@ from instructor.actions.set_bottom_limit import (
     set_bottom_limit_vb,
     re_set_bottom_limit_vb,
 )
-from instructor.actions.set_top_limit import (
+from instructor.actions.set_open_limit import (
     set_top_limit_vb,
     set_top_limit_vb_moveup,
     confirm_top_limit_vb,

@@ -61,6 +61,8 @@ def make_luxaflex_nl():
     ]
     make_instruction("instructions-luxaflex-nl.json", instructions, TXT.nl)
 
+def make_duette_en():
+    pass
 
 def make_mhz_de():
     instructions = [m25s_vvb]
@@ -193,6 +195,7 @@ def make_instruction(file_name, products, lang):
     _products = ToJson(lang=lang).encode(instruction)
     with open(_path, "w", encoding="utf-8") as fl:
         fl.write(_products)
+
 
 
 if __name__ == "__main__":

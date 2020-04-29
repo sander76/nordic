@@ -19,7 +19,7 @@ from instructor.actions.set_bottom_limit import (
     set_bottom_limit,
     re_set_bottom_limit_twist,
 )
-from instructor.actions.set_top_limit import set_top_limit_roller
+from instructor.actions.set_open_limit import set_top_limit_roller
 from instructor.actions.skip_step import skiptop, skipbottom_next
 from instructor.components import (
     Row,

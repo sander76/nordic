@@ -28,13 +28,13 @@ from server.nordic import Nd
 #                               NordicCommands(Nd.SAVE_POSITION_BOTTOM))
 
 
-def get_bottom_limit(
+def get_close_limit(
     jog_image=RB_JOG_1,
     confirm_image=RB_JOG_1,
     confirm_text=Tr.DID_THE_MOTOR_JOG,
-    title=Tr.TITLE_SET_BOTTOM_LIMIT,
+    title=Tr.TITLE_SET_CLOSE_LIMIT,
     confirm_yes_goto=1,
-    move_blind_message=Tr.MOVE_BLIND_BOTTOM,
+    move_blind_message=Tr.MOVE_BLIND_CLOSE,
     save_position=Tr.SAVE_BOTTOM,
 ):
     return Step(
@@ -66,34 +66,34 @@ def get_bottom_limit(
     )
 
 
-set_bottom_limit = get_bottom_limit(RB_JOG_1)
+set_bottom_limit = get_close_limit(RB_JOG_1)
 # Same as normal setting the bottom limits,
 # but confirm dialog navigates to different page when ok.
-re_set_bottom_limit = get_bottom_limit(RB_MOVE_UP)
+re_set_bottom_limit = get_close_limit(RB_MOVE_UP)
 re_set_bottom_limit.confirm = Confirm(
     RB_MOVE_UP, Tr.DID_THE_MOTOR_MOVE_UP, yes=NavigationCommand(ID_TEST_BLINDS)
 )
 
 # Same as normal setting the bottom limits,
 # but confirm dialog navigates to different page when ok.
-re_set_bottom_limit_twist = get_bottom_limit(TWIST_MOVE_UP)
+re_set_bottom_limit_twist = get_close_limit(TWIST_MOVE_UP)
 re_set_bottom_limit_twist.confirm = Confirm(
     TWIST_MOVE_UP, Tr.DID_THE_MOTOR_MOVE_UP
 )
 
-set_bottom_limit_vb = get_bottom_limit(VB_JOG_1, confirm_image=VB_JOG_1)
+set_bottom_limit_vb = get_close_limit(VB_JOG_1, confirm_image=VB_JOG_1)
 # Same as normal setting the bottom limits,
 # but confirm dialog navigates to different page when ok.
-re_set_bottom_limit_vb = get_bottom_limit(VB_JOG_1,confirm_image=VB_JOG_1,confirm_yes_goto=ID_TEST_BLINDS)
+re_set_bottom_limit_vb = get_close_limit(VB_JOG_1, confirm_image=VB_JOG_1, confirm_yes_goto=ID_TEST_BLINDS)
 # re_set_bottom_limit_vb.confirm = Confirm(
 #     VB_JOG_1, Tr.DID_THE_MOTOR_JOG, yes=NavigationCommand(ID_TEST_BLINDS)
 # )
 
 # Duette and Pleated
-duette_set_bottom_limit = get_bottom_limit(
+duette_set_bottom_limit = get_close_limit(
     DUETTE_JOG_1, confirm_image=DUETTE_JOG_1
 )
-duette_re_set_bottom_limit = get_bottom_limit(
+duette_re_set_bottom_limit = get_close_limit(
     DUETTE_JOG_1,
     DUETTE_JOG_1,
     Tr.DID_THE_MOTOR_JOG,
@@ -101,13 +101,13 @@ duette_re_set_bottom_limit = get_bottom_limit(
 )
 
 # Pleated
-pleated_set_bottom_limit = get_bottom_limit(PLEATED_JOG_1, PLEATED_JOG_1)
-pleated_re_set_bottom_limit = get_bottom_limit(
+pleated_set_bottom_limit = get_close_limit(PLEATED_JOG_1, PLEATED_JOG_1)
+pleated_re_set_bottom_limit = get_close_limit(
     PLEATED_JOG_1, PLEATED_JOG_1, confirm_yes_goto=ID_TEST_BLINDS
 )
 
 # VVB
-vvb_set_close_limit = get_bottom_limit(
+vvb_set_close_limit = get_close_limit(
     VVB_JOG_1,
     VVB_JOG_1,
     title=Tr.TITLE_VVB_SET_CLOSE_LIMIT,
@@ -115,7 +115,7 @@ vvb_set_close_limit = get_bottom_limit(
     save_position=Tr.SAVE_CLOSE,
 )
 
-vvb_re_set_close_limit = get_bottom_limit(
+vvb_re_set_close_limit = get_close_limit(
     VVB_JOG_1,
     VVB_JOG_1,
     title=Tr.TITLE_VVB_SET_CLOSE_LIMIT,

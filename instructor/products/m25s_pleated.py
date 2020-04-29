@@ -18,7 +18,7 @@ from instructor.actions.set_bottom_limit import (
     pleated_set_bottom_limit,
     pleated_re_set_bottom_limit,
 )
-from instructor.actions.set_top_limit import (
+from instructor.actions.set_open_limit import (
     pleated_set_top_limit_moveup,
     pleated_confirm_top_limit,
     pleated_set_top_limit,

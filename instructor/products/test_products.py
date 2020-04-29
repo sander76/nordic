@@ -17,7 +17,7 @@ from instructor.actions.set_bottom_limit import (
     re_set_bottom_limit,
     set_bottom_limit,
 )
-from instructor.actions.set_top_limit import set_top_limit_roller
+from instructor.actions.set_open_limit import set_top_limit_roller
 from instructor.actions.skip_step import skiptop, skipbottom_end
 from instructor.components import (
     Product,

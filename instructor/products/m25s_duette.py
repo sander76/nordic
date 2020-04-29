@@ -11,7 +11,7 @@ from instructor.actions.motor_direction import right_mount_duette, \
     tensioned_duette_direction, tensioned_duette_switch_direction
 from instructor.actions.set_bottom_limit import duette_set_bottom_limit, \
     duette_re_set_bottom_limit
-from instructor.actions.set_top_limit import duette_set_top_limit, \
+from instructor.actions.set_open_limit import duette_set_top_limit, \
     duette_set_top_limit_moveup, duette_confirm_top_limit, \
     duette_tensioned_set_top_limit_moveup
 from instructor.actions.skip_step import skiptop, skipbottom_end
@@ -40,6 +40,13 @@ m25s_duette_free = Product(
         enter_program_mode_duette,
         duette_re_set_bottom_limit
     ])
+
+freehanging_A_duette_fabric = Product(
+    Tr.PRODUCT_PV_M25S_DUETTE,
+    [
+        confirm_duette
+    ]
+)
 
 m25s_duette_tensioned = Product(
     Tr.PRODUCT_PV_M25S_DUETTE_TENSIONED,
@@ -114,3 +121,4 @@ m25s_duette_tensioned = Product(
 #         duette_re_set_bottom_limit
 #     ])
 #
+
